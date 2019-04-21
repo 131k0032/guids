@@ -1,0 +1,347 @@
+ <?php  
+   error_reporting(0);
+   session_start(); 
+ ?>
+
+<!DOCTYPE html>
+<html lang="en">
+  <!--=================================
+  =            Head common            =
+  ==================================-->
+  
+  <?php include 'view/links/head_common.php'; ?>
+  
+  <!--====  End of Head common  ====-->
+  
+  <body>
+  
+
+  <!--============================
+  =            HEADER            =
+  =============================-->
+  <?php include 'view/modules/header/header.php'; ?>     
+  <!--====  End of HEADER  ====-->
+  
+  
+
+
+  <!--================================
+  =            INFO IMAGE            =
+  =================================-->
+  
+      <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(http://localhost/guids/view/assets/images/hero_1.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+      <div class="container">
+        <div class="row align-items-center justify-content-center text-center">
+
+          <div class="col-md-10">
+            
+            
+            <div class="row justify-content-center">
+              <div class="col-md-8 text-center">
+                <h1 data-aos="fade-up">Conoce más a detalle al guía</h1>
+                <p class="mb-0" data-aos="fade-up" data-aos-delay="100">Adelante, prueba reservar un tour con el guía</p>
+              </div>
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>  
+  
+  <!--====  End of INFO IMAGE  ====-->
+  
+  
+<!--================================
+=            GUIDE INFO            =
+=================================-->
+    <?php  
+    // First query
+      $tourId=$url[2];
+      // echo $tourId;
+      $getByTourId = new TourController();
+      $getByTourId = TourModel::getTourById("tour_schedule", $tourId);
+    
+    //Second query      
+      $getUserTourById = TourModel::getUserTourById("tour", $tourId);    
+      // echo $getUserTourById["tour_name"];
+  
+    ?>
+  
+    <div class="site-section bg-light">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-md-7 mb-5"  data-aos="fade">
+             <div class="d-block d-md-flex listing-horizontal">
+              <a href="#" class="img d-block" style="background-image: url('http://localhost/guids/view/assets/images/img_1.jpg')"></a>
+              <div class="lh-content">                
+                <h3><a href="#">Handcrafted Products</a></h3>
+                <p>Don St, Brooklyn, New York</p>
+                <p>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-secondary"></span>
+                  <span>(3 Reviews)</span>
+                </p>                              
+                <p><a href="#">Calificar guía</a></p>
+                <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartir</a>
+                </div>
+              </div>
+            </div>   
+
+            <div class="p-4 mb-3 bg-white">
+              <p class="mb-2 font-weight-bold">Días disponibles del guía</p>
+              <?php 
+                foreach ($getByTourId as $key => $value) {                                                      
+                    echo '<p class="mb-1">'.$value["day_name"].'</p>';
+                    
+                }
+
+                 ?>
+              
+              <form action="#" method="post">
+
+                <p class="mb-2 font-weight-bold">Elija fecha</p>
+                <div class="form-group">                  
+                  <div class="wrap-icon">
+                    <!-- <span class="icon icon-room"></span> -->
+                    <input type="date" class="form-control">
+                  </div>
+                </div>
+                
+                <p class="mb-2 font-weight-bold">Horarios de inicio del tour</p>
+                <div class="form-group">
+                  <div class="select-wrap">
+                      <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>                      
+                      <select class="form-control" name="" id="">
+                        <option value="">Elija el horario</option>
+                        <?php 
+                        foreach ($getByTourId as $key => $value) {
+                        ?>
+                        <option value=""><?php echo $value["day_name"]." ".$value["tour_start_at"] ?></option>                        
+
+                        <?php 
+                        }
+                       ?>
+                        
+                      </select>
+                    </div>
+                </div>
+
+     <!--            <p class="mb-2 font-weight-bold">Idioma del tour</p>
+                <div class="form-group">
+                  <div class="select-wrap">
+                      <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
+                      <select class="form-control" name="" id="">
+                        <option value="">Elija el idioma</option>
+                        <option value="">Español</option>
+                        <option value="">Inglés</option>
+                      </select>
+                    </div>
+                </div> -->
+
+
+                <div class="row form-group">
+                  <div class="col-md-12">
+                    <input data-toggle="modal" data-target="#exampleModalCenter" type="button" value="Reservar" class="btn btn-primary py-2 px-4 text-white">
+                  </div>
+                </div>
+
+              </form>
+            </div>   
+
+
+          </div>
+          <div class="col-md-5"  data-aos="fade" data-aos-delay="100">
+            
+            <div class="p-4 mb-3 bg-white">
+              <p class="mb-0 font-weight-bold">Ubicación del guía</p>
+              <p class="mb-4"><?php echo $getUserTourById["user_town"]; ?></p>
+
+              <p class="mb-0 font-weight-bold">Idiomas del guía</p>
+            
+                      <?php if($value["language_id"]==1){
+                          echo "Español";
+                        }elseif($value["language_id"]==2){
+                          echo "Maya";
+                        }elseif($value["language_id"]==3){
+                          echo "Inglés";
+                        }
+                      ?>       
+
+
+              <p class="mb-0 font-weight-bold">Teléfono</p>
+              <p class="mb-4"><a href="#"><?php echo $getUserTourById["user_phone"]; ?></a></p>
+
+              <p class="mb-0 font-weight-bold">Email</p>
+              <p class="mb-0"><a href="#"><?php echo $getUserTourById["user_email"]; ?></a></p>
+
+            </div>
+            
+            <div class="p-4 mb-3 bg-white">
+              <h3 class="h5 text-black mb-3">Sobre el guía</h3>
+              <p><?php echo $getUserTourById["user_personality"]; ?></p>
+
+              <h3 class="h5 text-black mb-3">Sobre el tour</h3>
+              <p><?php echo $getUserTourById["tour_description"]; ?></p>              
+            </div>
+
+              <div class="p-4 mb-3 bg-white">
+              <h3 class="h5 text-black mb-3">Punto de encuentro</h3>              
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3744.1768614563816!2d-87.4652991350486!3d20.209970370599834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f4fd6ac60c1c067%3A0x20a1acdae9634463!2sParque+Dos+Aguas%2C+Calle+alfa+sur+esquina+calle+andromeda%2C+Calle+Alfa+Sur%2C+77780+Tulum%2C+Quintana+Roo!5e0!3m2!1ses!2smx!4v1553930740010!5m2!1ses!2smx" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+              <h3 class="h5 text-black mb-3">¿Dónde encontrar al guía?</h3>
+              <p><?php echo $getUserTourById["tour_find_guide"]; ?></p>              
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+<!--====  End of GUIDE INFO  ====-->
+
+
+<!--==========================
+=            FAQS            =
+===========================-->
+
+  <div class="site-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center border-primary">
+            <h2 class="font-weight-light text-primary">Preguntas frecuentes</h2>
+            <p class="color-black-opacity-5">Lorem Ipsum Dolor Sit Amet</p>
+          </div>
+        </div>
+
+
+        <div class="row justify-content-center">
+          <div class="col-8">
+            <div class="border p-3 rounded mb-2">
+              <a data-toggle="collapse" href="#collapse-1" role="button" aria-expanded="false" aria-controls="collapse-1" class="accordion-item h5 d-block mb-0">How to list my item?</a>
+
+              <div class="collapse" id="collapse-1">
+                <div class="pt-2">
+                  <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti esse voluptates deleniti, ratione, suscipit quam cumque beatae, enim mollitia voluptatum velit excepturi possimus odio dolore molestiae officiis aspernatur provident praesentium.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="border p-3 rounded mb-2">
+              <a data-toggle="collapse" href="#collapse-4" role="button" aria-expanded="false" aria-controls="collapse-4" class="accordion-item h5 d-block mb-0">Is this available in my country?</a>
+
+              <div class="collapse" id="collapse-4">
+                <div class="pt-2">
+                  <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti esse voluptates deleniti, ratione, suscipit quam cumque beatae, enim mollitia voluptatum velit excepturi possimus odio dolore molestiae officiis aspernatur provident praesentium.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="border p-3 rounded mb-2">
+              <a data-toggle="collapse" href="#collapse-2" role="button" aria-expanded="false" aria-controls="collapse-2" class="accordion-item h5 d-block mb-0">Is it free?</a>
+
+              <div class="collapse" id="collapse-2">
+                <div class="pt-2">
+                  <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti esse voluptates deleniti, ratione, suscipit quam cumque beatae, enim mollitia voluptatum velit excepturi possimus odio dolore molestiae officiis aspernatur provident praesentium.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="border p-3 rounded mb-2">
+              <a data-toggle="collapse" href="#collapse-3" role="button" aria-expanded="false" aria-controls="collapse-3" class="accordion-item h5 d-block mb-0">How the system works?</a>
+
+              <div class="collapse" id="collapse-3">
+                <div class="pt-2">
+                  <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti esse voluptates deleniti, ratione, suscipit quam cumque beatae, enim mollitia voluptatum velit excepturi possimus odio dolore molestiae officiis aspernatur provident praesentium.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+    </div>
+
+<!--====  End of FAQS  ====-->
+
+
+<!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-center" id="exampleModalLongTitle">Completa la información</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+              <div class="row form-group">                
+                <div class="col-md-12">
+                  <p class="mb-2 font-weight-bold">Nombre</p>
+                  <input type="text" id="name" name="name" class="form-control" value="">
+                </div>
+              </div>
+
+              <div class="row form-group">                
+                <div class="col-md-12">
+                  <p class="mb-2 font-weight-bold">Apellidos</p>
+                  <input type="text" id="lastname" name="lastname" class="form-control" value="">
+                </div>
+              </div>
+
+              <div class="row form-group">                
+                <div class="col-md-12">
+                  <p class="mb-2 font-weight-bold">Email</p>
+                  <input type="text" id="email" name="email" class="form-control" value="">
+                </div>
+              </div>
+
+             <div class="row form-group">                
+                <div class="col-md-12">
+                  <p class="mb-2 font-weight-bold">Teléfono</p>
+                  <input type="text" id="phone" name="phone" class="form-control" value="">
+                </div>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <!-- <button type="submit" class="btn btn-primary">Save changes</button> -->
+          <form method="post">
+            <input type="submit" class="btn btn-primary" value="Save changes">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>  
+
+<!-- Modal -->
+
+
+<!--============================
+=            FOOTER            =
+=============================-->
+<?php include "view/modules/footer/footer.php" ?>
+<!--====  End of FOOTER  ====-->
+
+
+<!--=============================
+=            SCRIPTS            =
+==============================-->
+<?php include 'view/links/footer_common.php'; ?>
+
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v3.2&appId=1846460415459293&autoLogAppEvents=1"></script>
+<!--====  End of SCRIPTS  ====-->
+
+
+    
+  </body>
+</html>
