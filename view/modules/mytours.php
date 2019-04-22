@@ -72,7 +72,7 @@ error_reporting(0);
           <tbody>          
           <?php 
             $getAllById= new TourController();
-            $getAllById->getAllById($id);//variable $id came from header.php
+            $getAllById->getAllById($id);//variable $id came from header.php            
 
             foreach($getAllById->getAllById($id) as $row => $value){ 
           ?>
@@ -112,20 +112,20 @@ error_reporting(0);
                         </button>
                       </div>
                       <form method="post">
-                      <div class="modal-body">
-                        <input type="hidden" name="id" value="<?php echo $value["id"] ?>">
-                        <p class="color-black-opacity-5">Se eliminará el tour <?php echo $value["name"]; ?></p>                       
-                      </div>
-                      <div class="modal-footer">                        
-                          <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
-                          <!-- <button type="submit" class="btn btn-danger">Eliminar</button> -->
-                          <input type="submit" value="Eliminar" id="btnupdate" class="btn btn-danger py-2 px-4 text-white" >
-                               <?php 
-                                $deleteTour= new TourController();
-                                $deleteTour->del();
-                               ?>
-                        </form>
-                      </div>
+                        <div class="modal-body">
+                          <input type="hidden" name="id" value="<?php echo $value["id"] ?>">
+                          <p class="color-black-opacity-5">Se eliminará el tour <?php echo $value["name"]; ?></p>                       
+                        </div>
+                        <div class="modal-footer">                        
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+                            <!-- <button type="submit" class="btn btn-danger">Eliminar</button> -->
+                            <input type="submit" value="Eliminar" id="btnupdate" class="btn btn-danger py-2 px-4 text-white" >
+                                 <?php 
+                                  $deleteTour= new TourController();
+                                  $deleteTour->del();
+                                 ?>                        
+                        </div>
+                      </form>
                     </div>
                   </div>
                 </div>

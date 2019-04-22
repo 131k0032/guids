@@ -1,4 +1,4 @@
- <?php  
+<?php  
    error_reporting(0);
    session_start(); 
  ?>
@@ -67,7 +67,9 @@
       // echo $getUserTourById["tour_name"];
   
     ?>
-  
+
+<form method="post">
+
     <div class="site-section bg-light">
       <div class="container">
         <div class="row">
@@ -92,8 +94,11 @@
               </div>
             </div>   
 
-            <div class="p-4 mb-3 bg-white">
-              <p class="mb-2 font-weight-bold">Días disponibles del guía</p>
+            <div class="p-4 mb-3 bg-white">            
+              
+              <input type="hidden" name="tour_id" value="<?php echo $tourId; ?>">
+
+              <p class="mb-2 font-weight-bold">Días disponibles del guía para dar el tour</p>
               <?php 
                 foreach ($getByTourId as $key => $value) {                                                      
                     echo '<p class="mb-1">'.$value["day_name"].'</p>';
@@ -101,28 +106,16 @@
                 }
 
                  ?>
-              
-              <form action="#" method="post">
-
-                <p class="mb-2 font-weight-bold">Elija fecha</p>
-                <div class="form-group">                  
-                  <div class="wrap-icon">
-                    <!-- <span class="icon icon-room"></span> -->
-                    <input type="date" class="form-control">
-                  </div>
-                </div>
-                
-                <p class="mb-2 font-weight-bold">Horarios de inicio del tour</p>
+              <p class="mb-2 font-weight-bold">Horarios de inicio del tour</p>
                 <div class="form-group">
                   <div class="select-wrap">
                       <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>                      
-                      <select class="form-control" name="" id="">
+                      <select class="form-control" name="tour_schedule_id" id="tour_schedule_id">
                         <option value="">Elija el horario</option>
                         <?php 
                         foreach ($getByTourId as $key => $value) {
                         ?>
-                        <option value=""><?php echo $value["day_name"]." ".$value["tour_start_at"] ?></option>                        
-
+                        <option value="<?php echo $value["tour_schedule_id"] ?>"><?php echo $value["tour_schedule_id"]." ".$value["day_name"]." ".$value["tour_start_at"] ?></option>                        
                         <?php 
                         }
                        ?>
@@ -130,6 +123,32 @@
                       </select>
                     </div>
                 </div>
+            
+
+                <p class="mb-2 font-weight-bold">Elija fecha</p>
+                <div class="form-group">                  
+                  <div class="wrap-icon">
+                    <!-- <span class="icon icon-room"></span> -->
+                    <input type="date" name="tour_date" id="tour_date" class="form-control">
+                  </div>
+                </div>
+
+                 <p class="mb-2 font-weight-bold">Número de personas que asisitirán</p>
+                <div class="form-group">
+                  <div class="select-wrap">
+                      <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
+                      <select class="form-control" name="tourist_quantyty" id="tourist_quantyty">
+                        <option value="">Elija cantidad</option>
+                      <?php 
+                        for($i=1; $i<=20; $i++){
+                          echo '<option value="'.$i.'">'.$i.'</option>';
+                        }
+                       ?> 
+                      </select>
+                    </div>
+                </div>
+                
+        
 
      <!--            <p class="mb-2 font-weight-bold">Idioma del tour</p>
                 <div class="form-group">
@@ -149,8 +168,7 @@
                     <input data-toggle="modal" data-target="#exampleModalCenter" type="button" value="Reservar" class="btn btn-primary py-2 px-4 text-white">
                   </div>
                 </div>
-
-              </form>
+              
             </div>   
 
 
@@ -205,6 +223,64 @@
 
 <!--====  End of GUIDE INFO  ====-->
 
+<!--==================================
+=            Modal window            =
+===================================-->
+
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-center" id="exampleModalLongTitle">Completa la información</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+              <div class="row form-group">                
+                <div class="col-md-12">
+                  <p class="mb-2 font-weight-bold">Nombre</p>
+                  <input type="text" id="name" name="name" class="form-control" value="">
+                </div>
+              </div>
+
+              <div class="row form-group">                
+                <div class="col-md-12">
+                  <p class="mb-2 font-weight-bold">Apellidos</p>
+                  <input type="text" id="lastname" name="lastname" class="form-control" value="">
+                </div>
+              </div>
+
+              <div class="row form-group">                
+                <div class="col-md-12">
+                  <p class="mb-2 font-weight-bold">Email</p>
+                  <input type="text" id="email" name="email" class="form-control" value="">
+                </div>
+              </div>
+
+             <div class="row form-group">                
+                <div class="col-md-12">
+                  <p class="mb-2 font-weight-bold">Teléfono</p>
+                  <input type="text" id="phone" name="phone" class="form-control" value="">
+                </div>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <!-- <button type="submit" class="btn btn-primary">Save changes</button> -->          
+            <!-- <input type="submit" class="btn btn-primary" value="Save changes">    -->
+            <input type="submit" value="Reservar" class="btn btn-primary py-2 px-4 text-white">       
+            <?php 
+              $addBooking = new BookingController();
+              $addBooking->add();
+             ?>
+        </div>
+      </div>
+    </div>
+  </div>  
+
+</form>
+<!--====  End of Modal window  ====-->
 
 <!--==========================
 =            FAQS            =
@@ -270,58 +346,6 @@
 
 <!--====  End of FAQS  ====-->
 
-
-<!-- Modal -->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title text-center" id="exampleModalLongTitle">Completa la información</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-              <div class="row form-group">                
-                <div class="col-md-12">
-                  <p class="mb-2 font-weight-bold">Nombre</p>
-                  <input type="text" id="name" name="name" class="form-control" value="">
-                </div>
-              </div>
-
-              <div class="row form-group">                
-                <div class="col-md-12">
-                  <p class="mb-2 font-weight-bold">Apellidos</p>
-                  <input type="text" id="lastname" name="lastname" class="form-control" value="">
-                </div>
-              </div>
-
-              <div class="row form-group">                
-                <div class="col-md-12">
-                  <p class="mb-2 font-weight-bold">Email</p>
-                  <input type="text" id="email" name="email" class="form-control" value="">
-                </div>
-              </div>
-
-             <div class="row form-group">                
-                <div class="col-md-12">
-                  <p class="mb-2 font-weight-bold">Teléfono</p>
-                  <input type="text" id="phone" name="phone" class="form-control" value="">
-                </div>
-              </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <!-- <button type="submit" class="btn btn-primary">Save changes</button> -->
-          <form method="post">
-            <input type="submit" class="btn btn-primary" value="Save changes">
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>  
-
-<!-- Modal -->
 
 
 <!--============================

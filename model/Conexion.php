@@ -1,7 +1,7 @@
 <?php 
  class Conexion{
  	public function conectar(){
- 		$link = new PDO("mysql:host=localhost;dbname=guidstwo","root","");
+ 		$link = new PDO("mysql:host=localhost;dbname=guidsthree","root","");
  		 return $link;
  		//var_dump($link);
 

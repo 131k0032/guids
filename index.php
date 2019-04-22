@@ -10,6 +10,7 @@ require_once 'model/LanguageModel.php';
 require_once 'model/UserModel.php';
 require_once 'model/SigninModel.php';
 require_once 'model/TourModel.php';
+require_once 'model/BookingModel.php';
 
 
 
@@ -27,6 +28,7 @@ require_once 'controller/LanguageController.php';
 require_once 'controller/UserController.php';
 require_once 'controller/SigninController.php';
 require_once 'controller/TourController.php';
+require_once 'controller/BookingController.php';
 
 
 /*=====  End of Controllers  ======*/

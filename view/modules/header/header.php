@@ -63,10 +63,16 @@
             <h1 class="mb-0 site-logo"><a href="http://localhost/guids/index" class="text-black h2 mb-0" ><img src="http://localhost/guids/view/assets/images/logoweb.png" style="border-radius:25px;" alt</a></h1>
           </div>
           <div class="col-12 col-md-10 d-none d-xl-block">
-            <nav class="site-navigation position-relative text-right" role="navigation">
-              <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                <!-- <li><a href="#"><span><?php echo $_SESSION["name"]; ?></span></a></li>  -->                                             
-                <li><a href="bookings"><span>Agenda</span></a></li>              
+            <nav class="site-navigation position-relative text-right" role="navigation">              
+            <?php 
+                $email=$_SESSION["email"];
+                $emailById=array("email"=>$_SESSION["email"]);        
+                $getIdByEmail = UserModel::getIdByEmailUser($emailById,"user");
+                $id=$getIdByEmail["id"];                            
+                $name=$getIdByEmail["name"];
+            ?>
+              <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">                                                          
+                <li><a href="http://localhost/guids/bookings/user/<?php echo $id ?>"><span>Agenda</span></a></li>              
                 <li class="has-children">
                   <a href="#"><span>Más opciones</span></a>
                   <ul class="dropdown">
@@ -74,15 +80,7 @@
                     <li><a href="profile"><i class="icon-user"></i> Perfil</a></li>   
                     <li><a href="http://localhost/guids/addtour"><i class="icon-add_circle"></i> Agregar tour </a></li>
                     <li><a href="http://localhost/guids/mytours"><i class="icon-list-ul"></i> Mis tours </a></li>
-                    <li><a href="generateinsurance"><i class="icon-picture-o"></i> <?php echo $url[1]; ?> Generar seguro grupal</a></li>
-
-                    <?php 
-                        $email=$_SESSION["email"];
-                        $emailById=array("email"=>$_SESSION["email"]);        
-                        $getIdByEmail = UserModel::getIdByEmailUser($emailById,"user");
-                        $id=$getIdByEmail["id"];                            
-                        $name=$getIdByEmail["name"];
-                    ?>
+                    <li><a href="http://localhost/guids/generateinsurance/user/<?php echo $id; ?>"><i class="icon-picture-o"></i> Generar seguro grupal</a></li>
                     <!-- For new type edition of user -->                    
                     <li><a href="http://localhost/guids/settings/user/<?php echo $id; ?>/<?php echo $name; ?>"><i class="icon-settings"></i> Configurar</a></li>                                                        
                     <li><a href="http://localhost/guids/logout"><i class="icon-sign-out"></i> <span>Cerrar sesión</span></a></li>
