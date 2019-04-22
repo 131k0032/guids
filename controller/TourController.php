@@ -189,6 +189,7 @@ public function del(){
         $respuesta=TourModel::del($deleteId,"tour");
         if ($respuesta=="success") {
           print "<script>alert(\"ORRADO.\");window.location='http://localhost/guids/index';</script>";
+          
         }else{
           print "<script>alert(\"ASDASD.\");window.location='http://localhost/guids/index';</script>";
         }        
