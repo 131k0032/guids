@@ -1,5 +1,7 @@
 <?php 
 
+
+include_once "view/classupload/class.upload.php";
 class BookingController{
 
 	public function add(){
@@ -45,6 +47,12 @@ class BookingController{
 	
 	// For generateinsurance template
 	//Way 2 to access by id using the $id url when the result is more of one
+	public function getAllNullAccepted($id){
+ 	   	 $getAllNullAccepted = BookingModel::getAllNullAccepted("booking", $id);
+ 	   	 return $getAllNullAccepted;
+	}
+
+	// For booking template
 	public function getAllAccepted($id){
  	   	 $getAllAccepted = BookingModel::getAllAccepted("booking", $id);
  	   	 return $getAllAccepted;
@@ -72,5 +80,58 @@ class BookingController{
               print "<script>alert(\"Error.\");window.location='http://localhost/guids/index';</script>";
             }
 		}
+	}
+
+
+
+	// For booking template
+	public function fileValidateTour(){		
+		
+
+		if(isset($_POST["booking_id"])){
+			 if(isset($_FILES["src"])){
+			 	  $now=date('Y-m-d');
+                  // echo "Hay imagen";
+                  $handle = new Upload($_FILES['src']);
+                
+                  if($handle->uploaded){
+                    // $src="view/images/toursvalidated/".$id;
+                    $src="view/images/toursvalidated/";
+                    $handle->Process($src);
+                    if($handle->processed){
+                      $file_name = $handle->file_dst_name;  
+
+						$fileValidateTour=array(
+							"id"=>$_POST["booking_id"],
+							"src"=>$src,
+							"file_name"=>$file_name,
+							"updated_at"=>$now,
+						);                    
+                      // Updating src and file_name on booking
+                      $validate = BookingModel::fileValidateTour($fileValidateTour, "booking");
+                      if($validate=="success"){
+                        // var_dump($tourScheduleInsert);
+                        print "<script>alert(\"Bookig validated\");window.location='http://localhost/guids/mytours';</script>"; 
+                      }else{
+                        echo "Error al agregar datos";
+                      }
+                    }else{
+                      echo "Error size";
+                    }
+                  }else{
+                    echo "Cannot uplad image";
+                  }
+                }else{
+                  echo "There is not image";
+                  echo $_FILES["src"];
+                }
+		}		    
+	}
+
+
+	// For booking template
+	public function getAllReported($id){
+ 	   	 $getAllReported = BookingModel::getAllReported("booking", $id);
+ 	   	 return $getAllReported;
 	}
 }

@@ -9,7 +9,7 @@ error_reporting(0);
 
 <!DOCTYPE html>
 <html lang="en">
-  
+  <title>Add tour</title>
   <!--=================================
   =            Head common            =
   ==================================-->

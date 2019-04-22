@@ -5,15 +5,17 @@
         <div class="row">
           <div class="col-md-6">
             <h2 class="footer-heading mb-4">Acerca de nosotros</h2>
-            <ul class="list-unstyled">
-              <li><p>Conectamos guías privados con turistas y viajeros para experiencias </p></li>
+            <ul class="list-unstyled">              
+              <li><a href="http://localhost/guids/aboutus">Nuestro equipo</a></li>
             </ul>
           </div>
           <div class="col-md-3">
             <h2 class="footer-heading mb-4">Acerca del sitio</h2>
+
             <ul class="list-unstyled">
+              
               <li><a href="#">Términos y condiciones</a></li>
-              <li><a href="#">Ayuda</a></li>
+              <!-- <li><a href="#">Ayuda</a></li> -->
               <li><a href="#">Contacto : ceo@guids.mx</a></li>
               <!-- <li><a href="#">+ 52 9000000000 </a></li> -->
             </ul>

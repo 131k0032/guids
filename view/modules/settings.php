@@ -12,7 +12,7 @@ error_reporting(0);
     <!--=================================
   =            Head common            =
   ==================================-->
-  
+  <title>Settings </title>
   <?php include 'view/links/head_common.php'; ?>
   
   <!--====  End of Head common  ====-->

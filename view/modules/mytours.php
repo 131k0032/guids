@@ -13,7 +13,7 @@ error_reporting(0);
   <!--=================================
   =            Head common            =
   ==================================-->
-  
+  <title>My tours</title>
   <?php include 'view/links/head_common.php'; ?>
   
   <!--====  End of Head common  ====-->
@@ -89,12 +89,12 @@ error_reporting(0);
               <td><?php echo $value["tour_duration"]; ?></td>
               <td><?php echo $value["tour_capacity"]; ?> persona(s)</td>
               <td><?php echo $value["tour_created_at"]; ?></td>
-              <td><?php echo $value["language_name"]; ?></td>            
+              <td><?php echo utf8_encode($value["language_name"]); ?></td>            
               <td style="width:300px;">
                     <form method="post">    
                       <!-- <a href="" class="btn btn-warning btn-xs">Modificar</a> -->
-                        <li><a href="http://localhost/guids/mytours-setting/tour/<?php echo $value["id"];?>" class="btn btn-warning btn-xs"><i class="icon-settings"></i></a></li> 
-                        <li><a data-toggle="modal" data-target="#exampleModalCenter<?php echo $value["id"];?>" class="btn btn-danger btn-xs"><i class="icon-trash"></i></a></li> 
+                        <li><a href="http://localhost/guids/mytours-setting/tour/<?php echo $value["tour_id"];?>" class="btn btn-warning btn-xs"><i class="icon-settings"></i></a></li> 
+                        <li><a data-toggle="modal" data-target="#exampleModalCenter<?php echo $value["tour_id"];?>" class="btn btn-danger btn-xs"><i class="icon-trash"></i></a></li> 
                       <!-- <button class="btn btn-danger btn-xs" type="submit">Eliminar</button> -->
                     </form>
                   </td>
@@ -102,19 +102,19 @@ error_reporting(0);
             </tr>     
               
               <!-- Modal -->            
-                <div class="modal fade" id="exampleModalCenter<?php echo $value["id"];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal fade" id="exampleModalCenter<?php echo $value["tour_id"];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">¿Seguro deseas eliminar el tour <?php echo $value["name"];?> ?</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">¿Seguro deseas eliminar el tour <?php echo $value["tour_name"];?> ?</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
                       <form method="post">
                         <div class="modal-body">
-                          <input type="hidden" name="id" value="<?php echo $value["id"] ?>">
-                          <p class="color-black-opacity-5">Se eliminará el tour <?php echo $value["name"]; ?></p>                       
+                          <input type="hidden" name="id" value="<?php echo $value["tour_id"] ?>">
+                          <p class="color-black-opacity-5">Se eliminará el tour <?php echo $value["tour_name"]; ?></p>                       
                         </div>
                         <div class="modal-footer">                        
                             <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>

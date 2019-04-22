@@ -1,5 +1,4 @@
-  <head>
-    <title>Guids.mx</title>
+  <head>    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
@@ -51,7 +50,8 @@
             $url[0]=="generateinsurance" ||
             $url[0]=="settings" ||            
             $url[0]=="guideinfo" ||    
-            $url[0]=="test" ||                        
+            $url[0]=="test" ||     
+            $url[0]=="aboutus" ||                      
             //Logout
             $url[0]=="logout"
 

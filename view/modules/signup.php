@@ -4,7 +4,7 @@
   <!--=================================
   =            Head common            =
   ==================================-->
-  
+  <title>Sign up</title>
   <?php include 'view/links/head_common.php'; ?>
   
   <!--====  End of Head common  ====-->

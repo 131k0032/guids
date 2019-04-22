@@ -11,7 +11,7 @@ error_reporting(0);
   <!--=================================
   =            Head common            =
   ==================================-->
-  
+  <title>Generate insurance</title>
   <?php include 'view/links/head_common.php'; ?>
   
   <!--====  End of Head common  ====-->
@@ -49,14 +49,14 @@ error_reporting(0);
                 // var_dump($getAllAccepted);
               //Way 2 to access by id using the $id url when the result is more of one
             // echo $id;
-                $getAllAccepted= new BookingController();
-                $getAllAccepted->getAllAccepted($id);//variable $id came from header.php 
+                $getAllNullAccepted= new BookingController();
+                $getAllNullAccepted->getAllNullAccepted($id);//variable $id came from header.php 
                 // var_dump($getAllAccepted);
 
                      
              ?>
 
-            <form action="#" method="post" class="p-5 bg-white">                           
+    <form  method="post" enctype="multipart/form-data">                           
               <p>Esta foto grupal con los turistas servirá para hacer validar tu seguridad y la de los turistas/viajeros ante cualquier situación de terceros que pueda suceder, observa que puedes elegir únicamente los tours que haz aceptado realizar</p>
               <hr>              
 
@@ -65,10 +65,10 @@ error_reporting(0);
                 <div class="form-group">
                   <div class="select-wrap">
                       <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-                      <select class="form-control" name="tour" id="tour" required>                        
+                      <select class="form-control" name="booking_id" id="booking_id" required>                        
                         <option value="" disabled selected>Eija un tour para validar</option>
                               <?php
-                              foreach ($getAllAccepted->getAllAccepted($id) as $key => $value) {
+                              foreach ($getAllNullAccepted->getAllNullAccepted($id) as $key => $value) {
                                 ?>
                                 <option value="<?php echo $value['booking_id']; ?>"><?php echo $value["booking_tour_date"]." ".$value["tour_schedule_start_at"]." ".$value['tour_name']; ?></option>
                               <?php }
@@ -82,7 +82,7 @@ error_reporting(0);
 
              <p class="mb-2 font-weight-bold">Adjunta la foto grupal</p>
               <div class="form-group">
-                 <input type="file" class="form-control" id="securitypicture" id="securitypicture" name="securitypicture" >
+                 <input type="file" class="form-control" id="src" id="src" name="src" accept="image/*">
               </div>
               <br>
 
@@ -91,7 +91,11 @@ error_reporting(0);
                   <input type="submit" value="Adjuntar" id="btnupdate" class="btn btn-primary py-2 px-4 text-white">
                 </div>
               </div>
+              <?php 
+                $fileValidateTour= new BookingController();
+                $fileValidateTour->fileValidateTour();
 
+               ?>
          
 
 
@@ -145,9 +149,9 @@ error_reporting(0);
 
           <tbody>
             <?php 
-                 $getAllUnaccepted= new BookingController();
-                 $getAllUnaccepted->getAllAccepted($id);//variable $id came from header.php            
-                foreach($getAllUnaccepted->getAllAccepted($id) as $row => $value){ 
+                 $getAllAccepted= new BookingController();
+                 $getAllAccepted->getAllAccepted($id);//variable $id came from header.php            
+                foreach($getAllAccepted->getAllAccepted($id) as $row => $value){ 
              ?>
             <tr>                            
               <td><?php echo $value["tour_name"]; ?></td>                
@@ -185,67 +189,97 @@ error_reporting(0);
 =            TOURS REPORTED            =
 =====================================-->
 
+ 
   <div class="site-section">
       <div class="container">
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 text-center border-primary">
-            <h2 class="font-weight-light text-primary">Mis tours que he informado</h2>
+            <h2 class="font-weight-light text-primary">Mis tours que he reportado</h2>
             <p class="color-black-opacity-5">Lorem Ipsum Dolor Sit Amet</p>
           </div>
         </div>        
       </div>
     </div>
 
-    <div class="container">
-      
-        <div class="row">
-          <div class="col-md-12">
-     
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque consequatur enim possimus quas, tempora eveniet nihil delectus eum fugiat ut inventore sequi placeat, qui accusamus dolor atque explicabo? Necessitatibus, eum.</p>
-
-                      <table id="toursreported" class="table table-striped table-bordered dt-responsive nowrap">
-                          <thead>
-                            <tr>                                                        
-                                <th>Lugar</th>
-                                <th>Estatus</th>
-                                <th>Fecha de reporte</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                          <tbody>
-                              <tr>
-                                  
-                                  <td>lorem</td>                
-                                  <td>lorem</td>
-                                  <td>lorem</td>
-                                  <td style="width:100px;">
-                                        <form action="" method="POST">    
-                                          <a href="" class="btn btn-warning btn-xs">Modificar</a> 
-                                          <button class="btn btn-danger btn-xs" type="submit">Eliminar</button>
-                                        </form>
-                                      </td>
-                              </tr>
-                              <tr>                                  
-                                  <td>lorem</td>                
-                                  <td>lorem</td>
-                                  <td>lorem ip</td>
-                                  <td style="width:100px;">
-                                        <form action="" method="POST">    
-                                          <a href="" class="btn btn-warning btn-xs">Modificar</a> 
-                                          <button class="btn btn-danger btn-xs" type="submit">Eliminar</button>
-                                        </form>
-                                      </td>
-                              </tr>
-                          </tbody>
-                      </table><!-- .table--> 
-
-
   
-          </div>
-          
-        </div>
-    </div>
+<div class="container">
+  
+    <div class="row">
+      <div class="col-md-12">
+ 
+        <p>Aquí encontrarás la lista de todos los tours que haz reportado y validado con una foto</p>
 
+        <table id="toursreported" class="table table-bordered table-striped dt-responsive nowrap">
+          <thead>
+            <tr>
+              <th>Lugar</th>
+              <th>Reserva</th>                        
+              <th>Cantidad de personas</th>
+              <th>Imagen de verificación</th>  
+              <th>Fecha del tour</th>  
+              <th>Fecha de reportado</th>                
+              <!-- <th>Acciones</th> -->
+
+            </tr>
+          </thead>
+
+          <tbody>
+            <?php 
+                 $getAllReported= new BookingController();
+                 $getAllReported->getAllReported($id);//variable $id came from header.php            
+                foreach($getAllReported->getAllReported($id) as $row => $value){ 
+             ?>
+            <tr>                            
+              <td><?php echo $value["tour_name"]; ?></td>                
+              <td><?php echo $value["booking_tourist_name"]." ".$value["booking_tourist_lastname"]; ?></td>                
+              <td><?php echo $value["booking_tourist_quantyty"]; ?></td>
+              <td>
+                <div class="listing-image" style="max-width:20%; max-height: 20%;" >
+                  <img src="http://localhost/guids/<?php echo $value["booking_tourist_src"]. $value["booking_toursit_file_name"];?>" alt="Image" class="img-fluid img-thumbnail card-img-top">
+
+                    <a style="color: white"; data-toggle="modal" data-target="#seeImageModal<?php echo $value["booking_id"];?>" class="btn btn-info btn-sm icon-eye"></a> 
+                </div>
+              </td>
+              <td><?php echo $value["booking_tour_date"]; ?></td>
+              <td><?php echo $value["booking_updated_at"]; ?></td>
+            </tr>
+            
+               <!-- Modal -->            
+                <div class="modal fade" id="seeImageModal<?php echo $value["booking_id"];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Imagen enviada</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>                      
+                      <div class="modal-body">                        
+                        <p class="color-black-opacity-5">
+                          <div class="listing-image" style="max-width:100%; max-height: 100%;" >
+                            <img src="http://localhost/guids/<?php echo $value["booking_tourist_src"]. $value["booking_toursit_file_name"];?>" alt="Image" class="img-fluid img-thumbnail card-img-top">                              
+                          </div>
+                      </div>
+                      <div class="modal-footer">                        
+                          <button style="color: white"; type="button" class="btn btn-secondary" data-dismiss="modal">Cerar</button>
+                      </div>                      
+                    </div>
+                  </div>
+                </div>
+           
+                <!-- End of Modal -->
+
+
+            <?php } ?>
+          </tbody>
+        </table>
+
+
+
+      </div>
+      
+    </div>
+</div>
 <!--====  End of TOURS REPORTED  ====-->
 
 

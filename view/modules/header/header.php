@@ -82,7 +82,7 @@
                     <li><a href="http://localhost/guids/mytours"><i class="icon-list-ul"></i> Mis tours </a></li>
                     <li><a href="http://localhost/guids/generateinsurance/user/<?php echo $id; ?>"><i class="icon-picture-o"></i> Generar seguro grupal</a></li>
                     <!-- For new type edition of user -->                    
-                    <li><a href="http://localhost/guids/settings/user/<?php echo $id; ?>/<?php echo $name; ?>"><i class="icon-settings"></i> Configurar</a></li>                                                        
+                    <li><a href="http://localhost/guids/settings/user/<?php echo $id; ?>"><i class="icon-settings"></i> Configurar</a></li>                                                        
                     <li><a href="http://localhost/guids/logout"><i class="icon-sign-out"></i> <span>Cerrar sesión</span></a></li>
                   </ul>
                 </li>

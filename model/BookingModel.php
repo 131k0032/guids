@@ -50,7 +50,7 @@ class BookingModel{
 			$stmt->close();
 	}
 
-	public function getAllAccepted($table, $id){
+	public function getAllNullAccepted($table, $id){
 					$stmt = Conexion::conectar()->prepare("SELECT 
 					-- Table booking
 					booking.id as booking_id,
@@ -98,6 +98,52 @@ class BookingModel{
 				$stmt->close();
 	}
 
+		public function getAllAccepted($table, $id){
+					$stmt = Conexion::conectar()->prepare("SELECT 
+					-- Table booking
+					booking.id as booking_id,
+					booking.tour_date as booking_tour_date,
+					booking.tourist_quantyty as booking_tourist_quantyty,
+					booking.status as booking_status,
+					booking.name as booking_tourist_name,
+					booking.lastname as booking_tourist_lastname,
+					booking.phone as booking_tourist_phone,
+					booking.email as booking_tourist_email,
+					booking.src as booking_tourist_src,
+					booking.file_name as booking_toursit_file_name,
+					booking.updated_at as booking_updated_at,
+					-- Table tour_schedule
+					tour_schedule.id as tour_schedule_id,
+					tour_schedule.start_at as tour_schedule_start_at,
+					-- Table tour
+					tour.id as tour_id,
+					tour.name as tour_name,
+					tour.description as tour_description,
+					tour.location as tour_location,
+					-- Table user_id
+					user.id as user_id,
+					user.name as user_name
+
+					from 
+					$table
+					inner join tour
+					on booking.tour_id=tour.id
+
+					inner join tour_schedule
+					on tour_schedule.id=booking.id
+
+					inner join user
+					on user.id=tour.user_id
+
+					where 
+					-- To validate a bookig before is accepted with status 1
+					user.id=$id && 
+					booking.status=1 
+					");
+				$stmt->execute();				
+				return $stmt->fetchAll();						
+				$stmt->close();
+	}
 
 		public function getAllUnaccepted($table, $id){
 					$stmt = Conexion::conectar()->prepare("SELECT 
@@ -112,6 +158,7 @@ class BookingModel{
 					booking.email as booking_tourist_email,
 					booking.src as booking_tourist_src,
 					booking.file_name as booking_toursit_file_name,
+					booking.updated_at as booking_updated_at,
 					-- Table tour_schedule
 					tour_schedule.id as tour_schedule_id,
 					tour_schedule.start_at as tour_schedule_start_at,
@@ -161,6 +208,72 @@ class BookingModel{
 			$stmt->close();
 
 	}
+
+	public function fileValidateTour($bookingDataModel, $table){
+				$stmt = Conexion::conectar()->prepare("UPDATE $table SET src=:src, file_name=:file_name, updated_at=:updated_at WHERE id=:id");						
+				$stmt->bindParam(":src",$bookingDataModel["src"],PDO::PARAM_STR);							
+				$stmt->bindParam(":file_name",$bookingDataModel["file_name"],PDO::PARAM_STR);
+				$stmt->bindParam(":updated_at",$bookingDataModel["updated_at"],PDO::PARAM_STR);
+				$stmt->bindParam(":id",$bookingDataModel["id"],PDO::PARAM_INT);
+				$stmt->execute();				
+				if($stmt->execute()){
+					return "success";
+				}else{
+					return "error";
+				}
+			return $stmt->fetch();						
+			$stmt->close();
+	}
+
+		public function getAllReported($table, $id){
+					$stmt = Conexion::conectar()->prepare("SELECT 
+					-- Table booking
+					booking.id as booking_id,
+					booking.tour_date as booking_tour_date,
+					booking.tourist_quantyty as booking_tourist_quantyty,
+					booking.status as booking_status,
+					booking.name as booking_tourist_name,
+					booking.lastname as booking_tourist_lastname,
+					booking.phone as booking_tourist_phone,
+					booking.email as booking_tourist_email,
+					booking.src as booking_tourist_src,
+					booking.file_name as booking_toursit_file_name,
+					booking.updated_at as booking_updated_at,
+					-- Table tour_schedule
+					tour_schedule.id as tour_schedule_id,
+					tour_schedule.start_at as tour_schedule_start_at,
+					-- Table tour
+					tour.id as tour_id,
+					tour.name as tour_name,
+					tour.description as tour_description,
+					tour.location as tour_location,
+					-- Table user_id
+					user.id as user_id,
+					user.name as user_name
+
+					from 
+					$table
+					inner join tour
+					on booking.tour_id=tour.id
+
+					inner join tour_schedule
+					on tour_schedule.id=booking.id
+
+					inner join user
+					on user.id=tour.user_id
+
+					where 
+					-- To validate a bookig before is accepted with status 1
+					user.id=$id && 
+					booking.status=1  && 					
+					booking.src IS NOT NULL && 
+					booking.file_name IS NOT NULL
+					");
+				$stmt->execute();				
+				return $stmt->fetchAll();						
+				$stmt->close();
+	}
+
 
 
 }

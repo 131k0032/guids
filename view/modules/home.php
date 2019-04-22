@@ -13,7 +13,7 @@ error_reporting(0);
   <!--=================================
   =            Head common            =
   ==================================-->
-  
+  <title>Guids</title>
   <?php include 'view/links/head_common.php'; ?>
   
   <!--====  End of Head common  ====-->

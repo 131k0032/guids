@@ -4,7 +4,7 @@
   <!--=================================
   =            Head common            =
   ==================================-->
-  
+  <title>404 Sitio no encontrado</title>
   <?php include 'view/links/head_common.php'; ?>
   
   <!--====  End of Head common  ====-->
