@@ -228,7 +228,7 @@ error_reporting(0);
                               <tr>                                  
                                   <td>lorem</td>                
                                   <td>lorem</td>
-                                  <td>lorem</td>
+                                  <td>lorem ip</td>
                                   <td style="width:100px;">
                                         <form action="" method="POST">    
                                           <a href="" class="btn btn-warning btn-xs">Modificar</a> 
