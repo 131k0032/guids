@@ -5,6 +5,30 @@ error_reporting(0);
       print "<script>window.location='index';</script>";
       exit();
     }
+# ===========================================
+# =           Language validation           =
+# ===========================================
+
+   //Watching changes on post variable
+if(isset($_POST["lang"])){
+  $lang = $_POST["lang"];
+  if(!empty($lang)){
+    $_SESSION["lang"] = $lang;
+  }
+}
+// If is created
+if(isset($_SESSION['lang'])){  
+  $lang = $_SESSION["lang"];
+  include "view/languages/".$lang.".php";
+// Else take spanish default
+}else{
+  include "view/languageslang/es.php";
+}
+
+
+# ======  End of Language validation  =======
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -235,7 +259,7 @@ error_reporting(0);
               <td><?php echo $value["booking_tourist_quantyty"]; ?></td>
               <td>
                 <div class="listing-image" style="max-width:20%; max-height: 20%;" >
-                  <img src="http://localhost/guids/<?php echo $value["booking_tourist_src"]. $value["booking_toursit_file_name"];?>" alt="Image" class="img-fluid img-thumbnail card-img-top">
+                  <img src="http://localhost/guids/<?php echo $value["booking_tourist_src"]. $value["booking_tourist_file_name"];?>" alt="Image" class="img-fluid img-thumbnail card-img-top">
 
                     <a style="color: white"; data-toggle="modal" data-target="#seeImageModal<?php echo $value["booking_id"];?>" class="btn btn-info btn-sm icon-eye"></a> 
                 </div>
@@ -257,11 +281,11 @@ error_reporting(0);
                       <div class="modal-body">                        
                         <p class="color-black-opacity-5">
                           <div class="listing-image" style="max-width:100%; max-height: 100%;" >
-                            <img src="http://localhost/guids/<?php echo $value["booking_tourist_src"]. $value["booking_toursit_file_name"];?>" alt="Image" class="img-fluid img-thumbnail card-img-top">                              
+                            <img src="http://localhost/guids/<?php echo $value["booking_tourist_src"]. $value["booking_tourist_file_name"];?>" alt="Image" class="img-fluid img-thumbnail card-img-top">                              
                           </div>
                       </div>
                       <div class="modal-footer">                        
-                          <button style="color: white"; type="button" class="btn btn-secondary" data-dismiss="modal">Cerar</button>
+                          <button style="color: white"; type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                       </div>                      
                     </div>
                   </div>

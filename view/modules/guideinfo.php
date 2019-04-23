@@ -1,9 +1,32 @@
 <?php  
    error_reporting(0);
-   session_start(); 
+   session_start();
+# ===========================================
+# =           Language validation           =
+# ===========================================
+
+   //Watching changes on post variable
+if(isset($_POST["lang"])){
+  $lang = $_POST["lang"];
+  if(!empty($lang)){
+    $_SESSION["lang"] = $lang;
+  }
+}
+// If is created
+if(isset($_SESSION['lang'])){  
+  $lang = $_SESSION["lang"];
+  include "view/languages/".$lang.".php";
+// Else take spanish default
+}else{
+  include "view/languageslang/es.php";
+}
+
+
+# ======  End of Language validation  ======= 
  ?>
 
 <!DOCTYPE html>
+<title>Guide info</title>
 <html lang="en">
   <!--=================================
   =            Head common            =
@@ -79,7 +102,10 @@
               <a href="#" class="img d-block" style="background-image: url('http://localhost/guids/view/assets/images/img_1.jpg')"></a>
               <div class="lh-content">                
                 <h3><a href="#">Handcrafted Products</a></h3>
-                <p>Don St, Brooklyn, New York</p>
+                <p>Don St, Brooklyn, New York</p>                                
+                <?php if(!isset($_SESSION["email"])){ ?>
+                <!-- Can rate -->
+                <p><a href="#">Calificar guía</a></p>
                 <p>
                   <span class="icon-star text-warning"></span>
                   <span class="icon-star text-warning"></span>
@@ -88,12 +114,17 @@
                   <span class="icon-star text-secondary"></span>
                   <span>(3 Reviews)</span>
                 </p>                              
-                <p><a href="#">Calificar guía</a></p>
+                <?php }else {?>
+                <!-- Can't booking -->
+
+                <?php } ?>
                 <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartir</a>
                 </div>
               </div>
             </div>   
 
+<?php if(!isset($_SESSION["email"])){ ?>
+<!-- Can booking -->
             <div class="p-4 mb-3 bg-white">            
               
               <input type="hidden" name="tour_id" value="<?php echo $tourId; ?>">
@@ -129,7 +160,7 @@
                 <div class="form-group">                  
                   <div class="wrap-icon">
                     <!-- <span class="icon icon-room"></span> -->
-                    <input type="date" name="tour_date" id="tour_date" class="form-control">
+                    <input data-format="yyyy-MM-dd" type="date" name="tour_date" id="tour_date" class="form-control">
                   </div>
                 </div>
 
@@ -148,31 +179,22 @@
                     </div>
                 </div>
                 
-        
-
-     <!--            <p class="mb-2 font-weight-bold">Idioma del tour</p>
-                <div class="form-group">
-                  <div class="select-wrap">
-                      <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-                      <select class="form-control" name="" id="">
-                        <option value="">Elija el idioma</option>
-                        <option value="">Español</option>
-                        <option value="">Inglés</option>
-                      </select>
-                    </div>
-                </div> -->
-
-
+      
                 <div class="row form-group">
                   <div class="col-md-12">
                     <input data-toggle="modal" data-target="#exampleModalCenter" type="button" value="Reservar" class="btn btn-primary py-2 px-4 text-white">
                   </div>
                 </div>
               
-            </div>   
+            </div>     
+    
+<?php }else{ ?>
+<!-- Can't booking -->
+
+<?php } ?>
 
 
-          </div>
+        </div>
           <div class="col-md-5"  data-aos="fade" data-aos-delay="100">
             
             <div class="p-4 mb-3 bg-white">

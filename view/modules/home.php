@@ -1,10 +1,29 @@
 <?php 
 error_reporting(0);
  session_start();
-    // if(!$_SESSION['validar']){
-    //   print "<script>window.location='index';</script>";
-    //   exit();
-    // }
+# ===========================================
+# =           Language validation           =
+# ===========================================
+
+   //Watching changes on post variable
+if(isset($_POST["lang"])){
+  $lang = $_POST["lang"];
+  if(!empty($lang)){
+    $_SESSION["lang"] = $lang;
+  }
+}
+// If is created
+if(isset($_SESSION['lang'])){  
+  $lang = $_SESSION["lang"];
+  include "view/languages/".$lang.".php";
+// Else take spanish default
+}else{
+  include "view/languageslang/es.php";
+}
+
+
+# ======  End of Language validation  =======
+
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +61,7 @@ error_reporting(0);
             
             <div class="row justify-content-center mb-4">
               <div class="col-md-8 text-center">
-                <h1 data-aos="fade-up">Encuentra <span class="typed-words"></span></h1>              
+                <h1 data-aos="fade-up"><?php echo $lang["Encuentra"]; ?><span class="typed-words"></span></h1>              
               </div>
             </div>
 
@@ -84,7 +103,7 @@ error_reporting(0);
       <div class="container">
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 text-center border-primary">
-            <h2 class="font-weight-light text-primary">Tours destacados</h2>
+            <h2 class="font-weight-light text-primary"><?php echo $lang["descripcion"]; ?></h2>
             <p class="color-black-opacity-5">Los más solicitados</p>
           </div>
         </div>

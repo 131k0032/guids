@@ -18,7 +18,7 @@ class BookingModel{
 						tour_schedule_id,
 						tour_id) 
 				VALUES 
-					   (:name, 
+					   (:tour_date, 
 					    :tourist_quantyty, 
 					    :status, 
 					    :name, 
@@ -56,42 +56,32 @@ class BookingModel{
 					booking.id as booking_id,
 					booking.tour_date as booking_tour_date,
 					booking.tourist_quantyty as booking_tourist_quantyty,
-					booking.status as booking_status,
+					booking.status as booking_tourist_status,
 					booking.name as booking_tourist_name,
 					booking.lastname as booking_tourist_lastname,
-					booking.phone as booking_tourist_phone,
-					booking.email as booking_tourist_email,
-					booking.src as booking_tourist_src,
-					booking.file_name as booking_toursit_file_name,
 					-- Table tour_schedule
 					tour_schedule.id as tour_schedule_id,
 					tour_schedule.start_at as tour_schedule_start_at,
 					-- Table tour
 					tour.id as tour_id,
 					tour.name as tour_name,
-					tour.description as tour_description,
-					tour.location as tour_location,
-					-- Table user_id
-					user.id as user_id,
-					user.name as user_name
-
-					from 
-					$table
+					-- Table user
+					user.id as user_id
+					from $table
 					inner join tour
 					on booking.tour_id=tour.id
 
 					inner join tour_schedule
-					on tour_schedule.id=booking.id
+					on booking.tour_schedule_id=tour_schedule.id
 
-					inner join user
+					inner join user 
 					on user.id=tour.user_id
 
-					where 
-					-- To validate a bookig before is accepted with status 1
-					user.id=$id && 
-					booking.status=1 && 
-					booking.src IS NULL && 
+					where user.id=$id && 
+					booking.status=1  &&
+					booking.src IS NULL &&
 					booking.file_name IS NULL
+					ORDER BY booking.id desc
 					");
 				$stmt->execute();				
 				return $stmt->fetchAll();						
@@ -104,41 +94,32 @@ class BookingModel{
 					booking.id as booking_id,
 					booking.tour_date as booking_tour_date,
 					booking.tourist_quantyty as booking_tourist_quantyty,
-					booking.status as booking_status,
+					booking.status as booking_tourist_status,
 					booking.name as booking_tourist_name,
 					booking.lastname as booking_tourist_lastname,
 					booking.phone as booking_tourist_phone,
 					booking.email as booking_tourist_email,
-					booking.src as booking_tourist_src,
-					booking.file_name as booking_toursit_file_name,
-					booking.updated_at as booking_updated_at,
 					-- Table tour_schedule
 					tour_schedule.id as tour_schedule_id,
 					tour_schedule.start_at as tour_schedule_start_at,
 					-- Table tour
 					tour.id as tour_id,
 					tour.name as tour_name,
-					tour.description as tour_description,
-					tour.location as tour_location,
-					-- Table user_id
-					user.id as user_id,
-					user.name as user_name
-
-					from 
-					$table
+					-- Table user
+					user.id as user_id
+					from $table
 					inner join tour
 					on booking.tour_id=tour.id
 
 					inner join tour_schedule
-					on tour_schedule.id=booking.id
+					on booking.tour_schedule_id=tour_schedule.id
 
-					inner join user
+					inner join user 
 					on user.id=tour.user_id
 
-					where 
-					-- To validate a bookig before is accepted with status 1
-					user.id=$id && 
-					booking.status=1 
+					where user.id=$id && 
+					booking.status=1  ORDER BY booking.id desc
+					
 					");
 				$stmt->execute();				
 				return $stmt->fetchAll();						
@@ -146,49 +127,35 @@ class BookingModel{
 	}
 
 		public function getAllUnaccepted($table, $id){
-					$stmt = Conexion::conectar()->prepare("SELECT 
-					-- Table booking
-					booking.id as booking_id,
-					booking.tour_date as booking_tour_date,
-					booking.tourist_quantyty as booking_tourist_quantyty,
-					booking.status as booking_status,
-					booking.name as booking_tourist_name,
-					booking.lastname as booking_tourist_lastname,
-					booking.phone as booking_tourist_phone,
-					booking.email as booking_tourist_email,
-					booking.src as booking_tourist_src,
-					booking.file_name as booking_toursit_file_name,
-					booking.updated_at as booking_updated_at,
-					-- Table tour_schedule
-					tour_schedule.id as tour_schedule_id,
-					tour_schedule.start_at as tour_schedule_start_at,
-					-- Table tour
-					tour.id as tour_id,
-					tour.name as tour_name,
-					tour.description as tour_description,
-					tour.location as tour_location,
-					-- Table user_id
-					user.id as user_id,
-					user.name as user_name
+					$stmt = Conexion::conectar()->prepare("SELECT
+				-- Table booking
+				booking.id as booking_id,
+				booking.tour_date as booking_tour_date,
+				booking.tourist_quantyty as booking_tourist_quantyty,
+				booking.name as booking_tourist_name,
+				booking.lastname as booking_tourist_lastname,
+				-- Table tour_schedule
+				tour_schedule.id as tour_schedule_id,
+				tour_schedule.start_at as tour_schedule_start_at,
+				-- Table tour
+				tour.id as tour_id,
+				tour.name as tour_name,
+				-- Table user
+				user.id as user_id
+				from $table
+				inner join tour
+				on booking.tour_id=tour.id
 
-					from 
-					$table
-					inner join tour
-					on booking.tour_id=tour.id
+				inner join tour_schedule
+				on booking.tour_schedule_id=tour_schedule.id
 
-					inner join tour_schedule
-					on tour_schedule.id=booking.id
+				inner join user 
+				on user.id=tour.user_id
 
-					inner join user
-					on user.id=tour.user_id
-
-					where 
-					-- To validate a bookig before is accepted with status 1
-					user.id=$id && 
-					booking.status=0 && 
-					booking.src IS NULL && 
-					booking.file_name IS NULL
-					");
+				where user.id=$id && 
+				booking.status=0 &&
+				booking.src IS NULL &&
+				booking.file_name IS NULL ORDER BY booking.id desc");
 				$stmt->execute();				
 				return $stmt->fetchAll();						
 				$stmt->close();
@@ -226,18 +193,16 @@ class BookingModel{
 	}
 
 		public function getAllReported($table, $id){
-					$stmt = Conexion::conectar()->prepare("SELECT 
+					$stmt = Conexion::conectar()->prepare("SELECT
 					-- Table booking
 					booking.id as booking_id,
 					booking.tour_date as booking_tour_date,
 					booking.tourist_quantyty as booking_tourist_quantyty,
-					booking.status as booking_status,
+					booking.status as booking_tourist_status,
 					booking.name as booking_tourist_name,
 					booking.lastname as booking_tourist_lastname,
-					booking.phone as booking_tourist_phone,
-					booking.email as booking_tourist_email,
 					booking.src as booking_tourist_src,
-					booking.file_name as booking_toursit_file_name,
+					booking.file_name as booking_tourist_file_name,
 					booking.updated_at as booking_updated_at,
 					-- Table tour_schedule
 					tour_schedule.id as tour_schedule_id,
@@ -245,29 +210,23 @@ class BookingModel{
 					-- Table tour
 					tour.id as tour_id,
 					tour.name as tour_name,
-					tour.description as tour_description,
-					tour.location as tour_location,
-					-- Table user_id
-					user.id as user_id,
-					user.name as user_name
-
-					from 
-					$table
+					-- Table user
+					user.id as user_id
+					from $table
 					inner join tour
 					on booking.tour_id=tour.id
 
 					inner join tour_schedule
-					on tour_schedule.id=booking.id
+					on booking.tour_schedule_id=tour_schedule.id
 
-					inner join user
+					inner join user 
 					on user.id=tour.user_id
 
-					where 
-					-- To validate a bookig before is accepted with status 1
-					user.id=$id && 
-					booking.status=1  && 					
-					booking.src IS NOT NULL && 
+					where user.id=$id && 
+					booking.status=1  &&
+					booking.src IS NOT NULL &&
 					booking.file_name IS NOT NULL
+					ORDER BY booking.id desc
 					");
 				$stmt->execute();				
 				return $stmt->fetchAll();						

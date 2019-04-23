@@ -7,10 +7,12 @@ class BookingController{
 	public function add(){
 		if(isset($_POST["tour_date"])){
 				$now=date('Y-m-d');				
-				$date_formatted=date('Y-m-d',$_POST["tour_date"]);
+				// $date = $_POST['tour_date'];
+				// $format = explode('-', $date);
+				// $date_formatted = "{$format[0]}-{$format[1]}-{$format[2]}";
 				$bookingDataController=array(
 				// "dbfields"=>$_POST["variables"]
-					"tour_date"=>$date_formatted,
+					"tour_date"=>$_POST["tour_date"],
 					"tourist_quantyty"=>$_POST["tourist_quantyty"],
 					"status"=>0,
 					"name"=>$_POST["name"],
@@ -24,8 +26,9 @@ class BookingController{
 					"tour_schedule_id"=>$_POST["tour_schedule_id"],
 					"tour_id"=>$_POST["tour_id"]													
 				);
+				// echo $date_formatted;
 			$bookinginsert = BookingModel::add($bookingDataController,"booking");
-			var_dump($bookingDataController);
+			// var_dump($bookingDataController);
 
 			if($bookinginsert=="success"){
 				// var_dump($bookinginsert);

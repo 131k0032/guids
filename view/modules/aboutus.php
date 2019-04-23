@@ -1,3 +1,11 @@
+<?php  
+error_reporting(0);
+ session_start();
+    if(!$_SESSION['validar']){      
+      print "<script>window.location='index';</script>";      
+      exit();      
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 

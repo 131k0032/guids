@@ -1,4 +1,31 @@
-<!-- <?php   //session_start(); ?> -->
+
+<?php 
+session_start();
+# ===========================================
+# =           Language validation           =
+# ===========================================
+
+   //Watching changes on post variable
+if(isset($_POST["lang"])){
+  $lang = $_POST["lang"];
+  if(!empty($lang)){
+    $_SESSION["lang"] = $lang;
+  }
+}
+// If is created
+if(isset($_SESSION['lang'])){  
+  $lang = $_SESSION["lang"];
+  include "view/languages/".$lang.".php";
+// Else take spanish default
+}else{
+  include "view/languageslang/es.php";
+}
+
+
+# ======  End of Language validation  =======
+
+
+ ?>
 <!DOCTYPE html>
 <html lang="en">
   <!--=================================
