@@ -156,10 +156,10 @@ if(isset($_SESSION['lang'])){
                             <button type="button" class="btn btn-info" data-dismiss="modal">Ahora no</button>
                             <!-- <button type="submit" class="btn btn-danger">Eliminar</button> -->
                             <input type="submit" value="Confirmar" id="btnupdate" class="btn btn-success py-2 px-4 text-white" >
-                                 <!-- <?php 
-                                  $deleteTour= new TourController();
-                                  $deleteTour->del();
-                                 ?>                         -->
+                                 <?php 
+                                  $confirm= new UserController();
+                                  $confirm->confirm();
+                                 ?>                        
                         </div>
                       </form>
                     </div>

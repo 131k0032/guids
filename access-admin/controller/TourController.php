@@ -175,6 +175,45 @@ public function update(){
       } 
     }
 
+
+# -----------  CHANGING STATUS TOUR FOR SET VISIBLE ON THE SITE -----------
+// For new newtours template
+  public function confirm(){      
+      if(isset($_POST["id"])){
+        $tourDataController=array(        
+          "id"=>$_POST["id"],
+          "is_active"=>1
+          );
+        $confirmTour=TourModel::confirm($tourDataController,"tour");
+        var_dump($confirmTour);
+          if($confirmTour=="success"){
+            print "<script>alert(\"Tour confirmado.\");window.location='http://localhost/guids/access-admin/newtours';</script>";                    
+          }else{
+            print "<script>alert(\"Error en la confirmación de datos.\");window.location='http://localhost/guids/access-admin/newtours';</script>";
+
+        }
+
+      } 
+    }
+// For new confirmatedtours template
+    public function disable(){      
+      if(isset($_POST["id"])){
+        $tourDataController=array(        
+          "id"=>$_POST["id"],
+          "is_active"=>0
+          );
+        $disableTour=TourModel::confirm($tourDataController,"tour");
+        var_dump($disableTour);
+          if($disableTour=="success"){
+            print "<script>alert(\"Tour inhabilitado.\");window.location='http://localhost/guids/access-admin/confirmatedtours';</script>";                    
+          }else{
+            print "<script>alert(\"Error al deshabilitar tour.\");window.location='http://localhost/guids/access-admin/confirmatedtours';</script>";
+
+        }
+
+      } 
+    }
+
 # ======  End of Updating tour  =======
 
 

@@ -100,8 +100,35 @@ public function getAllActive($table){
 				return "error";
 		}
  	}	
-	
 
+# -----------  CHANGING STATUS USER FOR ACCES TO SITE -----------
+// For new users template
+	public function confirm($userDataModel, $table){
+			$statement = Conexion::conectar()->prepare("UPDATE $table SET is_active=:is_active WHERE id=:id");										
+			$statement->bindParam(":is_active",$userDataModel["is_active"],PDO::PARAM_INT);										
+			$statement->bindParam(":id",$userDataModel["id"],PDO::PARAM_INT);
+			$statement->execute();
+			
+			if($statement->execute()){
+				return "success";
+			}else{
+				return "error";
+		}
+ 	}	
+
+// For confirmatedusers template
+	public function disable($userDataModel, $table){
+			$statement = Conexion::conectar()->prepare("UPDATE $table SET is_active=:is_active WHERE id=:id");										
+			$statement->bindParam(":is_active",$userDataModel["is_active"],PDO::PARAM_INT);										
+			$statement->bindParam(":id",$userDataModel["id"],PDO::PARAM_INT);
+			$statement->execute();
+			
+			if($statement->execute()){
+				return "success";
+			}else{
+				return "error";
+		} 	
+	}	
 	# ======  End of UPDATING USER  =======
 	
 

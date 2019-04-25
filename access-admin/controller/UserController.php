@@ -74,8 +74,44 @@
 			}	
 		}
 
- 
- 
+# -----------  CHANGING STATUS USER FOR ACCES TO SITE -----------
+// For new users template
+ 	public function confirm(){			
+			if(isset($_POST["id"])){
+				$userDataController=array(				
+					"id"=>$_POST["id"],
+					"is_active"=>1
+					);
+				$confirmUser=UserModel::confirm($userDataController,"user");
+				var_dump($confirmUser);
+					if($confirmUser=="success"){
+						print "<script>alert(\"Usuario confirmado.\");window.location='http://localhost/guids/access-admin/confirmatedusers';</script>";										
+					}else{
+						print "<script>alert(\"Error en la confirmación de datos.\");window.location='http://localhost/guids/access-admin/newusers';</script>";
+
+				}
+
+			}	
+		}
+
+// For confirmatedusers template
+  	public function disable(){			
+			if(isset($_POST["id"])){
+				$userDataController=array(				
+					"id"=>$_POST["id"],
+					"is_active"=>0
+					);
+				$disableUser=UserModel::confirm($userDataController,"user");
+				var_dump($disableUser);
+					if($disableUser=="success"){
+						print "<script>alert(\"Usuario inhabilitado.\");window.location='http://localhost/guids/access-admin/confirmatedusers';</script>";										
+					}else{
+						print "<script>alert(\"Error al deshabilitar usuario.\");window.location='http://localhost/guids/access-admin/confirmatedusers';</script>";
+
+				}
+
+			}	
+		}
  # ======  End of UPDATING USER  =======
   
 

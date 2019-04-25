@@ -35,14 +35,54 @@ public function getAllInActive($table){
 		tour_image.id as tour_image_id,
 		tour_image.src as tour_image_src,
 		tour_image.file_name as tour_image_filename
-		 FROM tour 
+		 FROM $table 
 		 inner join user
 		 on tour.user_id=user.id
 		 
 		 inner join tour_image 
 		 on tour_image.tour_id=tour.id
+		 -- Disabled tours and user actived
+		 where tour.is_active=0 && user.is_active=1
+			");
+		$stmt->execute();				
+		return $stmt->fetchAll();						
+		$stmt->close();
+
+}
+
+# -----------  GETING ALL INACTIVE   -----------      	
+public function getAllActive($table){
+		$stmt = Conexion::conectar()->prepare("
+			SELECT 
+		-- Table tour
+		tour.id as tour_id,
+		tour.name as tour_name,
+		tour.description as tour_description,
+		tour.find_guide as tour_find_guide,
+		tour.location as tour_location, 
+		tour.duration as tour_duration, 
+		tour.capacity as tour_capacity,
+		tour.status as tour_status,
+		tour.is_active as tour_is_active,
+		tour.created_at as tour_created_at,
+		tour.updated_at as tour_updated_at,
+		-- Table user
+		user.id as user_id,
+		user.name as user_name,
+		user.lastname as user_lastname,
+
+		-- Tatle tour_image
+		tour_image.id as tour_image_id,
+		tour_image.src as tour_image_src,
+		tour_image.file_name as tour_image_filename
+		 FROM $table 
+		 inner join user
+		 on tour.user_id=user.id
 		 
-		 where tour.status=0 && user.is_active=1;
+		 inner join tour_image 
+		 on tour_image.tour_id=tour.id
+		 -- Disabled tours and user actived
+		 where tour.is_active=1 && user.is_active=1
 			");
 		$stmt->execute();				
 		return $stmt->fetchAll();						
@@ -353,7 +393,34 @@ public function getAllInActive($table){
 		}
  	}
 
+# -----------  CHANGING STATUS TOUR FOR SET VISIBLE ON THE SITE -----------
+// For newtours template
+	public function confirm($tourDataModel, $table){
+			$statement = Conexion::conectar()->prepare("UPDATE $table SET is_active=:is_active WHERE id=:id");										
+			$statement->bindParam(":is_active",$tourDataModel["is_active"],PDO::PARAM_INT);										
+			$statement->bindParam(":id",$tourDataModel["id"],PDO::PARAM_INT);
+			$statement->execute();
+			
+			if($statement->execute()){
+				return "success";
+			}else{
+				return "error";
+		}
+ 	}
 
+ // For new confirmatedtours template
+	public function disable($tourDataModel, $table){
+			$statement = Conexion::conectar()->prepare("UPDATE $table SET is_active=:is_active WHERE id=:id");										
+			$statement->bindParam(":is_active",$tourDataModel["is_active"],PDO::PARAM_INT);										
+			$statement->bindParam(":id",$tourDataModel["id"],PDO::PARAM_INT);
+			$statement->execute();
+			
+			if($statement->execute()){
+				return "success";
+			}else{
+				return "error";
+		}
+ 	}	
 # ======  End of UPDATING TOUR  =======
 
 

@@ -71,9 +71,9 @@ if(isset($_SESSION['lang'])){
     <div class="row">
       <div class="col-md-12">
  
-        <p>Se muestra la lista de tours que se han registrado en Guids.mx, mas si embargo no pueden ser visibles al público, hasta que le des activar.</p>
+        <p>Se muestra la lista de tours que se han registrado en Guids.mx por usuarios, mas si embargo no pueden ser visibles al público, hasta que le des activar.</p>
 
-        <table id="newusers" class="table table-bordered table-striped dt-responsive nowrap">
+        <table id="newtours" class="table table-bordered table-striped dt-responsive nowrap">
           <thead>
             <tr>
               <th>Id</th>
@@ -143,24 +143,24 @@ if(isset($_SESSION['lang'])){
                   <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">¿Haz verificado el tour <?php echo $value["tour_name"];?> ?</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">¿Habilitar el tour <?php echo $value["tour_name"];?> ?</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
                       <form method="post">
                         <div class="modal-body">
-                          <input type="hidden" name="id" value="<?php echo $value["id"] ?>">
+                          <input type="hidden" name="id" value="<?php echo $value["tour_id"] ?>">
                           <p class="color-black-opacity-5">El tour <?php echo $value["name"];?> podrá aparecer en Guids.mx</p>                       
                         </div>
                         <div class="modal-footer">                        
                             <button type="button" class="btn btn-info" data-dismiss="modal">Ahora no</button>
                             <!-- <button type="submit" class="btn btn-danger">Eliminar</button> -->
                             <input type="submit" value="Confirmar" id="btnupdate" class="btn btn-success py-2 px-4 text-white" >
-                                 <!-- <?php 
-                                  $deleteTour= new TourController();
-                                  $deleteTour->del();
-                                 ?>                         -->
+                                 <?php 
+                                  $confirm= new TourController();
+                                  $confirm->confirm();
+                                 ?>                         
                         </div>
                       </form>
                     </div>
@@ -205,7 +205,7 @@ if(isset($_SESSION['lang'])){
 
 <script>
     $(document).ready(function() {
-      $('#newusers').DataTable();
+      $('#newtours').DataTable();
       } );
   </script>
 

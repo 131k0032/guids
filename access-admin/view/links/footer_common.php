@@ -49,6 +49,7 @@
             $url[0]=="profile" ||
             $url[0]=="newusers" ||
             $url[0]=="confirmatedusers" ||
+            $url[0]=="confirmatedtours" ||
             $url[0]=="newtours" ||
             $url[0]=="mytours-setting" ||
             $url[0]=="mytours-delete" ||
