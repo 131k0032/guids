@@ -23,7 +23,9 @@ public function getAllInActive($table){
 		tour.duration as tour_duration, 
 		tour.capacity as tour_capacity,
 		tour.status as tour_status,
+		tour.is_active as tour_is_active,
 		tour.created_at as tour_created_at,
+		tour.updated_at as tour_updated_at,
 		-- Table user
 		user.id as user_id,
 		user.name as user_name,
@@ -32,7 +34,7 @@ public function getAllInActive($table){
 		-- Tatle tour_image
 		tour_image.id as tour_image_id,
 		tour_image.src as tour_image_src,
-		tour_image.file_name as tour_name_file_name
+		tour_image.file_name as tour_image_filename
 		 FROM tour 
 		 inner join user
 		 on tour.user_id=user.id

@@ -7,9 +7,7 @@ class GetModel{
 	public function Get($url){
 		// SI en la url hay estos valores
 		if( 
-			//Si en hrefs o url se encuentra el signup 
-			$url[0]=="signup"||	
-			$url[0]=="signin" ||
+			//Si en hrefs o url se encuentra el signup 								
 			$url[0]=="profile" ||
 			$url[0]=="newusers" ||
 			$url[0]=="confirmatedusers" ||
@@ -36,7 +34,7 @@ class GetModel{
 		// pero si es igual al index o bien un url vacío mandalo a index
 		}else if($url[0]=="index"){
 			// ingresar
-			$module="view/modules/home.php";
+			$module="view/modules/signin.php";
 
 		}else{
 			// si ninguna de las opciones o pone otra cosa, mandalo a 404error

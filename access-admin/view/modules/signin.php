@@ -44,35 +44,7 @@ if(isset($_SESSION['lang'])){
   <!--====  End of HEADER  ====-->
   
 
-  
 
-  <!--================================
-  =            INFO IMAGE            =
-  =================================-->
-  
-      <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(view/assets/images/hero_1.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
-      <div class="container">
-        <div class="row align-items-center justify-content-center text-center">
-
-          <div class="col-md-10">
-            
-            
-            <div class="row justify-content-center">
-              <div class="col-md-8 text-center">
-                <h1 data-aos="fade-up">Inicia sesión y crea tus tours en lugares que estén a tu alcance</h1>
-                <p class="mb-0" data-aos="fade-up" data-aos-delay="100">¿No tienes una cuenta? Adelante prueba <a href="register.php" style="color: white">registrarte</a></p>
-              </div>
-            </div>
-
-            
-          </div>
-        </div>
-      </div>
-    </div>  
-  
-  <!--====  End of INFO IMAGE  ====-->
-  
-  
 
 
 <!--===================================
@@ -117,7 +89,10 @@ if(isset($_SESSION['lang'])){
                 </div>
               </div>
 
-  
+               <?php 
+                $signin = new SigninController();
+                $signin->signinUserController();
+               ?>
             </form>
           </div>
           

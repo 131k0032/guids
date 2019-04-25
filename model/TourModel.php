@@ -208,7 +208,7 @@ require_once "model/Conexion.php";
 					tour_image.file_name as tour_image_file_name
 					from $table
 					inner join tour_image
-					on tour.id=tour_image.tour_id
+					on tour.id=tour_image.tour_id where tour.is_active=1
 					");
 				$stmt->execute();				
 				return $stmt->fetchAll();						

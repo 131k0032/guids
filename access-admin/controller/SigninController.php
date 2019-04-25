@@ -11,12 +11,12 @@
      
 			$dataController=array(
 			"email"=>$_POST["email"],
-			"password"=>$encriptar,
-			"is_admin"=>1
+			"password"=>$encriptar
+			// "is_active"=>1
 			);
 			$respuesta = SigninModel::signinUserModel($dataController,"user");
 		 	 // var_dump($respuesta);		
-			if($respuesta["email"]==$_POST["email"] && $respuesta["password"]==$encriptar){
+			if($respuesta["email"]==$_POST["email"] && $respuesta["password"]==$encriptar && $respuesta["is_admin"]==1){
 				// echo "Hola perro".$respuesta["usuario"];
 
 					// inicia la sesion de nombre "validar" con valor verdadero
@@ -25,11 +25,13 @@
 					$_SESSION["email"] = $respuesta["email"];			
 					print "<script>window.location='http://localhost/guids/access-admin/profile';</script>";
 					// var_dump($respuesta);
-					}else{
+				}elseif($respuesta["email"]==$_POST["email"] && $respuesta["password"]!=$encriptar){
 						// header("location:index.php?action=fallo");					
-					  print "<script>alert(\"Email o contraseña incocorrectos\");window.location='signin';</script>";
+					  print "<script>alert(\"Email o contraseña incocorrectos\");window.location='http://localhost/guids/access-admin/index';</script>";
 					// print "<script>window.location='signin';</script>";
 
+				}elseif ($respuesta["email"]==$_POST["email"] && $respuesta["password"]==$encriptar && $respuesta["is_admin"]==0) {
+					print "<script>alert(\"No tienes acceso a este sition\");window.location='http://localhost/guids/access-admin/index';</script>";
 				}
 			}
 		

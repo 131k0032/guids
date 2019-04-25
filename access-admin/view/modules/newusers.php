@@ -31,7 +31,7 @@ if(isset($_SESSION['lang'])){
 
 <!DOCTYPE html>
 <html lang="en">
-  <title>Add tour</title>
+  <title>Nuevos usuarios</title>
   <!--=================================
   =            Head common            =
   ==================================-->
@@ -113,11 +113,17 @@ if(isset($_SESSION['lang'])){
               <td><?php echo utf8_encode($value["personality"]); ?></td>  
               <td><?php echo utf8_encode($value["ability"]); ?></td>                        
               <td>            
-                 <div class="listing-image">
+                 <div class="listing-image" style="max-width:20%; max-height: 20%;">
                 <img src="http://localhost/guids/<?php echo $value["tour_image_src"]. $value["tour_image_filename"];?>" alt="Image" class="img-fluid img-thumbnail card-img-top">
               </div>
               </td> 
-              <td><?php echo utf8_encode($value["is_active"]); ?></td>  
+              <td>
+                <?php if($value["is_active"]==0){ ?>
+                  <?php echo "Requiere confirmación"; ?>
+                <?php }else{ ?>
+                  <?php echo "Activo"; ?>
+                <?php } ?>
+              </td>  
               <td><?php echo utf8_encode($value["created_at"]); ?></td> 
               <td><?php echo utf8_encode($value["updated_at"]); ?></td>          
               <td style="width:300px;">

@@ -31,7 +31,7 @@ if(isset($_SESSION['lang'])){
 
 <!DOCTYPE html>
 <html lang="en">
-  <title>Add tour</title>
+  <title>Nuevos tours</title>
   <!--=================================
   =            Head common            =
   ==================================-->
@@ -58,7 +58,7 @@ if(isset($_SESSION['lang'])){
   <div class="container">
     <div class="row justify-content-center mb-5">
       <div class="col-md-7 text-center border-primary">
-        <h2 class="font-weight-light text-primary">Nuevos usuarios en el sitio</h2>
+        <h2 class="font-weight-light text-primary">Nuevos tours en el sitio</h2>
         <p class="color-black-opacity-5">Nuevos registros</p>
       </div>
     </div>        
@@ -71,27 +71,26 @@ if(isset($_SESSION['lang'])){
     <div class="row">
       <div class="col-md-12">
  
-        <p>Se muestra la lista de usuarios que se han registrado en Guids.mx, mas si embargo no pueden acceder, hasta que le des confirmar, esto si los datos sin correctos</p>
+        <p>Se muestra la lista de tours que se han registrado en Guids.mx, mas si embargo no pueden ser visibles al público, hasta que le des activar.</p>
 
         <table id="newusers" class="table table-bordered table-striped dt-responsive nowrap">
           <thead>
             <tr>
               <th>Id</th>
               <th>Nombre</th>
-              <th>Teléfono</th>                        
-              <th>Email</th>
-              <th>Estado</th>
-              <th>Ciudad</th>
-              <th>Fecha nacimiento</th>
-              <th>Estudios</th>
-              <th>Personalidad</th>
-              <th>Habiliidad</th>
-              <th>Fotos</th>
-              <th>Activo </th>
-              <th>Registrado el</th>
+              <th>Descripción</th>                        
+              <th>Como me enuentran</th>
+              <th>Lugar del tour</th>
+              <th>Duración de tour</th>
+              <th>Cantidad de personas</th>
+              <th>Estatus</th>
+              <th>Creado el</th>
+              <th>Creado por</th>              
+              <th>Foto </th>
+              <th>Activo</th>
               <th>Actualizado el</th>
               <th>Actualizado el</th>
-              <th>Confirmar</th>
+              <th>Activar</th>
 
             </tr>
           </thead>
@@ -112,21 +111,27 @@ if(isset($_SESSION['lang'])){
               <td><?php echo utf8_encode($value["tour_capacity"]); ?></td> 
               <td><?php echo utf8_encode($value["tour_status"]); ?></td> 
               <td><?php echo utf8_encode($value["tour_created_at"]); ?></td>  
-              <td><?php echo utf8_encode($value["user_name"]); ?></td>                        
-              <td><?php echo utf8_encode($value["user_lastname"]); ?></td>                        
+              <td><?php echo utf8_encode($value["user_name"]." ".$value["user_lastname"]); ?></td>                        
+                                    
               <td>            
-                 <div class="listing-image">
-                <img src="http://localhost/guids/access-admin/<?php echo "../";?><?php echo $value["tour_image_src"]. $value["tour_image_filename"];?>" alt="Image" class="img-fluid img-thumbnail card-img-top">
+                <div class="listing-image" style="max-width:20%; max-height: 20%;">
+                  <img src="http://localhost/guids/<?php echo $value["tour_image_src"]. $value["tour_image_filename"];?>" alt="Image" class="img-fluid img-thumbnail card-img-top">
               </div>
               </td> 
-              <td><?php echo utf8_encode($value["is_active"]); ?></td>  
-              <td><?php echo utf8_encode($value["created_at"]); ?></td> 
-              <td><?php echo utf8_encode($value["updated_at"]); ?></td>          
+              <td>
+                <?php if($value["tour_is_active"]==0){ ?>
+                  <?php echo "Requiere activación"; ?>
+                <?php }else{ ?>
+                  <?php echo "Activo"; ?>
+                <?php } ?>
+              </td>  
+              <td><?php echo utf8_encode($value["tour_created_at"]); ?></td> 
+              <td><?php echo utf8_encode($value["tour_updated_at"]); ?></td>          
               <td style="width:300px;">
                     <form method="post">    
                       <!-- <a href="" class="btn btn-warning btn-xs">Modificar</a> -->
                         <!-- <li><a href="http://localhost/guids/access-admin/accept/user/id/<?php echo $value["id"];?>" class="btn btn-success btn-xs"><i class="icon-settings"></i></a></li>  -->
-                        <li><a data-toggle="modal" data-target="#exampleModalCenter<?php echo $value["id"];?>" class="btn btn-warning btn-xs"><i class="icon-check-circle"></i></a></li> 
+                        <li><a data-toggle="modal" data-target="#exampleModalCenter<?php echo $value["tour_id"];?>" class="btn btn-warning btn-xs"><i class="icon-check-circle"></i></a></li> 
                       <!-- <button class="btn btn-danger btn-xs" type="submit">Eliminar</button> -->
                     </form>
               </td>
@@ -134,11 +139,11 @@ if(isset($_SESSION['lang'])){
             </tr>     
               
               <!-- Modal -->            
-                <div class="modal fade" id="exampleModalCenter<?php echo $value["id"];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal fade" id="exampleModalCenter<?php echo $value["tour_id"];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">¿Haz verificado los datos de <?php echo $value["name"];?> ?</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">¿Haz verificado el tour <?php echo $value["tour_name"];?> ?</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -146,7 +151,7 @@ if(isset($_SESSION['lang'])){
                       <form method="post">
                         <div class="modal-body">
                           <input type="hidden" name="id" value="<?php echo $value["id"] ?>">
-                          <p class="color-black-opacity-5">El usuario <?php echo $value["name"];?> podrá acceder a Guids.mx y publicar tours</p>                       
+                          <p class="color-black-opacity-5">El tour <?php echo $value["name"];?> podrá aparecer en Guids.mx</p>                       
                         </div>
                         <div class="modal-footer">                        
                             <button type="button" class="btn btn-info" data-dismiss="modal">Ahora no</button>

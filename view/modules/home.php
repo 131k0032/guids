@@ -91,7 +91,7 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 text-center border-primary">
             <h2 class="font-weight-light text-primary"><?php echo $lang["Tours"]; ?></h2>
-            <p class="color-black-opacity-5"><?php echo $lang["mas solicitados"]; ?></p>
+            <p class="color-black-opacity-5"><?php echo $lang["Mas solicitados"]; ?></p>
           </div>
         </div>
 
@@ -103,7 +103,7 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
                 <img style="width: 100%;" src="<?php echo $value["tour_image_src"].$value["tour_image_file_name"] ?>" alt="Image" class="img-fluid ">
               </div>
               <div class="listing-item-content">
-                <h2 class="mb-1"><a href="#"><?php echo $row.utf8_encode($value["tour_name"]); ?></a></h2>
+                <h2 class="mb-1"><a href="#"><?php echo utf8_encode($value["tour_name"]); ?></a></h2>
                 <span class="address"><?php echo utf8_encode($value["tour_location"]); ?></span>
                    <p>
                   <span class="icon-star text-warning"></span>
@@ -122,7 +122,7 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
         </div>
         <div class="row justify-content-center mb-5">
           <a href="javascript:addBestTours();" id="btnAddBestTour"><?php echo $lang["Ver mas"]; ?></a>
-          <a href="?page=todos" id="btnAllTours" style="display:none;"><?php echo $lang["Ver todos"] ?></a>
+          <a href="?page=all" id="btnAllTours" style="display:none;"><?php echo $lang["Ver todos"] ?></a>
         </div>
       </div>
     </div>
