@@ -78,9 +78,8 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
   <!--====  End of SEARCH  ====-->
  <?php
  // getting all tors
-  $getAll = new TourController();
-  $getAll= TourModel::getAll("tour");
-
+  //$getAll = new TourController(); //Este ya no se requiere porque lo llamas desde el index de la carpeta raiz.
+  $getAll = TourController::getAll();
   ?>
 
   <!--=================================
@@ -96,29 +95,27 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
         </div>
 
         <div class="row mb-5">
-          <?php foreach ($getAll as $row => $value) {?>
+          <?php foreach ($getAll as $row => $value) { $rating = TourController::getRatingByIdTour($row+1);?>
           <div class="col-md-6 mb-4 mb-lg-0 col-lg-4 pt-3" id="besttour<?php echo $row; ?>" style="<?php if($row>2) echo "display:none;"; ?>">
             <div class="listing-item" style="max-width:500px; max-height: 200px;" >
               <div class="listing-image">
                 <img style="width: 100%;" src="<?php echo $value["tour_image_src"].$value["tour_image_file_name"] ?>" alt="Image" class="img-fluid ">
               </div>
               <div class="listing-item-content">
-                <h2 class="mb-1"><a href="#"><?php echo utf8_encode($value["tour_name"]); ?></a></h2>
+                <h2 class="mb-1"><a href="#"><?php echo $row." ".utf8_encode($value["tour_name"]); ?></a></h2>
                 <span class="address"><?php echo utf8_encode($value["tour_location"]); ?></span>
-                   <p>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-secondary"></span>
-                  <span>(3 <?php echo $lang["Estrellas"]; ?>)</span>
-                </p>
+                  <p>
+                    <span><?php echo $rating["rating"]." ".$lang["Estrellas"]; ?></span>
+                  </p>
                 <a class="px-3 mb-3 category" href="http://localhost/guids/guideinfo/tour/<?php echo $value["tour_id"]; ?>"><?php echo $lang["Ver mas"] ?>...</a>
               </div>
             </div>
 
           </div>
-         <?php } ?>
+        <?php }
+        if ($getAll==null) {
+          echo "No se encontraron tours activos";
+        } ?>
         </div>
         <div class="row justify-content-center mb-5">
           <a href="javascript:addBestTours();" id="btnAddBestTour"><?php echo $lang["Ver mas"]; ?></a>
@@ -127,7 +124,6 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
       </div>
     </div>
   <!--====  End of BEST GUIDES  ====-->
-
 
 
   <!--=================================

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require_once "model/Conexion.php";
 
@@ -12,7 +12,7 @@ require_once "model/Conexion.php";
 
 
 		# -----------  LAST ID INSERTED  -----------
-	
+
 		public function lastIdTour($id, $table){
 		    $stmt = Conexion::conectar()->prepare("SELECT MAX($id) AS tours_id FROM $table");
 			    if ($stmt->execute()) {
@@ -24,43 +24,43 @@ require_once "model/Conexion.php";
 
 
 		# -----------  ADDING ON TE MAIN TABLE  -----------
-				
+
 		public function addTour($tourDataModel, $table){
 			$stmt = Conexion::conectar()->prepare("
-				INSERT INTO  
-				$table (name, 
-						description, 
-						find_guide, 
-						location, 
-						duration, 
-						capacity, 
-						status, 
+				INSERT INTO
+				$table (name,
+						description,
+						find_guide,
+						location,
+						duration,
+						capacity,
+						status,
 						created_at,
-						-- updadet_at,						
+						-- updadet_at,
 						user_id)
-						
-				VALUES 
-					   (:name, 
-						:description, 
-						:find_guide, 
-						:location, 
-						:duration, 
-						:capacity, 
-						:status, 
+
+				VALUES
+					   (:name,
+						:description,
+						:find_guide,
+						:location,
+						:duration,
+						:capacity,
+						:status,
 						:created_at,
-						-- :updadet_at,						
+						-- :updadet_at,
 						:user_id)");
 
 						$stmt->bindParam(":name",$tourDataModel["name"],PDO::PARAM_STR);
-						$stmt->bindParam(":description",$tourDataModel["description"],PDO::PARAM_STR);			
+						$stmt->bindParam(":description",$tourDataModel["description"],PDO::PARAM_STR);
 						$stmt->bindParam(":find_guide",$tourDataModel["find_guide"],PDO::PARAM_STR);
 						$stmt->bindParam(":location",$tourDataModel["location"],PDO::PARAM_STR);
 						$stmt->bindParam(":duration",$tourDataModel["duration"],PDO::PARAM_STR);
 						$stmt->bindParam(":capacity",$tourDataModel["capacity"],PDO::PARAM_STR);
 						$stmt->bindParam(":status",$tourDataModel["status"],PDO::PARAM_STR);
 						$stmt->bindParam(":created_at",$tourDataModel["created_at"],PDO::PARAM_STR);
-						// $stmt->bindParam(":updadet_at",$tourDataModel["updadet_at"],PDO::PARAM_STR);						
-						$stmt->bindParam(":user_id",$tourDataModel["user_id"],PDO::PARAM_INT);		
+						// $stmt->bindParam(":updadet_at",$tourDataModel["updadet_at"],PDO::PARAM_STR);
+						$stmt->bindParam(":user_id",$tourDataModel["user_id"],PDO::PARAM_INT);
 
 						if($stmt->execute()){
 							return "success";
@@ -73,13 +73,13 @@ require_once "model/Conexion.php";
 		}
 
 		# -----------  ADDING ON A MANY TO MANY TABLE  -----------
-		
+
 		 public function addTourSchedule($table, $start_at, $day_id, $tour_id, $language_id){
             $stmt = Conexion::conectar()->prepare("INSERT INTO $table (`start_at`, `day_id`,`tour_id`,`language_id`) VALUES (:start_at,:day_id,:tour_id,:language_id)");
             $stmt->bindParam(":start_at", $start_at, PDO::PARAM_STR);
-            $stmt->bindParam(":day_id", $day_id ,PDO::PARAM_STR);                      
-            $stmt->bindParam(":tour_id", $tour_id ,PDO::PARAM_STR);              
-            $stmt->bindParam(":language_id", $language_id ,PDO::PARAM_STR);              
+            $stmt->bindParam(":day_id", $day_id ,PDO::PARAM_STR);
+            $stmt->bindParam(":tour_id", $tour_id ,PDO::PARAM_STR);
+            $stmt->bindParam(":language_id", $language_id ,PDO::PARAM_STR);
             if($stmt->execute()){
               return "success";
             }else{
@@ -91,14 +91,14 @@ require_once "model/Conexion.php";
 
 
       # -----------  ADDING ON A ONE TO MANY TABLE  -----------
-      
+
 
 
        public function addTourImage($table, $src, $file_name, $tour_id){
             $stmt = Conexion::conectar()->prepare("INSERT INTO $table (`src`, `file_name`,`tour_id`) VALUES (:src,:file_name,:tour_id)");
             $stmt->bindParam(":src", $src, PDO::PARAM_STR);
-            $stmt->bindParam(":file_name", $file_name ,PDO::PARAM_STR);                      
-            $stmt->bindParam(":tour_id", $tour_id ,PDO::PARAM_STR);                                    
+            $stmt->bindParam(":file_name", $file_name ,PDO::PARAM_STR);
+            $stmt->bindParam(":tour_id", $tour_id ,PDO::PARAM_STR);
             if($stmt->execute()){
               return "success";
             }else{
@@ -116,7 +116,7 @@ require_once "model/Conexion.php";
 # =           SHOWING TOURS           =
 # =====================================
  public function getUserTourById($table, $id){
-				$stmt = Conexion::conectar()->prepare("SELECT  
+				$stmt = Conexion::conectar()->prepare("SELECT
 					-- Tour table
 					tour.id as tour_id,
 					tour.name as tour_name,
@@ -136,12 +136,12 @@ require_once "model/Conexion.php";
 
 
 					FROM $table
-					inner join user 
-					on tour.user_id=user.id 
+					inner join user
+					on tour.user_id=user.id
 					where tour.id=$id
 					");
-				$stmt->execute();				
-				return $stmt->fetch();						
+				$stmt->execute();
+				return $stmt->fetch();
 				$stmt->close();
 
 		}
@@ -150,7 +150,7 @@ require_once "model/Conexion.php";
  public function getTourById($table, $id){
 				$stmt = Conexion::conectar()->prepare("SELECT
 						-- Table tour_schedule
-						tour_schedule.id as tour_schedule_id, 
+						tour_schedule.id as tour_schedule_id,
 						tour_schedule.start_at as tour_start_at,
 
 						-- Table day
@@ -174,7 +174,7 @@ require_once "model/Conexion.php";
 						tour_image.src as tour_image_src,
 						tour_image.file_name as tour_image_filename
 
-						from $table 
+						from $table
 						INNER JOIN day
 						on tour_schedule.day_id = day.id
 						INNER JOIN tour
@@ -187,36 +187,42 @@ require_once "model/Conexion.php";
 						on tour_image.tour_id = tour.id
 						where tour.id=$id
 					");
-				$stmt->execute();				
-				return $stmt->fetchAll();						
+				$stmt->execute();
+				return $stmt->fetchAll();
 				$stmt->close();
 
 		}
 
 
-# -----------  GETING ALL TOURS   -----------      
+# -----------  GETING ALL TOURS   -----------
       public function getAll($table){
-				$stmt = Conexion::conectar()->prepare("SELECT 
-					-- Tabla tour
+				$stmt = Conexion::conectar()->prepare("SELECT
 					tour.id as tour_id,
 					tour.name as tour_name,
 					tour.location as tour_location,
 					tour.description as tour_escription,
-					-- Tabla tour_image
 					tour_image.id as tour_image_id,
 					tour_image.src as tour_image_src,
 					tour_image.file_name as tour_image_file_name
-					from $table
-					inner join tour_image
-					on tour.id=tour_image.tour_id where tour.is_active=1
-					");
-				$stmt->execute();				
-				return $stmt->fetchAll();						
+				FROM $table
+				INNER JOIN tour_image
+				ON tour.id=tour_image.tour_id where tour.status=1
+				");
+				$stmt->execute();
+				return $stmt->fetchAll();
 				$stmt->close();
-
 		}
 
+		public function getRatingByIdTour($table, $id){
+			$stmt = Conexion::conectar()->prepare("SELECT
+				COUNT(`rating`) AS rating
+				FROM $table
+				WHERE `tour_id`=$id");
+			$stmt->execute();
+			return $stmt->fetchAll();
+			$stmt->close();
 
+		}
 # ======  End of SHOWING TOURS  =======
 
 
@@ -228,7 +234,7 @@ require_once "model/Conexion.php";
       public function getAllById($table, $id){
 				$stmt = Conexion::conectar()->prepare("SELECT
 						-- Table tour_schedule
-						tour_schedule.id as tour_schedule_id, 
+						tour_schedule.id as tour_schedule_id,
 						tour_schedule.start_at as tour_start_at,
 
 						-- Table day
@@ -252,7 +258,7 @@ require_once "model/Conexion.php";
 						tour_image.src as tour_image_src,
 						tour_image.file_name as tour_image_filename
 
-						from $table 
+						from $table
 						INNER JOIN day
 						on tour_schedule.day_id = day.id
 						INNER JOIN tour
@@ -264,8 +270,8 @@ require_once "model/Conexion.php";
 						INNER JOIN tour_image
 						on tour_image.tour_id = tour.id
 						where user.id=$id");
-				$stmt->execute();				
-				return $stmt->fetchAll();						
+				$stmt->execute();
+				return $stmt->fetchAll();
 				$stmt->close();
 
 		}
@@ -278,7 +284,7 @@ require_once "model/Conexion.php";
 		$stmt = Conexion::conectar()->prepare("SELECT id, name, description, find_guide, location, duration FROM $table where id=:id");
 		$stmt->bindParam(":id",$id,PDO::PARAM_INT);
 		$stmt->execute();
-		return $stmt->fetch();		
+		return $stmt->fetch();
 		// cierra las consultas
 			$stmt->close();
 
@@ -287,16 +293,16 @@ require_once "model/Conexion.php";
 
 
 	public function updateById($tourDataModel, $table){
-			$stmt = Conexion::conectar()->prepare("UPDATE $table SET name=:name WHERE id=:id");				
+			$stmt = Conexion::conectar()->prepare("UPDATE $table SET name=:name WHERE id=:id");
 
 			$stmt->bindParam(":name",$tourDataModel["name"],PDO::PARAM_STR);
-			// $stmt->bindParam(":lastname",$userDataModel["lastname"],PDO::PARAM_STR);							
-			// $stmt->bindParam(":phone",$userDataModel["phone"],PDO::PARAM_INT);				
-			// $stmt->bindParam(":personality",$userDataModel["personality"],PDO::PARAM_STR);				
-			// $stmt->bindParam(":ability",$userDataModel["ability"],PDO::PARAM_STR);				
+			// $stmt->bindParam(":lastname",$userDataModel["lastname"],PDO::PARAM_STR);
+			// $stmt->bindParam(":phone",$userDataModel["phone"],PDO::PARAM_INT);
+			// $stmt->bindParam(":personality",$userDataModel["personality"],PDO::PARAM_STR);
+			// $stmt->bindParam(":ability",$userDataModel["ability"],PDO::PARAM_STR);
 			$stmt->bindParam(":id",$tourDataModel["id"],PDO::PARAM_INT);
 			$stmt->execute();
-			
+
 			if($stmt->execute()){
 				return "success";
 			}else{
@@ -322,7 +328,7 @@ require_once "model/Conexion.php";
 			}else{
 				return "error";
 			}
-					
+
 			// cierra las consultas
 			$stmt->close();
 
@@ -330,7 +336,7 @@ require_once "model/Conexion.php";
 
 
 # ======  End of DEETING TOUR BY ID  =======
-            
+
 
 
 }

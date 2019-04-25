@@ -31,7 +31,7 @@ $lang = array(
 //Content section
 "Tours"=>"Tours",
 "Mas solicitados"=>"Los más solicitados",
-"Estrellas"=>"Estrellas",
+"Estrellas"=>"valoraciones",
 "Ver mas"=>"Ver más",
 "Ver todos"=>"Ver todos los tours"
 # ======  End of HOME TEMPLATE  =======
