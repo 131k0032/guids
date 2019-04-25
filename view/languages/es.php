@@ -1,7 +1,7 @@
 <?php
 
 $lang = array(
-	
+
 # =====================================
 # =           HOME TEMPLATE           =
 # =====================================
@@ -27,12 +27,17 @@ $lang = array(
 "Cambiar idioma"=>"Cambiar idioma",
 //Search section
 "Encuentra" => "Encuentra ",
+"Encuentra slogan" => "Explora los lugares mas atractivos de Quintana Roo, México!; Bacalar, Mahahual, Tulum, Riviera Maya, Playa del Carmen, Cozumel, Puerto Morelos, Cancún, Isla Mujeres y Holbox.",
 //Content section
-"Tours"=>"Tours"
+"Tours"=>"Tours",
+"Mas solicitados"=>"Los más solicitados",
+"Estrellas"=>"Estrellas",
+"Ver mas"=>"Ver más",
+"Ver todos"=>"Ver todos los tours"
 # ======  End of HOME TEMPLATE  =======
 
 
-	
 
-	
+
+
 );

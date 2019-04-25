@@ -1,67 +1,54 @@
-<?php 
+<?php
 error_reporting(0);
  session_start();
 # ===========================================
 # =           Language validation           =
 # ===========================================
-
-   //Watching changes on post variable
-if(isset($_POST["lang"])){
-  $lang = $_POST["lang"];
-  if(!empty($lang)){
-    $_SESSION["lang"] = $lang;
-  }
+if(isset($_POST["lang"]) && !empty($_POST["lang"])){//Watching changes on POST
+  $_SESSION["lang"] = $_POST["lang"];
+}elseif (!isset($_SESSION["lang"])) {
+  $_SESSION["lang"] = "es";
 }
-// If is created
-if(isset($_SESSION['lang'])){  
-  $lang = $_SESSION["lang"];
-  include "view/languages/".$lang.".php";
-// Else take spanish default
-}else{
-  include "view/languages/es.php";
-}
-
-
+require_once "view/languages/".$_SESSION["lang"].".php";//include lang
 # ======  End of Language validation  =======
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-  
+<html lang="<?php echo $_SESSION["lang"]; ?>">
   <!--=================================
   =            Head common            =
   ==================================-->
   <title>Guids</title>
   <?php include 'view/links/head_common.php'; ?>
-  
+
   <!--====  End of Head common  ====-->
-  
+
   <body>
-  
+
 
   <!--============================
   =            HEADER            =
   =============================-->
-  <?php include 'view/modules/header/header.php'; ?>     
+  <?php include 'view/modules/header/header.php'; ?>
   <!--====  End of HEADER  ====-->
-  
 
-  
+
+
   <!--============================
   =            SEARCH            =
   =============================-->
-  
+
       <div class="site-blocks-cover overlay" style="background-image: url(view/assets/images/Cancun.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row align-items-center justify-content-center text-center">
 
           <div class="col-md-10">
-            
-            
+
+
             <div class="row justify-content-center mb-4">
               <div class="col-md-8 text-center">
-                <h1 data-aos="fade-up"><?php echo $lang["Encuentra"]; ?><span class="typed-words"></span></h1>              
+                <h1 data-aos="fade-up"><?php echo $lang["Encuentra"]; ?><span class="typed-words"></span></h1>
               </div>
             </div>
 
@@ -74,28 +61,28 @@ if(isset($_SESSION['lang'])){
                   <div class="col-lg-12 col-xl-2 ml-auto text-right">
                     <input type="submit" class="btn btn-primary" value="Buscar">
                   </div>
-                  
+
                 </div>
               </form>
             </div>
             <div class="row justify-content-center mb-4">
-              <div class="col-md-8 text-center">                
-                <p data-aos="fade-up" data-aos-delay="100" style="color:#fff ">Explora los lugares mas atractivos de Quintana Roo, México!, Bacalar, Mahahual, Tulum, Riviera Maya, Playa del Carmen, Cozumel, Puerto Morelos, Cancún, Isla Mujeres y Holbox.</p>
+              <div class="col-md-8 text-center">
+                <p data-aos="fade-up" data-aos-delay="100" style="color:#fff "><?php echo $lang["Encuentra slogan"]; ?></p>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>  
-  
+    </div>
+
   <!--====  End of SEARCH  ====-->
- <?php 
+ <?php
  // getting all tors
   $getAll = new TourController();
   $getAll= TourModel::getAll("tour");
 
   ?>
- 
+
   <!--=================================
   =            BEST GUIDES            =
   ==================================-->
@@ -104,20 +91,19 @@ if(isset($_SESSION['lang'])){
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 text-center border-primary">
             <h2 class="font-weight-light text-primary"><?php echo $lang["Tours"]; ?></h2>
-            <p class="color-black-opacity-5">Los más solicitados</p>
+            <p class="color-black-opacity-5"><?php echo $lang["mas solicitados"]; ?></p>
           </div>
         </div>
 
-        <div class="row">
-          <?php foreach ($getAll as $key => $value) {?>
-          <div class="col-md-6 mb-4 mb-lg-0 col-lg-4 pt-3">
-            
+        <div class="row mb-5">
+          <?php foreach ($getAll as $row => $value) {?>
+          <div class="col-md-6 mb-4 mb-lg-0 col-lg-4 pt-3" id="besttour<?php echo $row; ?>" style="<?php if($row>2) echo "display:none;"; ?>">
             <div class="listing-item" style="max-width:500px; max-height: 200px;" >
               <div class="listing-image">
                 <img style="width: 100%;" src="<?php echo $value["tour_image_src"].$value["tour_image_file_name"] ?>" alt="Image" class="img-fluid ">
               </div>
               <div class="listing-item-content">
-                <h2 class="mb-1"><a href="#"><?php echo utf8_encode($value["tour_name"]); ?></a></h2>
+                <h2 class="mb-1"><a href="#"><?php echo $row.utf8_encode($value["tour_name"]); ?></a></h2>
                 <span class="address"><?php echo utf8_encode($value["tour_location"]); ?></span>
                    <p>
                   <span class="icon-star text-warning"></span>
@@ -125,33 +111,23 @@ if(isset($_SESSION['lang'])){
                   <span class="icon-star text-warning"></span>
                   <span class="icon-star text-warning"></span>
                   <span class="icon-star text-secondary"></span>
-                  <span>(3 Reviews)</span>
-                </p>                
-                <a class="px-3 mb-3 category" href="http://localhost/guids/guideinfo/tour/<?php echo $value["tour_id"]; ?>">Ver mas...</a>                                    
+                  <span>(3 <?php echo $lang["Estrellas"]; ?>)</span>
+                </p>
+                <a class="px-3 mb-3 category" href="http://localhost/guids/guideinfo/tour/<?php echo $value["tour_id"]; ?>"><?php echo $lang["Ver mas"] ?>...</a>
               </div>
             </div>
 
           </div>
          <?php } ?>
-
-
-
-              <div class="col-12 mt-5 text-center">
-              <div class="custom-pagination">
-                <span>1</span>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <span class="more-page">...</span>
-                <a href="#">10</a>
-              </div>
-            </div>
-
-
+        </div>
+        <div class="row justify-content-center mb-5">
+          <a href="javascript:addBestTours();" id="btnAddBestTour"><?php echo $lang["Ver mas"]; ?></a>
+          <a href="?page=todos" id="btnAllTours" style="display:none;"><?php echo $lang["Ver todos"] ?></a>
         </div>
       </div>
     </div>
   <!--====  End of BEST GUIDES  ====-->
-  
+
 
 
   <!--=================================
@@ -168,7 +144,7 @@ if(isset($_SESSION['lang'])){
 
         <div class="row">
           <div class="col-md-6 mb-4 mb-lg-0 col-lg-4 pt-3">
-            
+
             <div class="listing-item">
               <div class="listing-image">
                 <img src="view/assets/images/tourists.jpg" alt="Image" class="img-fluid">
@@ -183,59 +159,9 @@ if(isset($_SESSION['lang'])){
                   <span class="icon-star text-warning"></span>
                   <span class="icon-star text-secondary"></span>
                   <span>(3 Reviews)</span>
-                </p>                
+                </p>
                 <a class="px-3 mb-3 category" href="guideinfo">Ver mas...</a>
-                
-              </div>
-            </div>
 
-          </div>
-
-      
-
-
-                  <div class="col-md-6 mb-4 mb-lg-0 col-lg-4 pt-3">
-            
-            <div class="listing-item">
-              <div class="listing-image">
-                <img src="view/assets/images/tourists.jpg" alt="Image" class="img-fluid">
-              </div>
-              <div class="listing-item-content">
-                <h2 class="mb-1"><a href="#">Sticky Band</a></h2>
-                <span class="address">West Orange, New York</span>
-                   <p>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-secondary"></span>
-                  <span>(3 Reviews)</span>
-                </p>                
-                <a class="px-3 mb-3 category" href="guideinfo">Ver mas...</a>
-              </div>
-            </div>
-
-          </div>
-
-
-                  <div class="col-md-6 mb-4 mb-lg-0 col-lg-4 pt-3">
-            
-            <div class="listing-item">
-              <div class="listing-image">
-                <img src="view/assets/images/tourists.jpg" alt="Image" class="img-fluid">
-              </div>
-              <div class="listing-item-content">
-                <h2 class="mb-1"><a href="#">Sticky Band</a></h2>
-                <span class="address">West Orange, New York</span>
-                   <p>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-secondary"></span>
-                  <span>(3 Reviews)</span>
-                </p>                
-                <a class="px-3 mb-3 category" href="guideinfo">Ver mas...</a>
               </div>
             </div>
 
@@ -243,8 +169,9 @@ if(isset($_SESSION['lang'])){
 
 
 
+
                   <div class="col-md-6 mb-4 mb-lg-0 col-lg-4 pt-3">
-            
+
             <div class="listing-item">
               <div class="listing-image">
                 <img src="view/assets/images/tourists.jpg" alt="Image" class="img-fluid">
@@ -259,7 +186,56 @@ if(isset($_SESSION['lang'])){
                   <span class="icon-star text-warning"></span>
                   <span class="icon-star text-secondary"></span>
                   <span>(3 Reviews)</span>
-                </p>                
+                </p>
+                <a class="px-3 mb-3 category" href="guideinfo">Ver mas...</a>
+              </div>
+            </div>
+
+          </div>
+
+
+                  <div class="col-md-6 mb-4 mb-lg-0 col-lg-4 pt-3">
+
+            <div class="listing-item">
+              <div class="listing-image">
+                <img src="view/assets/images/tourists.jpg" alt="Image" class="img-fluid">
+              </div>
+              <div class="listing-item-content">
+                <h2 class="mb-1"><a href="#">Sticky Band</a></h2>
+                <span class="address">West Orange, New York</span>
+                   <p>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-secondary"></span>
+                  <span>(3 Reviews)</span>
+                </p>
+                <a class="px-3 mb-3 category" href="guideinfo">Ver mas...</a>
+              </div>
+            </div>
+
+          </div>
+
+
+
+                  <div class="col-md-6 mb-4 mb-lg-0 col-lg-4 pt-3">
+
+            <div class="listing-item">
+              <div class="listing-image">
+                <img src="view/assets/images/tourists.jpg" alt="Image" class="img-fluid">
+              </div>
+              <div class="listing-item-content">
+                <h2 class="mb-1"><a href="#">Sticky Band</a></h2>
+                <span class="address">West Orange, New York</span>
+                   <p>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-secondary"></span>
+                  <span>(3 Reviews)</span>
+                </p>
                 <a class="px-3 mb-3 category" href="guideinfo">Ver mas...</a>
               </div>
             </div>
@@ -271,7 +247,7 @@ if(isset($_SESSION['lang'])){
       </div>
     </div>
   <!--====  End of BEST VIDEOS ====-->
-  
+
 
 
 
@@ -290,7 +266,7 @@ if(isset($_SESSION['lang'])){
         </div>
       </div>
     </div>
-  
+
 <!--====  End of ADVERSITING  ====-->
 
 
@@ -320,7 +296,7 @@ if(isset($_SESSION['lang'])){
                 </div>
               </div>
             </div>
-<!-- 
+<!--
             <div class="border p-3 rounded mb-2">
               <a data-toggle="collapse" href="#collapse-4" role="button" aria-expanded="false" aria-controls="collapse-4" class="accordion-item h5 d-block mb-0">Is this available in my country?</a>
 
@@ -351,9 +327,9 @@ if(isset($_SESSION['lang'])){
               </div>
             </div> -->
           </div>
-          
+
         </div>
-        
+
       </div>
     </div>
 
@@ -374,8 +350,31 @@ if(isset($_SESSION['lang'])){
 
 <!--====  End of SCRIPTS  ====-->
 
-        
 
-    
+<!--============================
+=   Javascript functions       =
+=============================-->
+<script type="text/javascript">
+  var min=3;
+  function addBestTours(){
+    for (var i = 0; i < 3; i++) {
+      var element=document.getElementById('besttour'+min);
+      console.dir(element);
+      if (element != null) {
+        element.style.display = "block";
+      }else {
+        document.getElementById("btnAddBestTour").style.display = "none";
+        document.getElementById("btnAllTours").style.display = "block";
+      }
+      min++;
+    }
+
+
+
+  }
+</script>
+
+
+
   </body>
 </html>
