@@ -25,7 +25,9 @@ require_once "model/Conexion.php";
 						grade,						
 						personality,
 						ability,
-						is_admin) 
+						is_admin,
+						is_active
+						) 
 				VALUES 
 					   (:name, 
 					    :lastname, 
@@ -38,7 +40,8 @@ require_once "model/Conexion.php";
 						:grade,						
 						:personality,
 						:ability,
-						:is_admin)");
+						:is_admin,
+						:is_active)");
 
 						$statement->bindParam(":name",$userDataModel["name"],PDO::PARAM_STR);
 						$statement->bindParam(":lastname",$userDataModel["lastname"],PDO::PARAM_STR);			
@@ -53,6 +56,7 @@ require_once "model/Conexion.php";
 						$statement->bindParam(":ability",$userDataModel["ability"],PDO::PARAM_STR);
 						// $statement->bindParam(":fotos",$userDataModel["fotos"],PDO::PARAM_STR);	
 						$statement->bindParam(":is_admin",$userDataModel["is_admin"],PDO::PARAM_INT);		
+						$statement->bindParam(":is_active",$userDataModel["is_active"],PDO::PARAM_INT);	
 
 						if($statement->execute()){
 							return "success";

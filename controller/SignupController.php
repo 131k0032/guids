@@ -37,7 +37,8 @@ public function newUserSignupController(){
 					"grade"=>$_POST["grade"],								
 					"personality"=>$_POST["personality"],
 					"ability"=>$_POST["ability"],
-					"is_admin"=>0
+					"is_admin"=>0,
+					"is_active"=>0,
 					// "picture"=>"ruta"			
 				);
 			
@@ -112,7 +113,7 @@ public function newUserSignupController(){
           			 
 				 }	
 
-					 print "<script>alert(\"Registro exitoso, se le enviará información por los administradores del sitio\");window.location='index';</script>";
+					 print "<script>alert(\"Registro exitoso, tu cuenta será verificada para acceder al sitio\");window.location='index';</script>";
 
 			  }
 

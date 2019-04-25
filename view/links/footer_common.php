@@ -56,7 +56,9 @@
             $url[0]=="settings" ||            
             $url[0]=="guideinfo" ||         
             $url[0]=="test" ||     
-            $url[0]=="aboutus" ||                    
+            $url[0]=="aboutus" ||       
+            $url[0]=="terms-and-conditions" || 
+            $url[0]=="privacy-policy" ||            
             //Logout
             $url[0]=="logout"
 

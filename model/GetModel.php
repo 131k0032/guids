@@ -21,6 +21,8 @@ class GetModel{
 			$url[0]=="guideinfo" ||			
 			$url[0]=="test" ||								
 			$url[0]=="aboutus" ||		
+			$url[0]=="terms-and-conditions" ||
+			$url[0]=="privacy-policy" ||
 			//Logout
 			$url[0]=="logout"
 
@@ -33,6 +35,11 @@ class GetModel{
 		}else if($url[0]=="index"){
 			// ingresar
 			$module="view/modules/home.php";
+
+		}elseif($url[0]=="access-admin"){
+			// Solo para usuarios admin
+			$module="access-admin/index.php";
+
 		}else{
 			// si ninguna de las opciones o pone otra cosa, mandalo a 404error
 			$module="view/modules/404notfound/404notfound.php";
