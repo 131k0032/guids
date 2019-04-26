@@ -95,7 +95,10 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
         </div>
 
         <div class="row mb-5">
-          <?php foreach ($getAll as $row => $value) { $rating = TourController::getRatingByIdTour($row+1);?>
+          <?php foreach ($getAll as $row => $value) {             
+            $getAvgRatingByIdTour = TourController::getAvgRatingByIdTour($row+1);
+            $getCountRatingByIdTour = TourController::getCountRatingByIdTour($row+1);
+          ?>
           <div class="col-md-6 mb-4 mb-lg-0 col-lg-4 pt-3" id="besttour<?php echo $row; ?>" style="<?php if($row>2) echo "display:none;"; ?>">
             <div class="listing-item" style="max-width:500px; max-height: 200px;" >
               <div class="listing-image">
@@ -105,8 +108,13 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
                 <h2 class="mb-1"><a href="#"><?php echo $row." ".utf8_encode($value["tour_name"]); ?></a></h2>
                 <span class="address"><?php echo utf8_encode($value["tour_location"]); ?></span>
                   <p>
-                    <span><?php echo $rating["rating"]." ".$lang["Estrellas"]; ?></span>
-                  </p>
+                  <span class="icon-star <?php echo $getAvgRatingByIdTour["review_rating"]>=1 ? 'text-warning' : 'text-secondary' ?>"></span>
+                  <span class="icon-star <?php echo $getAvgRatingByIdTour["review_rating"]>=2 ? 'text-warning' : 'text-secondary' ?>"></span>
+                  <span class="icon-star <?php echo $getAvgRatingByIdTour["review_rating"]>=3 ? 'text-warning' : 'text-secondary' ?>"></span>
+                  <span class="icon-star <?php echo $getAvgRatingByIdTour["review_rating"]>=4 ? 'text-warning' : 'text-secondary' ?>"></span>
+                  <span class="icon-star <?php echo $getAvgRatingByIdTour["review_rating"]>=5 ? 'text-warning' : 'text-secondary' ?>"></span>
+                  <span>(<?php echo $getCountRatingByIdTour["review_rating"]; ?> Valoraciones)</span>
+                </p> 
                 <a class="px-3 mb-3 category" href="http://localhost/guids/guideinfo/tour/<?php echo $value["tour_id"]; ?>"><?php echo $lang["Ver mas"] ?>...</a>
               </div>
             </div>

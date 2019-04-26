@@ -220,13 +220,105 @@ require_once "model/Conexion.php";
 				$stmt->close();
 		}
 
-		public function getRatingByIdTour($table, $id){
-			$stmt = Conexion::conectar()->prepare("SELECT
-				COUNT(`rating`) AS rating
-				FROM $table
-				WHERE `tour_id`=$id");
+		// For home template
+		public function getCountRatingByIdTour($table, $id){
+			$stmt = Conexion::conectar()->prepare("SELECT 
+				review.id as review_id,
+				count(review.rating) as review_rating,
+
+				tour.id as tour_id,
+				tour.name as tour_name,
+
+				user.id as user_id,
+				user.name as user_name
+
+				FROM 
+				$table
+
+				inner join tour
+				on review.tour_id=tour.id
+				inner join user
+				on review.user_id=user.id
+				where tour.id=$id");
 			$stmt->execute();
 			return $stmt->fetchAll();
+			$stmt->close();
+
+		}
+
+		// For home template
+		public function getAvgRatingByIdTour($table, $id){
+			$stmt = Conexion::conectar()->prepare("SELECT 
+				review.id as review_id,
+				avg(review.rating) as review_rating,
+
+				tour.id as tour_id,
+				tour.name as tour_name,
+
+				user.id as user_id,
+				user.name as user_name
+
+				FROM 
+				$table
+
+				inner join tour
+				on review.tour_id=tour.id
+				inner join user
+				on review.user_id=user.id
+				where tour.id=$id");
+			$stmt->execute();
+			return $stmt->fetchAll();
+			$stmt->close();
+
+		}
+
+	   // For guideinfo template
+	   public function getAvgRating($table, $id){
+			$stmt = Conexion::conectar()->prepare("SELECT 
+				review.id as review_id,
+				avg(review.rating) as review_rating,
+
+				tour.id as tour_id,
+				tour.name as tour_name,
+
+				user.id as user_id,
+				user.name as user_name
+
+				FROM 
+				$table
+
+				inner join tour
+				on review.tour_id=tour.id
+				inner join user
+				on review.user_id=user.id
+				where tour.id=$id");
+			$stmt->execute();
+			return $stmt->fetch();
+			$stmt->close();
+
+		}
+		// For guideinfo template
+		public function getCountRating($table, $id){
+			$stmt = Conexion::conectar()->prepare("SELECT 
+				review.id as review_id,
+				count(review.rating) as review_rating,
+
+				tour.id as tour_id,
+				tour.name as tour_name,
+
+				user.id as user_id,
+				user.name as user_name
+
+				FROM 
+				$table
+
+				inner join tour
+				on review.tour_id=tour.id
+				inner join user
+				on review.user_id=user.id
+				where tour.id=$id");
+			$stmt->execute();
+			return $stmt->fetch();
 			$stmt->close();
 
 		}

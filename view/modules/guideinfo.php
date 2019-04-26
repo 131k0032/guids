@@ -88,7 +88,11 @@ if(isset($_SESSION['lang'])){
     //Second query      
       $getUserTourById = TourModel::getUserTourById("tour", $tourId);    
       // echo $getUserTourById["tour_name"];
-  
+
+      //Third query
+      $getAvgRating=TourModel::getAvgRating("review",$tourId);
+      //Fourth query
+      $getCountRating=TourModel::getCountRating("review",$tourId);
     ?>
 
 <form method="post">
@@ -101,29 +105,21 @@ if(isset($_SESSION['lang'])){
              <div class="d-block d-md-flex listing-horizontal">
               <!-- <a href="#" class="img d-block" style="background-image: url('http://localhost/guids/view/assets/images/img_1.jpg')"></a> -->                                  
                 <?php if(is_null($getUserTourById["src"]) || is_null($getUserTourById["picture"])){?>                            
-                  <a href="#" class="img d-block" style="background-image: url('http://localhost/guids/view/images/profile/default.jpg')"></a>
+                  <a href="" class="img d-block" style="background-image: url('http://localhost/guids/view/images/profile/default.jpg')"></a>
                 <?php } else{ ?>   
-                  <a href="#" class="img d-block" style="background-image: url('http://localhost/guids/<?php echo $getById["src"]. $getById["picture"];?>')"></a>                    
-                <?php } ?>
-                     
+                  <a href="" class="img d-block" style="background-image: url('http://localhost/guids/<?php echo $getById["src"]. $getById["picture"];?>')"></a>                    
+                <?php } ?>                                
               <div class="lh-content">                
-                <h3><a href="#"><?php echo $getUserTourById["user_name"]." ".$getUserTourById["user_lastname"]; ?></a></h3>
-                <p>Registrado: <?php echo $getUserTourById["user_created_at"]; ?></p>                                
-                <?php if(!isset($_SESSION["email"])){ ?>
-                <!-- Can rate -->
-                <p><a href="#">Calificar guía</a></p>
+                <h3><a href=""><?php echo $getUserTourById["user_name"]." ".$getUserTourById["user_lastname"]; ?></a></h3>
+                <p>Registrado: <?php echo $getUserTourById["user_created_at"]; ?></p> 
                 <p>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-secondary"></span>
-                  <span>(3 Reviews)</span>
-                </p>                              
-                <?php }else {?>
-                <!-- Can't booking -->
-
-                <?php } ?>
+                  <span class="icon-star <?php echo $getAvgRating["review_rating"]>=1 ? 'text-warning' : 'text-secondary' ?>"></span>
+                  <span class="icon-star <?php echo $getAvgRating["review_rating"]>=2 ? 'text-warning' : 'text-secondary' ?>"></span>
+                  <span class="icon-star <?php echo $getAvgRating["review_rating"]>=3 ? 'text-warning' : 'text-secondary' ?>"></span>
+                  <span class="icon-star <?php echo $getAvgRating["review_rating"]>=4 ? 'text-warning' : 'text-secondary' ?>"></span>
+                  <span class="icon-star <?php echo $getAvgRating["review_rating"]>=5 ? 'text-warning' : 'text-secondary' ?>"></span>
+                  <span>(<?php echo $getCountRating["review_rating"]; ?> Valoraciones)</span>
+                </p>                                 
                 <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartir</a>
                 </div>
               </div>
@@ -206,7 +202,7 @@ if(isset($_SESSION['lang'])){
             <div class="p-4 mb-3 bg-white">
               <p class="mb-0 font-weight-bold">Ubicación del guía</p>
               <p class="mb-4"><?php echo utf8_encode($getUserTourById["user_town"]); ?></p>
-
+          
               <p class="mb-0 font-weight-bold">Idiomas del guía</p>
             
                       <?php if($value["language_id"]==1){

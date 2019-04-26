@@ -138,9 +138,28 @@ require "view/classupload/class.upload.php";
   }
 
   # Get rating by ID Tour
-  public function getRatingByIdTour($id){
-    $getRatingByIdTour=TourModel::getRatingByIdTour("review",$id);
+  // For home template
+  public function getCountRatingByIdTour($id){
+    $getRatingByIdTour=TourModel::getCountRatingByIdTour("review",$id);
     return $getRatingByIdTour[0];
+  }
+
+    // For home template
+  public function getAvgRatingByIdTour($id){
+    $getAvgRatingByIdTour=TourModel::getAvgRatingByIdTour("review",$id);
+    return $getAvgRatingByIdTour[0];
+  }
+
+
+  // For guideinfo template
+  public function getAvgRating(){
+    $getAvgRating = TourModel::getAvgRating("review", $id);
+    return $getAvgRating;
+  }
+  // For guideinfo template
+   public function getCountRating(){
+    $getCountRating = TourModel::getCountRating("review", $id);
+    return $getCountRating;
   }
 
 # ======  End of Getting all  =======
