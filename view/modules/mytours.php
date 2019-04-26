@@ -106,7 +106,7 @@ if(isset($_SESSION['lang'])){
               <td><?php echo utf8_encode($value["day_name"]); ?></td>                                                                                  
               <td><?php echo utf8_encode($value["tour_name"]); ?></td>                    
               <td>            
-                 <div class="listing-image">
+                <div class="listing-image" style="max-width:50%; max-height: 50%;">
                 <img src="http://localhost/guids/<?php echo $value["tour_image_src"]. $value["tour_image_filename"];?>" alt="Image" class="img-fluid img-thumbnail card-img-top">
               </div>
               </td>                    

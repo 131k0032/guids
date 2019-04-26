@@ -31,6 +31,7 @@ require_once "model/Conexion.php";
 				$table (name,
 						description,
 						find_guide,
+						start_in,
 						location,
 						duration,
 						capacity,
@@ -43,6 +44,7 @@ require_once "model/Conexion.php";
 					   (:name,
 						:description,
 						:find_guide,
+						:start_in,
 						:location,
 						:duration,
 						:capacity,
@@ -54,6 +56,7 @@ require_once "model/Conexion.php";
 						$stmt->bindParam(":name",$tourDataModel["name"],PDO::PARAM_STR);
 						$stmt->bindParam(":description",$tourDataModel["description"],PDO::PARAM_STR);
 						$stmt->bindParam(":find_guide",$tourDataModel["find_guide"],PDO::PARAM_STR);
+						$stmt->bindParam(":start_in",$tourDataModel["start_in"],PDO::PARAM_STR);
 						$stmt->bindParam(":location",$tourDataModel["location"],PDO::PARAM_STR);
 						$stmt->bindParam(":duration",$tourDataModel["duration"],PDO::PARAM_STR);
 						$stmt->bindParam(":capacity",$tourDataModel["capacity"],PDO::PARAM_STR);
@@ -121,6 +124,7 @@ require_once "model/Conexion.php";
 					tour.id as tour_id,
 					tour.name as tour_name,
 					tour.description as tour_description,
+					tour.start_in as tour_start_in,
 					tour.find_guide as tour_find_guide,
 					tour.location as tour_location,
 					-- User table
@@ -132,7 +136,10 @@ require_once "model/Conexion.php";
 					user.town as user_town,
 					user.state as user_state,
 					user.personality as user_personality,
-					user.ability as user_ability
+					user.ability as user_ability,
+					user.src as user_src,
+					user.picture as user_picture,
+					user.created_at as user_created_at
 
 
 					FROM $table

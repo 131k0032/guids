@@ -114,7 +114,11 @@ if(isset($_SESSION['lang'])){
               <td><?php echo utf8_encode($value["ability"]); ?></td>                        
               <td>            
                  <div class="listing-image" style="max-width:20%; max-height: 20%;">
-                <img src="http://localhost/guids/<?php echo $value["tour_image_src"]. $value["tour_image_filename"];?>" alt="Image" class="img-fluid img-thumbnail card-img-top">
+                <?php if(is_null($value["src"]) || is_null($value["picture"])){?>
+                  <img src="http://localhost/guids/view/images/profile/default.jpg" name="aboutme" width="200" height="200px" class="rounded-circle">
+                <?php } else{ ?>                              
+                  <img src="http://localhost/guids/<?php echo $value["src"]. $value["picture"];?>" name="aboutme" width="200" height="200" class="rounded-circle">
+                <?php } ?>
               </div>
               </td> 
               <td>

@@ -107,7 +107,12 @@ if(isset($_SESSION['lang'])){
                                   
                                    <p class="mb-2 font-weight-bold">Describe como te van a encontrar antes del tour</p>
                                   <div class="form-group">
-                                <textarea name="find_guide" class="form-control"  rows="3" placeholder="Con una mochila roja..."></textarea>
+                                    <textarea name="find_guide" class="form-control"  rows="3" placeholder="Con una mochila roja..."></textarea>
+                                  </div>  
+
+                                    <p class="mb-2 font-weight-bold">Especifica un punto de encuentro del tour</p>
+                                  <div class="form-group">
+                                    <textarea name="start_in" class="form-control"  rows="3" placeholder="Será en el parque central, junto a la glorieta..."></textarea>
                                   </div>                                         
 
                                 <!-- </form> -->
@@ -141,7 +146,7 @@ if(isset($_SESSION['lang'])){
                               <div class="p-4 mb-3 bg-white">                                         
                                 
                                   <p class="mb-2 font-weight-bold">Nombre del tour</p>
-                                <form action="test" method="post">
+                                <!-- <form action="test" method="post"> -->
                                   <div class="form-group">                  
                                     <div class="wrap-icon">
                                       <!-- <span class="icon icon-room"></span> -->
@@ -172,7 +177,7 @@ if(isset($_SESSION['lang'])){
                                       </div>
                                   </div>
 
-                                </form>
+                                <!-- </form> -->
                               </div>   
 
 
@@ -206,7 +211,7 @@ if(isset($_SESSION['lang'])){
                                   </div>
 
 
-                                </form>
+                                <!-- </form> -->
                               </div>   
 
 

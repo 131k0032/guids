@@ -1,5 +1,5 @@
 <?php  
-
+require_once "view/phpmailer/class.phpmailer.php";
 
   Class UserController{
 
@@ -44,36 +44,73 @@
 
 
 # -----------  UPDATING BY EMAIL  -----------
-		public function update(){
+	public function updatePicure(){
+	 if(isset($_FILES["src"])){                  
+                  $handle = new Upload($_FILES['src']);
+                  if($handle->uploaded){
+                    // $src="view/images/tours/".$id;
+                    $src="view/images/profile/";
+                    $handle->Process($src);
+                    if($handle->processed){
+                      $file_name = $handle->file_dst_name;
+		                 $userDataController=array(				
+							"code"=>$_POST["code"],
+							"src"=>$src,
+							"picture"=>$file_name,
+							);
+
+						$updateById=UserModel::updatePicure($userDataController,"user");
+						// var_dump($updateById);
+
+							if($updateById=="success"){
+								print "<script>alert(\"Imagen de perfil actualizada.\");window.location='http://localhost/guids/index';</script>";
+								// echo $_POST["phone"];
+						
+							}else{
+								print "<script>alert(\"Imagen no actualizada.\");window.location='http://localhost/guids/index';</script>";
+
+						}
+                    }else{
+                      echo "Error size";
+                    }
+                  }else{
+                    echo "Ninguna imagen seleccionada";
+                  }
+                }
+
+
 			
-			if(isset($_POST["name"])){
 
-				$userDataController=array(				
-					"id"=>$_POST["id"],
-					"name"=>$_POST["name"],
-					"lastname"=>$_POST["lastname"],																			
-					"phone"=>$_POST["phone"],												
-					"personality"=>$_POST["personality"],
-					"ability"=>$_POST["ability"]
-					);
+		
+	  }
 
-				$updateById=UserModel::updateById($userDataController,"user");
-				var_dump($updateById);
+ 
+ 
+ public function updatePersonalData(){
+	if(isset($_POST["name"]) && isset($_POST["sessionemail"])){
+			$userDataController=array(				
+			"code"=>$_POST["code"],
+			"name"=>$_POST["name"],
+			"lastname"=>$_POST["lastname"],																			
+			"phone"=>$_POST["phone"],												
+			"personality"=>$_POST["personality"],
+			"ability"=>$_POST["ability"]
+			);
 
-					if($updateById=="success"){
-						print "<script>alert(\"Información actualizada.\");window.location='http://localhost/guids/index';</script>";
-						// echo $_POST["phone"];
-				
-					}else{
-						print "<script>alert(\"Datos no ctualizados.\");window.location='http://localhost/guids/index';</script>";
+		$updateById=UserModel::updatePersonalData($userDataController,"user");
+		// var_dump($updateById);
 
-				}
+			if($updateById=="success"){
+				print "<script>alert(\"Información actualizada.\");window.location='http://localhost/guids/index';</script>";
+				// echo $_POST["phone"];
+		
+			}else{
+				print "<script>alert(\"Datos no ctualizados.\");window.location='http://localhost/guids/index';</script>";
 
-			}	
+			}
+		
 		}
-
- 
- 
+ }
  # ======  End of UPDATING USER  =======
   
 

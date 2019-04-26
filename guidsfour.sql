@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-04-2019 a las 09:53:22
+-- Tiempo de generación: 26-04-2019 a las 19:41:53
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.8
 
@@ -44,14 +44,6 @@ CREATE TABLE `booking` (
   `tour_schedule_id` int(11) NOT NULL,
   `tour_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `booking`
---
-
-INSERT INTO `booking` (`id`, `tour_date`, `tourist_quantyty`, `status`, `name`, `lastname`, `phone`, `email`, `src`, `file_name`, `created_at`, `updated_at`, `tour_schedule_id`, `tour_id`) VALUES
-(1, '2019-04-29', 17, 1, 'John', 'Krammer', '9831060867', 'johnkramer@gmail.com', 'view/images/toursvalidated/', 'tourists.jpg', '2019-04-24', '2019-04-24', 5, 1),
-(2, '2019-04-29', 5, 0, 'John', 'Krammer', '9831060867', '131k0032@itscarrillopuerto.edu.mx', NULL, NULL, '2019-04-24', NULL, 6, 1);
 
 -- --------------------------------------------------------
 
@@ -140,10 +132,7 @@ CREATE TABLE `tour` (
 --
 
 INSERT INTO `tour` (`id`, `name`, `description`, `find_guide`, `start_in`, `location`, `duration`, `capacity`, `status`, `is_active`, `created_at`, `updated_at`, `user_id`) VALUES
-(1, 'Laguna Azul', 'Un tour que inicia desde el parque centra', 'Con una mochila negra', NULL, 'Señor Quintana Roo', '3:00-h', 5, 0, 1, '2019-04-24', NULL, 1),
-(2, 'La quinta avenida', 'Muy bueno', 'Con mi bici', NULL, 'Playa del carmen', '1-h', 5, 0, 1, '2019-04-25', NULL, 1),
-(3, 'Tulum', 'cc', 'En mi casa', NULL, 'señor', '1:h', 12, 0, 1, '2019-04-25', NULL, 1),
-(4, 'zxc', 'zxc', 'cc', NULL, 'Tumlum', '1-h', 3, 0, 1, '2019-04-25', NULL, 1);
+(1, 'Laguna de 10 colores', 'Será poca madre', 'Con mi bici negra', 'En la gasolinera del centro', 'Felipe Carrillo Puerto', '3:00-h', 5, 0, 1, '2019-04-26', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -163,10 +152,7 @@ CREATE TABLE `tour_image` (
 --
 
 INSERT INTO `tour_image` (`id`, `src`, `file_name`, `tour_id`) VALUES
-(1, 'view/images/tours/', 'lagunazul.jpg', 1),
-(2, 'view/images/tours/', 'quintaavenida.jpg', 2),
-(3, 'view/images/tours/', 'lagunazul.jpg', 3),
-(4, 'view/images/tours/', 'tulum.jpg', 4);
+(1, 'view/images/tours/', 'lagunazul.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -187,12 +173,8 @@ CREATE TABLE `tour_schedule` (
 --
 
 INSERT INTO `tour_schedule` (`id`, `start_at`, `day_id`, `tour_id`, `language_id`) VALUES
-(5, '9:30 am', 1, 1, 1),
-(6, '12:00 pm', 2, 1, 1),
-(7, '10:45 am', 1, 2, 1),
-(8, '11:00 am', 2, 2, 1),
-(9, '10:15 am', 3, 2, 1),
-(10, '10:15 am', 1, 4, 1);
+(1, '8:15 am', 1, 1, 1),
+(2, '12:15 pm', 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -202,6 +184,7 @@ INSERT INTO `tour_schedule` (`id`, `start_at`, `day_id`, `tour_id`, `language_id
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
+  `code` text,
   `name` varchar(65) NOT NULL,
   `lastname` varchar(75) NOT NULL,
   `phone` varchar(10) NOT NULL,
@@ -226,10 +209,8 @@ CREATE TABLE `user` (
 -- Volcado de datos para la tabla `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `lastname`, `phone`, `email`, `password`, `state`, `town`, `age`, `grade`, `personality`, `ability`, `src`, `picture`, `review`, `is_admin`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'Bernabe', 'Cituk Caamal', '2147483647', '131k0032@itscarrillopuerto.edu.mx', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'Quintanaroo', 'Felipe Carrillo Puerto', '1994-05-18', 'Superior', 'Muy bueno', 'Buenisimoo', NULL, NULL, NULL, 0, 1, '2019-04-24', NULL),
-(2, 'Marcos', 'Gaspar Pech', '999999', 'marcos@gmail.com', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'Quintana Roo', 'Bacalar', '2019-04-24', 'Superior', 'cc', 'cc', NULL, NULL, NULL, 1, 1, '2019-04-24', '2019-04-24'),
-(3, 'Ernesto ', 'Vaentin', '90909090', 'vale@gmail.com', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'Quintanaroo', 'José Marí­a Morelos', '1914-09-14', 'Basico', 'cc', 'cc', NULL, NULL, NULL, 0, 0, '2019-04-24', NULL);
+INSERT INTO `user` (`id`, `code`, `name`, `lastname`, `phone`, `email`, `password`, `state`, `town`, `age`, `grade`, `personality`, `ability`, `src`, `picture`, `review`, `is_admin`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, '85f52cd59036b27fb77e9a8b6a1601ab61a5349f', 'Bernabe', 'Cituk Caamal', '999999', '131k0032@itscarrillopuerto.edu.mx', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'Quintanaroo', 'José María Morelos', '1910-03-11', 'Superior', 'Muy bueno', 'Muy bueno', NULL, NULL, NULL, 0, 1, '2019-04-26', NULL);
 
 -- --------------------------------------------------------
 
@@ -247,8 +228,7 @@ CREATE TABLE `user_language` (
 --
 
 INSERT INTO `user_language` (`user_id`, `language_id`) VALUES
-(1, 1),
-(3, 2);
+(1, 1);
 
 --
 -- Índices para tablas volcadas
@@ -334,7 +314,7 @@ ALTER TABLE `user_language`
 -- AUTO_INCREMENT de la tabla `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `day`
@@ -358,25 +338,25 @@ ALTER TABLE `review`
 -- AUTO_INCREMENT de la tabla `tour`
 --
 ALTER TABLE `tour`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `tour_image`
 --
 ALTER TABLE `tour_image`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `tour_schedule`
 --
 ALTER TABLE `tour_schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas

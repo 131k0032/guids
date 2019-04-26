@@ -5,6 +5,7 @@ error_reporting(0);
       print "<script>window.location='index';</script>";      
       exit();      
     }
+    
 # ===========================================
 # =           Language validation           =
 # ===========================================
@@ -47,10 +48,7 @@ if(isset($_SESSION['lang'])){
   =============================-->
   <?php include 'view/modules/header/header.php'; ?>     
   <!--====  End of HEADER  ====-->
-  
-  
-
-
+ 
 <!--==========================
 =            SETTINGS FORM            =
 ===========================-->
@@ -64,24 +62,83 @@ if(isset($_SESSION['lang'])){
           </div>
         </div>
 
-           <div class="row justify-content-center">
+        <div class="row justify-content-center">
           <div class="col-md-8">
               
 
-            <form method="post" class="p-5 bg-white">      
-              <!-- id value from the get url -->              
-              <input type="hidden" value="<?php echo $url[2]; ?>" name="id">                     
+                                
               <?php 
-                 $getById=UserModel::getById($url[2],"user");                 
+                 $getById=UserModel::getByCode($url[2],"user");                 
                ?>
               <p>Puedes modificar tu información de perfil siempre que así lo desasdees</p>                            
-              
+              <?php 
+            
+            // $contra = "";
+            // $cadena = "abcdefghijklmnopqrstuvwxyz";
+
+            // $long_cad = strlen($cadena);
+
+            // $long_contra = 6;
+
+            // for($i = 0; $i < $long_contra; $i++){
+            //     $num = rand(0,$long_cad-1);
+            //     $letra = substr($cadena, $num, 1);
+            //     $contra = $contra.$letra;
+            // }
+            // //$contra_cifrada = md5($contra);
+            // $contra_cifrada= sha1(md5($contra));
+            // echo $contra;
+            // echo $contra_cifrada;
+
+               ?>
               <div class="custom-control custom-checkbox form-check">
+                  <input type="checkbox" class="custom-control-input spanish" id="profilesetting" name="profilesetting">
+                  <label class="custom-control-label" for="profilesetting">Cambiar imagen de perfil</label>
+              </div>
+              <hr>
+              <form method="post" enctype="multipart/form-data">
+                <input type="hidden" value="<?php echo $url[2]; ?>" name="code">                 
+               <div class="">
+                    <center>
+                      <a>                      
+                           <?php if(is_null($getById["src"]) || is_null($getById["picture"])){?>
+                              <img src="http://localhost/guids/view/images/profile/default.jpg" name="aboutme" width="200" height="200px" class="rounded-circle">
+                            <?php } else{ ?>                              
+                              <img src="http://localhost/guids/<?php echo $getById["src"]. $getById["picture"];?>" name="aboutme" width="200" height="200" class="rounded-circle">
+                            <?php } ?>
+                      </a>
+                      <br>
+                      <br>
+                      <p class="color-black-opacity-5"><?php echo $getById["email"]; ?></p>                                
+                      <div class="form-group">
+                        <input type="file" class="form-control" id="src" name="src" accept="image/*" disabled="disabled">
+                      </div>
+                  </center>
+                  </div>
+                    <?php 
+                      $updatePicure= new UserController();
+                      $updatePicure->updatePicure();
+                    ?>                     
+                  <div class="row form-group">
+                  <div class="col-md-12">
+                      <input type="submit" value="Cambiar" id="btnupdatepicture" class="btn btn-primary py-2 px-4 text-white" disabled="disabled" >
+                    </div>
+                  </div>  
+                 
+              </form>          
+
+               
+                
+            <br>
+            <form method="post">      
+              <!-- id value from the get url -->              
+              <input type="hidden" value="<?php echo $url[2]; ?>" name="code"> 
+              <input type="hidden" value="<?php echo $_SESSION["email"]; ?>" name="sessionemail"> 
+                <div class="custom-control custom-checkbox form-check">
                   <input type="checkbox" class="custom-control-input spanish" id="personalsetting" name="personalsetting">
                   <label class="custom-control-label" for="personalsetting">Modificar información personal</label>
-              </div>
-              <hr>              
-              
+                </div>                
+                <hr>
                 <div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">                  
                   <p class="mb-2 font-weight-bold">Nombre</p>
@@ -98,99 +155,7 @@ if(isset($_SESSION['lang'])){
                   <p class="mb-2 font-weight-bold">Teléfono</p>
                   <input type="text" id="phone" name="phone" class="form-control" disabled="disabled" value="<?php echo $getById["phone"] ?>">
                 </div>
-              </div>
-
-       <!--        <div class="row form-group">                
-                <div class="col-md-12">
-                  <p class="mb-2 font-weight-bold">Email</p>
-                  <input type="email" id="email" name="emial" class="form-control" disabled="disabled">
-                </div>
-              </div> -->
-
-<!--               <p class="mb-2 font-weight-bold">Estado</p>
-                <div class="form-group">
-                  <div class="select-wrap">
-                      <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-                      <select class="form-control" name="state" id="state" disabled="disabled">                        
-                        <option value="Quintanaroo">Quintana Roo</option> -->                                        
-                        <!-- <option value="yucatan">Yucatan</option> -->  
-           <!--            </select>
-                    </div>
-                </div> -->
-
-             <!--    <p class="mb-2 font-weight-bold">Municipio</p>
-                <div class="form-group">
-                  <div class="select-wrap">
-                      <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-                      <select class="form-control" name="town" id="town" disabled="disabled"> -->
-                        <!-- <option value="">Elija municipio</option>
-                        <option value="fcp">Felipe Carrillo Puerto</option> -->
-                 <!--      </select>
-                    </div>
-                </div> -->
-
-<!--               <p class="mb-2 font-weight-bold">Edad</p>
-                <div class="form-group">
-                  <div class="select-wrap">
-                      <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-                      <select class="form-control" name="age" id="age" disabled="disabled">
-                        <option value="">Elija edad</option>
-                                                  
-                           <?php
-                              //$edad=45; 
-                              //for($i=18; $i<=$edad; $i++): 
-                                //echo '<option value="'.$i.'">'.$i.'</option>';
-                            ?> 
-                                
-                          <?php //endfor; ?>
-                      </select>
-                    </div>
-                </div> -->
-
-        <!--       <p class="mb-2 font-weight-bold">Nivel de estudios</p>
-                <div class="form-group">
-                  <div class="select-wrap">
-                      <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-                      <select class="form-control" name="grade" id="grade" disabled="disabled">                        
-                        <option value="">Elija uno</option>                                        
-                        <option value="">Básico</option>  
-                        <option value="">Medio superior</option>  
-                        <option value="">Superior</option>  
-                        <option value="">Diplomados y cursos</option>                          
-                      </select>
-                    </div>
-                </div> -->
-
-
-             <!--  <p class="mb-2 font-weight-bold">Idioma(s) que más dominas</p>              
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <div class="row">
-                    <div class="col-md-3">
-                       <div class="custom-control custom-checkbox form-check">
-                          <input type="checkbox" class="custom-control-input spanish" id="spanish" name="spanish" disabled="disabled">
-                            <label class="custom-control-label" for="spanish">Español</label>
-                          </div>
-                    </div>
-                    <div class="col-md-3">
-                       <div class="custom-control custom-checkbox form-check">
-                          <input type="checkbox" class="custom-control-input mayan" id="mayan" disabled="disabled">
-                            <label class="custom-control-label" for="mayan">Maya</label>
-                          </div>
-                    </div>
-                    <div class="col-md-3">
-                       <div class="custom-control custom-checkbox form-check">
-                          <input type="checkbox" class="custom-control-input english" id="english" disabled="disabled">
-                            <label class="custom-control-label" for="english">Inglés</label>
-                          </div>
-                    </div>
-                    <div class="col-md-3">
-                       <input type="text" id="otherlanguage" name="otherlanguage" class="form-control" placeholder="Otro idioma..." disabled="disabled">
-                    </div>
-                  </div>                                    
-                </div>
-              </div>    -->     
-
+              </div> 
 
              <p class="mb-2 font-weight-bold">Describe tu personalidad</p>
               <div class="form-group">
@@ -202,29 +167,6 @@ if(isset($_SESSION['lang'])){
                  <textarea class="form-control" disabled="disabled"  rows="3" id="ability" name="ability" required><?php echo $getById["ability"]; ?></textarea>
               </div>
 
-        <!--      <p class="mb-2 font-weight-bold">Agrega una foto de perfil</p>
-              <div class="form-group">
-                 <input type="file" class="form-control" id="picture" id="picture" name="picture" disabled="disabled">
-              </div>
-              <br> -->
-
-        <!--       <div class="row form-group">                
-                <div class="col-md-12">
-                  <p class="mb-2 font-weight-bold">Nuevo password</p>
-                  <input type="password" id="password" name="password" class="form-control" disabled="disabled">
-                </div>
-              </div> -->
-
-              <!--  <div class="row form-group">                
-                <div class="col-md-12">
-                  <p class="mb-2 font-weight-bold">Confirmarasdsad password</p>
-                  <input type="password" id="confirmpassword" name="confirmpassword" class="form-control" disabled="disabled">
-                </div>
-              </div> -->
-
-
-
-
               <div class="row form-group">
                 <div class="col-md-12">
                   <input type="submit" value="Actualizar" id="btnupdate" class="btn btn-primary py-2 px-4 text-white" disabled="disabled" >
@@ -233,7 +175,7 @@ if(isset($_SESSION['lang'])){
                 
                 <?php 
                   $updateUser= new UserController();
-                  $updateUser->update();
+                  $updateUser->updatePersonalData();
                  ?>
          
 
@@ -277,9 +219,23 @@ if(isset($_SESSION['lang'])){
   ========================================================-->
   
     <script>
+    // profile Settings
+  $(function(){
+          $('#profilesetting').change(function(){
+              if($(this).prop('checked')){
+                $('#src').prop("disabled", false);
+                $('#btnupdatepicture').prop("disabled", false);
+              }else{
+                $('#src').prop("disabled", true);                
+                $('#btnupdatepicture').prop("disabled", true);  
+              }          
+        })
+    })
+
+    //Dat settings
     $(function(){
           $('#personalsetting').change(function(){
-              if($(this).prop('checked')){
+              if($(this).prop('checked')){                
                 $('#name').prop("disabled", false);
                 $('#lastname').prop("disabled", false);
                 $('#phone').prop("disabled", false);
@@ -298,7 +254,7 @@ if(isset($_SESSION['lang'])){
                 $('#password').prop("disabled", false);
                 $('#confirmpassword').prop("disabled", false);
                 $('#btnupdate').prop("disabled", false);
-              }else{
+              }else{                
                 $('#name').prop("disabled", true);
                 $('#lastname').prop("disabled", true);
                 $('#phone').prop("disabled", true);

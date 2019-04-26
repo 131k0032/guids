@@ -23,9 +23,25 @@ public function newUserSignupController(){
 			if($emailExists["email"]!=$_POST["email"]){
 				// crypting password here
 			$password = crypt($_POST['password'], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');     
+				//Generating ramndom code
 
+	            $code = "";
+	            $characters = "abcdefghijklmnopqrstuvwxyz";
+	            $lenght_character = strlen($characters);
+	            $lenght_code = 6;
+	            for($i = 0; $i < $lenght_code; $i++){
+	                $num = rand(0,$lenght_character-1);
+	                $letra = substr($characters, $num, 1);
+	                $code = $code.$letra;
+	            }
+	            //
+	            $hashed_code= sha1(md5($code));
+	            // echo $code;
+	            // echo $hashed_code;
+				//Data for db
 				$userDataController=array(
 				// "dbfields"=>$_POST["variables"]
+					"code"=>$hashed_code,
 					"name"=>$_POST["name"],
 					"lastname"=>$_POST["lastname"],
 					"phone"=>$_POST["phone"],

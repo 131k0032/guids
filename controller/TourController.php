@@ -33,6 +33,7 @@ require "view/classupload/class.upload.php";
         "name"=>$_POST["name"],
         "description"=>$_POST["description"],
         "find_guide"=>$_POST["find_guide"],
+        "start_in"=>$_POST["start_in"], 
         "location"=>$_POST["location"],
         "duration"=>$_POST["duration"],
         "capacity"=>$_POST["capacity"],

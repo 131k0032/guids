@@ -99,10 +99,16 @@ if(isset($_SESSION['lang'])){
 
           <div class="col-md-7 mb-5"  data-aos="fade">
              <div class="d-block d-md-flex listing-horizontal">
-              <a href="#" class="img d-block" style="background-image: url('http://localhost/guids/view/assets/images/img_1.jpg')"></a>
+              <!-- <a href="#" class="img d-block" style="background-image: url('http://localhost/guids/view/assets/images/img_1.jpg')"></a> -->                                  
+                <?php if(is_null($getUserTourById["src"]) || is_null($getUserTourById["picture"])){?>                            
+                  <a href="#" class="img d-block" style="background-image: url('http://localhost/guids/view/images/profile/default.jpg')"></a>
+                <?php } else{ ?>   
+                  <a href="#" class="img d-block" style="background-image: url('http://localhost/guids/<?php echo $getById["src"]. $getById["picture"];?>')"></a>                    
+                <?php } ?>
+                     
               <div class="lh-content">                
-                <h3><a href="#">Handcrafted Products</a></h3>
-                <p>Don St, Brooklyn, New York</p>                                
+                <h3><a href="#"><?php echo $getUserTourById["user_name"]." ".$getUserTourById["user_lastname"]; ?></a></h3>
+                <p>Registrado: <?php echo $getUserTourById["user_created_at"]; ?></p>                                
                 <?php if(!isset($_SESSION["email"])){ ?>
                 <!-- Can rate -->
                 <p><a href="#">Calificar guía</a></p>
@@ -199,7 +205,7 @@ if(isset($_SESSION['lang'])){
             
             <div class="p-4 mb-3 bg-white">
               <p class="mb-0 font-weight-bold">Ubicación del guía</p>
-              <p class="mb-4"><?php echo $getUserTourById["user_town"]; ?></p>
+              <p class="mb-4"><?php echo utf8_encode($getUserTourById["user_town"]); ?></p>
 
               <p class="mb-0 font-weight-bold">Idiomas del guía</p>
             
@@ -214,27 +220,32 @@ if(isset($_SESSION['lang'])){
 
 
               <p class="mb-0 font-weight-bold">Teléfono</p>
-              <p class="mb-4"><a href="#"><?php echo $getUserTourById["user_phone"]; ?></a></p>
+              <p class="mb-4"><a href="#"><?php echo utf8_encode($getUserTourById["user_phone"]); ?></a></p>
 
               <p class="mb-0 font-weight-bold">Email</p>
-              <p class="mb-0"><a href="#"><?php echo $getUserTourById["user_email"]; ?></a></p>
-
+              <p class="mb-0"><a href="#"><?php echo utf8_encode($getUserTourById["user_email"]); ?></a></p>  
+                          
             </div>
             
             <div class="p-4 mb-3 bg-white">
-              <h3 class="h5 text-black mb-3">Sobre el guía</h3>
-              <p><?php echo $getUserTourById["user_personality"]; ?></p>
+              <h3 class="h5 text-black mb-3">Características del guía</h3>
+              <p>Personalidad: <?php echo utf8_encode($getUserTourById["user_personality"]); ?></p>
+              <p>Hbilidades: <?php echo utf8_encode($getUserTourById["user_ability"]); ?></p>
 
-              <h3 class="h5 text-black mb-3">Sobre el tour</h3>
-              <p><?php echo $getUserTourById["tour_description"]; ?></p>              
+              <h3 class="h5 text-black mb-3">Acerca del tour</h3>
+              <p>Descripción: <?php echo utf8_encode($getUserTourById["tour_description"]); ?></p>               
+                <div class="listing-image" style="max-width:100%; max-height: 100%;">
+                <img src="http://localhost/guids/<?php echo $value["tour_image_src"]. $value["tour_image_filename"];?>" alt="Image" class="img-fluid img-thumbnail card-img-top">
+              </div>             
             </div>
 
-              <div class="p-4 mb-3 bg-white">
-              <h3 class="h5 text-black mb-3">Punto de encuentro</h3>              
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3744.1768614563816!2d-87.4652991350486!3d20.209970370599834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f4fd6ac60c1c067%3A0x20a1acdae9634463!2sParque+Dos+Aguas%2C+Calle+alfa+sur+esquina+calle+andromeda%2C+Calle+Alfa+Sur%2C+77780+Tulum%2C+Quintana+Roo!5e0!3m2!1ses!2smx!4v1553930740010!5m2!1ses!2smx" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+            <div class="p-4 mb-3 bg-white">
+              <h3 class="h5 text-black mb-3">Punto de encuentro</h3> 
+              <p><?php echo utf8_encode($getUserTourById["tour_start_in"]); ?></p>              
+       <!--        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3744.1768614563816!2d-87.4652991350486!3d20.209970370599834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f4fd6ac60c1c067%3A0x20a1acdae9634463!2sParque+Dos+Aguas%2C+Calle+alfa+sur+esquina+calle+andromeda%2C+Calle+Alfa+Sur%2C+77780+Tulum%2C+Quintana+Roo!5e0!3m2!1ses!2smx!4v1553930740010!5m2!1ses!2smx" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe> -->
 
-              <h3 class="h5 text-black mb-3">¿Dónde encontrar al guía?</h3>
-              <p><?php echo $getUserTourById["tour_find_guide"]; ?></p>              
+              <h3 class="h5 text-black mb-3">¿Cómo localizar e identificar al guía?</h3>
+              <p><?php echo utf8_encode($getUserTourById["tour_find_guide"]); ?></p>              
             </div>
 
           </div>

@@ -14,7 +14,9 @@ require_once "model/Conexion.php";
 		public function newUserSignupModel($userDataModel, $table){
 			$statement = Conexion::conectar()->prepare("
 				INSERT INTO  
-				$table (name, 
+				$table (
+						code,
+						name, 
 						lastname, 
 						phone, 
 						email, 
@@ -29,7 +31,8 @@ require_once "model/Conexion.php";
 						is_active
 						) 
 				VALUES 
-					   (:name, 
+					   (:code, 
+					   	:name, 
 					    :lastname, 
 					    :phone, 
 					    :email, 
@@ -42,7 +45,7 @@ require_once "model/Conexion.php";
 						:ability,
 						:is_admin,
 						:is_active)");
-
+						$statement->bindParam(":code",$userDataModel["code"],PDO::PARAM_STR);
 						$statement->bindParam(":name",$userDataModel["name"],PDO::PARAM_STR);
 						$statement->bindParam(":lastname",$userDataModel["lastname"],PDO::PARAM_STR);			
 						$statement->bindParam(":phone",$userDataModel["phone"],PDO::PARAM_STR);
@@ -67,8 +70,21 @@ require_once "model/Conexion.php";
 			// cierra las consultas
 			$statement->close();
 		}
-		
-				
+	// Add $src and picture on las user
+    public function addPicture($table, $id, $src, $picture){
+            $stmt = Conexion::conectar()->prepare("INSERT INTO $table (`id`, `src`,`picture`) VALUES (:id,:src,:picture)");
+            $stmt->bindParam(":id", $id, PDO::PARAM_STR);
+            $stmt->bindParam(":src", $src ,PDO::PARAM_STR);                      
+            $stmt->bindParam(":picture", $picture ,PDO::PARAM_STR);    
+            if($stmt->execute()){
+              return "success";
+            }else{
+              return "error";
+            }
+
+            $stmt->close();
+      }
+
 		# ======  End of ADDING NEWUSER  =======
 								
 		
