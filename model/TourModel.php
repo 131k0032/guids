@@ -231,7 +231,7 @@ require_once "model/Conexion.php";
 				FROM tour AS t
 				INNER JOIN tour_image AS i
 				ON t.id = i.tour_id
-				WHERE t.status=1 and t.is_active=1 and (t.name LIKE '%$like%' OR t.description LIKE '%$like%' OR t.find_guide LIKE '%$like%' OR t.location LIKE '%$like%')
+				WHERE t.status=0 and t.is_active=1 and (t.name LIKE '%$like%' OR t.description LIKE '%$like%' OR t.find_guide LIKE '%$like%' OR t.location LIKE '%$like%')
 				ORDER BY created_at $order LIMIT $start, $end");
 			$stmt->execute();
 			return $stmt->fetchAll();

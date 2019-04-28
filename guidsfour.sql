@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-04-2019 a las 19:41:53
+-- Tiempo de generación: 28-04-2019 a las 18:54:21
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.8
 
@@ -27,6 +27,8 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `booking`
 --
+CREATE SCHEMA IF NOT EXISTS `guidsfour` DEFAULT CHARACTER SET utf8 ;
+USE `guidsfour` ;
 
 CREATE TABLE `booking` (
   `id` int(11) NOT NULL,
@@ -44,6 +46,19 @@ CREATE TABLE `booking` (
   `tour_schedule_id` int(11) NOT NULL,
   `tour_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `booking`
+--
+
+INSERT INTO `booking` (`id`, `tour_date`, `tourist_quantyty`, `status`, `name`, `lastname`, `phone`, `email`, `src`, `file_name`, `created_at`, `updated_at`, `tour_schedule_id`, `tour_id`) VALUES
+(1, '2019-04-26', 15, 0, 'ff', 'ff', 'as', '131k0032@itscarrillopuerto.edu.mx', NULL, NULL, '2019-04-26', NULL, 1, 1),
+(7, '2019-04-29', 14, 0, 'xx', 'xx', 's', '1@ffh.com', NULL, NULL, '2019-04-27', NULL, 3, 2),
+(8, '2019-04-27', 18, 0, 'asd', 'asd', 'asd', '1@ffh.com', NULL, NULL, '2019-04-27', NULL, 3, 2),
+(9, '2019-04-20', 14, 0, 'asd', 'asd', 'asd', 'sad', NULL, NULL, '2019-04-27', NULL, 3, 2),
+(16, '2019-04-28', 5, 0, 'X', 'X', 'X', '1@ffh.com', NULL, NULL, '2019-04-28', NULL, 3, 2),
+(17, '2019-04-28', 12, 0, 'asd', 'asd', 'asd', '1@ffh.com', NULL, NULL, '2019-04-28', NULL, 3, 2),
+(18, '2019-04-28', 12, 0, 'asd', 'asd', 'asd', '1@ffh.com', NULL, NULL, '2019-04-28', NULL, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -105,6 +120,26 @@ CREATE TABLE `review` (
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `review`
+--
+
+INSERT INTO `review` (`id`, `rating`, `comment`, `created_at`, `updated_at`, `tour_id`, `user_id`) VALUES
+(1, 5, 'xD', '2019-04-28', NULL, 1, 1),
+(2, 5, 'jghg', '2019-04-28', NULL, 2, 1),
+(3, 2, 'xD', '2019-04-28', NULL, 2, 1),
+(4, 5, 'xD', '2019-04-28', NULL, 2, 1),
+(5, 5, 'xD', '2019-04-28', NULL, 2, 1),
+(6, 5, 'xD', '2019-04-28', NULL, 2, 1),
+(7, 5, 'xD', '2019-04-28', NULL, 2, 1),
+(8, 5, 'xD', '2019-04-28', NULL, 2, 1),
+(9, 5, 'xD', '2019-04-28', NULL, 2, 1),
+(10, 5, 'xD', '2019-04-28', NULL, 2, 1),
+(11, 5, 'j', '2019-04-28', NULL, 2, 1),
+(13, 2, 'xD', '2019-04-28', NULL, 1, 1),
+(16, 5, 'xD', '2019-04-28', NULL, 2, 1),
+(17, 5, 'xD', '2019-04-28', NULL, 2, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -132,7 +167,34 @@ CREATE TABLE `tour` (
 --
 
 INSERT INTO `tour` (`id`, `name`, `description`, `find_guide`, `start_in`, `location`, `duration`, `capacity`, `status`, `is_active`, `created_at`, `updated_at`, `user_id`) VALUES
-(1, 'Laguna de 10 colores', 'Será poca madre', 'Con mi bici negra', 'En la gasolinera del centro', 'Felipe Carrillo Puerto', '3:00-h', 5, 0, 1, '2019-04-26', NULL, 1);
+(1, 'Laguna de 10 colores', 'Será poca madre', 'Con mi bici negra', 'En la gasolinera del centro', 'Felipe Carrillo Puerto', '3:00-h', 5, 0, 1, '2019-04-26', NULL, 1),
+(2, 'La quinta avenida', 'Muy bueno', 'Con mi bici', 'En mi casa', 'Playa del carmen', '1-h', 3, 0, 1, '2019-04-27', NULL, 1),
+(3, 'La quinta avenida 1', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
+(4, 'La quinta avenida 2', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
+(5, 'La quinta avenida 3', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
+(6, 'La quinta avenida 4', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
+(7, 'La quinta avenida 5', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
+(8, 'La quinta avenida 6', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
+(9, 'La quinta avenida 7', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
+(10, 'La quinta avenida 8', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
+(11, 'La quinta avenida 9', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
+(12, 'La quinta avenida 10', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
+(13, 'La quinta avenida 11', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
+(14, 'La quinta avenida 12', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
+(15, 'La quinta avenida 13', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
+(16, 'La quinta avenida 14', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
+(17, 'La quinta avenida 15', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
+(18, 'La quinta avenida 16', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
+(19, 'La quinta avenida 17', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
+(20, 'La quinta avenida 18', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
+(21, 'La quinta avenida 19', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
+(22, 'La quinta avenida 20', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
+(23, 'La quinta avenida 21', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
+(24, 'La quinta avenida 22', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
+(25, 'La quinta avenida 23', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
+(26, 'La quinta avenida 24', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
+(27, 'La quinta avenida 25', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
+(28, 'La quinta avenida 26', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1);
 
 -- --------------------------------------------------------
 
@@ -152,7 +214,34 @@ CREATE TABLE `tour_image` (
 --
 
 INSERT INTO `tour_image` (`id`, `src`, `file_name`, `tour_id`) VALUES
-(1, 'view/images/tours/', 'lagunazul.jpg', 1);
+(1, 'view/images/tours/', 'lagunazul.jpg', 1),
+(2, 'view/images/tours/', 'quintaavenida.jpg', 2),
+(3, 'view/images/tours/', 'quintaavenida.jpg', 3),
+(4, 'view/images/tours/', 'quintaavenida.jpg', 4),
+(5, 'view/images/tours/', 'quintaavenida.jpg', 5),
+(6, 'view/images/tours/', 'quintaavenida.jpg', 6),
+(7, 'view/images/tours/', 'quintaavenida.jpg', 7),
+(8, 'view/images/tours/', 'quintaavenida.jpg', 8),
+(9, 'view/images/tours/', 'quintaavenida.jpg', 9),
+(10, 'view/images/tours/', 'quintaavenida.jpg', 10),
+(11, 'view/images/tours/', 'quintaavenida.jpg', 11),
+(12, 'view/images/tours/', 'quintaavenida.jpg', 12),
+(13, 'view/images/tours/', 'quintaavenida.jpg', 13),
+(14, 'view/images/tours/', 'quintaavenida.jpg', 14),
+(15, 'view/images/tours/', 'quintaavenida.jpg', 15),
+(16, 'view/images/tours/', 'quintaavenida.jpg', 16),
+(17, 'view/images/tours/', 'quintaavenida.jpg', 17),
+(18, 'view/images/tours/', 'quintaavenida.jpg', 18),
+(19, 'view/images/tours/', 'quintaavenida.jpg', 19),
+(20, 'view/images/tours/', 'quintaavenida.jpg', 20),
+(21, 'view/images/tours/', 'quintaavenida.jpg', 21),
+(22, 'view/images/tours/', 'quintaavenida.jpg', 22),
+(23, 'view/images/tours/', 'quintaavenida.jpg', 23),
+(24, 'view/images/tours/', 'quintaavenida.jpg', 24),
+(25, 'view/images/tours/', 'quintaavenida.jpg', 25),
+(26, 'view/images/tours/', 'quintaavenida.jpg', 26),
+(27, 'view/images/tours/', 'quintaavenida.jpg', 27),
+(28, 'view/images/tours/', 'quintaavenida.jpg', 28);
 
 -- --------------------------------------------------------
 
@@ -174,7 +263,8 @@ CREATE TABLE `tour_schedule` (
 
 INSERT INTO `tour_schedule` (`id`, `start_at`, `day_id`, `tour_id`, `language_id`) VALUES
 (1, '8:15 am', 1, 1, 1),
-(2, '12:15 pm', 2, 1, 1);
+(2, '12:15 pm', 2, 1, 1),
+(3, '11:15 am', 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -314,7 +404,7 @@ ALTER TABLE `user_language`
 -- AUTO_INCREMENT de la tabla `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `day`
@@ -332,25 +422,25 @@ ALTER TABLE `language`
 -- AUTO_INCREMENT de la tabla `review`
 --
 ALTER TABLE `review`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `tour`
 --
 ALTER TABLE `tour`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `tour_image`
 --
 ALTER TABLE `tour_image`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `tour_schedule`
 --
 ALTER TABLE `tour_schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `user`

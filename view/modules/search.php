@@ -33,23 +33,23 @@ error_reporting(0);
   <?php include 'view/modules/header/header.php'; ?>
   <!--====  End of HEADER  ====-->
   <?php
-//Get rang, start and end
-$rang=20; //Set rang default
-if (isset($_GET["p"]) && $_GET["p"]>0) {
-  $start=($_GET["p"]-1)*$rang;
-}else {
-  $start=0;
-}
-$end=$start+$rang;
+    //Get rang, start and end
+    $rang=20; //Set rang default
+    if (isset($_GET["p"]) && $_GET["p"]>0) {
+      $start=($_GET["p"]-1)*$rang;
+    }else {
+      $start=0;
+    }
+    $end=$start+$rang;
 
-if (isset($_GET["key"]) && $_GET["key"]!="") {
-  $value=$_GET["key"];
-  $results = TourController::getAllSearchEngine($_GET["key"],$start,$end,"ASC");
-}else {
-  if (isset($url[1])) {
-    $value=$url[1];
-  }
-}
+    if (isset($_GET["key"]) && $_GET["key"]!="") {
+      $value=$_GET["key"];
+      $results = TourController::getAllSearchEngine($_GET["key"],$start,$end,"ASC");
+    }else {
+      if (isset($url[1])) {
+        $value=$url[1];
+      }
+    }
  ?>
  <!--=================================
  =               SEARCH               =
