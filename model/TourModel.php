@@ -220,9 +220,28 @@ require_once "model/Conexion.php";
 				$stmt->close();
 		}
 
+		public function getAllSearchEngine($like, $start, $end, $order){
+			$stmt=Conexion::conectar()->prepare("SELECT
+				t.id AS tour_id,
+				t.name AS tour_name,
+				t.location AS tour_location,
+				t.created_at AS tour_created_at,
+				i.src AS tour_image_src,
+				i.file_name AS tour_image_file_name
+				FROM tour AS t
+				INNER JOIN tour_image AS i
+				ON t.id = i.tour_id
+				WHERE t.status=1 and t.is_active=1 and (t.name LIKE '%$like%' OR t.description LIKE '%$like%' OR t.find_guide LIKE '%$like%' OR t.location LIKE '%$like%')
+				ORDER BY created_at $order LIMIT $start, $end");
+			$stmt->execute();
+			return $stmt->fetchAll();
+			$stmt->close();
+
+		}
+
 		// For home template
 		public function getCountRatingByIdTour($table, $id){
-			$stmt = Conexion::conectar()->prepare("SELECT 
+			$stmt = Conexion::conectar()->prepare("SELECT
 				review.id as review_id,
 				count(review.rating) as review_rating,
 
@@ -232,7 +251,7 @@ require_once "model/Conexion.php";
 				user.id as user_id,
 				user.name as user_name
 
-				FROM 
+				FROM
 				$table
 
 				inner join tour
@@ -248,7 +267,7 @@ require_once "model/Conexion.php";
 
 		// For home template
 		public function getAvgRatingByIdTour($table, $id){
-			$stmt = Conexion::conectar()->prepare("SELECT 
+			$stmt = Conexion::conectar()->prepare("SELECT
 				review.id as review_id,
 				avg(review.rating) as review_rating,
 
@@ -258,7 +277,7 @@ require_once "model/Conexion.php";
 				user.id as user_id,
 				user.name as user_name
 
-				FROM 
+				FROM
 				$table
 
 				inner join tour
@@ -274,7 +293,7 @@ require_once "model/Conexion.php";
 
 	   // For guideinfo template
 	   public function getAvgRating($table, $id){
-			$stmt = Conexion::conectar()->prepare("SELECT 
+			$stmt = Conexion::conectar()->prepare("SELECT
 				review.id as review_id,
 				avg(review.rating) as review_rating,
 
@@ -284,7 +303,7 @@ require_once "model/Conexion.php";
 				user.id as user_id,
 				user.name as user_name
 
-				FROM 
+				FROM
 				$table
 
 				inner join tour
@@ -299,7 +318,7 @@ require_once "model/Conexion.php";
 		}
 		// For guideinfo template
 		public function getCountRating($table, $id){
-			$stmt = Conexion::conectar()->prepare("SELECT 
+			$stmt = Conexion::conectar()->prepare("SELECT
 				review.id as review_id,
 				count(review.rating) as review_rating,
 
@@ -309,7 +328,7 @@ require_once "model/Conexion.php";
 				user.id as user_id,
 				user.name as user_name
 
-				FROM 
+				FROM
 				$table
 
 				inner join tour
