@@ -33,6 +33,7 @@ if(isset($_SESSION['lang'])){
   ==================================-->
   
   <?php include 'view/links/head_common.php'; ?>
+
   
   <!--====  End of Head common  ====-->
   
@@ -95,15 +96,14 @@ if(isset($_SESSION['lang'])){
       $getCountRating=TourModel::getCountRating("review",$tourId);
     ?>
 
-<form method="post">
+<form method="post" id="rating_form">
 
     <div class="site-section bg-light">
       <div class="container">
         <div class="row">
 
           <div class="col-md-7 mb-5"  data-aos="fade">
-             <div class="d-block d-md-flex listing-horizontal">
-              <!-- <a href="#" class="img d-block" style="background-image: url('http://localhost/guids/view/assets/images/img_1.jpg')"></a> -->                                  
+             <div class="d-block d-md-flex listing-horizontal">                                  
                 <?php if(is_null($getUserTourById["src"]) || is_null($getUserTourById["picture"])){?>                            
                   <a href="" class="img d-block" style="background-image: url('http://localhost/guids/view/images/profile/default.jpg')"></a>
                 <?php } else{ ?>   
@@ -118,6 +118,7 @@ if(isset($_SESSION['lang'])){
                   <span class="icon-star <?php echo $getAvgRating["review_rating"]>=3 ? 'text-warning' : 'text-secondary' ?>"></span>
                   <span class="icon-star <?php echo $getAvgRating["review_rating"]>=4 ? 'text-warning' : 'text-secondary' ?>"></span>
                   <span class="icon-star <?php echo $getAvgRating["review_rating"]>=5 ? 'text-warning' : 'text-secondary' ?>"></span>
+
                   <span>(<?php echo $getCountRating["review_rating"]; ?> Valoraciones)</span>
                 </p>                                 
                 <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartir</a>
@@ -125,8 +126,7 @@ if(isset($_SESSION['lang'])){
               </div>
             </div>   
 
-<?php if(!isset($_SESSION["email"])){ ?>
-<!-- Can booking -->
+
             <div class="p-4 mb-3 bg-white">            
               
               <input type="hidden" name="tour_id" value="<?php echo $tourId; ?>">
@@ -181,36 +181,97 @@ if(isset($_SESSION['lang'])){
                     </div>
                 </div>
                 
-      
-                <div class="row form-group">
-                  <div class="col-md-12">
-                    <input data-toggle="modal" data-target="#exampleModalCenter" type="button" value="Reservar" class="btn btn-primary py-2 px-4 text-white">
-                  </div>
+                    <?php
+                    if (!isset($_SESSION["email"])):
+                      echo '<div class="row form-group">
+                        <div class="col-md-12">
+                          <input data-toggle="modal" data-target="#exampleModalCenter" type="button" value="Reservar" class="btn btn-primary py-2 px-4 text-white">
+                        </div>
+                      </div>';                  
+                    else:
+                        echo '<div class="row form-group">
+                        <div class="col-md-12">
+                          <input type="button" value="No puedes realizar esta accción" class="btn btn-warning py-2 px-4 text-white" disabled="disabled">
+                        </div>
+                      </div>';
+                    endif;
+                    ?>
+            </div>     
+
+
+
+
+          <div class="p-4 mb-3 bg-white">            
+                            
+
+              <p class="mb-2 font-weight-bold">¿Que tal te pareció el tour?</p>
+              <div class="row form-group">
+                <div class="col-md-12">
+                   <p id="list_rating">
+                      <span class="icon-star text-warning" data-number="1"></span>
+                      <span class="icon-star text-secondary" data-number="2"></span>
+                      <span class="icon-star text-secondary" data-number="3"></span>
+                      <span class="icon-star text-secondary" data-number="4"></span>
+                      <span class="icon-star text-secondary" data-number="5"></span>                    
+                  </p>   
+        
                 </div>
-              
+              </div>
+             
+                
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="message">Comentarios</label> 
+                  <textarea name="comment" id="comment" cols="10" rows="7" class="form-control" placeholder="Escriba un comentario"></textarea>
+                </div>
+              </div>
+
+              <input type="hidden" name="rating_input" value="1">
+              <input type="hidden" name="tour_id" value="<?php echo $tourId ?>">
+              <input type="hidden" name="user_id" value="<?php echo $getUserTourById["user_id"] ?>">
+           
+                    <?php
+                    if (!isset($_SESSION["email"])):
+                      echo '<div class="row form-group">
+                        <div class="col-md-12">
+                          <input type="submit" value="Enviar" class="btn btn-primary py-2 px-4 text-white">
+                        </div>
+                      </div>';                  
+                    else:
+                        echo '<div class="row form-group">
+                        <div class="col-md-12">
+                          <input type="button" value="No puedes realizar esta accción" class="btn btn-warning py-2 px-4 text-white" disabled="disabled">
+                        </div>
+                      </div>';
+                    endif;
+                    ?>
+
+                <?php 
+                  $addReview = new ReviewController();
+                  $addReview->add();
+                 ?>
             </div>     
     
-<?php }else{ ?>
-<!-- Can't booking -->
 
-<?php } ?>
 
+
+    
 
         </div>
           <div class="col-md-5"  data-aos="fade" data-aos-delay="100">
             
             <div class="p-4 mb-3 bg-white">
+
               <p class="mb-0 font-weight-bold">Ubicación del guía</p>
-              <p class="mb-4"><?php echo utf8_encode($getUserTourById["user_town"]); ?></p>
-          
-              <p class="mb-0 font-weight-bold">Idiomas del guía</p>
-            
+              <p class="mb-4"><?php echo utf8_encode($getUserTourById["user_town"]); ?></p>          
+
+              <p class="mb-0 font-weight-bold">Idiomas del guía</p>            
                       <?php if($value["language_id"]==1){
-                          echo "Español";
+                          echo '<p class="mb-4">Español</p>';
                         }elseif($value["language_id"]==2){
-                          echo "Maya";
+                          echo '<p class="mb-4">Maya</p>';
                         }elseif($value["language_id"]==3){
-                          echo "Inglés";
+                          echo '<p class="mb-4">Inglés</p>';
                         }
                       ?>       
 
@@ -218,8 +279,9 @@ if(isset($_SESSION['lang'])){
               <p class="mb-0 font-weight-bold">Teléfono</p>
               <p class="mb-4"><a href="#"><?php echo utf8_encode($getUserTourById["user_phone"]); ?></a></p>
 
+
               <p class="mb-0 font-weight-bold">Email</p>
-              <p class="mb-0"><a href="#"><?php echo utf8_encode($getUserTourById["user_email"]); ?></a></p>  
+              <p class="mb-4"><a href="#"><?php echo utf8_encode($getUserTourById["user_email"]); ?></a></p>  
                           
             </div>
             
@@ -238,8 +300,6 @@ if(isset($_SESSION['lang'])){
             <div class="p-4 mb-3 bg-white">
               <h3 class="h5 text-black mb-3">Punto de encuentro</h3> 
               <p><?php echo utf8_encode($getUserTourById["tour_start_in"]); ?></p>              
-       <!--        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3744.1768614563816!2d-87.4652991350486!3d20.209970370599834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f4fd6ac60c1c067%3A0x20a1acdae9634463!2sParque+Dos+Aguas%2C+Calle+alfa+sur+esquina+calle+andromeda%2C+Calle+Alfa+Sur%2C+77780+Tulum%2C+Quintana+Roo!5e0!3m2!1ses!2smx!4v1553930740010!5m2!1ses!2smx" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe> -->
-
               <h3 class="h5 text-black mb-3">¿Cómo localizar e identificar al guía?</h3>
               <p><?php echo utf8_encode($getUserTourById["tour_find_guide"]); ?></p>              
             </div>
@@ -331,9 +391,33 @@ if(isset($_SESSION['lang'])){
 ==============================-->
 <?php include 'view/links/footer_common.php'; ?>
 
+    
+
+
 
 <div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v3.2&appId=1846460415459293&autoLogAppEvents=1"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v3.2&appId=1846460415459293&autoLogAppEvents=1">
+  
+</script>
+
+<script>
+  jQuery(document).ready(function(){
+    const ratingSelector = jQuery('#list_rating');
+    ratingSelector.find('span').on('click', function(){
+      // console.log($(this));
+      const number = $(this).data('number');
+      // console.log((number));
+      $("#rating_form").find('input[name=rating_input]').val(number);
+      ratingSelector.find('span').removeClass('text-warning').each(function(index){
+        if((index+1) <= number){
+          $(this).addClass('text-warning');
+        }
+      })
+
+    })
+
+  });
+</script>
 <!--====  End of SCRIPTS  ====-->
 
 
