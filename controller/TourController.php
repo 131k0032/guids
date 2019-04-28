@@ -130,7 +130,7 @@ require "view/classupload/class.upload.php";
 
  // For search engine template
   public function getAllSearchEngine($like, $start, $end, $order){
-    if (isset($like) && isset($start) && isset($end)) {
+    if (isset($like) && isset($start) && isset($end)) {//require variables
       if (isset($order)) { //Validate $order
         if ($order == "ASC" or $order == "DESC") {
           $SearchEngine = TourModel::getAllSearchEngine($like, $start, $end, $order);
@@ -141,9 +141,7 @@ require "view/classupload/class.upload.php";
         $order="ASC"; //set default
         $SearchEngine = TourModel::getAllSearchEngine($like, $start, $end, $order);
       }
-
       return $SearchEngine;
-
     }else {
       return null;
     }

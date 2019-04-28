@@ -1,10 +1,5 @@
 <?php
 error_reporting(0);
- // session_start();
-    // if(!$_SESSION['validar']){
-    //   print "<script>window.location='index';</script>";
-    //   exit();
-    // }
     # ===========================================
     # =           Language validation           =
     # ===========================================
@@ -19,7 +14,7 @@ error_reporting(0);
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $_SESSION["lang"]; ?>">
-<title>Search</title>
+<title>Search tour</title>
 <!--=================================
   =            Head common            =
   ==================================-->
@@ -33,8 +28,7 @@ error_reporting(0);
   <?php include 'view/modules/header/header.php'; ?>
   <!--====  End of HEADER  ====-->
   <?php
-    //Get rang, start and end
-    $rang=20; //Set rang default
+    $rang=6; //Set rang default
     if (isset($_GET["p"]) && $_GET["p"]>0) {
       $start=($_GET["p"]-1)*$rang;
     }else {
@@ -42,26 +36,28 @@ error_reporting(0);
     }
     $end=$start+$rang;
 
-    if (isset($_GET["key"]) && $_GET["key"]!="") {
-      $value=$_GET["key"];
-      $results = TourController::getAllSearchEngine($_GET["key"],$start,$end,"ASC");
-    }else {
-      if (isset($url[1])) {
-        $value=$url[1];
-      }
+  if (isset($_GET["key"]) && $_GET["key"]!="") {
+    $key=$_GET["key"];
+    $results = TourController::getAllSearchEngine($key,$start,$rang,"ASC");
+  }else {
+    if (isset($url[1])) {
+      $key=$url[1];
     }
+  }
+
+
  ?>
  <!--=================================
  =               SEARCH               =
  ==================================-->
  <div class="container">
    <div class="form-search-wrap p-2" data-aos="fade-up" data-aos-delay="200">
-     <form method="get" action="<?php if(isset($url[1])){ echo "..\index.php"; }else{ echo "index.php"; } ?>">
+     <form method="get" action="<?php if(isset($url[1])){ echo '..\index.php'; }else{ echo 'index.php'; } ?>">
        <div class="row align-items-center">
          <div class="col-lg-12 col-xl-10 no-sm-border text-center">
            <input type="hidden" name="page" value="search">
            <input type="hidden" name="p" value="1">
-           <input type="text" class="form-control" name="key" value="<?php echo $value; ?>" placeholder="Pruebe con Cancún">
+           <input type="text" class="form-control" name="key" value="<?php echo $key; ?>" placeholder="Pruebe con Cancún">
          </div>
          <div class="col-lg-12 col-xl-2 ml-auto text-right">
            <input type="submit" class="btn btn-primary" value="Buscar">
@@ -71,17 +67,21 @@ error_reporting(0);
    </div>
  </div>
   <!--====  End of MY TOURS  ====-->
+<?php
+// echo "Los resultados serán: ";
+// var_dump($results);
+ ?>
 
   <!--=================================
   =            BEST GUIDES            =
   ==================================-->
   <div class="site-section" data-aos="fade">
     <div class="container">
-      <?php if (isset($results)) { ?>
+      <?php if (count($results)>0) { ?>
       <div class="row justify-content-center mb-5">
         <div class="col-md-7 text-center border-primary">
-          <h2 class="font-weight-light text-primary"><?php echo "Los tours encontrados"; ?></h2>
-          <p class="color-black-opacity-5"><?php echo "para la palabra ".$_GET["key"]; ?></p>
+          <h2 class="font-weight-light text-primary"><?php echo count($results)." tours encontrados"; ?></h2>
+          <p class="color-black-opacity-5"><?php echo "con la palabra ".$key; ?></p>
         </div>
       </div>
       <div class="row">
@@ -109,20 +109,24 @@ error_reporting(0);
               </div>
             </div>
           </div>
-          <?php }
-            if ($results==null) {
-              echo "No se encontraron tours activos";
-          } ?>
-        </div> <?php }else { ?>
-        <div class="row justify-content-center mb-5">
-          <div class="col-md-7 text-center border-primary">
-            <h2 class="font-weight-light text-primary"><?php echo "Los tours encontrados"; ?></h2>
-            <p class="color-black-opacity-5"><?php echo "para la palabra ".$_GET["key"]; ?></p>
-          </div>
-        </div>
-        <?php } ?>
+        <?php } //End foreach ?>
+        <div class="col-12 mt-5 text-center">
+           <div class="custom-pagination">
+             <span>1</span>
+             <a href="<?php echo 'http://localhost/guids/index.php?page=search&p='.($_GET['p']+1).'&key='.$key; ?>"><?php echo $_GET["p"]+1; ?></a>
+             <a href="<?php echo 'http://localhost/guids/index.php?page=search&p='.($_GET['p']+2).'&key='.$key; ?>"><?php echo $_GET["p"]+2; ?></a>
+             <a href="#">All</a>
+           </div>
+         </div>
+        <?php
+      }else {
+        echo "No se encontraron resultados";
+      }
+      ?>
+
+      </div>
+    </div>
   </div>
-</div>
   <!--====  End of MY TOURS  ====-->
   <!--==========================
 =            FAQS            =

@@ -221,6 +221,7 @@ require_once "model/Conexion.php";
 		}
 
 		public function getAllSearchEngine($like, $start, $end, $order){
+			// echo "La consulta será: $like, $start, $end, $order";
 			$stmt=Conexion::conectar()->prepare("SELECT
 				t.id AS tour_id,
 				t.name AS tour_name,
