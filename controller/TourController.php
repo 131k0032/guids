@@ -33,7 +33,7 @@ require "view/classupload/class.upload.php";
         "name"=>$_POST["name"],
         "description"=>$_POST["description"],
         "find_guide"=>$_POST["find_guide"],
-        "start_in"=>$_POST["start_in"], 
+        "start_in"=>$_POST["start_in"],
         "location"=>$_POST["location"],
         "duration"=>$_POST["duration"],
         "capacity"=>$_POST["capacity"],
@@ -126,6 +126,29 @@ require "view/classupload/class.upload.php";
     $getAll = TourModel::getAll("tour");
     return $getAll;
   }
+
+
+ // For search engine template
+  public function getAllSearchEngine($like, $start, $end, $order){
+    if (isset($like) && isset($start) && isset($end)) {
+      if (isset($order)) { //Validate $order
+        if ($order == "ASC" or $order == "DESC") {
+          $SearchEngine = TourModel::getAllSearchEngine($like, $start, $end, $order);
+        }else {
+            return false;
+        }
+      }else {
+        $order="ASC"; //set default
+        $SearchEngine = TourModel::getAllSearchEngine($like, $start, $end, $order);
+      }
+
+      return $SearchEngine;
+
+    }else {
+      return null;
+    }
+  }
+
 
   // For guideinfo template
   public function getUserTourById(){

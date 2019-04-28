@@ -1,32 +1,21 @@
-<?php  
+<?php
 error_reporting(0);
  session_start();
-    if(!$_SESSION['validar']){      
-      print "<script>window.location='index';</script>";      
-      exit();      
+    if(!$_SESSION['validar']){
+      print "<script>window.location='index';</script>";
+      exit();
     }
-# ===========================================
-# =           Language validation           =
-# ===========================================
+    # ===========================================
+    # =           Language validation           =
+    # ===========================================
+    if(isset($_POST["lang"]) && !empty($_POST["lang"])){//Watching changes on POST
+      $_SESSION["lang"] = $_POST["lang"];
+    }elseif (!isset($_SESSION["lang"])) {
+      $_SESSION["lang"] = "es";
+    }
+    require_once "view/languages/".$_SESSION["lang"].".php";//include lang
+    # ======  End of Language validation  =======
 
-   //Watching changes on post variable
-if(isset($_POST["lang"])){
-  $lang = $_POST["lang"];
-  if(!empty($lang)){
-    $_SESSION["lang"] = $lang;
-  }
-}
-// If is created
-if(isset($_SESSION['lang'])){  
-  $lang = $_SESSION["lang"];
-  include "view/languages/".$lang.".php";
-// Else take spanish default
-}else{
-  include "view/languages/es.php";
-}
-
-
-# ======  End of Language validation  =======
 ?>
 
 
@@ -36,22 +25,22 @@ if(isset($_SESSION['lang'])){
   <!--=================================
   =            Head common            =
   ==================================-->
-  
+
   <?php include 'view/links/head_common.php'; ?>
-  
+
   <!--====  End of Head common  ====-->
-  
+
   <body>
-  
+
 
   <!--============================
   =            HEADER            =
   =============================-->
-  <?php include 'view/modules/header/header.php'; ?>     
+  <?php include 'view/modules/header/header.php'; ?>
   <!--====  End of HEADER  ====-->
-  
 
-  
+
+
 
   <!--=================================
   =            MY TOURS            =
@@ -67,7 +56,7 @@ if(isset($_SESSION['lang'])){
 
         <div class="row">
           <div class="col-md-6 mb-4 mb-lg-0 col-lg-4 pt-3">
-            
+
             <div class="listing-item">
               <div class="listing-image">
                 <img src="view/assets/images/img_1.jpg" alt="Image" class="img-fluid">
@@ -82,7 +71,7 @@ if(isset($_SESSION['lang'])){
                   <span class="icon-star text-warning"></span>
                   <span class="icon-star text-secondary"></span>
                   <span>(3 Reviews)</span>
-                </p>                
+                </p>
                 <a class="px-3 mb-3 category" href="#">Editar</a>
                 <a class="px-3 mb-3 category" href="#">Eliminar</a>
               </div>
@@ -92,7 +81,7 @@ if(isset($_SESSION['lang'])){
 
 
                   <div class="col-md-6 mb-4 mb-lg-0 col-lg-4 pt-3">
-            
+
             <div class="listing-item">
               <div class="listing-image">
                 <img src="view/assets/images/img_1.jpg" alt="Image" class="img-fluid">
@@ -107,7 +96,7 @@ if(isset($_SESSION['lang'])){
                   <span class="icon-star text-warning"></span>
                   <span class="icon-star text-secondary"></span>
                   <span>(3 Reviews)</span>
-                </p>                
+                </p>
                 <a class="px-3 mb-3 category" href="#">Editar</a>
                 <a class="px-3 mb-3 category" href="#">Eliminar</a>
               </div>
@@ -117,7 +106,7 @@ if(isset($_SESSION['lang'])){
 
 
                   <div class="col-md-6 mb-4 mb-lg-0 col-lg-4 pt-3">
-            
+
             <div class="listing-item">
               <div class="listing-image">
                 <img src="view/assets/images/img_1.jpg" alt="Image" class="img-fluid">
@@ -132,7 +121,7 @@ if(isset($_SESSION['lang'])){
                   <span class="icon-star text-warning"></span>
                   <span class="icon-star text-secondary"></span>
                   <span>(3 Reviews)</span>
-                </p>                
+                </p>
                 <a class="px-3 mb-3 category" href="#">Editar</a>
                 <a class="px-3 mb-3 category" href="#">Eliminar</a>
               </div>
@@ -143,7 +132,7 @@ if(isset($_SESSION['lang'])){
 
 
                   <div class="col-md-6 mb-4 mb-lg-0 col-lg-4 pt-3">
-            
+
             <div class="listing-item">
               <div class="listing-image">
                 <img src="view/assets/images/img_1.jpg" alt="Image" class="img-fluid">
@@ -158,7 +147,7 @@ if(isset($_SESSION['lang'])){
                   <span class="icon-star text-warning"></span>
                   <span class="icon-star text-secondary"></span>
                   <span>(3 Reviews)</span>
-                </p>                
+                </p>
                  <a class="px-3 mb-3 category" href="#">Editar</a>
                  <a class="px-3 mb-3 category" href="#">Eliminar</a>
               </div>
@@ -171,7 +160,7 @@ if(isset($_SESSION['lang'])){
       </div>
     </div>
   <!--====  End of MY TOURS  ====-->
-  
+
 
 
 
@@ -195,7 +184,7 @@ if(isset($_SESSION['lang'])){
 <?php include 'view/links/footer_common.php'; ?>
 
 <!--====  End of SCRIPTS  ====-->
-      
+
 
   </body>
 </html>

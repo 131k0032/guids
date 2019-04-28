@@ -6,9 +6,9 @@ class GetModel{
 
 	public function Get($url){
 		// SI en la url hay estos valores
-		if( 
-			//Si en hrefs o url se encuentra el signup 
-			$url[0]=="signup"||	
+		if(
+			//Si en hrefs o url se encuentra el signup
+			$url[0]=="signup"||
 			$url[0]=="signin" ||
 			$url[0]=="profile" ||
 			$url[0]=="mytours" ||
@@ -17,12 +17,14 @@ class GetModel{
 			$url[0]=="bookings" ||
 			$url[0]=="addtour" ||
 			$url[0]=="generateinsurance" ||
-			$url[0]=="settings" ||			
-			$url[0]=="guideinfo" ||			
-			$url[0]=="test" ||								
-			$url[0]=="aboutus" ||		
+			$url[0]=="settings" ||
+			$url[0]=="guideinfo" ||
+			$url[0]=="test" ||
+			$url[0]=="aboutus" ||
 			$url[0]=="terms-and-conditions" ||
 			$url[0]=="privacy-policy" ||
+			$url[0]=="seacrh" ||
+
 			//Logout
 			$url[0]=="logout"
 
