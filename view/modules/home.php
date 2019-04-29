@@ -45,6 +45,7 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
               <div class="row align-items-center">
                 <div class="col-lg-12 col-xl-10 no-sm-border text-center">
                   <input type="hidden" name="page" value="search">
+                  <input type="hidden" name="n" value="9">
                   <input type="hidden" name="p" value="1">
                   <input type="text" class="form-control" name="key" placeholder="Pruebe con Cancún">
                 </div>

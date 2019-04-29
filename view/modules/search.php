@@ -28,13 +28,18 @@ error_reporting(0);
   <?php include 'view/modules/header/header.php'; ?>
   <!--====  End of HEADER  ====-->
   <?php
-    $rang=6; //Set rang default
-    if (isset($_GET["p"]) && $_GET["p"]>0) {
-      $start=($_GET["p"]-1)*$rang;
-    }else {
-      $start=0;
-    }
-    $end=$start+$rang;
+  if (isset($_GET["n"])) {
+    $rang=((int)$_GET["n"]);
+  }else {
+    $rang=9;
+  }
+  if (isset($_GET["p"]) && $_GET["p"]>0) {
+    $page=((int)$_GET["p"]);
+    $start=($_GET["p"]-1)*$rang;
+  }else {
+    $start=0;
+  }
+  $end=$start+$rang;
 
   if (isset($_GET["key"]) && $_GET["key"]!="") {
     $key=$_GET["key"];
@@ -46,6 +51,7 @@ error_reporting(0);
   }
 
 
+
  ?>
  <!--=================================
  =               SEARCH               =
@@ -54,10 +60,17 @@ error_reporting(0);
    <div class="form-search-wrap p-2" data-aos="fade-up" data-aos-delay="200">
      <form method="get" action="<?php if(isset($url[1])){ echo '..\index.php'; }else{ echo 'index.php'; } ?>">
        <div class="row align-items-center">
-         <div class="col-lg-12 col-xl-10 no-sm-border text-center">
+         <div class="col-lg-12 col-xl-9 no-sm-border text-center">
            <input type="hidden" name="page" value="search">
            <input type="hidden" name="p" value="1">
            <input type="text" class="form-control" name="key" value="<?php echo $key; ?>" placeholder="Pruebe con Cancún">
+         </div>
+         <div class="col-lg-12 col-xl-1 ml-auto text-center">
+           <select class="custom-select" name="n">
+             <option value="9" selected>9</option>
+             <option value="15">15</option>
+             <option value="54">54</option>
+           </select>
          </div>
          <div class="col-lg-12 col-xl-2 ml-auto text-right">
            <input type="submit" class="btn btn-primary" value="Buscar">
@@ -68,8 +81,12 @@ error_reporting(0);
  </div>
   <!--====  End of MY TOURS  ====-->
 <?php
-// echo "Los resultados serán: ";
-// var_dump($results);
+// echo "La busqueda comienza con: <br>";
+// var_dump($start);
+// echo "<br>La pagina es: <br>";
+// var_dump($_GET["p"]);
+// echo "<br>La pagina es: <br>";
+// var_dump($page);
  ?>
 
   <!--=================================
@@ -80,7 +97,7 @@ error_reporting(0);
       <?php if (count($results)>0) { ?>
       <div class="row justify-content-center mb-5">
         <div class="col-md-7 text-center border-primary">
-          <h2 class="font-weight-light text-primary"><?php echo count($results)." tours encontrados"; ?></h2>
+          <h2 class="font-weight-light text-primary"><?php echo count($results)." tours mostrados"; ?></h2>
           <p class="color-black-opacity-5"><?php echo "con la palabra ".$key; ?></p>
         </div>
       </div>
@@ -112,9 +129,10 @@ error_reporting(0);
         <?php } //End foreach ?>
         <div class="col-12 mt-5 text-center">
            <div class="custom-pagination">
-             <span>1</span>
-             <a href="<?php echo 'http://localhost/guids/index.php?page=search&p='.($_GET['p']+1).'&key='.$key; ?>"><?php echo $_GET["p"]+1; ?></a>
-             <a href="<?php echo 'http://localhost/guids/index.php?page=search&p='.($_GET['p']+2).'&key='.$key; ?>"><?php echo $_GET["p"]+2; ?></a>
+             <?php if($page>1){ echo "<a href=http://localhost/guids/index.php?page=search&p=".($page-1)."&key=".$key."&n=".$rang.">".($page-1)."</a>";} ?>
+             <span><?php echo $page; ?></span>
+             <a href="<?php echo 'http://localhost/guids/index.php?page=search&p='.($page+1).'&key='.$key.'&n='.$rang; ?>"><?php echo $page+1; ?></a>
+             <a href="<?php echo 'http://localhost/guids/index.php?page=search&p='.($page+2).'&key='.$key.'&n='.$rang; ?>"><?php echo $page+2; ?></a>
              <a href="#">All</a>
            </div>
          </div>
