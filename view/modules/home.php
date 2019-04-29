@@ -84,7 +84,7 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
       <div class="row mb-5"> <?php foreach ($getAll as $row => $value) {
             $getAvgRatingByIdTour = TourController::getAvgRatingByIdTour($row+1);
             $getCountRatingByIdTour = TourController::getCountRatingByIdTour($row+1); ?>
-        <div class="col-md-6 mb-4 mb-lg-0 col-lg-4 pt-3" id="besttour<?php echo $row; ?>" style="<?php if($row>2) echo "display:none;"; ?>">
+        <div class="col-md-6 mb-4 mb-lg-0 col-lg-4 pt-3" id="besttour<?php echo $row; ?>" style="<?php if($row>8) echo "display:none;"; ?>">
           <div class="listing-item" style="max-width:500px; max-height: 200px;">
             <div class="listing-image">
               <img style="width: 100%;" src="<?php echo $value["tour_image_src"].$value["tour_image_file_name"] ?>" alt="Image" class="img-fluid ">
@@ -294,10 +294,10 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
 =   Javascript functions       =
 =============================-->
   <script type="text/javascript">
-    var min = 3;
+    var min = 9;
 
     function addBestTours() {
-      for (var i = 0; i < 3; i++) {
+      for (var i = 0; i < 6; i++) {
         var element = document.getElementById('besttour' + min);
         console.dir(element);
         if (element != null) {
