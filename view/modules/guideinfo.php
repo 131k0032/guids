@@ -80,20 +80,18 @@ if(isset($_SESSION['lang'])){
 =            GUIDE INFO            =
 =================================-->
     <?php  
-    // First query
-      $tourId=$url[2];
-      // echo $tourId;
+      // First query
+      $tourId=$url[2];      
       $getByTourId = new TourController();
-      $getByTourId = TourModel::getTourById("tour_schedule", $tourId);
-    
-    //Second query      
-      $getUserTourById = TourModel::getUserTourById("tour", $tourId);    
-      // echo $getUserTourById["tour_name"];
-
+      $getByTourId = TourModel::getTourById("tour_schedule", $tourId);    
+      //Second query      
+      $getUserTourById = TourModel::getUserTourById("tour", $tourId);          
       //Third query
       $getAvgRating=TourModel::getAvgRating("review",$tourId);
       //Fourth query
       $getCountRating=TourModel::getCountRating("review",$tourId);
+      //5 Query
+      $getAllComment=ReviewModel::getAllComment("review",$tourId);
     ?>
 
 <form method="post" id="rating_form">
@@ -103,7 +101,12 @@ if(isset($_SESSION['lang'])){
         <div class="row">
 
           <div class="col-md-7 mb-5"  data-aos="fade">
-             <div class="d-block d-md-flex listing-horizontal">                                  
+
+            <!--=============================================
+            =            User short general info            =
+            ==============================================-->
+            
+                     <div class="d-block d-md-flex listing-horizontal">                                  
                 <?php if(is_null($getUserTourById["src"]) || is_null($getUserTourById["picture"])){?>                            
                   <a href="" class="img d-block" style="background-image: url('http://localhost/guids/view/images/profile/default.jpg')"></a>
                 <?php } else{ ?>   
@@ -125,6 +128,14 @@ if(isset($_SESSION['lang'])){
                 </div>
               </div>
             </div>   
+
+            
+            <!--====  End of User short general info  ====-->
+            
+    
+<!--=====================================
+=            Booking section            =
+======================================-->
 
 
             <div class="p-4 mb-3 bg-white">            
@@ -196,23 +207,29 @@ if(isset($_SESSION['lang'])){
                       </div>';
                     endif;
                     ?>
-            </div>     
+            </div>    
+
+<!--====  End of Booking section  ====-->
+
+ 
 
 
-
+<!--====================================
+=            Rating section            =
+=====================================-->
 
           <div class="p-4 mb-3 bg-white">            
                             
 
               <p class="mb-2 font-weight-bold">¿Que tal te pareció el tour?</p>
-              <div class="row form-group">
-                <div class="col-md-12">
-                   <p id="list_rating">
-                      <span class="icon-star text-warning" data-number="1"></span>
-                      <span class="icon-star text-secondary" data-number="2"></span>
-                      <span class="icon-star text-secondary" data-number="3"></span>
-                      <span class="icon-star text-secondary" data-number="4"></span>
-                      <span class="icon-star text-secondary" data-number="5"></span>                    
+              <div class="row form-group">            
+                <div class="col-md-12">                  
+                   <p id="list_rating" style="cursor: pointer;">
+                      <span class="icon-star text-warning" data-number="1" style="cursor: pointer"></span>
+                      <span class="icon-star text-secondary" data-number="2" style="cursor: pointer"></span>
+                      <span class="icon-star text-secondary" data-number="3" style="cursor: pointer"></span>
+                      <span class="icon-star text-secondary" data-number="4" style="cursor: pointer"></span>
+                      <span class="icon-star text-secondary" data-number="5" style="cursor: pointer"></span>                    
                   </p>   
         
                 </div>
@@ -222,7 +239,7 @@ if(isset($_SESSION['lang'])){
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="message">Comentarios</label> 
-                  <textarea name="comment" id="comment" cols="10" rows="7" class="form-control" placeholder="Escriba un comentario"></textarea>
+                  <textarea name="comment" id="comment" cols="10" rows="4" class="form-control" placeholder="Escriba un comentario"></textarea>
                 </div>
               </div>
 
@@ -251,13 +268,46 @@ if(isset($_SESSION['lang'])){
                   $addReview->add();
                  ?>
             </div>     
-    
+
+<!--====  End of Rating section  ====-->
 
 
+<!--======================================
+=            Comments section            =
+=======================================-->
 
-    
+      <div class="p-4 mb-3 bg-white">                                        
+              <p class="mb-2 font-weight-bold">Comentarios acerca de este tour</p>
+              <hr>
+              <?php foreach ($getAllComment as $row => $comment) {?>
+              <div class="row form-group">              
+                  <div class="col-md-3" >                  
+                  <p>
+                     <img src="http://localhost/guids/view/images/profile/user-default.png" name="aboutme" width="60" height="60" class="rounded-circle ml-3">                  
+                  </p>   
+                  <p>
+                    <span class="icon-star <?php echo $comment["rating"]>=1 ? 'text-warning' : 'text-secondary' ?>"></span>
+                    <span class="icon-star <?php echo $comment["rating"]>=2 ? 'text-warning' : 'text-secondary' ?>"></span>
+                    <span class="icon-star <?php echo $comment["rating"]>=3 ? 'text-warning' : 'text-secondary' ?>"></span>
+                    <span class="icon-star <?php echo $comment["rating"]>=4 ? 'text-warning' : 'text-secondary' ?>"></span>
+                    <span class="icon-star <?php echo $comment["rating"]>=5 ? 'text-warning' : 'text-secondary' ?>"></span>
+                  </p>           
+                </div>
 
-        </div>
+                <div class="col-md-9">                  
+                  <label class="text-black" for="message">Anónimo </label> <span class="mx-2">&bullet;</span>  <label class="text-black" for="message"><?php echo $comment["created_at"]; ?></label>
+                  <p><?php echo $comment["comment"]; ?></p>        
+                </div>                                                       
+              </div>
+              <?php } ?>            
+              <?php if($getAllComment==null){echo '<div class="col-md-12">Aún no hay comentarios para este tour</div>';} ?>
+            </div>  
+
+<!--====  End of Comments section  ====-->
+
+
+        </div><!-- .col-md-7 mb-5 -->
+
           <div class="col-md-5"  data-aos="fade" data-aos-delay="100">
             
             <div class="p-4 mb-3 bg-white">
@@ -288,7 +338,7 @@ if(isset($_SESSION['lang'])){
             <div class="p-4 mb-3 bg-white">
               <h3 class="h5 text-black mb-3">Características del guía</h3>
               <p>Personalidad: <?php echo utf8_encode($getUserTourById["user_personality"]); ?></p>
-              <p>Hbilidades: <?php echo utf8_encode($getUserTourById["user_ability"]); ?></p>
+              <p>Habilidades: <?php echo utf8_encode($getUserTourById["user_ability"]); ?></p>
 
               <h3 class="h5 text-black mb-3">Acerca del tour</h3>
               <p>Descripción: <?php echo utf8_encode($getUserTourById["tour_description"]); ?></p>               
@@ -306,9 +356,9 @@ if(isset($_SESSION['lang'])){
 
           </div>
 
-        </div>
-      </div>
-    </div>
+        </div> <!-- .row -->
+      </div><!-- .container -->
+    </div><!-- .site-section bg-light -->
 
 <!--====  End of GUIDE INFO  ====-->
 
