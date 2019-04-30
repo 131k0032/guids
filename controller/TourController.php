@@ -123,28 +123,33 @@ require "view/classupload/class.upload.php";
 
   // For home template
   public function getAll(){
-    $getAll = TourModel::getAll("tour");
+    $getAll = TourModel::getAll();
     return $getAll;
   }
 
 
  // For search engine template
-  public function getAllSearchEngine($like, $start, $end, $order){
-    if (isset($like) && isset($start) && isset($end)) {//require variables
+  public function getSearchEngine($like, $start, $rang, $order){
+    if (isset($like) && isset($start) && isset($rang)) { //require variables
       if (isset($order)) { //Validate $order
         if ($order == "ASC" or $order == "DESC") {
-          $SearchEngine = TourModel::getAllSearchEngine($like, $start, $end, $order);
+          $SearchEngine = TourModel::getSearchEngine($like, $start, $rang, $order);
         }else {
-            return false;
+            return "Parametro $order, no es válido";
         }
       }else {
-        $order="ASC"; //set default
-        $SearchEngine = TourModel::getAllSearchEngine($like, $start, $end, $order);
+        $order = "DESC"; //set default
+        $SearchEngine = TourModel::getSearchEngine($like, $start, $rang, $order);
       }
       return $SearchEngine;
     }else {
-      return null;
+      return "Requiere parametros.";
     }
+  }
+
+  public function getAllSearchEngine($start, $rang, $order){
+    $getAllSearchEngine = TourModel::getAllSearchEngine($start, $rang, $order);
+    return $getAllSearchEngine;
   }
 
 

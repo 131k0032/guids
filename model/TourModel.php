@@ -202,38 +202,74 @@ require_once "model/Conexion.php";
 
 
 # -----------  GETING ALL TOURS   -----------
-      public function getAll($table){
+      public function getAll(){
 				$stmt = Conexion::conectar()->prepare("SELECT
-					tour.id as tour_id,
-					tour.name as tour_name,
-					tour.location as tour_location,
-					tour.description as tour_escription,
-					tour_image.id as tour_image_id,
-					tour_image.src as tour_image_src,
-					tour_image.file_name as tour_image_file_name
-				FROM $table
-				INNER JOIN tour_image
-				ON tour.id=tour_image.tour_id where tour.is_active=1
+					tour.id AS tour_id,
+					tour.name AS tour_name,
+					tour.location AS tour_location,
+					tour_image.src AS tour_image_src,
+					tour_image.file_name AS tour_image_file_name,
+					COUNT(review.tour_id) AS tour_count,
+					AVG(review.rating) AS tour_rating
+					FROM tour
+						INNER JOIN tour_image
+					    	ON tour_image.tour_id=tour.id
+					    INNER JOIN review
+					    	ON review.tour_id=tour.id
+					WHERE tour.is_active=1
+					GROUP BY tour.id
+					ORDER BY tour_rating DESC
+					LIMIT 51
 				");
 				$stmt->execute();
 				return $stmt->fetchAll();
 				$stmt->close();
 		}
 
-		public function getAllSearchEngine($like, $start, $end, $order){
-			// echo "La consulta será: $like, $start, $end, $order";
+		public function getSearchEngine($like, $start, $rang, $order){
+			 // echo "La consulta será: $like, $start, $rang, $order";
 			$stmt=Conexion::conectar()->prepare("SELECT
-				t.id AS tour_id,
-				t.name AS tour_name,
-				t.location AS tour_location,
-				t.created_at AS tour_created_at,
-				i.src AS tour_image_src,
-				i.file_name AS tour_image_file_name
-				FROM tour AS t
-				INNER JOIN tour_image AS i
-				ON t.id = i.tour_id
-				WHERE t.status=0 and t.is_active=1 and (t.name LIKE '%$like%' OR t.description LIKE '%$like%' OR t.find_guide LIKE '%$like%' OR t.location LIKE '%$like%')
-				ORDER BY created_at $order LIMIT $start, $end");
+				tour.id AS tour_id,
+				tour.name AS tour_name,
+				tour.location AS tour_location,
+				tour_image.src AS tour_image_src,
+				tour_image.file_name AS tour_image_file_name,
+				COUNT(review.tour_id) AS tour_count,
+				AVG(review.rating) AS tour_rating
+				FROM tour
+					INNER JOIN tour_image
+							ON tour_image.tour_id=tour.id
+						INNER JOIN review
+							ON review.tour_id=tour.id
+				WHERE tour.is_active=1 and (tour.name LIKE '%$like%' OR tour.description LIKE '%$like%' OR tour.find_guide LIKE '%$like%' OR tour.start_in LIKE '%$like%' OR tour.location LIKE '%$like%')
+				GROUP BY tour.id
+				ORDER BY tour_rating $order
+				LIMIT $start, $rang");
+			$stmt->execute();
+			return $stmt->fetchAll();
+			$stmt->close();
+
+		}
+
+		public function getAllSearchEngine($start, $rang, $order){
+			 // echo "La consulta será: $like, $start, $rang, $order";
+			$stmt=Conexion::conectar()->prepare("SELECT
+				tour.id AS tour_id,
+				tour.name AS tour_name,
+				tour.location AS tour_location,
+				tour_image.src AS tour_image_src,
+				tour_image.file_name AS tour_image_file_name,
+				COUNT(review.tour_id) AS tour_count,
+				AVG(review.rating) AS tour_rating
+				FROM tour
+					INNER JOIN tour_image
+							ON tour_image.tour_id=tour.id
+						INNER JOIN review
+							ON review.tour_id=tour.id
+				WHERE tour.is_active=1
+				GROUP BY tour.id
+				ORDER BY tour_rating $order
+				LIMIT $start, $rang");
 			$stmt->execute();
 			return $stmt->fetchAll();
 			$stmt->close();

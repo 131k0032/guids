@@ -66,9 +66,9 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
   </div>
   <!--====  End of SEARCH  ====-->
   <?php
- // getting all tors
-  //$getAll = new TourController(); //Este ya no se requiere porque lo llamas desde el index de la carpeta raiz.
   $getAll = TourController::getAll();
+  // echo "Los valores de los tours son:<br>";
+  // var_dump($getAll);
   ?>
   <!--=================================
   =            BEST GUIDES            =
@@ -81,24 +81,22 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
           <p class="color-black-opacity-5"><?php echo $lang["Mas solicitados"]; ?></p>
         </div>
       </div>
-      <div class="row mb-5"> <?php foreach ($getAll as $row => $value) {
-            $getAvgRatingByIdTour = TourController::getAvgRatingByIdTour($row+1);
-            $getCountRatingByIdTour = TourController::getCountRatingByIdTour($row+1); ?>
+      <div class="row mb-5"> <?php foreach ($getAll as $row => $value) { ?>
         <div class="col-md-6 mb-4 mb-lg-0 col-lg-4 pt-3" id="besttour<?php echo $row; ?>" style="<?php if($row>8) echo "display:none;"; ?>">
           <div class="listing-item" style="max-width:500px; max-height: 200px;">
             <div class="listing-image">
               <img style="width: 100%;" src="<?php echo $value["tour_image_src"].$value["tour_image_file_name"] ?>" alt="Image" class="img-fluid ">
             </div>
             <div class="listing-item-content">
-              <h2 class="mb-1"><a href="#"><?php echo $row." ".utf8_encode($value["tour_name"]); ?></a></h2>
+              <h2 class="mb-1"><a href="#"><?php echo $value["tour_id"]." ".utf8_encode($value["tour_name"]); ?></a></h2>
               <span class="address"><?php echo utf8_encode($value["tour_location"]); ?></span>
               <p>
-                <span class="icon-star <?php echo $getAvgRatingByIdTour["review_rating"]>=1 ? 'text-warning' : 'text-secondary' ?>"></span>
-                <span class="icon-star <?php echo $getAvgRatingByIdTour["review_rating"]>=2 ? 'text-warning' : 'text-secondary' ?>"></span>
-                <span class="icon-star <?php echo $getAvgRatingByIdTour["review_rating"]>=3 ? 'text-warning' : 'text-secondary' ?>"></span>
-                <span class="icon-star <?php echo $getAvgRatingByIdTour["review_rating"]>=4 ? 'text-warning' : 'text-secondary' ?>"></span>
-                <span class="icon-star <?php echo $getAvgRatingByIdTour["review_rating"]>=5 ? 'text-warning' : 'text-secondary' ?>"></span>
-                <span>(<?php echo $getCountRatingByIdTour["review_rating"]; ?> Valoraciones)</span>
+                <span class="icon-star <?php echo $value["tour_rating"]>=1 ? 'text-warning' : 'text-secondary' ?>"></span>
+                <span class="icon-star <?php echo $value["tour_rating"]>=2 ? 'text-warning' : 'text-secondary' ?>"></span>
+                <span class="icon-star <?php echo $value["tour_rating"]>=3 ? 'text-warning' : 'text-secondary' ?>"></span>
+                <span class="icon-star <?php echo $value["tour_rating"]>=4 ? 'text-warning' : 'text-secondary' ?>"></span>
+                <span class="icon-star <?php echo $value["tour_rating"]>=5 ? 'text-warning' : 'text-secondary' ?>"></span>
+                <span>(<?php echo $value["tour_count"]; ?> Valoraciones)</span>
               </p>
               <a class="px-3 mb-3 category" href="http://localhost/guids/guideinfo/tour/<?php echo $value["tour_id"]; ?>"><?php echo $lang["Ver mas"] ?>...</a>
             </div>
@@ -110,7 +108,7 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
         } ?> </div>
       <div class="row justify-content-center mb-5">
         <a href="javascript:addBestTours();" id="btnAddBestTour"><?php echo $lang["Ver mas"]; ?></a>
-        <a href="?page=all" id="btnAllTours" style="display:none;"><?php echo $lang["Ver todos"] ?></a>
+        <a href="index.php?page=search&p=1&key=all&n=54" id="btnAllTours" style="display:none;"><?php echo $lang["Ver todos"] ?></a>
       </div>
     </div>
   </div>

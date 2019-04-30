@@ -39,19 +39,19 @@ error_reporting(0);
   }else {
     $start=0;
   }
-  $end=$start+$rang;
 
   if (isset($_GET["key"]) && $_GET["key"]!="") {
     $key=$_GET["key"];
-    $results = TourController::getAllSearchEngine($key,$start,$rang,"ASC");
+    if ($key == "all") {
+      $results = TourController::getAllSearchEngine($start,$rang,"DESC");
+    }else {
+      $results = TourController::getSearchEngine($key,$start,$rang,"DESC");
+    }
   }else {
     if (isset($url[1])) {
       $key=$url[1];
     }
   }
-
-
-
  ?>
  <!--=================================
  =               SEARCH               =
@@ -102,25 +102,22 @@ error_reporting(0);
         </div>
       </div>
       <div class="row">
-              <?php foreach ($results as $row => $value) {
-                $getAvgRatingByIdTour = TourController::getAvgRatingByIdTour($row+1);
-                $getCountRatingByIdTour = TourController::getCountRatingByIdTour($row+1);
-              ?>
+              <?php foreach ($results as $row => $value) { ?>
         <div class="col-md-6 mb-4 mb-lg-0 col-lg-4 pt-3">
             <div class="listing-item" style="max-width:500px; max-height: 200px;">
               <div class="listing-image">
                 <img style="width: 100%;" src="<?php echo $value["tour_image_src"].$value["tour_image_file_name"] ?>" alt="Image" class="img-fluid ">
               </div>
               <div class="listing-item-content">
-                <h2 class="mb-1"><a href="#"><?php echo $row." ".utf8_encode($value["tour_name"]); ?></a></h2>
+                <h2 class="mb-1"><a href="#"><?php echo $value["tour_id"]." ".utf8_encode($value["tour_name"]); ?></a></h2>
                 <span class="address"><?php echo utf8_encode($value["tour_location"]); ?></span>
                 <p>
-                  <span class="icon-star <?php echo $getAvgRatingByIdTour["review_rating"]>=1 ? 'text-warning' : 'text-secondary' ?>"></span>
-                  <span class="icon-star <?php echo $getAvgRatingByIdTour["review_rating"]>=2 ? 'text-warning' : 'text-secondary' ?>"></span>
-                  <span class="icon-star <?php echo $getAvgRatingByIdTour["review_rating"]>=3 ? 'text-warning' : 'text-secondary' ?>"></span>
-                  <span class="icon-star <?php echo $getAvgRatingByIdTour["review_rating"]>=4 ? 'text-warning' : 'text-secondary' ?>"></span>
-                  <span class="icon-star <?php echo $getAvgRatingByIdTour["review_rating"]>=5 ? 'text-warning' : 'text-secondary' ?>"></span>
-                  <span>(<?php echo $getCountRatingByIdTour["review_rating"]; ?> Valoraciones)</span>
+                  <span class="icon-star <?php echo $value["tour_rating"]>=1 ? 'text-warning' : 'text-secondary' ?>"></span>
+                  <span class="icon-star <?php echo $value["tour_rating"]>=2 ? 'text-warning' : 'text-secondary' ?>"></span>
+                  <span class="icon-star <?php echo $value["tour_rating"]>=3 ? 'text-warning' : 'text-secondary' ?>"></span>
+                  <span class="icon-star <?php echo $value["tour_rating"]>=4 ? 'text-warning' : 'text-secondary' ?>"></span>
+                  <span class="icon-star <?php echo $value["tour_rating"]>=5 ? 'text-warning' : 'text-secondary' ?>"></span>
+                  <span>(<?php echo $value["tour_count"]; ?> Valoraciones)</span>
                 </p>
                 <a class="px-3 mb-3 category" href="http://localhost/guids/guideinfo/tour/<?php echo $value["tour_id"]; ?>"><?php echo $lang["Ver mas"] ?>...</a>
               </div>
@@ -133,12 +130,12 @@ error_reporting(0);
              <span><?php echo $page; ?></span>
              <a href="<?php echo 'http://localhost/guids/index.php?page=search&p='.($page+1).'&key='.$key.'&n='.$rang; ?>"><?php echo $page+1; ?></a>
              <a href="<?php echo 'http://localhost/guids/index.php?page=search&p='.($page+2).'&key='.$key.'&n='.$rang; ?>"><?php echo $page+2; ?></a>
-             <a href="#">All</a>
+             <a href="index.php?page=search&p=1&key=all&n=54">All</a>
            </div>
          </div>
         <?php
       }else {
-        echo "No se encontraron resultados";
+        echo "No se encontraron resultados en esta página.";
       }
       ?>
 
