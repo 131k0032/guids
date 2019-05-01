@@ -1,10 +1,10 @@
-<?php  
+<?php
 error_reporting(0);
  session_start();
     if(!$_SESSION['validar']){
       print "<script>window.location='index';</script>";
       exit();
-    }    
+    }
 # ===========================================
 # =           Language validation           =
 # ===========================================
@@ -17,7 +17,7 @@ if(isset($_POST["lang"])){
   }
 }
 // If is created
-if(isset($_SESSION['lang'])){  
+if(isset($_SESSION['lang'])){
   $lang = $_SESSION["lang"];
   include "view/languages/".$lang.".php";
 // Else take spanish default
@@ -35,21 +35,29 @@ if(isset($_SESSION['lang'])){
   <!--=================================
   =            Head common            =
   ==================================-->
-  
+
   <?php include 'view/links/head_common.php'; ?>
-  
+
   <!--====  End of Head common  ====-->
-  
+
   <body>
-  
+
 
   <!--============================
   =            HEADER            =
   =============================-->
-  <?php include 'view/modules/header/header.php'; ?>     
+  <?php include 'view/modules/header/header.php'; ?>
   <!--====  End of HEADER  ====-->
-  
 
+<?php
+
+
+$dataJson = array();
+$getBookinsData = BookingController::getBookinsData($id);
+// echo "<br>getBookin Obtiene: <br>";
+// var_dump($getBookinsData);
+
+ ?>
 
   <!--===========================================
   =            RESERVATIONS CALENDAR            =
@@ -61,24 +69,24 @@ if(isset($_SESSION['lang'])){
             <h2 class="font-weight-light text-primary">Calendario de reservaciones</h2>
             <p class="color-black-opacity-5">Lorem Ipsum Dolor Sit Amet</p>
           </div>
-        </div>        
+        </div>
       </div>
     </div>
 
-    <div class="container">    
+    <div class="container">
         <div class="row">
-          <div class="col-md-12">     
+          <div class="col-md-12">
             <p>Mira de manera general en este calendario todos los tour que te han sido solicitados por los turistas y viajeros</p><br>
               <div id="calendar">
-                              
+
               </div>
-          </div>          
+          </div>
         </div>
     </div>
-  
+
   <!--====  End of RESERVATIONS CALENDAR  ====-->
-  
-  
+
+
 
 <!--=====================================
 =            MY RESERVATIONS            =
@@ -91,55 +99,60 @@ if(isset($_SESSION['lang'])){
         <h2 class="font-weight-light text-primary">Aceptar turistas/viajeros</h2>
         <p class="color-black-opacity-5">Lorem Ipsum Dolor Sit Amet</p>
       </div>
-    </div>        
+    </div>
   </div>
 </div>
 
 
 <div class="container">
-  
+
     <div class="row">
       <div class="col-md-12">
- 
+
         <p>Aquí encontrarás la lista de tours que te han solicitado por turistas y viajeros, es necesario aceptarlos para poder darle seguimiento al tour que te han solicitado, y además de que podrás obtener información de contacto y sobre todo para verificar que el tour se hará, esto en la sección <a target="_blank" href="http://localhost/guids/generateinsurance/user/<?php echo $id; ?>">Generar seguro grupal</a></p>
 
         <table id="mytours" class="table table-bordered table-striped dt-responsive nowrap">
           <thead>
             <tr>
-             <th>Lugar</th>
-              <th>Reserva</th>                        
-              <th>Asistirán</th>                      
-              <th>Fecha y hora</th>              
+             <th>Tour</th>
+              <th>Reservación de</th>
+              <th>Asistirán</th>
+              <th>Fecha y hora</th>
               <th>Acciones</th>
 
             </tr>
           </thead>
 
           <tbody>
-            <?php 
-                 $getAllUnaccepted= new BookingController();
-                 $getAllUnaccepted->getAllUnaccepted($id);//variable $id came from header.php            
-                foreach($getAllUnaccepted->getAllUnaccepted($id) as $row => $value){ 
-             ?>
-            <tr>                            
-              <td><?php echo $value["tour_name"]; ?></td>                
-              <td><?php echo $value["booking_tourist_name"]." ".$value["booking_tourist_lastname"]; ?></td>                
-              <td><?php echo $value["booking_tourist_quantyty"]; ?></td>                              
-              <td><?php echo $value["booking_tour_date"]." ".$value["tour_schedule_start_at"]; ?></td>
+            <?php
+                foreach($getBookinsData AS $row => $value){
+                  //generate json
+                  $name=utf8_encode($value["tour_name"]);
+                  $date=$value["booking_date"]." ".substr($value["schedule_start"],0,5).":00";
+                  $start=strtotime("Y-m-d H:i:s", $date);
+                  echo $name." -> ".$date." -> ".date("Y-m-d H:i:s",$start)." -> ".$end."<br>";
+                } ?>
+
+
+            <tr>
+              <td><?php echo utf8_encode($value["tour_name"]); ?></td>
+              <td><a href="<?php echo "mailto:".$value["bookin_email"]; ?>"> <?php echo $value["booking_name"]." ".$value["booking_lastname"]; ?></a></td>
+              <td><?php echo $value["booking_quantyty"]." de ".$value["tour_capacity"]; ?></td>
+              <td><?php echo $value["booking_date"]." ".$value["schedule_start"]; ?></td>
               <td style="width:100px;">
-                    
-                      <a style="color: white"; data-toggle="modal" data-target="#acceptBookingModal<?php echo $value["booking_id"];?>" class="btn btn-info btn-xs">Aceptar</a> 
-                    
+
+                      <a style="color: white"; data-toggle="modal" data-target="#acceptBookingModal<?php echo $value["booking_id"];?>" class="btn btn-info btn-xs">Aceptar</a>
+
                   </td>
- 
+
             </tr>
-              
-              <!-- Modal -->            
+
+              <!-- Modal -->
                 <div class="modal fade" id="acceptBookingModal<?php echo $value["booking_id"];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">¿Aceptar el tour <?php echo $value["tour_name"];?> ?</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">¿Aceptar el tour <?php echo utf8_encode($value["tour_name"]);?> ?</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -147,32 +160,32 @@ if(isset($_SESSION['lang'])){
                       <form method="post">
                       <div class="modal-body">
                         <input type="hidden" name="booking_id" value="<?php echo $value["booking_id"] ?>">
-                        <p class="color-black-opacity-5">Después de aceptar podrás ver la la información de contacto, tendrás que validar el tour <?php echo $value["tour_name"];?> , este tour lo solicita <?php echo $value["booking_tourist_name"]." ".$value["booking_tourist_lastname"]; ?></p>
+                        <p class="color-black-opacity-5">Después de aceptar podrás ver la la información de contacto, tendrás que validar el tour <?php echo utf8_encode($value["tour_name"]);?> , este tour lo solicita <?php echo $value["booking_name"]." ".$value["booking_lastname"]; ?></p>
                       </div>
-                      <div class="modal-footer">                        
+                      <div class="modal-footer">
                           <button style="color: white"; type="button" class="btn btn-warning" data-dismiss="modal">Ahora no</button>
                           <!-- <button type="submit" class="btn btn-danger">Eliminar</button> -->
                           <input type="submit" value="De acuerdo" id="btnupdate" class="btn btn-success py-2 px-4 text-white" >
-                               <?php 
+                               <?php
                                 $acceptTour = new BookingController();
                                 $acceptTour->acceptTour();
 
-                               ?>                        
+                               ?>
                       </div>
                       </form>
                     </div>
                   </div>
                 </div>
-           
+
                 <!-- End of Modal -->
-            <?php } ?>
+            <?php //} ?>
           </tbody>
         </table>
 
 
 
       </div>
-      
+
     </div>
 </div>
 <!--====  End of MY RESERVATIONS  ====-->
@@ -203,8 +216,8 @@ if(isset($_SESSION['lang'])){
 <!--====  End of SCRIPTS  ====-->
 
 
-  
-  <?php     
+
+  <?php
     $json_encode="Tours Zona arqueológica";
     $json_encode_two="2019-04-12T22:30:00";
     $json_encode_three="2019-04-12T23:30:00";
@@ -291,8 +304,8 @@ if(isset($_SESSION['lang'])){
   </script>
 
 <!--====  End of SCRIPTS  ====-->
-      
-    
+
+
 
    <script>
       $(document).ready(function() {
