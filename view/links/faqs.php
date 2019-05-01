@@ -1,22 +1,18 @@
-
- <div class="site-section">
-      <div class="container">
-        <div class="row justify-content-center mb-5">
-          <div class="col-md-7 text-center border-primary">
-            <h2 class="font-weight-light text-primary">Preguntas frecuentes</h2>
-            <p class="color-black-opacity-5">Los usuarios preguntan</p>
-          </div>
+  <div class="site-section">
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-md-7 text-center border-primary">
+          <h2 class="font-weight-light text-primary">Preguntas frecuentes</h2>
+          <p class="color-black-opacity-5">Peguntas más relevantes acerca del sitio</p>
         </div>
-
-
-        <div class="row justify-content-center">
-          <div class="col-8">
-            <div class="border p-3 rounded mb-2">
-              <a data-toggle="collapse" href="#collapse-1" role="button" aria-expanded="false" aria-controls="collapse-1" class="accordion-item h5 d-block mb-0">¿Qué es Guids.mx?</a>
-
-              <div class="collapse" id="collapse-1">
-                <div class="pt-2">
-                  <p class="mb-0">Es una plataforma digital que conecta a guías locales con turistas y viajeros
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="border p-3 rounded mb-2">
+            <a data-toggle="collapse" href="#collapse-1" role="button" aria-expanded="false" aria-controls="collapse-1" class="accordion-item h5 d-block mb-0">¿Qué es Guids.mx?</a>
+            <div class="collapse" id="collapse-1">
+              <div class="pt-2">
+                <p class="mb-0">Es una plataforma digital que conecta a guías locales con turistas y viajeros
                     que requieran de una asesoría guiada y acompañada. Guids.Mx tiene como
                     objetivo ser una filosofía de viaje para la sociedad del futuro con una modalidad
                     de viaje más integradora, experiencial, que no sólo visiten o conozcan, sino que,
@@ -24,11 +20,10 @@
                     La plataforma no discrimina a nadie! si quieres ser un Guids (guía local),
                     comparte uno o varios tours en la plataforma. Los servicios tecnológicos de la
                     plataforma para los Guids, el Turista y el Viajero, no tiene costo.</p>
-                </div>
               </div>
             </div>
-
-            <div class="border p-3 rounded mb-2">
+          </div>          
+          <div class="border p-3 rounded mb-2">
               <a data-toggle="collapse" href="#collapse-4" role="button" aria-expanded="false" aria-controls="collapse-4" class="accordion-item h5 d-block mb-0">¿Cómo se desarrolla Guids.Mx?</a>
 
               <div class="collapse" id="collapse-4">
@@ -40,8 +35,7 @@
                 </div>
               </div>
             </div>
-
-            <div class="border p-3 rounded mb-2">
+          <div class="border p-3 rounded mb-2">
               <a data-toggle="collapse" href="#collapse-2" role="button" aria-expanded="false" aria-controls="collapse-2" class="accordion-item h5 d-block mb-0">¿Experiencias gratis?</a>
 
               <div class="collapse" id="collapse-2">
@@ -58,9 +52,7 @@
                 </div>
               </div>
             </div>
-          </div>
-          
         </div>
-        
       </div>
     </div>
+  </div>

@@ -25,7 +25,7 @@ require_once "model/Conexion.php";
 
     // Getting all reviews data
       public function getAllComment($table,$id){
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM $table where tour_id=$id order by id desc;
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $table where tour_id=$id && rating!=0 order by id desc;
         ");
         $stmt->execute();
         return $stmt->fetchAll();

@@ -1,5 +1,6 @@
 <?php
 error_reporting(0);
+session_start();
     # ===========================================
     # =           Language validation           =
     # ===========================================
@@ -117,7 +118,7 @@ error_reporting(0);
                   <span class="icon-star <?php echo $value["tour_rating"]>=3 ? 'text-warning' : 'text-secondary' ?>"></span>
                   <span class="icon-star <?php echo $value["tour_rating"]>=4 ? 'text-warning' : 'text-secondary' ?>"></span>
                   <span class="icon-star <?php echo $value["tour_rating"]>=5 ? 'text-warning' : 'text-secondary' ?>"></span>
-                  <span>(<?php echo $value["tour_count"]; ?> Valoraciones)</span>
+                  <span>(<?php echo $value["tour_count"]-1; ?> Valoraciones)</span>
                 </p>
                 <a class="px-3 mb-3 category" href="http://localhost/guids/guideinfo/tour/<?php echo $value["tour_id"]; ?>"><?php echo $lang["Ver mas"] ?>...</a>
               </div>

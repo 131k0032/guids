@@ -23,7 +23,7 @@
 					// session_start(); Se inicia sesion en el home antes que todo html siempre al menos en php 7 en adelante
 					$_SESSION["validar"]=true;							
 					$_SESSION["email"] = $respuesta["email"];			
-					print "<script>window.location='profile';</script>";
+					print "<script>window.location='index';</script>";
 					// var_dump($respuesta);
 				}elseif($respuesta["email"]==$_POST["email"] && $respuesta["password"]!=$encriptar){
 						// header("location:index.php?action=fallo");					

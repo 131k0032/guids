@@ -63,80 +63,34 @@ if(isset($_SESSION['lang'])){
           </div>
         </div>
 
-              <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <ul class="nav nav-tabs" id="myTab" role="tablist">               
                 <li class="nav-item">
-                  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">¿Dónde será el tour?</a>
+                  <a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">1. Describe el tour</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Describe el tour</a>
+                  <a class="nav-link" id="location-tab" data-toggle="tab" href="#location" role="tab" aria-controls="location" aria-selected=false>2. ¿Dónde será el tour?</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Agrega fotos</a>
+                  <a class="nav-link" id="image-tab" data-toggle="tab" href="#image" role="tab" aria-controls="image" aria-selected="false">3. Agrega una foto</a>
                 </li>
                  <li class="nav-item">
-                  <a class="nav-link" id="duration-tab" data-toggle="tab" href="#duration" role="tab" aria-controls="duration" aria-selected="false">Horario y duración</a>
+                  <a class="nav-link" id="duration-tab" data-toggle="tab" href="#duration" role="tab" aria-controls="duration" aria-selected="false">4. Horario y duración</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="people-tab" data-toggle="tab" href="#people" role="tab" aria-controls="duration" aria-selected="false">¿Cuántas personas pueden asistir  al tour?</a>
+                  <a class="nav-link" id="people-tab" data-toggle="tab" href="#people" role="tab" aria-controls="people" aria-selected="false">5. ¿Cuántas personas pueden asistir  al tour?</a>
                 </li>
               </ul>
 
 
-                <!--=================================================
-                =            GUIDE LOCATION CONTENT PANE            =
-                ==================================================-->
+               
 <form  method="post" enctype="multipart/form-data">
 
               <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-                      <div class=" bg-light">
-                        <div class="container">
-                          <div class="row">
-
-                            <div class="col-md-12 mb-0"  data-aos="fade">
-                              <div class="p-4 mb-3 bg-white">                                         
-                                
-                                  <p class="mb-2 font-weight-bold">Lugar del tour</p>
-                                  <div class="form-group">                  
-                                    <div class="wrap-icon">
-                                      <!-- <span class="icon icon-room"></span> -->
-                                      <input type="text" name="location" class="form-control" placeholder="Playa del carmen">
-                                    </div>
-                                  </div>
-                                  
-                                   <p class="mb-2 font-weight-bold">Describe como te van a encontrar antes del tour</p>
-                                  <div class="form-group">
-                                    <textarea name="find_guide" class="form-control"  rows="3" placeholder="Con una mochila roja..."></textarea>
-                                  </div>  
-
-                                    <p class="mb-2 font-weight-bold">Especifica un punto de encuentro del tour</p>
-                                  <div class="form-group">
-                                    <textarea name="start_in" class="form-control"  rows="3" placeholder="Será en el parque central, junto a la glorieta..."></textarea>
-                                  </div>                                         
-
-                                <!-- </form> -->
-                              </div>   
-
-
-                            </div>
-
-
-                          </div>
-                        </div>
-                      </div>
-
-                </div>
-                
-                
-                <!--====  End of GUIDE LOCATION CONTENT PANE  ====-->
-                
-
-                
-                <!--===================================================
-                =            GUIDE DESCRPTION CONTENT PANE            =
-                ====================================================-->                
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                 <!--=================================================
+                =            GUIDE DESCRIPTION CONTENT PANE            =
+                ==================================================-->
+                <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
 
                       <div class=" bg-light">
                         <div class="container">
@@ -146,24 +100,27 @@ if(isset($_SESSION['lang'])){
                               <div class="p-4 mb-3 bg-white">                                         
                                 
                                   <p class="mb-2 font-weight-bold">Nombre del tour</p>
+                                  <div class="h-entry"><div class="meta">Un nombre interesante lo hace más llamativo</div></div>
                                 <!-- <form action="test" method="post"> -->
                                   <div class="form-group">                  
                                     <div class="wrap-icon">
                                       <!-- <span class="icon icon-room"></span> -->
-                                      <input type="text" name="name" class="form-control" placeholder="Nombre del tour">
+                                      <input type="text" name="name" class="form-control" placeholder="Tour mágico en la Quinta avenida" required>
                                     </div>
                                   </div>
                                   
                                   <p class="mb-2 font-weight-bold">Descripción del tour</p>
+                                  <div class="h-entry"><div class="meta">Describe de que se trata el tour y las actividades que harás</div></div>
                                   <div class="form-group">
-                                <textarea name="description" class="form-control"  rows="3" placeholder="Será un interesanta tour que inicia al centro del poblado..."></textarea>
+                                  <textarea required name="description" class="form-control"  rows="3" placeholder="Un tour que dará a conocer los puntos más destacados de la quinta avenida de Playa del Carmen, comenzaremos con una breve explicación de la historia, despúes nos desplazaremos en la calle... Por último..."></textarea>
                                   </div>
 
                                   <p class="mb-2 font-weight-bold">Idioma preferido para dar el tour</p>
+                                  <div class="h-entry"><div class="meta">Este idioma será con el que darás el tour</div></div>
                                   <div class="form-group">
                                     <div class="select-wrap">
                                         <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-                                        <select class="form-control" name="language" id="">
+                                        <select class="form-control" name="language" id="language" required>
                                          <?php
                                           $language =  new LanguageController();
                                           foreach ( $language -> getAllLanguageController() as $row => $value) {
@@ -187,14 +144,63 @@ if(isset($_SESSION['lang'])){
                           </div>
                         </div>
                       </div>
-                </div>                
-                <!--====  End of GUIDE DESCRPTION CONTENT PANE  ====-->
+                </div>                             
+                <!--====  End of GUIDE DESCRIPTION CONTENT PANE  ====-->
+                                
+                <!--===================================================
+                =            GUIDE LOCATION CONTENT PANE            =
+                ====================================================-->                
+                
+
+                <div class="tab-pane fade" id="location" role="tabpanel" aria-labelledby="location-tab">
+
+                      <div class=" bg-light">
+                        <div class="container">
+                          <div class="row">
+
+                            <div class="col-md-12 mb-0"  data-aos="fade">
+                              <div class="p-4 mb-3 bg-white">                                         
+                                
+                                  <p class="mb-2 font-weight-bold">Lugar del tour</p>
+                                  <div class="h-entry"><div class="meta">Escribe el lugar exacto donde vas a realizar el Tour</div></div>
+                                  <div class="form-group">                  
+                                    <div class="wrap-icon">
+                                      <!-- <span class="icon icon-room"></span> -->
+                                      <input type="text" name="location" class="form-control" placeholder="Playa del carmen, Quintana Roo" required>
+                                    </div>
+                                  </div>
+                                  
+                                   <p class="mb-2 font-weight-bold">Describe como te van a encontrar antes del tour</p>
+                                   <div class="h-entry"><div class="meta">Especifica algunas características para que los turistas/viajeros te reconozcan</div></div>
+                                  <div class="form-group">
+                                    <textarea required name="find_guide" class="form-control"  rows="3" placeholder="Soy alto con cabello, largo, normalmente traigo puesta una gorra"></textarea>
+                                  </div>  
+
+                                    <p class="mb-2 font-weight-bold">Especifica un punto de encuentro del tour</p>
+                                    <div class="h-entry"><div class="meta">Describe donde te pueden localizar al para iniciar el tour</div></div>
+                                  <div class="form-group">
+                                    <textarea required name="start_in" class="form-control"  rows="3" placeholder="Será en el parque central, junto a la glorieta..."></textarea>
+                                  </div>                                         
+
+                                <!-- </form> -->
+                              </div>   
+
+
+                            </div>
+
+
+                          </div>
+                        </div>
+                      </div>
+                </div> 
+
+                <!--====  End of GUIDE LOCATION CONTENT PANE  ====-->
                 
 
                 <!--==============================================
                 =            IMAGE FILES CONTENT PANE            =
                 ===============================================-->                
-                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="tab-pane fade" id="image" role="tabpanel" aria-labelledby="image-tab">
                     
                       <div class=" bg-light">
                         <div class="container">
@@ -205,9 +211,10 @@ if(isset($_SESSION['lang'])){
                                 
 
 
-                                  <p class="mb-2 font-weight-bold">Agrega imágenes del tour</p>
+                                  <p class="mb-2 font-weight-bold">Agrega una imagen del tour</p>
+                                  <div class="h-entry"><div class="meta">Es importante se adjuntes una imagen real y relacionada al tour, si son tomadas por ti mucho mejor</div></div>
                                   <div class="form-group">
-                                     <input type="file" class="form-control" name="src" id="src" accept="image/*">
+                                     <input type="file" class="form-control" name="src" id="src" accept="image/*" required>
                                   </div>
 
 
@@ -244,10 +251,11 @@ if(isset($_SESSION['lang'])){
                                 <div class="col-md-6">   
 
                                 <p class="mb-2 font-weight-bold">¿Cuanto tiempo durará el tour?</p>
+                                <div class="h-entry"><div class="meta">Puedes elegir la duración del tour de acuerdo a tu disponibilidad de horario</div></div>
                                   <div class="form-group">
                                     <div class="select-wrap">
                                         <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-                                        <select class="form-control" name="duration" id="duration">
+                                        <select class="form-control" name="duration" id="duration" required>
                                           <option value="">Elija una aproximación</option>
                                           <option value="1-h">1 h</option>                                        
                                           <option value="1:15-h">1:15 h</option>
@@ -262,7 +270,7 @@ if(isset($_SESSION['lang'])){
                                   </div>                             
                                 
                                   <p class="mb-2 font-weight-bold">Elija los días para el tour</p>
-
+                                  <div class="h-entry"><div class="meta">Puedes elegir uno o varios días para dar el tour, no olvides elegir el horario de inicio </div></div>
                                                                  
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input lunes"  id="lunes" name="day[]" value="1">
@@ -1091,7 +1099,6 @@ if(isset($_SESSION['lang'])){
                           </div>
                         </div>
                       </div>
-
                 </div>                
                 <!--====  End of GUIDE DURATION CONTENT PANE  ====-->
 
@@ -1108,12 +1115,13 @@ if(isset($_SESSION['lang'])){
 
                             <div class="col-md-12 mb-0"  data-aos="fade">                         
                               <div class="p-4 mb-3 bg-white">      
-                                   <p class="mb-2 font-weight-bold">¿Cuantas personas pueden asistir al tour?</p>
+                               <p class="mb-2 font-weight-bold">¿Cuantas personas pueden asistir al tour?</p>
+                                 <div class="h-entry"><div class="meta">Será la cantidad de personas que podrás admitir en el tour</div></div>
                                 <p class="mb-2 font-weight-bold"></p>
                                   <div class="form-group">
                                     <div class="select-wrap">
                                         <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-                                        <select class="form-control" name="capacity" id="">
+                                        <select class="form-control" name="capacity" id=""  required>
                                           <option value="">Elija un número de personas</option>
                                           <?php 
 
@@ -1147,7 +1155,6 @@ if(isset($_SESSION['lang'])){
                           </div>
                         </div>
                       </div>
-
                 </div>        
         </form>                                  
                 <!--====  End of PEOPLE CONTENT PANE  ====-->

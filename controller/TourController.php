@@ -9,12 +9,14 @@ require "view/classupload/class.upload.php";
 # =           Adding tour           =
 # ===================================
 
-   # -----------  GET LAST ID USER  -----------
+  # -----------  GET LAST ID USER  -----------
 
   public function lastIdTour(){
     $lastIdTour=TourModel::lastIdTour("id","tour");
     return $lastIdTour;
     }
+
+
 
 
   # -----------  ADDING TOUR  -----------
@@ -24,7 +26,7 @@ require "view/classupload/class.upload.php";
     $email=$_SESSION["email"];
     $emailById=array("email"=>$_SESSION["email"]);
     $getIdByEmail = UserModel::getIdByEmailUser($emailById,"user");
-    $id=$getIdByEmail["id"];
+    $id=$getIdByEmail["id"];//User id
     $date=date("Y-m-d");
 
     if(isset($_POST["name"])){
@@ -86,13 +88,20 @@ require "view/classupload/class.upload.php";
                     $src="view/images/tours/";
                     $handle->Process($src);
                     if($handle->processed){
-                      $file_name = $handle->file_dst_name;
-                      // echo $file_name;
+                      $file_name = $handle->file_dst_name;                      
                       // Third insert on tour_image
                       $tourImageInsert = TourModel::addTourImage("tour_image", $src, $file_name, $lastIdTour);
                       if($tourScheduleInsert=="success"){
-                        // var_dump($tourScheduleInsert);
-                        print "<script>alert(\"Tour agregado\");window.location='mytours';</script>";
+                          // Data four insert
+                          $rating=0;
+                          $comment=NULL;
+                          $created_at=$date;
+                          $tour_id=$lastIdTour;
+                          $user_id=$id;
+                          // Fourth insert
+                          $reviewInsert = ReviewModel::add("review", $rating, $comment, $created_at, $tour_id, $user_id);
+                        // var_dump($tourScheduleInsert);                        
+                        print "<script>alert(\"Tour agregado, tour en revisión para aprobación\");window.location='mytours';</script>";
                       }else{
                         echo "Error al agregar datos";
                       }

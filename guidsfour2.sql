@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-04-2019 a las 23:09:15
--- Versión del servidor: 10.1.31-MariaDB
--- Versión de PHP: 7.2.4
+-- Tiempo de generación: 01-05-2019 a las 20:10:46
+-- Versión del servidor: 10.1.34-MariaDB
+-- Versión de PHP: 7.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -56,7 +56,8 @@ INSERT INTO `booking` (`id`, `tour_date`, `tourist_quantyty`, `status`, `name`, 
 (9, '2019-04-20', 14, 0, 'asd', 'asd', 'asd', 'sad', NULL, NULL, '2019-04-27', NULL, 3, 2),
 (16, '2019-04-28', 5, 0, 'X', 'X', 'X', '1@ffh.com', NULL, NULL, '2019-04-28', NULL, 3, 2),
 (17, '2019-04-28', 12, 0, 'asd', 'asd', 'asd', '1@ffh.com', NULL, NULL, '2019-04-28', NULL, 3, 2),
-(18, '2019-04-28', 12, 0, 'asd', 'asd', 'asd', '1@ffh.com', NULL, NULL, '2019-04-28', NULL, 3, 2);
+(18, '2019-04-28', 12, 0, 'asd', 'asd', 'asd', '1@ffh.com', NULL, NULL, '2019-04-28', NULL, 3, 2),
+(22, '2019-05-20', 14, 0, 'xD', 'xD', 'ss', '131k0032@itscarrillopuerto.edu.mx', NULL, NULL, '2019-05-01', NULL, 39, 30);
 
 -- --------------------------------------------------------
 
@@ -123,61 +124,73 @@ CREATE TABLE `review` (
 --
 
 INSERT INTO `review` (`id`, `rating`, `comment`, `created_at`, `updated_at`, `tour_id`, `user_id`) VALUES
-(1, 5, 'xD', '2019-04-28', NULL, 1, 1),
+(1, 0, 'xD', '2019-04-28', NULL, 1, 1),
 (2, 3, 'jghg', '2019-04-28', NULL, 1, 1),
 (3, 2, 'xD', '2019-04-28', NULL, 1, 1),
-(4, 5, 'xD', '2019-04-28', NULL, 2, 1),
+(4, 0, 'xD', '2019-04-28', NULL, 2, 1),
 (5, 2, 'xD', '2019-04-28', NULL, 2, 1),
-(6, 4, 'xD', '2019-04-28', NULL, 3, 1),
+(6, 0, 'xD', '2019-04-28', NULL, 3, 1),
 (7, 3, 'xD', '2019-04-28', NULL, 3, 1),
-(8, 2, 'xD', '2019-04-28', NULL, 4, 1),
-(9, 3, 'xD', '2019-04-28', NULL, 5, 1),
-(10, 4, 'xD', '2019-04-28', NULL, 6, 1),
+(8, 0, 'xD', '2019-04-28', NULL, 4, 1),
+(9, 0, 'xD', '2019-04-28', NULL, 5, 1),
+(10, 0, 'xD', '2019-04-28', NULL, 6, 1),
 (11, 5, 'j', '2019-04-28', NULL, 6, 1),
 (12, 2, 'xD', '2019-04-28', NULL, 4, 1),
 (13, 3, 'xD', '2019-04-28', NULL, 5, 1),
 (14, 2, 'xD', '2019-04-28', NULL, 6, 1),
 (15, 3, 'xD', '2019-04-28', NULL, 5, 1),
-(16, 4, 'xD', '2019-04-28', NULL, 7, 1),
-(17, 4, 'xD', '2019-04-28', NULL, 8, 1),
-(18, 5, 'xD', '2019-04-28', NULL, 9, 1),
+(16, 0, 'xD', '2019-04-28', NULL, 7, 1),
+(17, 0, 'xD', '2019-04-28', NULL, 8, 1),
+(18, 0, 'xD', '2019-04-28', NULL, 9, 1),
 (19, 5, 'xD', '2019-04-28', NULL, 9, 1),
-(22, 4, 'xD', '2019-04-28', NULL, 12, 1),
-(23, 5, 'xD', '2019-04-28', NULL, 13, 1),
-(24, 2, 'xD', '2019-04-28', NULL, 13, 1),
-(25, 1, 'xD', '2019-04-28', NULL, 14, 1),
-(26, 4, 'xD', '2019-04-28', NULL, 15, 1),
+(22, 0, 'xD', '2019-04-28', NULL, 12, 1),
+(23, 0, 'xD', '2019-04-28', NULL, 13, 1),
+(24, 5, 'xD', '2019-04-28', NULL, 13, 1),
+(25, 0, 'xD', '2019-04-28', NULL, 14, 1),
+(26, 0, 'xD', '2019-04-28', NULL, 15, 1),
 (27, 2, 'xD', '2019-04-28', NULL, 15, 1),
 (28, 1, 'xD', '2019-04-28', NULL, 15, 1),
-(29, 5, 'xD', '2019-04-28', NULL, 16, 1),
+(29, 0, 'xD', '2019-04-28', NULL, 16, 1),
 (31, 4, 'xD', '2019-04-28', NULL, 16, 1),
-(32, 4, 'xD', '2019-04-28', NULL, 17, 1),
+(32, 0, 'xD', '2019-04-28', NULL, 17, 1),
 (33, 3, 'xD', '2019-04-28', NULL, 17, 1),
-(34, 2, 'xD', '2019-04-28', NULL, 18, 1),
+(34, 0, 'xD', '2019-04-28', NULL, 18, 1),
 (35, 1, 'xD', '2019-04-28', NULL, 18, 1),
-(36, 3, 'xD', '2019-04-28', NULL, 19, 1),
+(36, 0, 'xD', '2019-04-28', NULL, 19, 1),
 (37, 1, 'xD', '2019-04-28', NULL, 19, 1),
-(38, 3, 'xD', '2019-04-28', NULL, 20, 1),
+(38, 0, 'xD', '2019-04-28', NULL, 20, 1),
 (39, 5, 'xD', '2019-04-28', NULL, 20, 1),
-(40, 3, 'xD', '2019-04-28', NULL, 21, 1),
+(40, 0, 'xD', '2019-04-28', NULL, 21, 1),
 (41, 2, 'xD', '2019-04-28', NULL, 21, 1),
-(42, 1, 'xD', '2019-04-28', NULL, 22, 1),
+(42, 0, 'xD', '2019-04-28', NULL, 22, 1),
 (43, 4, 'xD', '2019-04-28', NULL, 22, 1),
-(44, 3, 'xD', '2019-04-28', NULL, 23, 1),
+(44, 0, 'xD', '2019-04-28', NULL, 23, 1),
 (45, 5, 'xD', '2019-04-28', NULL, 23, 1),
-(46, 2, 'xD', '2019-04-28', NULL, 24, 1),
+(46, 0, 'xD', '2019-04-28', NULL, 24, 1),
 (47, 1, 'xD', '2019-04-28', NULL, 24, 1),
 (48, 2, 'xD', '2019-04-28', NULL, 24, 1),
-(49, 4, 'xD', '2019-04-28', NULL, 25, 1),
+(49, 0, 'xD', '2019-04-28', NULL, 25, 1),
 (50, 3, 'xD', '2019-04-28', NULL, 25, 1),
 (51, 0, NULL, '2019-04-28', '2019-04-28', 10, 1),
-(52, 5, 'Buen tour', NULL, NULL, 11, 2),
+(52, 0, 'Buen tour', NULL, NULL, 11, 2),
 (53, 5, 'el mejor pasoe en bicileta de chemumal', NULL, NULL, 15, 1),
 (54, 5, 'best tour in holbox', NULL, NULL, 16, 2),
 (55, 3, 'muy buenos cenotes', NULL, NULL, 17, 2),
 (56, 3, 'buen tour, algo chabos pero si sabem maya', NULL, NULL, 18, 3),
 (57, 4, 'la mejor playa de playa del carmen', NULL, NULL, 19, 1),
-(58, 5, 'que rico dormi hoy', NULL, NULL, 20, 1);
+(58, 5, 'que rico dormi hoy', NULL, NULL, 20, 1),
+(59, 0, NULL, '2019-05-01', NULL, 30, 1),
+(60, 0, NULL, '2019-05-01', NULL, 31, 1),
+(61, 5, 'Bastante bien el tour increible el reccorrido joms asi machin recomendado ampliamente', '2019-05-01', NULL, 30, 1),
+(62, 2, 'xD', '2019-05-01', NULL, 30, 1),
+(63, 1, '', '2019-05-01', NULL, 30, 1),
+(64, 5, 'muy buen compa xD', '2019-05-01', NULL, 31, 1),
+(65, 5, 'Super tour', '2019-05-01', NULL, 31, 1),
+(66, 5, 'xD', '2019-05-01', NULL, 31, 1),
+(67, 5, 'xD', '2019-05-01', NULL, 31, 1),
+(68, 5, 'xD', '2019-05-01', NULL, 31, 1),
+(69, 5, '', '2019-05-01', NULL, 31, 1),
+(70, 0, NULL, '2019-05-01', NULL, 32, 1);
 
 -- --------------------------------------------------------
 
@@ -234,7 +247,10 @@ INSERT INTO `tour` (`id`, `name`, `description`, `find_guide`, `start_in`, `loca
 (26, 'La quinta avenida 24', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
 (27, 'La quinta avenida 25', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
 (28, 'La quinta avenida 26', 'Muy bueno', 'En su casa', 'En su casa', 'Playa del carmen', '2:00 h', 12, 0, 1, '2019-04-28', '2019-04-28', 1),
-(29, 'Visita al parque dos aguas', 'Este es un tour rÃ¡pido que permite realizar un recorrido maravilloso por el parque de tulum en donde la mayoria de gente extrangera puede visitar lo mejor del parque, pasear en familia, comer esquites y una marquesita.', 'Con mucha ropa', 'Parque principal del Tulum', 'Tulum', '1:30-h', 10, 0, 1, '2019-04-30', NULL, 2);
+(29, 'Visita al parque dos aguas', 'Este es un tour rÃ¡pido que permite realizar un recorrido maravilloso por el parque de tulum en donde la mayoria de gente extrangera puede visitar lo mejor del parque, pasear en familia, comer esquites y una marquesita.', 'Con mucha ropa', 'Parque principal del Tulum', 'Tulum', '1:30-h', 10, 0, 1, '2019-04-30', NULL, 2),
+(30, 'Super tour la laguna azul', 'Bien chido', 'Con una mochila roja', 'En mi casa, ya saben', 'Senior', '1-h', 9, 0, 1, '2019-05-01', NULL, 1),
+(31, 'Super laguna de 7 colores', 'Muy bueno', 'Asi con mi gorrita', 'En mi casa', 'Senior', '1-h', 2, 0, 1, '2019-05-01', NULL, 1),
+(32, 'xD', 'xD', 'xD', 'xD', 'xD', '1-h', 0, 0, 0, '2019-05-01', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -282,7 +298,10 @@ INSERT INTO `tour_image` (`id`, `src`, `file_name`, `tour_id`) VALUES
 (26, 'view/images/tours/', 'quintaavenida.jpg', 26),
 (27, 'view/images/tours/', 'quintaavenida.jpg', 27),
 (28, 'view/images/tours/', 'quintaavenida.jpg', 28),
-(29, 'view/images/tours/', 'quintaavenida.jpg', 29);
+(29, 'view/images/tours/', 'quintaavenida.jpg', 29),
+(30, 'view/images/tours/', 'lagunazul_1.jpg', 30),
+(31, 'view/images/tours/', 'lagunazul_2.jpg', 31),
+(32, 'view/images/tours/', 'tulum.jpg', 32);
 
 -- --------------------------------------------------------
 
@@ -304,15 +323,46 @@ CREATE TABLE `tour_schedule` (
 
 INSERT INTO `tour_schedule` (`id`, `start_at`, `day_id`, `tour_id`, `language_id`) VALUES
 (1, '8:15 am', 1, 1, 1),
-(2, '12:15 pm', 2, 1, 1),
-(3, '11:15 am', 1, 2, 1),
-(4, '18:00 pm', 1, 29, 1),
-(5, '18:00 pm', 2, 29, 1),
-(6, '18:00 pm', 3, 29, 1),
-(7, '18:00 pm', 4, 29, 1),
-(8, '18:00 pm', 5, 29, 1),
-(9, '18:00 pm', 6, 29, 1),
-(10, '18:00 pm', 7, 29, 1);
+(2, '12:15 pm', 2, 2, 1),
+(3, '11:15 am', 3, 3, 1),
+(4, '11:15 am', 3, 4, 1),
+(5, '11:15 am', 4, 5, 1),
+(6, '11:15 am', 4, 6, 1),
+(7, '11:15 am', 4, 7, 1),
+(8, '11:15 am', 5, 8, 1),
+(9, '11:15 am', 5, 9, 1),
+(10, '11:15 am', 5, 10, 1),
+(11, '11:15 am', 6, 11, 1),
+(12, '11:15 am', 6, 12, 1),
+(13, '11:15 am', 7, 13, 1),
+(14, '11:15 am', 7, 14, 1),
+(15, '11:15 am', 7, 15, 1),
+(16, '11:15 am', 1, 16, 1),
+(17, '11:15 am', 1, 17, 1),
+(18, '11:15 am', 1, 18, 1),
+(19, '11:15 am', 2, 19, 1),
+(20, '11:15 am', 2, 20, 1),
+(21, '11:15 am', 2, 21, 1),
+(22, '11:15 am', 2, 22, 1),
+(23, '11:15 am', 2, 23, 1),
+(24, '11:15 am', 4, 24, 1),
+(25, '11:15 am', 4, 25, 1),
+(26, '11:15 am', 4, 26, 1),
+(27, '11:15 am', 4, 27, 1),
+(28, '11:15 am', 4, 28, 1),
+(29, '11:15 am', 4, 29, 1),
+(30, '11:15 am', 4, 29, 1),
+(31, '11:15 am', 7, 29, 1),
+(32, '18:00 pm', 7, 29, 1),
+(33, '18:00 pm', 7, 29, 1),
+(34, '18:00 pm', 7, 29, 1),
+(35, '18:00 pm', 7, 29, 1),
+(36, '18:00 pm', 5, 29, 1),
+(37, '18:00 pm', 6, 29, 1),
+(38, '18:00 pm', 7, 29, 1),
+(39, '11:00 am', 1, 30, 1),
+(40, '8:00 am', 1, 31, 1),
+(41, '8:15 am', 1, 32, 2);
 
 -- --------------------------------------------------------
 
@@ -456,7 +506,7 @@ ALTER TABLE `user_language`
 -- AUTO_INCREMENT de la tabla `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `day`
@@ -474,25 +524,25 @@ ALTER TABLE `language`
 -- AUTO_INCREMENT de la tabla `review`
 --
 ALTER TABLE `review`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT de la tabla `tour`
 --
 ALTER TABLE `tour`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `tour_image`
 --
 ALTER TABLE `tour_image`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `tour_schedule`
 --
 ALTER TABLE `tour_schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT de la tabla `user`
