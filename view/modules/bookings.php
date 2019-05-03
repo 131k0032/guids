@@ -28,7 +28,7 @@ if(isset($_SESSION['lang'])){
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="scroll-behavior:smooth;">
   <title>Bookings</title>
   <!--=================================
   =            Head common            =
@@ -47,22 +47,6 @@ if(isset($_SESSION['lang'])){
   <?php include 'view/modules/header/header.php'; ?>
   <!--====  End of HEADER  ====-->
 
-
-<?php
-  $getBookinsData = BookingController::getBookinsData($id);
-  $jsonData = array();
-  foreach ($getBookinsData as $key => $value) {
-    $name=utf8_encode($value["tour_name"]);
-    $date = new DateTime($value["booking_date"].substr($value["schedule_start"],0,5).":00");
-    $fin = new DateTime($date->format("c"));
-    $fin->add(new DateInterval('PT4H3M2S'));
-    $fin->add(new DateInterval("PT".substr($value["tour_duration"],0,1)."H".substr($value["tour_duration"],2,2)."M"));
-    //echo "title: ".$name.", start: ".$date->format("c").", end: ".$fin->format("c")."<br>";
-    $jsonData[] = array("title" => $name, "start" => $date->format("c"), "end" => $fin->format("c"));
-  }
-//echo json_encode($jsonData);
-
- ?>
 
 
 
@@ -110,7 +94,19 @@ if(isset($_SESSION['lang'])){
   </div>
 </div>
 
+<?php
+  $getBookinsData = BookingController::getBookinsData($id);
+  $jsonData = array();
+  foreach ($getBookinsData as $key => $value) { //foreach for calendar
+    $date = new DateTime($value["booking_date"].substr($value["schedule_start"],0,5).":00");
+    $fin = new DateTime($date->format("c"));
+    $fin->add(new DateInterval("PT".substr($value["tour_duration"],0,1)."H".substr($value["tour_duration"],2,2)."M"));
+    $url="http://localhost/guids/bookings/#".$value["tour_id"];
+    //echo "title: ".$name.", start: ".$date->format("Y-m-d\TH:i:s").", end: ".$fin->format("Y-m-d\TH:i:s").", url: ".$url." <br>";
+    $jsonData[] = array("title" => utf8_encode($value["tour_name"]), "start" => $date->format("Y-m-d\TH:i:s"), "end" => $fin->format("Y-m-d\TH:i:s"), "url" => $url);
+  }
 
+ ?>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -118,7 +114,7 @@ if(isset($_SESSION['lang'])){
     <table id="mytours" class="table table-bordered table-striped dt-responsive nowrap">
       <thead>
         <tr>
-         <th>Tour</th>
+          <th>Tour</th>
           <th>Reservación de</th>
           <th>Asistirán</th>
           <th>Fecha y hora</th>
@@ -126,26 +122,29 @@ if(isset($_SESSION['lang'])){
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Nombre</td>
-          <td><a href="">Persona</a></td>
-          <td>x de N</td>
-          <td>Fecha</td>
-          <td style="width:100px;">
-                  <a style="color: white"; data-toggle="modal" data-target="#acceptBookingModal" class="btn btn-info btn-xs">Aceptar</a>
-              </td>
-        </tr>
+          <?php
+          foreach ($getBookinsData as $key => $value) {
+            echo "<tr>";
+            echo "<td><a name='".$value["tour_id"]."'>".utf8_encode($value["tour_name"])."</td>";
+            echo "<td>".$value["booking_name"]." ".$value["booking_lastname"]."</td>";
+            echo "<td>".$value["booking_quantyty"]." de ".$value["tour_capacity"]."</td>";
+            echo "<td>".$value["booking_date"]." a las ".$value["schedule_start"]."</td>";
+            echo "<td><a style='color:white', data-toggle='modal' data-target='#acceptBookingModal".$value["tour_id"]."' class='btn btn-info btn-xs'>aceptar</td>";
+            echo "</tr>";
+          } ?>
       </tbody>
     </table>
     </div>
   </div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="acceptBookingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<?php
+foreach ($getBookinsData as $key => $value) { ?>
+<div class="modal fade" id="acceptBookingModal<?php echo $value["tour_id"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">¿Aceptar el tour </h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">¿Aceptar el tour <?php echo utf8_encode($value["tour_name"]); ?>?</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -153,7 +152,7 @@ if(isset($_SESSION['lang'])){
       <form method="post">
       <div class="modal-body">
         <input type="hidden" name="booking_id" value="">
-        <p class="color-black-opacity-5">Después de aceptar podrás ver la la información de contacto, tendrás que validar el tour  , este tour lo solicita </p>
+        <p class="color-black-opacity-2">Después de aceptar el tour <b><?php echo utf8_encode($value["tour_name"]); ?></b> podrás ver la información de contacto. Tendrás que validar el tour, que solicita <i><?php echo $value["booking_name"]." ".$value["booking_lastname"];  ?>.</i></p>
       </div>
       <div class="modal-footer">
           <button style="color: white"; type="button" class="btn btn-warning" data-dismiss="modal">Ahora no</button>
@@ -163,6 +162,10 @@ if(isset($_SESSION['lang'])){
     </div>
   </div>
 </div>
+<?php }
+$acceptTour = new BookingController();
+$acceptTour->acceptTour();
+?>
 
 <!--====  End of MY RESERVATIONS  ====-->
 
@@ -194,7 +197,6 @@ if(isset($_SESSION['lang'])){
   <script>
       document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
-
           var calendar = new FullCalendar.Calendar(calendarEl, {
       plugins: [ 'bootstrap', 'interaction', 'dayGrid', 'timeGrid', 'list' ],
       header: {
@@ -204,16 +206,16 @@ if(isset($_SESSION['lang'])){
       },
       defaultDate: '<?php echo date("Y-m-d") ?>',
       navLinks: true, // can click day/week names to navigate views
-      editable: false,
+      editable: true,
       eventLimit: true, // allow "more" link when too many events
       events: <?php echo json_encode($jsonData); ?>
     });
         calendar.render();
       });
-
-
       $(document).ready(function() {
-        $('#mytours').DataTable();
+        $('#mytours').DataTable({
+          "order":[[3, 'asc']]
+        });
         } );
     </script>
   </body>
