@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 include_once "view/classupload/class.upload.php";
@@ -6,7 +6,7 @@ class BookingController{
 
 	public function add(){
 		if(isset($_POST["tour_date"])){
-				$now=date('Y-m-d');				
+				$now=date('Y-m-d');
 				// $date = $_POST['tour_date'];
 				// $format = explode('-', $date);
 				// $date_formatted = "{$format[0]}-{$format[1]}-{$format[2]}";
@@ -20,11 +20,11 @@ class BookingController{
 					"phone"=>$_POST["phone"],
 					"email"=>$_POST["email"],
 					// "src"=>"NULL",
-					// "file_name"=>"NULL",	
+					// "file_name"=>"NULL",
 					"created_at"=>$now,
 					// "updadet_at"="NUL",
 					"tour_schedule_id"=>$_POST["tour_schedule_id"],
-					"tour_id"=>$_POST["tour_id"]													
+					"tour_id"=>$_POST["tour_id"]
 				);
 
 
@@ -33,12 +33,12 @@ class BookingController{
 
 			if($bookinginsert=="success"){
 				// var_dump($bookinginsert);
-				print "<script>alert(\"Tour reservado, porfavor espera confirmación del guía\");window.location='http://localhost/guids/index';</script>"; 
+				print "<script>alert(\"Added\");window.location='http://localhost/guids/index';</script>";
 			}else{
-				print "<script>alert(\"No se ha podido reservar\");window.location='http://localhost/guids/index';</script>"; 
+				print "<script>alert(\"No added\");window.location='http://localhost/guids/index';</script>";
 				// var_dump($bookinginsert);
 			}
-			
+
 		}
 	}
 
@@ -48,7 +48,7 @@ class BookingController{
 	// 	 $getAllAccepted = BookingModel::getAllAccepted("booking", $id);
  // 	   	 return $getAllAccepted;
 	// }
-	
+
 	// For generateinsurance template
 	//Way 2 to access by id using the $id url when the result is more of one
 	public function getAllNullAccepted($id){
@@ -89,33 +89,33 @@ class BookingController{
 
 
 	// For booking template
-	public function fileValidateTour(){		
-		
+	public function fileValidateTour(){
+
 
 		if(isset($_POST["booking_id"])){
 			 if(isset($_FILES["src"])){
 			 	  $now=date('Y-m-d');
                   // echo "Hay imagen";
                   $handle = new Upload($_FILES['src']);
-                
+
                   if($handle->uploaded){
                     // $src="view/images/toursvalidated/".$id;
                     $src="view/images/toursvalidated/";
                     $handle->Process($src);
                     if($handle->processed){
-                      $file_name = $handle->file_dst_name;  
+                      $file_name = $handle->file_dst_name;
 
 						$fileValidateTour=array(
 							"id"=>$_POST["booking_id"],
 							"src"=>$src,
 							"file_name"=>$file_name,
 							"updated_at"=>$now,
-						);                    
+						);
                       // Updating src and file_name on booking
                       $validate = BookingModel::fileValidateTour($fileValidateTour, "booking");
                       if($validate=="success"){
                         // var_dump($tourScheduleInsert);
-                        print "<script>alert(\"Bookig validated\");window.location='http://localhost/guids/mytours';</script>"; 
+                        print "<script>alert(\"Bookig validated\");window.location='http://localhost/guids/mytours';</script>";
                       }else{
                         echo "Error al agregar datos";
                       }
@@ -129,7 +129,7 @@ class BookingController{
                   echo "There is not image";
                   echo $_FILES["src"];
                 }
-		}		    
+		}
 	}
 
 
