@@ -91,7 +91,7 @@
                   <a href="#"><span><?php echo $lang["Más opciones"]; ?></span></a>
                   <ul class="dropdown">
                     <li><a href="#"><i class="icon-notifications_active"></i> <?php echo $lang["Avisos"]; ?></a></li>                    
-                    <li><a href="http://localhost/guids/profile"><i class="icon-user"></i> <?php echo $lang["Perfil"]; ?></a></li>   
+                    <!-- <li><a href="http://localhost/guids/profile"><i class="icon-user"></i> <?php //echo $lang["Perfil"]; ?></a></li>    -->
                     <li><a href="http://localhost/guids/addtour"><i class="icon-add_circle"></i> <?php echo $lang["Agregar tour"]; ?> </a></li>
                     <li><a href="http://localhost/guids/mytours"><i class="icon-list-ul"></i> <?php echo $lang["Mis tours"]; ?></a></li>
                     <li><a href="http://localhost/guids/generateinsurance/user/<?php echo $id; ?>"><i class="icon-picture-o"></i> <?php echo $lang["Generar seguro grupal"]; ?></a></li>

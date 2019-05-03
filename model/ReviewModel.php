@@ -32,6 +32,31 @@ require_once "model/Conexion.php";
         $stmt->close();
     }
 
+    // Getting all count commets
+      public function getCountComment($table, $id){
+        $stmt = Conexion::conectar()->prepare("SELECT
+          review.id as review_id,
+          count(review.comment) as review_comment,
+
+          tour.id as tour_id,
+          tour.name as tour_name,
+
+          user.id as user_id,
+          user.name as user_name
+
+          FROM
+          $table
+
+          inner join tour
+          on review.tour_id=tour.id
+          inner join user
+          on review.user_id=user.id
+          where tour.id=$id && review.rating!=0");
+        $stmt->execute();
+        return $stmt->fetchAll();
+        $stmt->close();
+
+      }
 
 
 

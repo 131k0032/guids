@@ -83,7 +83,7 @@ if(isset($_SESSION['lang'])){
 
 
                
-<form  method="post" enctype="multipart/form-data">
+<form  method="post" enctype="multipart/form-data" id="addtour">
 
               <div class="tab-content" id="myTabContent">
 
@@ -100,6 +100,15 @@ if(isset($_SESSION['lang'])){
                               <div class="p-4 mb-3 bg-white">                                         
                                 
                                   <p class="mb-2 font-weight-bold">Nombre del tour</p>
+                                  <style>
+                                    form label.error {
+                                      float: right;
+                                      color: #f23a2e;
+                                      font-weight:bold;
+                                      font-size: 12px 
+                                      /*vertical-align: top;*/
+                                    }
+                                  </style>
                                   <div class="h-entry"><div class="meta">Un nombre interesante lo hace más llamativo</div></div>
                                 <!-- <form action="test" method="post"> -->
                                   <div class="form-group">                  
@@ -112,7 +121,7 @@ if(isset($_SESSION['lang'])){
                                   <p class="mb-2 font-weight-bold">Descripción del tour</p>
                                   <div class="h-entry"><div class="meta">Describe de que se trata el tour y las actividades que harás</div></div>
                                   <div class="form-group">
-                                  <textarea required name="description" class="form-control"  rows="3" placeholder="Un tour que dará a conocer los puntos más destacados de la quinta avenida de Playa del Carmen, comenzaremos con una breve explicación de la historia, despúes nos desplazaremos en la calle... Por último..."></textarea>
+                                  <textarea  style="resize:none" required name="description" class="form-control"  rows="3" placeholder="Un tour que dará a conocer los puntos más destacados de la quinta avenida de Playa del Carmen, comenzaremos con una breve explicación de la historia, despúes nos desplazaremos en la calle... Por último..."></textarea>
                                   </div>
 
                                   <p class="mb-2 font-weight-bold">Idioma preferido para dar el tour</p>
@@ -121,10 +130,11 @@ if(isset($_SESSION['lang'])){
                                     <div class="select-wrap">
                                         <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                                         <select class="form-control" name="language" id="language" required>
+                                          <option value="">Elija un idioma</option>
                                          <?php
-                                          $language =  new LanguageController();
-                                          foreach ( $language -> getAllLanguageController() as $row => $value) {
-                                        ?>
+                                           $language =  new LanguageController();
+                                           foreach ( $language -> getAllLanguageController() as $row => $value) {
+                                         ?>
                                         <option value="<?php echo $value['id']; ?>"><?php echo utf8_encode($value['name']); ?></option>
                                         <?php }
                                         if (!isset($value['name'])) {
@@ -136,7 +146,7 @@ if(isset($_SESSION['lang'])){
 
                                 <!-- </form> -->
                               </div>   
-
+                              
 
                             </div>
 
@@ -173,13 +183,13 @@ if(isset($_SESSION['lang'])){
                                    <p class="mb-2 font-weight-bold">Describe como te van a encontrar antes del tour</p>
                                    <div class="h-entry"><div class="meta">Especifica algunas características para que los turistas/viajeros te reconozcan</div></div>
                                   <div class="form-group">
-                                    <textarea required name="find_guide" class="form-control"  rows="3" placeholder="Soy alto con cabello, largo, normalmente traigo puesta una gorra"></textarea>
+                                    <textarea style="resize:none" required name="find_guide" class="form-control"  rows="3" placeholder="Soy alto con cabello, largo, normalmente traigo puesta una gorra"></textarea>
                                   </div>  
 
                                     <p class="mb-2 font-weight-bold">Especifica un punto de encuentro del tour</p>
                                     <div class="h-entry"><div class="meta">Describe donde te pueden localizar al para iniciar el tour</div></div>
                                   <div class="form-group">
-                                    <textarea required name="start_in" class="form-control"  rows="3" placeholder="Será en el parque central, junto a la glorieta..."></textarea>
+                                    <textarea style="resize:none" required name="start_in" class="form-control"  rows="3" placeholder="Será en el parque central, junto a la glorieta..."></textarea>
                                   </div>                                         
 
                                 <!-- </form> -->
@@ -212,7 +222,7 @@ if(isset($_SESSION['lang'])){
 
 
                                   <p class="mb-2 font-weight-bold">Agrega una imagen del tour</p>
-                                  <div class="h-entry"><div class="meta">Es importante se adjuntes una imagen real y relacionada al tour, si son tomadas por ti mucho mejor</div></div>
+                                  <div class="h-entry"><div class="meta">Es importante que adjuntes una imagen real y relacionada al tour, si son tomadas por ti mucho mejor</div></div>
                                   <div class="form-group">
                                      <input type="file" class="form-control" name="src" id="src" accept="image/*" required>
                                   </div>
@@ -257,7 +267,7 @@ if(isset($_SESSION['lang'])){
                                         <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                                         <select class="form-control" name="duration" id="duration" required>
                                           <option value="">Elija una aproximación</option>
-                                          <option value="1-h">1 h</option>                                        
+                                          <option value="1:00-h">1:00 h</option>                                        
                                           <option value="1:15-h">1:15 h</option>
                                           <option value="1:30-h">1:30 h</option>
                                           <option value="1:45-h">1:45 h</option>
@@ -1169,7 +1179,6 @@ if(isset($_SESSION['lang'])){
 <!--====  End of CREATE TOURS  ====-->
 
 
-
 <!--==========================
 =            FAQS            =
 ===========================-->
@@ -1188,6 +1197,8 @@ if(isset($_SESSION['lang'])){
 ==============================-->
 <?php include 'view/links/footer_common.php'; ?>
 
+
+<!-- day scipts -->
  <script>
       $(function(){
             $('.lunes').change(function(){
@@ -1257,6 +1268,56 @@ if(isset($_SESSION['lang'])){
 
 
     </script>
+    <!-- end day scipts -->
+
+    <!-- validation -->
+    <script>
+
+      $().ready(function() {
+      $("#addtour").validate({
+        ignore:"",//For contemplate all inputs
+        rules: {        
+          name: { 
+            required:true,             
+          },
+          description:{
+            required:true,
+          },
+          language:{
+            required:true,
+          },
+          location:{
+            required:true,
+          },
+          find_guide:{
+            required:true,
+          },
+          start_in:{
+            required:true,
+          },
+          src:{
+            required:true,
+          },
+          duration:{
+            required:true,
+          },
+
+
+        },
+        messages: {
+          name : "Nombre del tour es requerido.",    
+          description : "Descripión del tour es requerido.",   
+          language : "Idioma del tour es requerido.",     
+          location : "Ubicación excacta del tour es requerido.",    
+          find_guide : "Descripión de guia es requerido.",    
+          start_in : "Punto de encuentro del tour es requerido.",    
+          src : "Imagen del tour es requerido.",    
+          duration : "Duración del tour es requerido.",    
+        }
+      });
+    });
+    </script>
+    <!-- end validation -->
 
 <!--====  End of SCRIPTS  ====-->
 

@@ -33,9 +33,9 @@ class BookingController{
 
 			if($bookinginsert=="success"){
 				// var_dump($bookinginsert);
-				print "<script>alert(\"Added\");window.location='http://localhost/guids/index';</script>"; 
+				print "<script>alert(\"Tour reservado, porfavor espera confirmación del guía\");window.location='http://localhost/guids/index';</script>"; 
 			}else{
-				print "<script>alert(\"No added\");window.location='http://localhost/guids/index';</script>"; 
+				print "<script>alert(\"No se ha podido reservar\");window.location='http://localhost/guids/index';</script>"; 
 				// var_dump($bookinginsert);
 			}
 			
@@ -137,5 +137,11 @@ class BookingController{
 	public function getAllReported($id){
  	   	 $getAllReported = BookingModel::getAllReported("booking", $id);
  	   	 return $getAllReported;
+	}
+
+
+	public function getBookinsData($id){
+		$getBookinsData = BookingModel::getBookinsData($id);
+		return $getBookinsData;
 	}
 }

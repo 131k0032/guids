@@ -5,7 +5,7 @@ class ReviewController{
 
 	public function add(){
 		$created_at=date('Y-m-d');
-		if(isset($_POST['comment']) && $_POST["rating_input"]>1){
+		if(isset($_POST['comment']) && $_POST["rating_input"]>=1){
 			
 			$rating=$_POST['rating_input'];
 			$comment=$_POST['comment'];

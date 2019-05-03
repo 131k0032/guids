@@ -5,6 +5,7 @@
       $jslink = array(
         # -----------  Main scripts  -----------   
         "http://localhost/guids/view/assets/js/jquery-3.3.1.min.js", 
+        "http://localhost/guids/view/assets/js/jquery.validate.js", 
         "http://localhost/guids/view/assets/js/jquery-migrate-3.0.1.min.js", 
         "http://localhost/guids/view/assets/js/jquery-ui.js", 
         "http://localhost/guids/view/assets/js/popper.min.js", 
@@ -19,8 +20,8 @@
         "http://localhost/guids/view/assets/js/typed.js", 
         "http://localhost/guids/view/assets/js/main.js", 
         # -----------  Custom scripts  -----------  
-        "http://localhost/guids/view/assets/js/customStatesValues.js", 
-        "http://localhost/guids/view/assets/js/customTypedWords.js", 
+        // "http://localhost/guids/view/assets/js/customStatesValues.js", 
+        // "http://localhost/guids/view/assets/js/customTypedWords.js", 
         "http://localhost/guids/view/assets/js/customDaysValues.js", 
         # -----------  Data tables  -----------  
         "http://localhost/guids/view/datatables/js/jquery.dataTables.min.js", 
@@ -75,31 +76,29 @@
                   <script src="'.$jslink[8].'"></script>
                   <script src="'.$jslink[9].'"></script>
                   <script src="'.$jslink[10].'"></script>
-                  <script src="'.$jslink[11].'"></script>    
-                  <script src="'.$jslink[12].'"></script>
-                  <script src="'.$jslink[13].'"></script>';           
+                  <script src="'.$jslink[11].'"></script>
+                  <script src="'.$jslink[12].'"></script>    
+                  <script src="'.$jslink[13].'"></script>
+                  <script src="'.$jslink[14].'"></script>';           
             
             # -----------  Custom scripts  -----------    
-
-            echo '<script src="'.$jslink[14].'"></script>
-                  <script src="'.$jslink[15].'"></script>  
-                  <script src="'.$jslink[16].'"></script>';
+            echo '<script src="'.$jslink[15].'"></script>';
             # -----------  Data tables  -----------                    
-            echo '<script src="'.$jslink[17].'"></script>
+            echo '<script src="'.$jslink[16].'"></script>
+                  <script src="'.$jslink[17].'"></script>    
                   <script src="'.$jslink[18].'"></script>    
-                  <script src="'.$jslink[19].'"></script>    
-                  <script src="'.$jslink[20].'"></script>';
+                  <script src="'.$jslink[10].'"></script>';
             
             # -----------  Fullcalendar  -----------                        
-            echo '<script src="'.$jslink[21].'"></script> 
-                  <script src="'.$jslink[22].'"></script>   
-                  <script src="'.$jslink[23].'"></script> 
+            echo '<script src="'.$jslink[20].'"></script> 
+                  <script src="'.$jslink[21].'"></script>   
+                  <script src="'.$jslink[22].'"></script> 
+                  <script src="'.$jslink[23].'"></script>
                   <script src="'.$jslink[24].'"></script>
-                  <script src="'.$jslink[25].'"></script>
-                  <script src="'.$jslink[26].'"></script>';
+                  <script src="'.$jslink[25].'"></script>';
                                                 
             }else{
-                        # -----------  Main scripts  ----------- 
+               # -----------  Main scripts  ----------- 
             echo '<script src="'.$jslink[0].'"></script>
                   <script src="'.$jslink[1].'"></script>
                   <script src="'.$jslink[2].'"></script>
@@ -111,29 +110,26 @@
                   <script src="'.$jslink[8].'"></script>
                   <script src="'.$jslink[9].'"></script>
                   <script src="'.$jslink[10].'"></script>
-                  <script src="'.$jslink[11].'"></script>    
-                  <script src="'.$jslink[12].'"></script>
-                  <script src="'.$jslink[13].'"></script>';           
+                  <script src="'.$jslink[11].'"></script>
+                  <script src="'.$jslink[12].'"></script>    
+                  <script src="'.$jslink[13].'"></script>
+                  <script src="'.$jslink[14].'"></script>';           
             
             # -----------  Custom scripts  -----------    
-
-            echo '<script src="'.$jslink[14].'"></script>
-                  <script src="'.$jslink[15].'"></script>  
-                  <script src="'.$jslink[16].'"></script>';
+            echo '<script src="'.$jslink[15].'"></script>';
             # -----------  Data tables  -----------                    
-            echo '<script src="'.$jslink[17].'"></script>
+            echo '<script src="'.$jslink[16].'"></script>
+                  <script src="'.$jslink[17].'"></script>    
                   <script src="'.$jslink[18].'"></script>    
-                  <script src="'.$jslink[19].'"></script>    
-                  <script src="'.$jslink[20].'"></script>';
+                  <script src="'.$jslink[10].'"></script>';
             
             # -----------  Fullcalendar  -----------                        
-            echo '<script src="'.$jslink[21].'"></script> 
-                  <script src="'.$jslink[22].'"></script>   
-                  <script src="'.$jslink[23].'"></script> 
+            echo '<script src="'.$jslink[20].'"></script> 
+                  <script src="'.$jslink[21].'"></script>   
+                  <script src="'.$jslink[22].'"></script> 
+                  <script src="'.$jslink[23].'"></script>
                   <script src="'.$jslink[24].'"></script>
-                  <script src="'.$jslink[25].'"></script>
-                  <script src="'.$jslink[26].'"></script>';
-        
+                  <script src="'.$jslink[25].'"></script>';   
         }
         
      ?>

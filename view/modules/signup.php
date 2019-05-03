@@ -52,7 +52,7 @@ if(isset($_SESSION['lang'])){
   =            INFO IMAGE            =
   =================================-->
   
-      <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(view/assets/images/Cancun.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+      <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(http://localhost/guids/view/assets/images/Cancun.jpg);" data-aos="fade" data-stellar-background-ratio="1">
       <div class="container">
         <div class="row align-items-center justify-content-center text-center">
 
@@ -61,7 +61,7 @@ if(isset($_SESSION['lang'])){
             
             <div class="row justify-content-center">
               <div class="col-md-8 text-center">
-                <h1 data-aos="fade-up">Regístrate y comienza a ser uno de los mejores guías de turista</h1>
+                <h1 data-aos="fade-up">Forma parte <span class="typed-words"></span></h1>
               <!--   <p class="mb-0" data-aos="fade-up" data-aos-delay="100">¿Ya tienes una cuenta? Adelante prueba <a href="login.php" style="color: white">iniciar sesión</a></p> -->
               </div>
             </div>
@@ -94,9 +94,17 @@ if(isset($_SESSION['lang'])){
           <div class="col-md-9">
               
 
-            <form method="post" class="p-5 bg-white">             
+            <form method="post" class="p-5 bg-white" id="signup">             
               <p>La información de perfil nos permitirá conocer mas acerca de ti.</p>
-              
+              <style>
+                form label.error {
+                  float: right;
+                  color: #f23a2e;
+                  font-weight:bold;
+                  font-size: 12px 
+                  /*vertical-align: top;*/
+                }
+              </style>
               <div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">                  
                   <p class="mb-2 font-weight-bold">Nombre</p>
@@ -111,7 +119,7 @@ if(isset($_SESSION['lang'])){
               <div class="row form-group">                
                 <div class="col-md-12">
                   <p class="mb-2 font-weight-bold">Teléfono</p>
-                  <input type="text" id="phone" name="phone" class="form-control" placeholder="Escribe tu número de 10 dígitos" required>
+                  <input type="text" id="phone" name="phone" class="form-control" maxlength="10" number="true" pattern="[0-9]" placeholder="Escribe tu número de 10 dígitos" required>
                 </div>
               </div>
 
@@ -134,7 +142,7 @@ if(isset($_SESSION['lang'])){
                 <div class="form-group">
                   <div class="select-wrap">
                       <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-                      <select class="form-control" name="state" id="state" required>                        
+                      <select class="form-control" name="state" id="state" required>                                                
                         <option value="Quintanaroo">Quintana Roo</option>                                        
                         <!-- <option value="yucatan">Yucatan</option> -->  
                       </select>
@@ -151,13 +159,6 @@ if(isset($_SESSION['lang'])){
                       </select>
                     </div>
                 </div>
-<!-- 
-                   <div class="row form-group">                
-                <div class="col-md-12">
-                  <p class="mb-2 font-weight-bold">Fecha de nacimiento</p>
-                  <input type="date" id="birthday" name="birthday" class="form-control" placeholder="Escribe tu correo">
-                </div>
-              </div> -->
 
               <p class="mb-2 font-weight-bold">Fecha de nacimiento</p>              
               <div class="row form-group">
@@ -239,38 +240,6 @@ if(isset($_SESSION['lang'])){
                     </div>
                 </div>
 
-
-     <!--          <p class="mb-2 font-weight-bold">Idioma(s) que más dominas</p>              
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <div class="row">
-                    <div class="col-md-3">
-                       <div class="custom-control custom-checkbox form-check">
-                          <input type="checkbox" class="custom-control-input spanish" id="spanish" name="lenguage[]" value="spanish">
-                            <label class="custom-control-label" for="spanish">Español</label>
-                          </div>
-                    </div>
-                    <div class="col-md-3">
-                       <div class="custom-control custom-checkbox form-check">
-                          <input type="checkbox" class="custom-control-input mayan" id="mayan" name="lenguage[]" value="mayan">
-                            <label class="custom-control-label" for="mayan">Maya</label>
-                          </div>
-                    </div>
-                    <div class="col-md-3">
-                       <div class="custom-control custom-checkbox form-check">
-                          <input type="checkbox" class="custom-control-input english" id="english" name="lenguage[]" value="english">
-                            <label class="custom-control-label" for="english">Inglés</label>
-                          </div>
-                    </div>
-                    <div class="col-md-3">
-                       <input type="text" id="otherlanguage" name="lenguage[]" class="form-control" placeholder="Otro idioma...">
-                    </div>
-                  </div>                                    
-                </div>
-              </div>        
-
-
- -->
              <p class="mb-2 font-weight-bold">Idioma(s)</p>
                 <div class="form-group">
                   <div class="select-wrap">                      
@@ -291,13 +260,13 @@ if(isset($_SESSION['lang'])){
 
               <p class="mb-2 font-weight-bold">Describe tu personalidad</p>
               <div class="form-group">
-                 <textarea class="form-control"  rows="3" id="personality" name="personality" placeholder="Optimista, siempre positivo y siempre cumplo lo que me propongo..." required></textarea>
+                 <textarea style="resize:none" class="form-control"  rows="3" id="personality" name="personality" placeholder="Optimista, siempre positivo y siempre cumplo lo que me propongo..." required re ></textarea>
 
               </div>
 
               <p class="mb-2 font-weight-bold">Habilidades</p>
               <div class="form-group">
-                 <textarea class="form-control"  rows="3" id="ability" name="ability" placeholder="Pesuasivo, facilidad de palabra..." required></textarea>
+                 <textarea style="resize:none" class="form-control"  rows="3" id="ability" name="ability" placeholder="Pesuasivo, facilidad de palabra..." required></textarea>
               </div>
 
     <!--          <p class="mb-2 font-weight-bold">Agrega una foto de perfil</p>
@@ -353,6 +322,129 @@ if(isset($_SESSION['lang'])){
 =            SCRIPTS            =
 ==============================-->
 <?php include 'view/links/footer_common.php'; ?>
+
+<!-- Show typed text -->
+<script>
+var typed = new Typed('.typed-words', {
+      strings: ["de Guids.mx","de nuestro equipo","de los mejores guías privados"],
+      typeSpeed: 80,
+      backSpeed: 80,
+      backDelay: 4000,
+      startDelay: 1000,
+      loop: true,
+      showCursor: true
+});        
+</script>
+<!-- end Show typed text -->
+
+
+<!-- states values -->
+<script>        
+    var options = {
+        Quintanaroo : [
+        "Cozumel", 
+        "Bacalar", 
+        "Felipe Carrillo Puerto",
+        "Isla Mujeres", 
+        "Othón P. Blanco",
+        "Benito Juárez",
+        "José María Morelos",
+        "Lázaro Cárdenas",
+        "Solidaridad",
+        "Tulum",
+        "Bacalar",
+        "Puerto Morelos"
+        ]
+        // yucatan : ["cidudad 1","ciudad 2","ciudad n"]
+    }
+
+    $(function(){
+      var fillSecondary = function(){
+        var selected = $('#state').val();
+        $('#town').empty();
+        options[selected].forEach(function(element,index){
+          $('#town').append('<option value="'+element+'">'+element+'</option>');
+        });
+      }
+      $('#state').change(fillSecondary);
+      fillSecondary();
+    });
+  
+</script>
+<!-- end states values -->
+
+<!-- Validations -->
+<script>
+  $().ready(function() {
+  $("#signup").validate({
+    rules: {
+      name: { 
+        required: true, 
+        minlength: 2
+      },
+      lastname: { 
+        required: true, 
+        minlength: 2
+      },
+      email: { 
+        required:true, 
+        email: true
+      },
+      phone: { 
+        required:true, 
+        minlength: 10, 
+        maxlength:10,
+        digits: true,   
+
+      },
+      password: { 
+        required:true, 
+        minlength: 2,           
+      },
+      day:{
+        required:true
+      },
+      month:{
+        required:true
+      },
+      year:{
+        required:true
+      },
+      grade:{
+        required:true
+      },
+      "language[]":{
+        required:true
+      },
+      ability:{
+        required:true
+      },
+      personality:{
+        required:true
+      },
+
+
+
+    },
+    messages: {
+      name: "El nombre es requerido.",
+      lastname: "Los apellidos son requeridos.",
+      email : "Email es requerido y debe tener formato de email correcto.",    
+      phone : "El teléfono es requerido y solo números son aceptados.",   
+      password : "El password es requerido.",
+      day : "El día es requerido.",
+      month : "El mes es requerido.",
+      year : "El año es requerido.",
+      grade : "El grado de estudios es requerido.",
+      "language[]" : "El idioma es requerido.",
+      ability : "Las habilidades son requeridas.",
+      personality : "La personalidad es requerida.",
+    }
+  });
+});
+</script>
+<!-- End Validations -->
+
 
 <!--====  End of SCRIPTS  ====-->
 

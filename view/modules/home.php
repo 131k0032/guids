@@ -31,7 +31,7 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
   <!--============================
   =            SEARCH            =
   =============================-->
-  <div class="site-blocks-cover overlay" style="background-image: url(view/assets/images/Cancun.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(http://localhost/guids/view/assets/images/Cancun.jpg);" data-aos="fade" data-stellar-background-ratio="1">
     <div class="container">
       <div class="row align-items-center justify-content-center text-center">
         <div class="col-md-10">
@@ -105,7 +105,8 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
       <?php }
         if ($getAll==null) {
           echo "No se encontraron tours activos";
-        } ?> </div>
+        } ?> 
+    </div>
       <div class="row justify-content-center mb-5">
         <a href="javascript:addBestTours();" id="btnAddBestTour"><?php echo $lang["Ver mas"]; ?></a>
         <a href="index.php?page=search&p=1&key=all&n=54" id="btnAllTours" style="display:none;"><?php echo $lang["Ver todos"] ?></a>
@@ -238,11 +239,24 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
 =            SCRIPTS            =
 ==============================-->
 <?php include 'view/links/footer_common.php'; ?>
-  <!--====  End of SCRIPTS  ====-->
-  <!--============================
-=   Javascript functions       =
-=============================-->
-  <script type="text/javascript">
+
+Search validation
+<!-- Show typed text -->
+<script>
+var typed = new Typed('.typed-words', {
+      strings: ["Guías privados","Tours","Experiencias", "Momentos"],
+      typeSpeed: 80,
+      backSpeed: 80,
+      backDelay: 4000,
+      startDelay: 1000,
+      loop: true,
+      showCursor: true
+});        
+</script>
+<!-- end Show typed text -->
+
+<!-- Show limited tours -->
+<script type="text/javascript">
     var min = 9;
 
     function addBestTours() {
@@ -259,6 +273,11 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
       }
     }
   </script>
+<!-- end Show limited tours -->
+
+<!--====  End of SCRIPTS  ====-->
+
+  
 </body>
 
 </html>
