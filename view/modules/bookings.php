@@ -57,7 +57,7 @@ if(isset($_SESSION['lang'])){
     $fin = new DateTime($date->format("c"));
     $fin->add(new DateInterval('PT4H3M2S'));
     $fin->add(new DateInterval("PT".substr($value["tour_duration"],0,1)."H".substr($value["tour_duration"],2,2)."M"));
-    echo "title: ".$name.", start: ".$date->format("c").", end: ".$fin->format("c")."<br>";
+    //echo "title: ".$name.", start: ".$date->format("c").", end: ".$fin->format("c")."<br>";
     $jsonData[] = array("title" => $name, "start" => $date->format("c"), "end" => $fin->format("c"));
   }
 //echo json_encode($jsonData);
