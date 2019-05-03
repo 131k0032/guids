@@ -63,8 +63,8 @@ if(isset($_SESSION['lang'])){
             
             <div class="row justify-content-center">
               <div class="col-md-8 text-center">
-                <h1 data-aos="fade-up">Conoce más a detalle al guía</h1>
-                <p class="mb-0" data-aos="fade-up" data-aos-delay="100">Adelante, prueba reservar un tour con el guía</p>
+                <h1 data-aos="fade-up"><?php echo $lang["Conoce más a detalle al guía"]; ?></h1>
+                <p class="mb-0" data-aos="fade-up" data-aos-delay="100"><?php echo $lang["Adelante, prueba reservar un tour con el guía"]; ?></p>
               </div>
             </div>
 

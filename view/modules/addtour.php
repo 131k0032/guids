@@ -224,7 +224,7 @@ if(isset($_SESSION['lang'])){
                                   <p class="mb-2 font-weight-bold">Agrega una imagen del tour</p>
                                   <div class="h-entry"><div class="meta">Es importante que adjuntes una imagen real y relacionada al tour, si son tomadas por ti mucho mejor</div></div>
                                   <div class="form-group">
-                                     <input type="file" class="form-control" name="src" id="src" accept="image/*" required>
+                                     <input type="file" class="form-control" name="src" id="src" data-validation-allowing="jpg, png" accept="image/*" required>
                                   </div>
 
 
@@ -1301,6 +1301,10 @@ if(isset($_SESSION['lang'])){
           duration:{
             required:true,
           },
+          capacity:{
+            required:true,
+          },
+
 
 
         },
@@ -1313,6 +1317,7 @@ if(isset($_SESSION['lang'])){
           start_in : "Punto de encuentro del tour es requerido.",    
           src : "Imagen del tour es requerido.",    
           duration : "Duración del tour es requerido.",    
+          capacity : "Capacidad de personas es requerido.",
         }
       });
     });

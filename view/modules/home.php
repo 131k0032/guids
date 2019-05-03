@@ -41,16 +41,25 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
             </div>
           </div>
           <div class="form-search-wrap p-2" data-aos="fade-up" data-aos-delay="200">
-            <form method="get" action="index.php">
+            <form method="get" action="index.php" id="search">
+               <style>
+                form label.error {
+                  /*float: left;*/
+                  color: #7971ea;
+                  font-weight:bold;
+                  font-size: 12px 
+                  /*vertical-align: top;*/
+                }
+              </style>
               <div class="row align-items-center">
                 <div class="col-lg-12 col-xl-10 no-sm-border text-center">
                   <input type="hidden" name="page" value="search">
                   <input type="hidden" name="n" value="9">
                   <input type="hidden" name="p" value="1">
-                  <input type="text" class="form-control" name="key" placeholder="Pruebe con Cancún">
+                  <input type="text" class="form-control" name="key" placeholder="<?php echo $lang["Prueba escribiendo Cancún"]; ?>" required>
                 </div>
                 <div class="col-lg-12 col-xl-2 ml-auto text-right">
-                  <input type="submit" class="btn btn-primary" value="Buscar">
+                  <input type="submit" class="btn btn-primary" value="<?php echo $lang["Buscar"]; ?>">
                 </div>
               </div>
             </form>
@@ -78,7 +87,7 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
       <div class="row justify-content-center mb-5">
         <div class="col-md-7 text-center border-primary">
           <h2 class="font-weight-light text-primary"><?php echo $lang["Tours"]; ?></h2>
-          <p class="color-black-opacity-5"><?php echo $lang["Mas solicitados"]; ?></p>
+          <p class="color-black-opacity-5"><?php echo $lang["Los más solicitados"]; ?></p>
         </div>
       </div>
       <div class="row mb-5"> <?php foreach ($getAll as $row => $value) { ?>
@@ -96,7 +105,7 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
                 <span class="icon-star <?php echo $value["tour_rating"]>=3 ? 'text-warning' : 'text-secondary' ?>"></span>
                 <span class="icon-star <?php echo $value["tour_rating"]>=4 ? 'text-warning' : 'text-secondary' ?>"></span>
                 <span class="icon-star <?php echo $value["tour_rating"]>=5 ? 'text-warning' : 'text-secondary' ?>"></span>
-                <span>(<?php echo $value["tour_count"]-1; ?> Valoraciones)</span>
+                <span>(<?php echo $value["tour_count"]-1; ?> <?php echo $lang["Valoraciones"]; ?>)</span>
               </p>
               <a class="px-3 mb-3 category" href="http://localhost/guids/guideinfo/tour/<?php echo $value["tour_id"]; ?>"><?php echo $lang["Ver mas"] ?>...</a>
             </div>
@@ -117,7 +126,7 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
   <!--=================================
   =            BEST VIDEOS            =
   ==================================-->
-  <div class="site-section" data-aos="fade">
+<!--   <div class="site-section" data-aos="fade">
     <div class="container">
       <div class="row justify-content-center mb-5">
         <div class="col-md-7 text-center border-primary">
@@ -209,7 +218,7 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
       </div>
     </div>
   </div>
-  <!--====  End of BEST VIDEOS ====-->
+ -->  <!--====  End of BEST VIDEOS ====-->
   <!--=================================
 =            ADVERSITING            =
 ==================================-->
@@ -217,8 +226,8 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
     <div class="container">
       <div class="row text-center">
         <div class="col-md-12">
-          <h2 class="mb-2 text-white">¿Quieres aprovechar el mayor tiempo posible conociendo lo mágico de la Riviera Maya?</h2>
-          <p class="mb-4 lead text-white-opacity-05">Bajo costo + Seguridad + Guía privado</p>
+          <h2 class="mb-2 text-white"><?php echo $lang["¿Quieres conocer los todos los lugares magicos de la Riviera Maya?"]; ?></h2>
+          <p class="mb-4 lead text-white-opacity-05"><?php echo $lang["Bajo costo + Seguridad + Guía privado"]; ?></p>
           <!-- <p class="mb-0"><a href="booking.html" class="btn btn-outline-white text-white btn-md font-weight-bold">Sign Up</a></p> -->
         </div>
       </div>
@@ -240,11 +249,11 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
 ==============================-->
 <?php include 'view/links/footer_common.php'; ?>
 
-Search validation
+
 <!-- Show typed text -->
 <script>
 var typed = new Typed('.typed-words', {
-      strings: ["Guías privados","Tours","Experiencias", "Momentos"],
+      strings: ["<?php echo $lang["Guías privados"] ?>","<?php echo $lang["Tours"] ?>","<?php echo $lang["Experiencias"] ?>", "<?php echo $lang["Momentos"] ?>"],
       typeSpeed: 80,
       backSpeed: 80,
       backDelay: 4000,
@@ -274,6 +283,25 @@ var typed = new Typed('.typed-words', {
     }
   </script>
 <!-- end Show limited tours -->
+
+<!-- Validations -->
+<script>
+  $().ready(function() {
+  $("#search").validate({
+    rules: {
+    
+      key: { 
+        required:true, 
+        minlength: 2,
+      },      
+    },
+    messages: {
+      key : "<?php echo $lang["Intenta escribir algo"] ?>",          
+    }
+  });
+});
+</script>
+<!-- End Validations -->
 
 <!--====  End of SCRIPTS  ====-->
 

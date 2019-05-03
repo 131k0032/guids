@@ -4,24 +4,24 @@
       <div class="col-md-12">
         <div class="row">
           <div class="col-md-6">
-            <h2 class="footer-heading mb-4">Acerca de nosotros</h2>
+            <h2 class="footer-heading mb-4"><?php echo $lang["Acerca de nosotros"]; ?></h2>
             <ul class="list-unstyled">              
-              <li><a href="http://localhost/guids/aboutus">Nuestro equipo</a></li>
+              <li><a href="http://localhost/guids/aboutus"><?php echo $lang["Nuestro equipo"]; ?></a></li>
             </ul>
           </div>
           <div class="col-md-3">
-            <h2 class="footer-heading mb-4">Acerca del sitio</h2>
+            <h2 class="footer-heading mb-4"><?php echo $lang["Acerca del sitio"]; ?></h2>
 
             <ul class="list-unstyled">
               
-              <li><a href="http://localhost/guids/terms-and-conditions">Términos y condiciones</a></li>
-              <li><a href="http://localhost/guids/privacy-policy">Política de privacidad</a></li>
-              <li><a href="#">Contacto : ceo@guids.mx</a></li>
+              <li><a href="http://localhost/guids/terms-and-conditions"><?php echo $lang["Términos y condiciones"]; ?></a></li>
+              <li><a href="http://localhost/guids/privacy-policy"><?php echo $lang["Política de privacidad"]; ?></a></li>
+              <li><a href="#"><?php echo $lang["Contacto : ceo@guids.mx"]; ?></a></li>
               <!-- <li><a href="#">+ 52 9000000000 </a></li> -->
             </ul>
           </div>
           <div class="col-md-3">
-            <h2 class="footer-heading mb-4">Síguenos</h2>
+            <h2 class="footer-heading mb-4"><?php echo $lang["Síguenos"]; ?></h2>
             <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
             <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
             <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
