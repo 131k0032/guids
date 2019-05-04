@@ -4,13 +4,16 @@ session_start();
 # ===========================================
 # =           Language validation           =
 # ===========================================
-if(isset($_POST["lang"]) && !empty($_POST["lang"])){//Watching changes on POST
-  $_SESSION["lang"] = $_POST["lang"];
-}elseif (!isset($_SESSION["lang"])) {
-  $_SESSION["lang"] = "es";
-}
-require_once "view/languages/".$_SESSION["lang"].".php";//include lang
+//if(isset($_POST["lang"]) && !empty($_POST["lang"])){//Watching changes on POST
+//  $_SESSION["lang"] = $_POST["lang"];
+//}elseif (!isset($_SESSION["lang"])) {
+//  $_SESSION["lang"] = "es";
+//}
+//require_once "view/languages/".$_SESSION["lang"].".php";//include lang
 # ======  End of Language validation  =======
+
+$lang = new LanguageController();
+require_once "view/languages/".$lang->validate().".php";//include lang
 
 ?>
 <!DOCTYPE html>
@@ -23,6 +26,10 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
 <!--====  End of Head common  ====-->
 
 <body>
+  <?php
+
+  var_dump($_SESSION);
+   ?>
   <!--============================
   =            HEADER            =
   =============================-->
@@ -47,7 +54,7 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
                   /*float: left;*/
                   color: #7971ea;
                   font-weight:bold;
-                  font-size: 12px 
+                  font-size: 12px
                   /*vertical-align: top;*/
                 }
               </style>
@@ -114,7 +121,7 @@ require_once "view/languages/".$_SESSION["lang"].".php";//include lang
       <?php }
         if ($getAll==null) {
           echo "No se encontraron tours activos";
-        } ?> 
+        } ?>
     </div>
       <div class="row justify-content-center mb-5">
         <a href="javascript:addBestTours();" id="btnAddBestTour"><?php echo $lang["Ver mas"]; ?></a>
@@ -260,7 +267,7 @@ var typed = new Typed('.typed-words', {
       startDelay: 1000,
       loop: true,
       showCursor: true
-});        
+});
 </script>
 <!-- end Show typed text -->
 
@@ -289,14 +296,14 @@ var typed = new Typed('.typed-words', {
   $().ready(function() {
   $("#search").validate({
     rules: {
-    
-      key: { 
-        required:true, 
+
+      key: {
+        required:true,
         minlength: 2,
-      },      
+      },
     },
     messages: {
-      key : "<?php echo $lang["Intenta escribir algo"] ?>",          
+      key : "<?php echo $lang["Intenta escribir algo"] ?>",
     }
   });
 });
@@ -305,7 +312,7 @@ var typed = new Typed('.typed-words', {
 
 <!--====  End of SCRIPTS  ====-->
 
-  
+
 </body>
 
 </html>
