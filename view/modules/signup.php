@@ -5,21 +5,8 @@ session_start();
 # =           Language validation           =
 # ===========================================
 
-   //Watching changes on post variable
-if(isset($_POST["lang"])){
-  $lang = $_POST["lang"];
-  if(!empty($lang)){
-    $_SESSION["lang"] = $lang;
-  }
-}
-// If is created
-if(isset($_SESSION['lang'])){  
-  $lang = $_SESSION["lang"];
-  include "view/languages/".$lang.".php";
-// Else take spanish default
-}else{
-  include "view/languages/es.php";
-}
+$lang = new LanguageController();
+require_once "view/languages/".$lang->validate().".php";//include lang
 
 
 # ======  End of Language validation  =======
@@ -31,7 +18,7 @@ if(isset($_SESSION['lang'])){
   <!--=================================
   =            Head common            =
   ==================================-->
-  <title>Sign up</title>
+  <title><?php echo $lang["Registro"]; ?></title>
   <?php include 'view/links/head_common.php'; ?>
   
   <!--====  End of Head common  ====-->
@@ -61,7 +48,7 @@ if(isset($_SESSION['lang'])){
             
             <div class="row justify-content-center">
               <div class="col-md-8 text-center">
-                <h1 data-aos="fade-up">Forma parte <span class="typed-words"></span></h1>
+                <h1 data-aos="fade-up"><?php echo $lang["Forma parte"]; ?> <span class="typed-words"></span></h1>
               <!--   <p class="mb-0" data-aos="fade-up" data-aos-delay="100">¿Ya tienes una cuenta? Adelante prueba <a href="login.php" style="color: white">iniciar sesión</a></p> -->
               </div>
             </div>
@@ -84,8 +71,8 @@ if(isset($_SESSION['lang'])){
       <div class="container">
         <div class="row justify-content-center mb-5">
           <div class="col-md-8 text-center border-primary">
-            <h2 class="font-weight-light text-primary">Registro de información</h2>
-            <p class="color-black-opacity-5">Completa todos los campos</p>
+            <h2 class="font-weight-light text-primary"><?php echo $lang["Registro de información"]; ?></h2>
+            <p class="color-black-opacity-5"><?php echo $lang["Completa todos los campos"]; ?></p>
           </div>
         </div>
 
@@ -95,7 +82,7 @@ if(isset($_SESSION['lang'])){
               
 
             <form method="post" class="p-5 bg-white" id="signup">             
-              <p>La información de perfil nos permitirá conocer mas acerca de ti.</p>
+              <p><?php echo $lang["La información de perfil nos permitirá conocer mas acerca de ti."]; ?></p>
               <style>
                 form label.error {
                   float: right;
@@ -107,38 +94,38 @@ if(isset($_SESSION['lang'])){
               </style>
               <div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">                  
-                  <p class="mb-2 font-weight-bold">Nombre</p>
-                  <input type="text" id="name" name="name" class="form-control" placeholder="Escribe tu nombre" required>
+                  <p class="mb-2 font-weight-bold"><?php echo $lang["Nombre"]; ?></p>
+                  <input type="text" id="name" name="name" class="form-control" placeholder="<?php echo $lang["Escribe tu nombre"] ?>" required>
                 </div>
                 <div class="col-md-6">
-                  <p class="mb-2 font-weight-bold">Apellidos</p>
-                  <input type="text" id="lastname" name="lastname" class="form-control" placeholder="Escribe tus apellidos" required>
+                  <p class="mb-2 font-weight-bold"><?php echo $lang["Apellidos"]; ?></p>
+                  <input type="text" id="lastname" name="lastname" class="form-control" placeholder="<?php echo $lang["Escribe tus apellidos"] ?>" required>
                 </div>
               </div>
 
               <div class="row form-group">                
                 <div class="col-md-12">
-                  <p class="mb-2 font-weight-bold">Teléfono</p>
-                  <input type="text" id="phone" name="phone" class="form-control" maxlength="10" number="true" pattern="[0-9]" placeholder="Escribe tu número de 10 dígitos" required>
+                  <p class="mb-2 font-weight-bold"><?php echo $lang["Teléfono"]; ?></p>
+                  <input type="text" id="phone" name="phone" class="form-control" maxlength="10" number="true" pattern="[0-9]" placeholder="<?php echo $lang["Escribe tu número de 10 dígitos"] ?>" required>
                 </div>
               </div>
 
               <div class="row form-group">                
                 <div class="col-md-12">
-                  <p class="mb-2 font-weight-bold">Email</p>
-                  <input type="email" id="email" name="email" class="form-control" placeholder="Escribe tu correo" required>
+                  <p class="mb-2 font-weight-bold"><?php echo $lang["Email"]; ?></p>
+                  <input type="email" id="email" name="email" class="form-control" placeholder="<?php echo $lang["Escribe tu correo"] ?>" required>
                 </div>
               </div>
 
               <div class="row form-group">
                 
                 <div class="col-md-12">
-                  <p class="mb-2 font-weight-bold">Password</p>
-                  <input type="password" id="password" name="password" class="form-control" placeholder="Escribe un password" required>
+                  <p class="mb-2 font-weight-bold"><?php echo $lang["Contraseña"]; ?></p>
+                  <input type="password" id="password" name="password" class="form-control" placeholder="<?php echo $lang["Escribe una contraseña"] ?>" required>
                 </div>
               </div>
 
-              <p class="mb-2 font-weight-bold">Estado</p>
+              <p class="mb-2 font-weight-bold"><?php echo $lang["Estado"]; ?></p>
                 <div class="form-group">
                   <div class="select-wrap">
                       <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
@@ -149,7 +136,7 @@ if(isset($_SESSION['lang'])){
                     </div>
                 </div>
 
-                <p class="mb-2 font-weight-bold">Municipio</p>
+                <p class="mb-2 font-weight-bold"><?php echo $lang["Municipio"]; ?></p>
                 <div class="form-group">
                   <div class="select-wrap">
                       <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
@@ -160,7 +147,7 @@ if(isset($_SESSION['lang'])){
                     </div>
                 </div>
 
-              <p class="mb-2 font-weight-bold">Fecha de nacimiento</p>              
+              <p class="mb-2 font-weight-bold"><?php echo $lang["Fecha de nacimiento"]; ?></p>              
               <div class="row form-group">
                 <div class="col-md-12">
                   <div class="row">
@@ -169,7 +156,7 @@ if(isset($_SESSION['lang'])){
                           <div class="select-wrap">
                               <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>                              
                               <select class="form-control" name="day" id="day" required>
-                                <option value="">Día</option>
+                                <option value=""><?php echo $lang["Día"]; ?></option>
                                 <?php 
                                   $dia=31;
                                   for($i=1; $i<=$dia; $i++){
@@ -185,19 +172,19 @@ if(isset($_SESSION['lang'])){
                           <div class="select-wrap">
                               <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>                              
                               <select class="form-control" name="month" id="month" required>
-                                <option value="">Mes</option>
-                                <option value="01">Enero</option>
-                                <option value="02">Febrero</option>
-                                <option value="03">Marzo</option>
-                                <option value="04">Abril</option>
-                                <option value="05">Mayo</option>
-                                <option value="06">Junio</option>
-                                <option value="07">Julio</option>
-                                <option value="08">Agosto</option>
-                                <option value="09">Septiembre</option>
-                                <option value="10">Octubre</option>
-                                <option value="11">Noviembre</option>                                
-                                <option value="12">Diciembre</option>                                
+                                <option value=""><?php echo $lang["Mes"]; ?></option>
+                                <option value="01"><?php echo $lang["Enero"]; ?></option>
+                                <option value="02"><?php echo $lang["Febrero"]; ?></option>
+                                <option value="03"><?php echo $lang["Marzo"]; ?></option>
+                                <option value="04"><?php echo $lang["Abril"]; ?></option>
+                                <option value="05"><?php echo $lang["Mayo"]; ?></option>
+                                <option value="06"><?php echo $lang["Junio"]; ?></option>
+                                <option value="07"><?php echo $lang["Julio"]; ?></option>
+                                <option value="08"><?php echo $lang["Agosto"]; ?></option>
+                                <option value="09"><?php echo $lang["Septiembre"]; ?></option>
+                                <option value="10"><?php echo $lang["Octubre"]; ?></option>
+                                <option value="11"><?php echo $lang["Noviembre"]; ?></option>                                
+                                <option value="12"><?php echo $lang["Diciembre"]; ?></option>                                
                                 <!--  -->                                                            
                               </select>
                             </div>
@@ -208,7 +195,7 @@ if(isset($_SESSION['lang'])){
                           <div class="select-wrap">
                               <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>                              
                               <select class="form-control" name="year" id="year" required>
-                                <option value="">Año</option>
+                                <option value=""><?php echo $lang["Año"]; ?></option>
                                 <?php                                   
                                   $aniofin=date("Y");
                                   
@@ -225,26 +212,26 @@ if(isset($_SESSION['lang'])){
                 </div>
               </div>   
 
-              <p class="mb-2 font-weight-bold">Nivel de estudios</p>
+              <p class="mb-2 font-weight-bold"><?php echo $lang["Nivel de estudios"]; ?></p>
                 <div class="form-group">
                   <div class="select-wrap">
                       <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                       <select class="form-control" name="grade" id="grade" required>
 
-                        <option value="">Nivel de estudios</option>                                
-                        <option value="Basico">Básico</option>                                
-                        <option value="Mediosuperior">Medio superior</option>                                
-                        <option value="Superior">Superior</option> 
-                        <option value="Diplomadosycursos">Diplomados y cursos</option>                                                            
+                        <option value=""><?php echo $lang["Nivel de estudios"]; ?></option>                                
+                        <option value="Basico"><?php echo $lang["Básico"]; ?></option>                                
+                        <option value="Mediosuperior"><?php echo $lang["Medio superior"]; ?></option>                                
+                        <option value="Superior"><?php echo $lang["Superior"]; ?></option> 
+                        <option value="Diplomadosycursos"><?php echo $lang["Diplomados y cursos"]; ?></option>                                                            
                       </select>
                     </div>
                 </div>
 
-             <p class="mb-2 font-weight-bold">Idioma(s)</p>
+             <p class="mb-2 font-weight-bold"><?php echo $lang["Idiomas(s)"]; ?></p>
                 <div class="form-group">
                   <div class="select-wrap">                      
                       <select class="form-control" multiple name="language[]"  id="language" required>
-                        <option value="">Selecciona tus idiomas</option>                                
+                        <option value=""><?php echo $lang["Selecciona un idioma"]; ?></option>                                
                          <?php
                             $language =  new LanguageController();
                             foreach ( $language -> getAllLanguageController() as $row => $value) {
@@ -258,15 +245,15 @@ if(isset($_SESSION['lang'])){
                     </div>
                 </div>
 
-              <p class="mb-2 font-weight-bold">Describe tu personalidad</p>
+              <p class="mb-2 font-weight-bold"><?php echo $lang["Describe tu personalidad"]; ?></p>
               <div class="form-group">
-                 <textarea style="resize:none" class="form-control"  rows="3" id="personality" name="personality" placeholder="Optimista, siempre positivo y siempre cumplo lo que me propongo..." required re ></textarea>
+                 <textarea style="resize:none" class="form-control"  rows="3" id="personality" name="personality" placeholder="<?php echo $lang["Optimista, siempre positivo y siempre cumplo lo que me propongo..."] ?>" required></textarea>
 
               </div>
 
-              <p class="mb-2 font-weight-bold">Habilidades</p>
+              <p class="mb-2 font-weight-bold"><?php echo $lang["Describe tus habilidades"]; ?></p>
               <div class="form-group">
-                 <textarea style="resize:none" class="form-control"  rows="3" id="ability" name="ability" placeholder="Pesuasivo, facilidad de palabra..." required></textarea>
+                 <textarea style="resize:none" class="form-control"  rows="3" id="ability" name="ability" placeholder="<?php echo $lang["Pesuasivo, facilidad de palabra..."] ?>" required></textarea>
               </div>
 
     <!--          <p class="mb-2 font-weight-bold">Agrega una foto de perfil</p>
@@ -278,7 +265,7 @@ if(isset($_SESSION['lang'])){
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <input type="submit" value="Registarse" class="btn btn-primary py-2 px-4 text-white">
+                  <input type="submit" value="<?php echo $lang["Registrarse"]; ?>" class="btn btn-primary py-2 px-4 text-white">
                 </div>
               </div>
 
@@ -325,8 +312,8 @@ if(isset($_SESSION['lang'])){
 
 <!-- Show typed text -->
 <script>
-var typed = new Typed('.typed-words', {
-      strings: ["de Guids.mx","de nuestro equipo","de los mejores guías privados"],
+var typed = new Typed('.typed-words', {      
+      strings: ["<?php echo $lang["de Guids.Mx"] ?>","<?php echo $lang["de nuestro equipo"] ?>","<?php echo $lang["de los mejores guías privados"] ?>"],
       typeSpeed: 80,
       backSpeed: 80,
       backDelay: 4000,
@@ -427,18 +414,18 @@ var typed = new Typed('.typed-words', {
 
     },
     messages: {
-      name: "El nombre es requerido.",
-      lastname: "Los apellidos son requeridos.",
-      email : "Email es requerido y debe tener formato de email correcto.",    
-      phone : "El teléfono es requerido y solo números son aceptados.",   
-      password : "El password es requerido.",
-      day : "El día es requerido.",
-      month : "El mes es requerido.",
-      year : "El año es requerido.",
-      grade : "El grado de estudios es requerido.",
-      "language[]" : "El idioma es requerido.",
-      ability : "Las habilidades son requeridas.",
-      personality : "La personalidad es requerida.",
+      name: "<?php echo $lang["El nombre es requerido."]; ?>",
+      lastname: "<?php echo $lang["Los apellidos son requeridos."]; ?>",
+      email : "<?php echo $lang["Email es requerido y debe tener formato de email correcto."]; ?>",    
+      phone : "<?php echo $lang["El teléfono es requerido y solo números son aceptados."]; ?>",   
+      password : "<?php echo $lang["El password es requerido."]; ?>",
+      day : "<?php echo $lang["El día es requerido."]; ?>",
+      month : "<?php echo $lang["El mes es requerido."]; ?>",
+      year : "<?php echo $lang["El año es requerido."]; ?>",
+      grade : "<?php echo $lang["El grado de estudios es requerido."]; ?>",
+      "language[]" : "<?php echo $lang["El idioma es requerido."]; ?>",
+      ability : "<?php echo $lang["Las habilidades son requeridas."]; ?>",
+      personality : "<?php echo $lang["La personalidad es requerida."]; ?>",
     }
   });
 });

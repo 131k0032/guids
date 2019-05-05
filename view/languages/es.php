@@ -82,10 +82,81 @@ Brindamos oportunidades al guía local de poder impulsar su economía y opción 
 "Síguenos"=>"Síguenos",
 # ======  End of HOME TEMPLATE  =======
 
+/*=======================================
+=            SIGNUP TEMPLATE            =
+=======================================*/
+"Registro"=>"Registro",
+//Banner
+"Forma parte"=>"Forma parte",
+"de Guids.Mx"=>"de Guids.Mx",
+"de nuestro equipo"=>"de nuestro equipo",
+"de los mejores guías privados"=>"de los mejores guás privados",	
+// Form section
+"Registro de información"=>"Registro de información",
+"Completa todos los campos"=>"Completa los campos",
+"La información de perfil nos permitirá conocer mas acerca de ti."=>"La información de perfil nos permitirá conocer mas acerca de ti.",
+"Nombre"=>"Nombre",
+"Escribe tu nombre"=>"Escribe tu nombre",
+"Apellidos"=>"Apellidos",
+"Escribe tus apellidos"=>"Escribe tus apellidos",
+"Teléfono"=>"Teléfono",
+"Escribe tu número de 10 dígitos"=>"Escribe tu número de 10 dígitos",
+"Email"=>"Email",
+"Escribe tu correo"=>"Escribe tu correo",
+"Contraseña"=>"Contraseña",
+"Escribe una contraseña"=>"Escribe una contraseña",
+"Estado"=>"Estado",
+"Municipio"=>"Municipio",
+"Fecha de nacimiento"=>"Fecha de nacimiento",
+"Día"=>"Día",
+"Mes"=>"Mes",
+	"Enero"=>"Enero",
+	"Febrero"=>"Febrero",
+	"Marzo"=>"Marzo",
+	"Abril"=>"Abril",
+	"Mayo"=>"Mayo",
+	"Junio"=>"Julio",
+	"Julio"=>"Julio",
+	"Agosto"=>"Agosto",
+	"Septiembre"=>"Septiembre",
+	"Octubre"=>"Octubre",
+	"Noviembre"=>"Noviembre",
+	"Diciembre"=>"Diciembre",
+"Año"=>"Año",
+"Nivel de estudios"=>"Nivel de estudios",
+	"Básico"=>"Básico",
+	"Medio superior"=>"Medio superior",
+	"Superior"=>"Superior",
+	"Diplomados y cursos"=>"Diplomados y cursos",
+"Idiomas(s)"=>"Idiomas",
+"Selecciona un idioma"=>"Selecciona un idioma",
+"Describe tu personalidad"=>"Describe tu personalidad",
+"Optimista, siempre positivo y siempre cumplo lo que me propongo..."=>"Optimista, siempre positivo y siempre cumplo lo que me propongo...",
+"Describe tus habilidades"=>"Describe tus habilidades",
+"Pesuasivo, facilidad de palabra..."=>"Pesuasivo, facilidad de palabra...",
+"Registrarse"=>"Registrarse",
+//Validations
+"El nombre es requerido."=>"El nombre es requerido.",
+"Los apellidos son requeridos."=>"Los apellidos son requeridos.",
+"Email es requerido y debe tener formato de email correcto."=>"Email es requerido y debe tener formato de email correcto.",    
+"El teléfono es requerido y solo números son aceptados."=>"El teléfono es requerido y solo números son aceptados.",   
+"El password es requerido."=>"El password es requerido.",
+"El día es requerido"=>"El día es requerido.",
+"El mes es requerido."=>"El mes es requerido.",
+"El año es requerido"=>"El año es requerido.",
+"El grado de estudios es requerido."=>"El grado de estudios es requerido.",
+"El idioma es requerido."=>"El idioma es requerido.",
+"Las habilidades son requeridas."=>"Las habilidades son requeridas.",
+"La personalidad es requerida."=>"La personalidad es requerida.",
+
+
+
+/*=====  End of SIGNUP TEMPLATE  ======*/
+
 /*===========================================
 =            GUIDE INFO TEMPLATE            =
 ===========================================*/
-
+"Información de guía"=>"Información de guía",
 "Conoce más a detalle al guía"=>"Conoce más a detalle al guía",
 "Adelante, prueba reservar un tour con el guía"=>"Adelante, prueba reservar un tour con el guía"
 

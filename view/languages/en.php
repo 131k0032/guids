@@ -83,10 +83,80 @@ provide opportunities for the local guide to boost their economy and work option
 
 # ======  End of HOME TEMPLATE  =======
 
+/*=======================================
+=            SIGNUP TEMPLATE            =
+=======================================*/
+"Registro"=>"Signup",
+//Banner
+"Forma parte"=>"Be part",
+"de Guids.Mx"=>"of Guids.Mx",
+"de nuestro equipo"=>"of our team",
+"de los mejores guías privados"=>"of the best private guides",	
+// Form section
+"Registro de información"=>"Information registry",
+"Completa todos los campos"=>"Complete the fields",
+"La información de perfil nos permitirá conocer mas acerca de ti."=>"The information will be usefull to know more about you",
+"Nombre"=>"Name",
+"Escribe tu nombre"=>"Write your name",
+"Apellidos"=>"Last name",
+"Escribe tus apellidos"=>"Write your last name",
+"Teléfono"=>"Phone",
+"Escribe tu número de 10 dígitos"=>"Write your phone number",
+"Email"=>"Email",
+"Escribe tu correo"=>"Write your email",
+"Contraseña"=>"Password",
+"Escribe una contraseña"=>"Write a password",
+"Estado"=>"State",
+"Municipio"=>"Town",
+"Fecha de nacimiento"=>"Birthday",
+"Día"=>"Day",
+"Mes"=>"Month",
+	"Enero"=>"January",
+	"Febrero"=>"February",
+	"Marzo"=>"Mach",
+	"Abril"=>"April",
+	"Mayo"=>"May",
+	"Junio"=>"June",
+	"Julio"=>"July",
+	"Agosto"=>"Augost",
+	"Septiembre"=>"September",
+	"Octubre"=>"Octuber",
+	"Noviembre"=>"November",
+	"Diciembre"=>"Dicember",
+"Año"=>"Year",
+"Nivel de estudios"=>"Level study",
+	"Básico"=>"Basic",
+	"Medio superior"=>"Upper middle",
+	"Superior"=>"Higher",
+	"Diplomados y cursos"=>"Diplomas and courses",
+"Idiomas(s)"=>"Languages",
+"Selecciona un idioma"=>"Select a language",
+"Describe tu personalidad"=>"Describe your personality",
+"Optimista, siempre positivo y siempre cumplo lo que me propongo..."=>"Optimist, always positive and always fulfill what I propose ...",
+"Describe tus habilidades"=>"Describe your ability",
+"Pesuasivo, facilidad de palabra..."=>"Persuasive, easy to speak ...",
+"Registrarse"=>"Signup",
+//Validations
+"El nombre es requerido."=>"Field name is required.",
+"Los apellidos son requeridos."=>"Field last name is required.",
+"Email es requerido y debe tener formato de email correcto."=>"Field email is required and must be the correct email format.",    
+"El teléfono es requerido y solo números son aceptados."=>"Field phone is required and only numbers are requested.",   
+"El password es requerido."=>"Field password is required.",
+"El día es requerido."=>"Field day is required",
+"El mes es requerido."=>"Field month is required.",
+"El año es requerido."=>"Field year is required.",
+"El grado de estudios es requerido."=>"Field studies is required.",
+"El idioma es requerido."=>"Field language is required.",
+"Las habilidades son requeridas."=>"Field ability is required",
+"La personalidad es requerida."=>"Field personality is required",
+
+
+/*=====  End of SIGNUP TEMPLATE  ======*/
+
 /*===========================================
 =            GUIDE INFO TEMPLATE            =
 ===========================================*/
-
+"Información de guía"=>"Guide information",
 "Conoce más a detalle al guía"=>"Know more about the guide",
 "Adelante, prueba reservar un tour con el guía"=>"Go a head, booking with this guide"
 

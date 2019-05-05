@@ -9,8 +9,8 @@
  	}
  }
 
-//$a=new conexion();
-//$a->conectar();
+$a=new conexion();
+$a->conectar();
 
 // Base de datos:	guidsmx_guids
 // Host:	localhost
