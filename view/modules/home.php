@@ -26,10 +26,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
 <!--====  End of Head common  ====-->
 
 <body>
-  <?php
 
-  var_dump($_SESSION);
-   ?>
   <!--============================
   =            HEADER            =
   =============================-->
@@ -114,7 +111,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                 <span class="icon-star <?php echo $value["tour_rating"]>=5 ? 'text-warning' : 'text-secondary' ?>"></span>
                 <span>(<?php echo $value["tour_count"]-1; ?> <?php echo $lang["Valoraciones"]; ?>)</span>
               </p>
-              <a class="px-3 mb-3 category" href="http://localhost/guids/guideinfo/tour/<?php echo $value["tour_id"]; ?>"><?php echo $lang["Ver mas"] ?>...</a>
+              <a class="px-3 mb-3 category" href="guideinfo/tour/<?php echo $value["tour_id"]; ?>"><?php echo $lang["Ver mas"] ?>...</a>
             </div>
           </div>
         </div>
@@ -274,7 +271,6 @@ var typed = new Typed('.typed-words', {
 <!-- Show limited tours -->
 <script type="text/javascript">
     var min = 9;
-
     function addBestTours() {
       for (var i = 0; i < 6; i++) {
         var element = document.getElementById('besttour' + min);
