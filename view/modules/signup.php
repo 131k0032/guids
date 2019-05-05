@@ -112,7 +112,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
 
               <div class="row form-group">                
                 <div class="col-md-12">
-                  <p class="mb-2 font-weight-bold"><?php echo $lang["Email"]; ?></p>
+                  <p class="mb-2 font-weight-bold"><?php echo $lang["Correo"]; ?></p>
                   <input type="email" id="email" name="email" class="form-control" placeholder="<?php echo $lang["Escribe tu correo"] ?>" required>
                 </div>
               </div>

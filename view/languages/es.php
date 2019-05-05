@@ -101,7 +101,7 @@ Brindamos oportunidades al guía local de poder impulsar su economía y opción 
 "Escribe tus apellidos"=>"Escribe tus apellidos",
 "Teléfono"=>"Teléfono",
 "Escribe tu número de 10 dígitos"=>"Escribe tu número de 10 dígitos",
-"Email"=>"Email",
+"Correo"=>"Correo",
 "Escribe tu correo"=>"Escribe tu correo",
 "Contraseña"=>"Contraseña",
 "Escribe una contraseña"=>"Escribe una contraseña",
@@ -153,6 +153,31 @@ Brindamos oportunidades al guía local de poder impulsar su economía y opción 
 
 /*=====  End of SIGNUP TEMPLATE  ======*/
 
+/*=======================================
+=            SIGNIN TEMPLATE            =
+=======================================*/
+"Iniciar sesión"=>"Iniciar sesión",
+"Inicia sesión y crea tus tours en lugares que estén a tu alcance"=>"Inicia sesión y crea tus tours en lugares que estén a tu alcance",
+"¿Aún no tienes una cuenta?"=>"¿Aún no tienes una cuenta?",
+"crea"=>"crea",
+"tu cuenta"=>"tu cuenta",
+"LLena los campos"=>"LLena los campos",
+"Podrás iniciar sesión después de que tu información de registro haya sido verifica por los administradores del sitio"=>"Podrás iniciar sesión
+después de que tu información de registro haya sido verifica por los administradores del sitio",
+// "Correo"=>"Correo", has been defined
+"Correo registrado en el sitio"=>"Correo registro en el sitio",
+// "Contraseña"=>"Contraseña", has benn defined
+"Contraseña registrada en el sitio"=>"Contraseña registrada en el sitio",
+"Iniciar sesión"=>"Inciar sesión",
+//validations
+// "Email es requerido y debe tener formato de email correcto."=>"Email es requerido y debe tener formato de email correcto.",has benn defined
+// "El password es requerido."=>"El password es requerido.",has benn defined
+
+/*=====  End of GUIDE INFO TEMPLATE  ======*/
+
+
+/*=====  End of SIGNIN TEMPLATE  ======*/
+
 /*===========================================
 =            GUIDE INFO TEMPLATE            =
 ===========================================*/
@@ -160,7 +185,6 @@ Brindamos oportunidades al guía local de poder impulsar su economía y opción 
 "Conoce más a detalle al guía"=>"Conoce más a detalle al guía",
 "Adelante, prueba reservar un tour con el guía"=>"Adelante, prueba reservar un tour con el guía"
 
-/*=====  End of GUIDE INFO TEMPLATE  ======*/
 
 
 

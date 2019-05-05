@@ -102,7 +102,7 @@ provide opportunities for the local guide to boost their economy and work option
 "Escribe tus apellidos"=>"Write your last name",
 "Teléfono"=>"Phone",
 "Escribe tu número de 10 dígitos"=>"Write your phone number",
-"Email"=>"Email",
+"Correo"=>"Email",
 "Escribe tu correo"=>"Write your email",
 "Contraseña"=>"Password",
 "Escribe una contraseña"=>"Write a password",
@@ -152,6 +152,28 @@ provide opportunities for the local guide to boost their economy and work option
 
 
 /*=====  End of SIGNUP TEMPLATE  ======*/
+
+/*=======================================
+=            SIGNIN TEMPLATE            =
+=======================================*/
+"Iniciar sesión"=>"Signin",
+"Inicia sesión y crea tus tours en lugares que estén a tu alcance"=>"Log in and create your tours in places that are within your reach.",
+"¿Aún no tienes una cuenta?"=>"Don't you have an account yet?",
+"crea"=>"create",
+"tu cuenta"=>"your account",
+"LLena los campos"=>"Complete the fields",
+"Podrás iniciar sesión después de que tu información de registro haya sido verifica por los administradores del sitio"=>"
+You can log in after your registration information has been verified by site administrators",
+// "Correo"=>"Correo", has been defined
+"Correo registrado en el sitio"=>"Registered email on the site",
+// "Contraseña"=>"Contraseña", has benn defined
+"Contraseña registrada en el sitio"=>"Registered password on the site",
+//"Iniciar sesión"=>"Login",
+//validations
+//"Email es requerido y debe tener formato de email correcto."=>"Field email is required and must be the correct email format.", has been defined
+//"El password es requerido."=>"Field password is required.",//has been defined
+/*=====  End of GUIDE INFO TEMPLATE  ======*/
+
 
 /*===========================================
 =            GUIDE INFO TEMPLATE            =
