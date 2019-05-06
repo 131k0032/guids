@@ -27,11 +27,6 @@ require_once "view/languages/".$lang->validate().".php";//include lang
 
 <body>
 
-<<<<<<< HEAD
-  // var_dump($_SESSION);
-   ?>
-=======
->>>>>>> master
   <!--============================
   =            HEADER            =
   =============================-->

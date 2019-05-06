@@ -88,7 +88,7 @@ require "view/classupload/class.upload.php";
                     $src="view/images/tours/";
                     $handle->Process($src);
                     if($handle->processed){
-                      $file_name = $handle->file_dst_name;                      
+                      $file_name = $handle->file_dst_name;
                       // Third insert on tour_image
                       $tourImageInsert = TourModel::addTourImage("tour_image", $src, $file_name, $lastIdTour);
                       if($tourScheduleInsert=="success"){
@@ -100,7 +100,7 @@ require "view/classupload/class.upload.php";
                           $user_id=$id;
                           // Fourth insert
                           $reviewInsert = ReviewModel::add("review", $rating, $comment, $created_at, $tour_id, $user_id);
-                        // var_dump($tourScheduleInsert);                        
+                        // var_dump($tourScheduleInsert);
                         print "<script>alert(\"Tour agregado, tour en revisión para aprobación\");window.location='mytours';</script>";
                       }else{
                         echo "Error al agregar datos";
@@ -170,6 +170,17 @@ require "view/classupload/class.upload.php";
   public function getTourById(){
     $getByTourId = TourModel::getAllById("tour", $id);
     return $getByTourId;
+  }
+
+  // For MyTours template
+  public function getAllToursByUser($user){
+    $getAllToursByUser = TourModel::getAllToursByUser($user);
+    return $getAllToursByUser;
+  }
+
+  public function getTourSchedule($idTour){
+    $getTourSchedule = TourModel::getAllTourSchedule($idTour);
+    return $getTourSchedule;
   }
 
   # Get rating by ID Tour
@@ -256,10 +267,18 @@ public function del(){
       }
 
 }
-
-
 # ======  End of Deeting tour  =======
 
+public function dropAllTour(){
+  if (isset($_POST["id"])) {
+    $respuesta= TourModel::dropAllTour($_POST["id"]);
+    if ($respuesta==true) {
+      print "<script>alert('Tour eliminado')</script>";
+    }else {
+      print "<script>alert('Ocurrio un error.')</script>";
+    }
+  }
+}
 
 
 

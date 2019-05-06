@@ -144,4 +144,10 @@ class BookingController{
 		$getBookinsData = BookingModel::getBookinsData($id);
 		return $getBookinsData;
 	}
+
+
+	public function GetCountBookinByTour($idTour){
+		$count = BookingModel::GetCountBookinByTour($idTour);
+		return $count[0];
+	}
 }

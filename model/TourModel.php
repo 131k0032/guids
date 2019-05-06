@@ -201,7 +201,7 @@ require_once "model/Conexion.php";
 		}
 
 
-# -----------  GETING ALL TOURS   -----------
+		# -----------  GETING ALL TOURS   -----------
       public function getAll(){
 				$stmt = Conexion::conectar()->prepare("SELECT
 					tour.id AS tour_id,
@@ -224,6 +224,92 @@ require_once "model/Conexion.php";
 				$stmt->execute();
 				return $stmt->fetchAll();
 				$stmt->close();
+		}
+
+		# -----------  GETING ALL TOURS BY ID  -----------
+		  public function getAllById($table, $id){
+				$stmt = Conexion::conectar()->prepare("SELECT
+						-- Table tour_schedule
+						tour_schedule.id as tour_schedule_id,
+						tour_schedule.start_at as tour_start_at,
+
+						-- Table day
+						day.id as day_id,
+						day.name as day_name,
+					-- Table tour
+						tour.id as tour_id,
+						tour.name as tour_name,
+						tour.location as tour_location,
+						tour.duration as tour_duration,
+						tour.capacity as tour_capacity,
+						tour.created_at as tour_created_at,
+						-- Table language
+						language.id as language_id,
+						language.name as language_name,
+						-- Table user
+						user.id as user_id,
+						user.name as user_name,
+						-- Table tour_image
+						tour_image.id as tour_image_id,
+						tour_image.src as tour_image_src,
+						tour_image.file_name as tour_image_filename
+
+						from $table
+						INNER JOIN day
+						on tour_schedule.day_id = day.id
+						INNER JOIN tour
+						on tour_schedule.tour_id = tour.id
+						INNER JOIN language
+						on tour_schedule.language_id = language.id
+						INNER JOIN user
+						on user.id =tour.user_id
+						INNER JOIN tour_image
+						on tour_image.tour_id = tour.id
+						where user.id=$id");
+				$stmt->execute();
+				return $stmt->fetchAll();
+				$stmt->close();
+		}
+		#----------- Get All Tours By User on MyTours View -----------
+		public function getAllToursByUser($userId){
+			$stmt = Conexion::conectar()->prepare("SELECT
+				/*Tour table*/
+				tour.id AS tour_id,
+				tour.name AS tour_name,
+				tour.description AS tour_description,
+				tour.find_guide AS tour_find_guide,
+				tour.start_in AS tour_start_in,
+				tour.location AS tour_location,
+				tour.duration AS tour_duration,
+				tour.capacity AS tour_capacity,
+				tour.created_at AS tour_created_at,
+				/*tour_image table*/
+				tour_image.src AS tour_image_src,
+				tour_image.file_name AS tour_image_file_name
+				FROM tour
+					INNER JOIN tour_image
+						ON tour_image.tour_id=tour.id
+				WHERE tour.user_id=$userId");
+			$stmt->execute();
+			return $stmt->fetchAll();
+			$stmt->close();
+		}
+
+		public function getAllTourSchedule($idTour){
+			$stmt = Conexion::conectar()->prepare("SELECT
+			tour_schedule.start_at AS tour_time,
+			day.name as tour_date,
+			language.name as tour_language
+			FROM tour_schedule
+				INNER JOIN day
+			    	ON day.id=tour_schedule.day_id
+				INNER JOIN language
+			    	ON language.id=tour_schedule.language_id
+			WHERE tour_schedule.tour_id=$idTour
+			");
+			$stmt->execute();
+			return $stmt->fetchAll();
+			$stmt->close();
 		}
 
 		public function getSearchEngine($like, $start, $rang, $order){
@@ -385,51 +471,7 @@ require_once "model/Conexion.php";
 # =           UPDATING TOUR           =
 # =====================================
 
-# -----------  GETING ALL TOURS BY ID  -----------
-      public function getAllById($table, $id){
-				$stmt = Conexion::conectar()->prepare("SELECT
-						-- Table tour_schedule
-						tour_schedule.id as tour_schedule_id,
-						tour_schedule.start_at as tour_start_at,
 
-						-- Table day
-						day.id as day_id,
-						day.name as day_name,
-					-- Table tour
-						tour.id as tour_id,
-						tour.name as tour_name,
-						tour.location as tour_location,
-						tour.duration as tour_duration,
-						tour.capacity as tour_capacity,
-						tour.created_at as tour_created_at,
-						-- Table language
-						language.id as language_id,
-						language.name as language_name,
-						-- Table user
-						user.id as user_id,
-						user.name as user_name,
-						-- Table tour_image
-						tour_image.id as tour_image_id,
-						tour_image.src as tour_image_src,
-						tour_image.file_name as tour_image_filename
-
-						from $table
-						INNER JOIN day
-						on tour_schedule.day_id = day.id
-						INNER JOIN tour
-						on tour_schedule.tour_id = tour.id
-						INNER JOIN language
-						on tour_schedule.language_id = language.id
-						INNER JOIN user
-						on user.id =tour.user_id
-						INNER JOIN tour_image
-						on tour_image.tour_id = tour.id
-						where user.id=$id");
-				$stmt->execute();
-				return $stmt->fetchAll();
-				$stmt->close();
-
-		}
 
 
 
@@ -493,5 +535,26 @@ require_once "model/Conexion.php";
 # ======  End of DEETING TOUR BY ID  =======
 
 
+
+
+#===========================================
+# =           	DROP ALL TOUR 	           =
+# ==========================================
+public function dropAllTour($idTour){
+	$stmt = Conexion::conectar()->prepare("
+	DELETE FROM booking WHERE booking.tour_id=$idTour;
+	DELETE FROM review WHERE tour_id=$idTour;
+	DELETE FROM tour_schedule WHERE tour_id=$idTour;
+	DELETE FROM tour_image WHERE tour_id=$idTour;
+	DELETE FROM `tour` WHERE `id`=$idTour;
+	");
+	if ($stmt->execute()) {
+		return true;
+	}else {
+		return false;
+	}
+	$stmt->close();
+
+}
 
 }
