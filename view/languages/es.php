@@ -37,7 +37,7 @@ $lang = array(
 //Tours section
 "Los más solicitados"=>"Los más solicitados",
 "valoraciones"=>"valoraciones",
-"Ver mas"=>"Ver más",
+"Ver más..."=>"Ver más...",
 "Ver todos"=>"Ver todos",
 //Advertising section
 "¿Quieres conocer los todos los lugares magicos de la Riviera Maya?"=>"¿Quieres conocer los todos los lugares magicos de la Riviera Maya?",
@@ -181,13 +181,66 @@ después de que tu información de registro haya sido verifica por los administr
 /*===========================================
 =            GUIDE INFO TEMPLATE            =
 ===========================================*/
+# -----------  Banner -----------
 "Información de guía"=>"Información de guía",
 "Conoce más a detalle al guía"=>"Conoce más a detalle al guía",
-"Adelante, prueba reservar un tour con el guía"=>"Adelante, prueba reservar un tour con el guía"
-
-
-
-
+"Adelante, prueba reservar un tour con el guía"=>"Adelante, prueba reservar un tour con el guía",
+# -----------  Information guide  -----------
+"Registrado:"=>"Registrado:",
+"valoraciones"=>"valoraciones",
+"Ubicación del guía"=>"Ubicación del guía",
+"Idiomas del guía"=>"Idiomas del guía",
+"Teléfono"=>"Teléfono",
+"Correo"=>"Correo",
+"Características del guía"=>"Características del guía",
+"Personalidad"=>"Personalidad",
+"Habilidades"=>"Habilidades",
+"Sobre el tour"=>"Sobre el tour",
+"Descripción"=>"Descripción",
+"Punto de encuentro"=>"Punto de encuentro",
+"¿Dónde localizar e identificar al guía?"=>"¿Dónde localizar e identificar al guía?",
+"Días disponibles del guía para dar el tour"=>"Días disponibles del guía para dar el tour",
+"Lunes"=>"Lunes",
+"Reservar tour"=>"Reservar tour",
+# -----------  Modal window  -----------
+"Completa la información"=>"Completa la información",
+"Elija la fecha"=>"Elija la fecha",
+"Horario de incio del tour"=>"Horario de incio del tour",
+"Elija el horario"=>"Elija el horario",
+"Cantidad de personas que irán al tour"=>"Cantidad de personas que irán al tour",
+"Elija cantidad"=>"Elija cantidad",
+//"Nombre"=>"Nombre", has been defined,
+//"Apellidos"=>"Apellidos", has been defined,
+// "Correo"=>"Correo", has been defined
+//"Teléfono"=>"Teléfono",, has been defined,
+"Ahora no"=>"Ahora no",
+"Reservar"=>"Reservar",
+# -----------  Comment section  -----------
+"¿Que tal te pareció el tour?"=>"¿Que tal te pareció el tour?",
+"Tu opinión será visible para los usuarios en la pagina del tour. Ayudará a que"=>"Tu opinión será visible para los usuarios en la pagina del
+tour. Ayudará a que",
+"mejore su trabajo y para que otras personas decidan si este es de su interés."=>"mejore su trabajo y para que otras personas decidan si este
+es de su interés.",
+"Comentario"=>"Comentario",
+"Un tour asombroso, enigmático..."=>"Un tour asombroso, enigmático...",
+"Enviar"=>"Enviar",
+"No puedes realizar esta acción"=>"No puedes realizar esta acción",
+"Comentarios acerca de este tour"=>"Comentarios acerca de este tour",
+"Anónimo"=>"Anónimo",
+// "Ver más..."=>"Ver más...",
+"No hay más comentarios"=>"No hay más comentarios",
+"Aún no hay comentarios para este tour"=>"Aún no hay comentarios para este tour",
+# -----------  Validations  -----------
+"Fecha es requerida."=>"Fecha es requerida.",
+"Elija un horario de inicio."=>"Elija un horario de inicio.",
+"Elije cuantos irán al tour."=>"Elije cuantos irán al tour.",
+// "El nombre es requerido."=>"El nombre es requerido.", has been defined,
+// "Los apellidos son requeridos."=>"Los apellidos son requeridos.",has been defined,
+//"Email es requerido y debe tener formato de email correcto."=>"Email es requerido y debe tener formato de email correcto.",
+"El teléfono es requerido."=>"El teléfono es requerido.",
+"Es necesario agregar un comentario."=>"Es necesario agregar un comentario."
+/*=====  End of GUIDE INFO TEMPLATE  ======*/
 
 
 );
+

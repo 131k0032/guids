@@ -37,7 +37,7 @@ $lang = array(
 //Tours section
 "Los más solicitados"=>"The most requested",
 "Valoraciones"=>"Reviews",
-"Ver mas"=>"See more",
+"Ver más..."=>"See more",
 "Ver todos"=>"See all",
 //Advertising section
 "¿Quieres conocer los todos los lugares magicos de la Riviera Maya?"=>"Do you want to know all the magical places of the Mayan Riviera?",
@@ -94,7 +94,7 @@ provide opportunities for the local guide to boost their economy and work option
 "de los mejores guías privados"=>"of the best private guides",	
 // Form section
 "Registro de información"=>"Information registry",
-"Completa todos los campos"=>"Complete the fields",
+"Completa todos los campos"=>"Complete all fields",
 "La información de perfil nos permitirá conocer mas acerca de ti."=>"The information will be usefull to know more about you",
 "Nombre"=>"Name",
 "Escribe tu nombre"=>"Write your name",
@@ -178,9 +178,65 @@ You can log in after your registration information has been verified by site adm
 /*===========================================
 =            GUIDE INFO TEMPLATE            =
 ===========================================*/
+//Banner
 "Información de guía"=>"Guide information",
 "Conoce más a detalle al guía"=>"Know more about the guide",
-"Adelante, prueba reservar un tour con el guía"=>"Go a head, booking with this guide"
+"Adelante, prueba reservar un tour con el guía"=>"Go ahead, booking with this guide",
+//Information guide
+"Registrado:"=>"Registered:",
+"valoraciones"=>"Reviews",
+"Ubicación del guía"=>"Guide location",
+"Idiomas del guía"=>"Guide language",
+"Teléfono"=>"Teléfono",
+"Correo"=>"Email",
+"Características del guía"=>"Guide characteristics",
+"Personalidad"=>"Personality",
+"Habilidades"=>"Hability",
+"Sobre el tour"=>"About the tour",
+"Descripción"=>"Description",
+"Punto de encuentro"=>"Meeting point",
+"¿Dónde localizar e identificar al guía?"=>"Where to locate and identify the guide?",
+"Días disponibles del guía para dar el tour"=>"Available days of the guide to give the tour",
+"Lunes"=>"Monday",
+"Reservar tour"=>"Book tour",
+# -----------  Modal window  -----------
+"Completa la información"=>"Complete the information",
+"Elija la fecha"=>"Choose the date",
+"Horario de incio del tour"=>"Tour start time",
+"Elija el horario"=>"Choose the time",
+"Cantidad de personas que irán al tour"=>"Number of people who will go to the tour",
+"Elija cantidad"=>"Choose quantity",
+//"Nombre"=>"Nombre", has been defined,
+//"Apellidos"=>"Apellidos", has been defined,
+// "Correo"=>"Correo", has been defined
+//"Teléfono"=>"Teléfono",, has been defined,
+"Ahora no"=>"Not now",
+"Reservar"=>"Book",
+# -----------  Comment section  -----------
+"¿Que tal te pareció el tour?"=>"How did you like the tour?",
+"Tu opinión será visible para los usuarios en la pagina del tour. Ayudará a que"=>"Your opinion will be visible to users on the page of the
+tour It will help",
+"mejore su trabajo y para que otras personas decidan si este es de su interés."=>"to improve its work and for other people to decide if this
+It is of your interest.",
+"Comentario"=>"Comment",
+"Un tour asombroso, enigmático..."=>"An amazing, enigmatic tour ...",
+"Enviar"=>"Send",
+"No puedes realizar esta acción"=>"You can't do this action",
+"Comentarios acerca de este tour"=>"Comments about this tour",
+"Anónimo"=>"Anonymous",
+// "Ver más..."=>"Ver más...", has been defined,
+"No hay más comentarios"=>"No more comments",
+"Aún no hay comentarios para este tour"=>"There are no comments yet for this tour",
+# -----------  Validations  -----------
+"Fecha es requerida."=>"Date is required.",
+"Elija un horario de inicio."=>"Time is required.",
+"Elije cuantos irán al tour."=>"Quantity is required.",
+// "El nombre es requerido."=>"El nombre es requerido.", has been defined,
+// "Los apellidos son requeridos."=>"Los apellidos son requeridos.",has been defined,
+//"Email es requerido y debe tener formato de email correcto."=>"Email es requerido y debe tener formato de email correcto.",
+"El teléfono es requerido."=>"Phone is required.",
+"Es necesario agregar un comentario."=>"It is necessary to add a comment."
+
 
 /*=====  End of GUIDE INFO TEMPLATE  ======*/
 

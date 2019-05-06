@@ -79,61 +79,113 @@ public function newUserSignupController(){
 			 		$email=$_POST["email"];
 			 		$name=$_POST["name"];
 			 		$lastname=$_POST["lastname"];	
-					// $mail = new PHPMailer();
+					  
+					    $mail = new PHPMailer();
 
-     //                /** Configurar SMTP **/
-     //                $mail->isSMTP();                                      // Indicamos que use SMTP
-     //                $mail->Host = 'smtp.gmail.com';  // Indicamos los servidores SMTP
-     //                $mail->SMTPAuth = true;                               // Habilitamos la autenticación SMTP
-     //                $mail->Username = 'mitnick117@gmail.com';                 // SMTP username
-     //                $mail->Password = 'citukcaamal';                           // SMTP password
-     //                $mail->SMTPSecure = 'tls';                            // Habilitar encriptación TLS o SSL
-     //                $mail->Port = 587;                                    // TCP port
+					    $mail->From     = "ceo@guids.mx";    // Correo Electronico para SMTP
+					    $mail->FromName = "CEO Guids.mx"; 
+					    $mail->AddAddress($email); // DirecciÃ³n a la que llegaran los mensajes.
 
-     //                /** Configurar cabeceras del mensaje **/
-     //                // $mail->From = 'Guids.mx';                       // Correo del remitente
-     //                $mail->FromName = 'Guids';           // Nombre del remitente
-     //                $mail->Subject = 'Bienvenido a Guids.mx';                // Asunto
+					// AquÃ­ van los datos que apareceran en el correo que reciba
 
-     //                /** Incluir destinatarios. El nombre es opcional **/
-     //                $mail->addAddress($email);
+					    $mail->WordWrap = 50; 
+					    $mail->IsHTML(true);     
+					    $mail->Subject  =  "Bienvenid@";
+					    $mail->addReplyTo('ceo@guids.mx', 'CEO Guids.mx');
+					    $mail->Body    = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+							<html xmlns="http://www.w3.org/1999/xhtml">
+							<head>
+							<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+							<title>Demystifying Email Design</title>
+							<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+							</head>
+							<body style="margin: 0; padding: 0;">
+								<table border="0" cellpadding="0" cellspacing="0" width="100%">	
+									<tr>
+										<td style="padding: 10px 0 30px 0;">
+											<table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border: 1px solid #cccccc; border-collapse: collapse;">
+												<tr>
+													<td align="center" bgcolor="#70bbd9" style="padding: 40px 0 30px 0; color: #153643; font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;">
+														<img src="https://guids.mx/view/assets/images/email/h1.gif" alt="Creating Email Magic" width="300" height="230" style="display: block;" />
+													</td>
+												</tr>
+												<tr>
+													<td bgcolor="#ffffff" style="padding: 40px 30px 40px 30px;">
+														<table border="0" cellpadding="0" cellspacing="0" width="100%">
+															<tr>
+																<td style="color: #153643; font-family: Arial, sans-serif; font-size: 24px;">
+																	<b>Bienvenid@</b>
+																</td>
+															</tr>
+															<tr>
+																<td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+																	Hola '.$name.' '.$lastname.' , el equipo de Guids.mx te da las gracias y la bienvenida por registrarte al sitio y formar parte de nosotros. Por favor estaremos verificando tu cuenta dentro de las siguientes 24 hrs, esto para que puedas acceder al sitio, crear tours y ser uno de los mejores guías.
+																		Saludos cordiales.
+																</td>
+															</tr>
+								
+														</table>
+													</td>
+												</tr>
+												<tr>
+													<td bgcolor="#ee4c50" style="padding: 30px 30px 30px 30px;">
+														<table border="0" cellpadding="0" cellspacing="0" width="100%">
+															<tr>
+																<td style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px;" width="75%">
+																	&reg; El equipo de Guids.mx<br/>
+																	<a href="#" style="color: #ffffff;"><font color="#ffffff">Unsubscribe</font></a> to this newsletter instantly
+																</td>
+																<td align="right" width="25%">
+																	<table border="0" cellpadding="0" cellspacing="0">
+																		<tr>
+																			<td style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;">
+																				<a href="http://www.twitter.com/" style="color: #ffffff;">
+																					<img src="https://guids.mx/view/assets/images/email/tw.gif" alt="Twitter" width="38" height="38" style="display: block;" border="0" />
+																				</a>
+																			</td>
+																			<td style="font-size: 0; line-height: 0;" width="20">&nbsp;</td>
+																			<td style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;">
+																				<a href="http://www.twitter.com/" style="color: #ffffff;">
+																					<img src="https://guids.mx/view/assets/images/email/fb.gif" alt="Facebook" width="38" height="38" style="display: block;" border="0" />
+																				</a>
+																			</td>
+																		</tr>
+																	</table>
+																</td>
+															</tr>
+														</table>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</body>
+							</html>';
+                         $mail->AltBody = 'Este es el mansaje en texto plano para clientes que no admitan HTML';
 
-     //                /** Con RE, CC, BCC **/
-     //                // $mail->addReplyTo('do-notreply@guids.mx', 'Guids');
-     //                // $mail->addCC('masterchief22010@hotmail.com');
-     //                // $mail->addBCC('masterchief22010@hotmail.com');
+					   // Datos del servidor SMTPs
 
+					    $mail->IsSMTP(); 
+					    $mail->Host = "mail.guids.mx";  // mail. o solo dominio - Servidor de Salida.
+					    $mail->SMTPAuth = true; 
+					    $mail->Username = "ceo@guids.mx";  // Correo ElectrÃ³nico para SMTP
+					    $mail->Password = "Yazzirguids#2019"; // ContraseÃ±a para SMTP
 
-     //                * Enviarlo en formato HTML *
-     //                $mail->isHTML(true);          
-                   
-
-     //                /** Configurar cuerpo del mensaje **/
-     //                $mail->Body    = '<h2>Hola '.$name.' '.$lastname.' el equipo de Guids.mx te agradece haberte registrado en el sitio y te da la Bienvenida al sitio, por favor prueba <a href="https://guids.mx/signin" target=blank>Iniciar sesión</a>   <br></h2>                                                        
-     //                        <br>                                    
-     //                            <hr>
-     //                            <p><b>El equipo de Guids<b><br>                                                                                      
-     //                            </p>';
-     //                $mail->AltBody = 'Este es el mansaje en texto plano para clientes que no admitan HTML';
-
-     //                /** Para que use el lenguaje español **/
-     //                $mail->setLanguage('es');
-
-     //                /** Enviar mensaje... **/
-     //                if(!$mail->send()) {                                                
-     //                    print "<script>alert(\"Error email\");window.location='index';</script>";
-     //                    echo 'Mailer Error: ' . $mail->ErrorInfo;
-     //                	} else {                        
-     //                     print "<script>alert(\"Registro exitoso, se le enviará información por los administradores del sitio\");window.location='index';</script>";
-     //                 }					
+					    if ($mail->Send()){
+					    	print "<script>alert(\"Gracias por registrarte, tu cuenta será verificada para poder acceder Guids.mx\");window.location='index';</script>";
+					    }					    
+					    else{
+					    	print "<script>alert(\"Error\");window.location='signup';</script>";
+					  }					    
           			 
 				 }	
 
-					 print "<script>alert(\"Registro exitoso, tu cuenta será verificada para acceder al sitio\");window.location='index';</script>";
+					 // print "<script>alert(\"Registro exitoso, tu cuenta será verificada para acceder al sitio\");window.location='index';</script>";
 
 			  }
 
-			  print "<script>alert(\"Este correo ha sido registrado anteriormente\");window.location='signup';</script>";
+			  print "<script>alert(\"Lo sientimos este correo ha sido registrado anteriormente\");window.location='signup';</script>";
 
 			
 		}

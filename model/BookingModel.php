@@ -264,4 +264,13 @@ class BookingModel{
 			$stmt->close();
 		}
 
+		public function GetCountBookinByTour($idTour){
+			$stmt = Conexion::conectar()->prepare("SELECT
+				COUNT(*) AS count
+				FROM booking WHERE tour_id=$idTour");
+			$stmt->execute();
+			return $stmt->fetchAll();
+			$stmt->close();
+		}
+
 }

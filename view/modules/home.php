@@ -27,11 +27,6 @@ require_once "view/languages/".$lang->validate().".php";//include lang
 
 <body>
 
-<<<<<<< HEAD
-  // var_dump($_SESSION);
-   ?>
-=======
->>>>>>> master
   <!--============================
   =            HEADER            =
   =============================-->
@@ -116,7 +111,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                 <span class="icon-star <?php echo $value["tour_rating"]>=5 ? 'text-warning' : 'text-secondary' ?>"></span>
                 <span>(<?php echo $value["tour_count"]-1; ?> <?php echo $lang["Valoraciones"]; ?>)</span>
               </p>
-              <a class="px-3 mb-3 category" href="guideinfo/tour/<?php echo $value["tour_id"]; ?>"><?php echo $lang["Ver mas"] ?>...</a>
+              <a class="px-3 mb-3 category" href="guideinfo/tour/<?php echo $value["tour_id"]; ?>"><?php echo $lang["Ver más..."] ?></a>
             </div>
           </div>
         </div>
@@ -126,7 +121,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
         } ?>
     </div>
       <div class="row justify-content-center mb-5">
-        <a href="javascript:addBestTours();" id="btnAddBestTour"><?php echo $lang["Ver mas"]; ?></a>
+        <a href="javascript:addBestTours();" id="btnAddBestTour"><?php echo $lang["Ver más"]; ?></a>
         <a href="index.php?page=search&p=1&key=all&n=54" id="btnAllTours" style="display:none;"><?php echo $lang["Ver todos"] ?></a>
       </div>
     </div>

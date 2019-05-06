@@ -139,9 +139,15 @@ class BookingController{
  	   	 return $getAllReported;
 	}
 
-
+	// For booking template
 	public function getBookinsData($id){
 		$getBookinsData = BookingModel::getBookinsData($id);
 		return $getBookinsData;
 	}
+
+	// For booking template
+	public function GetCountBookinByTour($idTour){ 
+		$count = BookingModel::GetCountBookinByTour($idTour); 
+		return $count[0]; 
+	} 
 }

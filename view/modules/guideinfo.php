@@ -116,7 +116,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                 <?php } ?>
               <div class="lh-content">
                 <h3><a href=""><?php echo $getUserTourById["user_name"]." ".$getUserTourById["user_lastname"]; ?></a></h3>
-                <p>Registrado: <?php echo $getUserTourById["user_created_at"]; ?></p>
+                <p><?php echo $lang["Registrado:"]; ?> <?php echo $getUserTourById["user_created_at"]; ?></p>
                 <div class="text-capitalize"><?php echo $getAvgRating["review_rating"]; ?></div>
                 <p>
                   <span class="icon-star <?php echo $getAvgRating["review_rating"]>=1 ? 'text-warning' : 'text-secondary' ?>"></span>
@@ -124,7 +124,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                   <span class="icon-star <?php echo $getAvgRating["review_rating"]>=3 ? 'text-warning' : 'text-secondary' ?>"></span>
                   <span class="icon-star <?php echo $getAvgRating["review_rating"]>=4 ? 'text-warning' : 'text-secondary' ?>"></span>
                   <span class="icon-star <?php echo $getAvgRating["review_rating"]>=5 ? 'text-warning' : 'text-secondary' ?>"></span>
-                  <span>(<?php echo $getCountRating["review_rating"]-1; ?> Valoraciones)</span>
+                  <span>(<?php echo $getCountRating["review_rating"]-1; ?> <?php echo $lang["valoraciones"]; ?>)</span>
                 </p>
                 <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartir</a>
                 </div>
@@ -135,10 +135,10 @@ require_once "view/languages/".$lang->validate().".php";//include lang
 
            <!-- Guide infor -->
             <div class="p-4 mb-3 bg-white">
-              <p class="mb-0 font-weight-bold">Ubicación del guía</p>
+              <p class="mb-0 font-weight-bold"><?php echo $lang["Ubicación del guía"]; ?></p>
               <p class="mb-4"><?php echo utf8_encode($getUserTourById["user_town"]); ?></p>
 
-              <p class="mb-0 font-weight-bold">Idiomas del guía</p>
+              <p class="mb-0 font-weight-bold"><?php echo $lang["Idiomas del guía"]; ?></p>
               <?php foreach ($getTourById as $key => $value) {} ?>
 
               <?php if($value["language_id"]==1){
@@ -150,37 +150,37 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                         }
               ?>
 
-              <p class="mb-0 font-weight-bold">Teléfono</p>
+              <p class="mb-0 font-weight-bold"><?php echo $lang["Teléfono"]; ?></p>
               <p class="mb-4"><a href="#"><?php echo utf8_encode($getUserTourById["user_phone"]); ?></a></p>
 
-              <p class="mb-0 font-weight-bold">Email</p>
+              <p class="mb-0 font-weight-bold"><?php echo $lang["Correo"]; ?></p>
               <p class="mb-4"><a href="#"><?php echo utf8_encode($getUserTourById["user_email"]); ?></a></p>
             </div>
 
             <div class="p-4 mb-3 bg-white">
-               <h3 class="h5 text-black mb-3">Características del guía</h3>
-              <p>Personalidad: <?php echo utf8_encode($getUserTourById["user_personality"]); ?></p>
-              <p>Habilidades: <?php echo utf8_encode($getUserTourById["user_ability"]); ?></p>
+               <h3 class="h5 text-black mb-3"><?php echo $lang["Características del guía"]; ?></h3>
+              <p><?php echo $lang["Personalidad"]; ?>: <?php echo utf8_encode($getUserTourById["user_personality"]); ?></p>
+              <p><?php echo $lang["Habilidades"]; ?>: <?php echo utf8_encode($getUserTourById["user_ability"]); ?></p>
 
-              <h3 class="h5 text-black mb-3">Sobre el tour</h3>
-              <p><p>Descripción: <?php echo utf8_encode($getUserTourById["tour_description"]); ?></p></p>
+              <h3 class="h5 text-black mb-3"><?php echo $lang["Sobre el tour"]; ?></h3>
+              <p><p><?php echo $lang["Descripción"]; ?>: <?php echo utf8_encode($getUserTourById["tour_description"]); ?></p></p>
                <div class="listing-image" style="max-width:100%; max-height: 100%;">
                 <img src="http://localhost/guids/<?php echo $value["tour_image_src"]. $value["tour_image_filename"];?>" alt="Image" class="img-fluid img-thumbnail card-img-top">
               </div>
             </div>
 
             <div class="p-4 mb-3 bg-white">
-              <h3 class="h5 text-black mb-3">Punto de encuentro</h3>
+              <h3 class="h5 text-black mb-3"><?php echo $lang["Punto de encuentro"]; ?></h3>
               <p><?php echo utf8_encode($getUserTourById["tour_start_in"]); ?></p>
 
-              <h3 class="h5 text-black mb-3">¿Dónde localizar e identificar al guía?</h3>
+              <h3 class="h5 text-black mb-3"><?php echo $lang["¿Dónde localizar e identificar al guía?"]; ?></h3>
               <p><?php echo utf8_encode($getUserTourById["tour_find_guide"]); ?></p>
             </div>
             <!-- end Guide info -->
 
             <!-- Booking info -->
             <div class="p-4 mb-3 bg-white">
-              <p class="mb-2 font-weight-bold">Días disponibles del guía para dar el tour</p>
+              <p class="mb-2 font-weight-bold"><?php echo $lang["Días disponibles del guía para dar el tour"]; ?></p>
               <?php
                 foreach ($getTourById as $key => $day) {
                     echo '<p class="mb-1">'.$day["day_name"].'</p>';
@@ -189,11 +189,22 @@ require_once "view/languages/".$lang->validate().".php";//include lang
 
               ?>
               <br>
-                <div class="row form-group">
-                  <div class="col-md-12">
-                     <input data-toggle="modal" data-target="#exampleModalCenter" type="button" value="Reservar tour" class="btn btn-primary py-2 px-4 text-white">
-                  </div>
-                </div>
+                
+                <?php
+                  if (!isset($_SESSION["email"])):
+                    echo '<div class="row form-group">
+                        <div class="col-md-12">
+                           <input data-toggle="modal" data-target="#exampleModalCenter" type="button" value="'.$lang["Reservar tour"].'" class="btn btn-primary py-2 px-4 text-white">
+                        </div>
+                      </div>';
+                  else:
+                      echo '<div class="row form-group">
+                        <div class="col-md-12">
+                           <input type="button" value="'.$lang["No puedes realizar esta acción"].'" class="btn btn-warning py-2 px-4 text-white" disabled>
+                        </div>
+                      </div>';
+                  endif;
+                  ?>
 
             </div>
             <!-- end Booking info -->
@@ -208,7 +219,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title text-center" id="exampleModalLongTitle">Completa la información</h5>
+                  <h5 class="modal-title text-center" id="exampleModalLongTitle"><?php echo $lang["Completa la información"]; ?></h5>
                   <style>
                     form label.error {
                       float: right;
@@ -224,7 +235,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                 </div>
                 <div class="modal-body">
                 <input type="hidden" name="tour_id" value="<?php echo $tourId; ?>">
-                 <div class="h-entry"><div class="meta">Elija la fecha</div></div>
+                 <div class="h-entry"><div class="meta"><?php echo $lang["Elija la fecha"]; ?></div></div>
                     <div class="form-group">
                       <div class="wrap-icon">
                         <!-- <span class="icon icon-room"></span> -->
@@ -232,12 +243,12 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                       </div>
                     </div>
 
-                <div class="h-entry"><div class="meta">Horario de incio del tour</div></div>
+                <div class="h-entry"><div class="meta"><?php echo $lang["Horario de incio del tour"]; ?></div></div>
                    <div class="form-group">
                   <div class="select-wrap">
                       <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                       <select class="form-control" name="tour_schedule_id" id="tour_schedule_id">
-                        <option value="">Elija el horario</option>
+                        <option value=""><?php echo $lang["Elija el horario"]; ?></option>
                         <?php
                         foreach ($getTourById as $key => $schedule) {
                         ?>
@@ -251,12 +262,12 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                 </div>
 
 
-                    <div class="h-entry"><div class="meta">Cantidad de personas que irán al tour</div></div>
+                    <div class="h-entry"><div class="meta"><?php echo $lang["Cantidad de personas que irán al tour"]; ?></div></div>
                      <div class="form-group">
                       <div class="select-wrap">
                           <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                           <select class="form-control" name="tourist_quantyty" id="tourist_quantyty">
-                            <option value="">Elija cantidad</option>
+                            <option value=""><?php echo $lang["Elija cantidad"]; ?></option>
                           <?php
                             for($i=1; $i<=20; $i++){
                               echo '<option value="'.$i.'">'.$i.'</option>';
@@ -267,28 +278,28 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                     </div>
 
                       <div class="form-group">
-                          <div class="h-entry"><div class="meta">Nombre</div></div>
+                          <div class="h-entry"><div class="meta"><?php echo $lang["Nombre"]; ?></div></div>
                           <input type="text" id="name" name="name" class="form-control" value="" placeholder="karl">
                       </div>
 
                       <div class="form-group">
-                          <div class="h-entry"><div class="meta">Apellidos</div></div>
+                          <div class="h-entry"><div class="meta"><?php echo $lang["Apellidos"]; ?></div></div>
                           <input type="text" id="lastname" name="lastname" class="form-control" value="" placeholder="Smith">
                       </div>
 
                       <div class="form-group">
-                          <div class="h-entry"><div class="meta">Email</div></div>
+                          <div class="h-entry"><div class="meta"><?php echo $lang["Correo"]; ?></div></div>
                           <input type="text" id="email" name="email" class="form-control" value="" placeholder="smith@ceo.com">
                       </div>
 
                      <div class="form-group">
-                          <div class="h-entry"><div class="meta">Teléfono</div></div>
+                          <div class="h-entry"><div class="meta"><?php echo $lang["Teléfono"]; ?></div></div>
                           <input type="text" id="phone" name="phone" class="form-control" value="" placeholder="55 44 33 22 11">
                       </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Ahora no</button>
-                    <input type="submit" value="Reservar" class="btn btn-primary py-2 px-4 text-white">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo $lang["Ahora no"]; ?></button>
+                    <input type="submit" value="<?php echo $lang["Reservar"] ?>" class="btn btn-primary py-2 px-4 text-white">
                     <?php
                       $addBooking = new BookingController();
                       $addBooking->add();
@@ -309,8 +320,8 @@ require_once "view/languages/".$lang->validate().".php";//include lang
              <!-- Rating tour -->
              <form method="post" id="rating_form">
              <div class="p-4 mb-3 bg-white">
-                <p class="mb-2 font-weight-bold">¿Que tal te pareció el tour?</p>
-                <div class="h-entry"><div class="meta">Tu opinión será visible para los usuarios en la pagina del tour. Ayudará a que <?php echo $getUserTourById["user_name"]; ?> mejore su trabajo y para que otras personas decidan si este es de su interés.</div></div>
+                <p class="mb-2 font-weight-bold"><?php echo $lang["¿Que tal te pareció el tour?"]; ?></p>
+                <div class="h-entry"><div class="meta"><?php echo $lang["Tu opinión será visible para los usuarios en la pagina del tour. Ayudará a que"]; ?> <?php echo $getUserTourById["user_name"]; ?> <?php echo $lang["mejore su trabajo y para que otras personas decidan si este es de su interés."]; ?></div></div>
                 <div class="row form-group" style="margin-bottom: 0px;">
                   <div class="col-md-12">
                      <p id="list_rating" style="cursor: pointer; margin-bottom: 0px; margin-top: 10px; font-size: 1.5rem;">
@@ -326,8 +337,8 @@ require_once "view/languages/".$lang->validate().".php";//include lang
 
                 <div class="row form-group">
                   <div class="col-md-12">
-                    <label class="text-black" for="message">Comentario</label>
-                    <textarea style="resize:none" name="comment" id="comment" cols="10" rows="4" class="form-control" placeholder="Un tour asombroso, enigmático..." required></textarea>
+                    <label class="text-black" for="message"><?php echo $lang["Comentario"]; ?></label>
+                    <textarea style="resize:none" name="comment" id="comment" cols="10" rows="4" class="form-control" placeholder="<?php echo $lang["Un tour asombroso, enigmático..."] ?>" required></textarea>
                   </div>
                 </div>
                 <input type="hidden" name="rating_input" value="0">
@@ -338,13 +349,13 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                   if (!isset($_SESSION["email"])):
                     echo '<div class="row form-group">
                       <div class="col-md-12">
-                        <input type="submit" value="Enviar" class="btn btn-primary py-2 px-4 text-white">
+                        <input type="submit" value="'.$lang["Enviar"].'" class="btn btn-primary py-2 px-4 text-white">
                       </div>
                     </div>';
                   else:
                       echo '<div class="row form-group">
                       <div class="col-md-12">
-                        <input type="button" value="No puedes realizar esta accción" class="btn btn-warning py-2 px-4 text-white" disabled="disabled">
+                        <input type="button" value="'.$lang["No puedes realizar esta acción"].'" class="btn btn-warning py-2 px-4 text-white" disabled="disabled">
                       </div>
                     </div>';
                   endif;
@@ -360,7 +371,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
              <!-- All Comments -->
               <div class="p-4 mb-3 bg-white">
               <?php foreach ($getCountComment as $key => $review_comment) {} ?>
-              <p class="mb-2 font-weight-bold">Comentarios acerca de este tour (<?php echo $review_comment["review_comment"]?>)</p>
+              <p class="mb-2 font-weight-bold"><?php echo $lang["Comentarios acerca de este tour"]; ?> (<?php echo $review_comment["review_comment"]?>)</p>
               <hr>
               <?php foreach ($getAllComment as $row => $comment) {?>
               <div class="row form-group" id="getComment<?php echo $row;  ?>" style="<?php if($row>=3){ echo "display:none;";}else{ echo "display:flex;";} ?>">
@@ -377,7 +388,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                   </p>
                 </div>
                 <div class="col-md-9">
-                  <label class="text-black" for="message">Anónimo </label> <span class="mx-2">&bullet;</span>  <label class="text-black" for="message"><?php echo $comment["created_at"]; ?></label>
+                  <label class="text-black" for="message"><?php echo $lang["Anónimo"]; ?> </label> <span class="mx-2">&bullet;</span>  <label class="text-black" for="message"><?php echo $comment["created_at"]; ?></label>
                   <div class="h-entry" style="padding-right: 35px; "><div class="meta"><?php echo $comment["comment"]; ?></div></div>
                 </div>
               <!-- <hr> -->
@@ -387,14 +398,14 @@ require_once "view/languages/".$lang->validate().".php";//include lang
               if ($getAllComment!=null) {
                 ?>
                 <div class="row">
-                  <p style="width:100%;" class="text-center" id="btnMoreComments"><a href="javascript:moreComment();">Ver más...</a></p>
-                  <p style="display:none;width:100%;" class="text-center" id="btnnoComments">No hay más comentarios</p>
+                  <p style="width:100%;" class="text-center" id="btnMoreComments"><a href="javascript:moreComment();"><?php echo $lang["Ver más..."]; ?></a></p>
+                  <p style="display:none;width:100%;" class="text-center" id="btnnoComments"><?php echo $lang["No hay más comentarios"]; ?></p>
                 </div>
                 <?php
               } ?>
 
 
-              <?php if($getAllComment==null){echo '<div class="col-md-12">Aún no hay comentarios para este tour</div>';} ?>
+              <?php if($getAllComment==null){echo '<div class="col-md-12">'.$lang["Aún no hay comentarios para este tour"].'</div>';} ?>
             </div>
              <!-- end All Comments -->
           </div>
@@ -495,13 +506,13 @@ require_once "view/languages/".$lang->validate().".php";//include lang
       },
     },
     messages: {
-      tour_date: "Fecha es requerida",
-      tour_schedule_id: "Elija un horario de inicio",
-      tourist_quantyty : "Elije cuantos irán al tour",
-      name : "Nombre es requerido",
-      lastname : "Apellidos son requeridos",
-      email : "Email es requerido y debe tener formato de email correcto.",
-      phone : "El teléfono es requerido.",
+      tour_date: "<?php echo $lang["Fecha es requerida."] ?>",
+      tour_schedule_id: "<?php echo $lang["Elija un horario de inicio."] ?>",
+      tourist_quantyty : "<?php echo $lang["Elije cuantos irán al tour."] ?>",
+      name : "<?php echo $lang["El nombre es requerido."] ?>",
+      lastname : "<?php echo $lang["Los apellidos son requeridos."] ?>",
+      email : "<?php echo $lang["Email es requerido y debe tener formato de email correcto."] ?>",
+      phone : "<?php echo $lang["El teléfono es requerido."] ?>",
     }
   });
 
@@ -512,7 +523,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
       },
     },
     messages: {
-      comment : "Es necesario agregar un comentario.",
+      comment : "<?php echo $lang["Es necesario agregar un comentario."] ?>",
     }
   });
 
