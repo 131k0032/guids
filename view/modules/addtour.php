@@ -347,14 +347,14 @@ if(isset($_SESSION['lang'])){
                                             <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                                             <select class="form-control" name="start_at[]" id="start_at">
                                               <option value="">Elija hora de inicio el lunes</option>
-                                              <option value="8:00 am">8:00 am</option>                                        
-                                              <option value="8:15 am">8:15 am</option>
-                                              <option value="8:30 am">8:30 am</option>
-                                              <option value="8:45 am">8:45 am</option>
-                                              <option value="9:00 am">9:00 am</option>
-                                              <option value="9:15 am">9:15 am</option>
-                                              <option value="9:30 am">9:30 am</option>
-                                              <option value="9:45 am">9:45 am</option>
+                                              <option value="08:00 am">08:00 am</option>                                        
+                                              <option value="08:15 am">08:15 am</option>
+                                              <option value="08:30 am">08:30 am</option>
+                                              <option value="08:45 am">08:45 am</option>
+                                              <option value="09:00 am">09:00 am</option>
+                                              <option value="09:15 am">09:15 am</option>
+                                              <option value="09:30 am">09:30 am</option>
+                                              <option value="09:45 am">09:45 am</option>
                                               <option value="10:00 am">10:00 am</option>
                                               <option value="10:15 am">10:15 am</option>
                                               <option value="10:30 am">10:30 am</option>
@@ -454,14 +454,14 @@ if(isset($_SESSION['lang'])){
                                             <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                                             <select class="form-control" name="start_at[]" id="start_at">
                                               <option value="">Elija hora de inicio del martes</option>
-                                              <option value="8:00 am">8:00 am</option>                                        
-                                              <option value="8:15 am">8:15 am</option>
-                                              <option value="8:30 am">8:30 am</option>
-                                              <option value="8:45 am">8:45 am</option>
-                                              <option value="9:00 am">9:00 am</option>
-                                              <option value="9:15 am">9:15 am</option>
-                                              <option value="9:30 am">9:30 am</option>
-                                              <option value="9:45 am">9:45 am</option>
+                                              <option value="08:00 am">08:00 am</option>                                        
+                                              <option value="08:15 am">08:15 am</option>
+                                              <option value="08:30 am">08:30 am</option>
+                                              <option value="08:45 am">08:45 am</option>
+                                              <option value="09:00 am">09:00 am</option>
+                                              <option value="09:15 am">09:15 am</option>
+                                              <option value="09:30 am">09:30 am</option>
+                                              <option value="09:45 am">09:45 am</option>
                                               <option value="10:00 am">10:00 am</option>
                                               <option value="10:15 am">10:15 am</option>
                                               <option value="10:30 am">10:30 am</option>
@@ -561,15 +561,15 @@ if(isset($_SESSION['lang'])){
                                         <div class="select-wrap" id="horariomiercoles" style="display: none;">
                                             <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                                             <select class="form-control" name="start_at[]" id="">
-                                              <option value="">Elija hora de inicio del miércoles</option>
-                                                                         <option value="8:00 am">8:00 am</option>                                        
-                                              <option value="8:15 am">8:15 am</option>
-                                              <option value="8:30 am">8:30 am</option>
-                                              <option value="8:45 am">8:45 am</option>
-                                              <option value="9:00 am">9:00 am</option>
-                                              <option value="9:15 am">9:15 am</option>
-                                              <option value="9:30 am">9:30 am</option>
-                                              <option value="9:45 am">9:45 am</option>
+                                              <option value="">Elija hora de inicio del miércoles</option>                                                                                                                
+                                              <option value="08:00 am">08:00 am</option>                                        
+                                              <option value="08:15 am">08:15 am</option>
+                                              <option value="08:30 am">08:30 am</option>
+                                              <option value="08:45 am">08:45 am</option>
+                                              <option value="09:00 am">09:00 am</option>
+                                              <option value="09:15 am">09:15 am</option>
+                                              <option value="09:30 am">09:30 am</option>
+                                              <option value="09:45 am">09:45 am</option>
                                               <option value="10:00 am">10:00 am</option>
                                               <option value="10:15 am">10:15 am</option>
                                               <option value="10:30 am">10:30 am</option>
@@ -669,14 +669,14 @@ if(isset($_SESSION['lang'])){
                                             <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                                             <select class="form-control" name="start_at[]" id="">
                                               <option value="">Elija hora de inicio del jueves</option>
-                                                    <option value="8:00 am">8:00 am</option>                                        
-                                              <option value="8:15 am">8:15 am</option>
-                                              <option value="8:30 am">8:30 am</option>
-                                              <option value="8:45 am">8:45 am</option>
-                                              <option value="9:00 am">9:00 am</option>
-                                              <option value="9:15 am">9:15 am</option>
-                                              <option value="9:30 am">9:30 am</option>
-                                              <option value="9:45 am">9:45 am</option>
+                                              <option value="08:00 am">08:00 am</option>                                        
+                                              <option value="08:15 am">08:15 am</option>
+                                              <option value="08:30 am">08:30 am</option>
+                                              <option value="08:45 am">08:45 am</option>
+                                              <option value="09:00 am">09:00 am</option>
+                                              <option value="09:15 am">09:15 am</option>
+                                              <option value="09:30 am">09:30 am</option>
+                                              <option value="09:45 am">09:45 am</option>
                                               <option value="10:00 am">10:00 am</option>
                                               <option value="10:15 am">10:15 am</option>
                                               <option value="10:30 am">10:30 am</option>
@@ -776,14 +776,14 @@ if(isset($_SESSION['lang'])){
                                             <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                                             <select class="form-control" name="start_at[]" id="">
                                               <option value="">Elija hora de inicio del viernes</option>
-                                                                        <option value="8:00 am">8:00 am</option>                                        
-                                              <option value="8:15 am">8:15 am</option>
-                                              <option value="8:30 am">8:30 am</option>
-                                              <option value="8:45 am">8:45 am</option>
-                                              <option value="9:00 am">9:00 am</option>
-                                              <option value="9:15 am">9:15 am</option>
-                                              <option value="9:30 am">9:30 am</option>
-                                              <option value="9:45 am">9:45 am</option>
+                                              <option value="08:00 am">08:00 am</option>                                        
+                                              <option value="08:15 am">08:15 am</option>
+                                              <option value="08:30 am">08:30 am</option>
+                                              <option value="08:45 am">08:45 am</option>
+                                              <option value="09:00 am">09:00 am</option>
+                                              <option value="09:15 am">09:15 am</option>
+                                              <option value="09:30 am">09:30 am</option>
+                                              <option value="09:45 am">09:45 am</option>
                                               <option value="10:00 am">10:00 am</option>
                                               <option value="10:15 am">10:15 am</option>
                                               <option value="10:30 am">10:30 am</option>
@@ -884,14 +884,14 @@ if(isset($_SESSION['lang'])){
                                             <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                                             <select class="form-control" name="start_at[]" id="">
                                               <option value="">Elija hora de inicio del sábado</option>
-                                                   <option value="8:00 am">8:00 am</option>                                        
-                                              <option value="8:15 am">8:15 am</option>
-                                              <option value="8:30 am">8:30 am</option>
-                                              <option value="8:45 am">8:45 am</option>
-                                              <option value="9:00 am">9:00 am</option>
-                                              <option value="9:15 am">9:15 am</option>
-                                              <option value="9:30 am">9:30 am</option>
-                                              <option value="9:45 am">9:45 am</option>
+                                              <option value="08:00 am">08:00 am</option>                                        
+                                              <option value="08:15 am">08:15 am</option>
+                                              <option value="08:30 am">08:30 am</option>
+                                              <option value="08:45 am">08:45 am</option>
+                                              <option value="09:00 am">09:00 am</option>
+                                              <option value="09:15 am">09:15 am</option>
+                                              <option value="09:30 am">09:30 am</option>
+                                              <option value="09:45 am">09:45 am</option>
                                               <option value="10:00 am">10:00 am</option>
                                               <option value="10:15 am">10:15 am</option>
                                               <option value="10:30 am">10:30 am</option>
@@ -993,14 +993,14 @@ if(isset($_SESSION['lang'])){
                                             <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                                             <select class="form-control" name="start_at[]" id="">
                                               <option value="">Elija hora de inicio del domingo</option>
-                                              <option value="8:00 am">8:00 am</option>                                        
-                                              <option value="8:15 am">8:15 am</option>
-                                              <option value="8:30 am">8:30 am</option>
-                                              <option value="8:45 am">8:45 am</option>
-                                              <option value="9:00 am">9:00 am</option>
-                                              <option value="9:15 am">9:15 am</option>
-                                              <option value="9:30 am">9:30 am</option>
-                                              <option value="9:45 am">9:45 am</option>
+                                              <option value="08:00 am">08:00 am</option>                                        
+                                              <option value="08:15 am">08:15 am</option>
+                                              <option value="08:30 am">08:30 am</option>
+                                              <option value="08:45 am">08:45 am</option>
+                                              <option value="09:00 am">09:00 am</option>
+                                              <option value="09:15 am">09:15 am</option>
+                                              <option value="09:30 am">09:30 am</option>
+                                              <option value="09:45 am">09:45 am</option>
                                               <option value="10:00 am">10:00 am</option>
                                               <option value="10:15 am">10:15 am</option>
                                               <option value="10:30 am">10:30 am</option>

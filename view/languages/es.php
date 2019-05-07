@@ -238,8 +238,44 @@ es de su interés.",
 // "Los apellidos son requeridos."=>"Los apellidos son requeridos.",has been defined,
 //"Email es requerido y debe tener formato de email correcto."=>"Email es requerido y debe tener formato de email correcto.",
 "El teléfono es requerido."=>"El teléfono es requerido.",
-"Es necesario agregar un comentario."=>"Es necesario agregar un comentario."
+"Es necesario agregar un comentario."=>"Es necesario agregar un comentario.",
 /*=====  End of GUIDE INFO TEMPLATE  ======*/
+
+/*=======================================
+=            BOOKING TEMPATE            =
+=======================================*/
+"Reservaciones"=>"Reservaciones",
+# -----------  Calendar  -----------
+"Calendario de reservaciones"=>"Calendario de reservaciones",
+"Verifica tu agenda"=>"Verifica tu agenda",
+"Mira de manera general en este calendario todos los tour que te han sido solicitados por los turistas y viajeros."=>"Mira de manera general en
+este calendario todos los tour que te han sido solicitados por los turistas y viajeros.",
+# -----------  Accept tours  -----------
+"Aceptar turistas/viajeros"=>"Aceptar turistas/viajeros",
+"Confirmarlos puede ayudar a tener más ratings"=>"Confirmarlos puede ayudar a tener más ratings",
+"Aquí encontrarás la lista de tours que te han solicitado por turistas y viajeros, es necesario aceptarlos para poder darle seguimiento al
+tour que te han solicitado, y además de que podrás obtener información de contacto y sobre todo para verificar que harás el tour, esto en la
+sección"
+=>"Aquí encontrarás la lista de tours que te han solicitado por turistas y viajeros, es necesario aceptarlos para poder darle seguimiento al
+tour que te han solicitado, y además de que podrás obtener información de contacto y sobre todo para verificar que harás el tour, esto en la
+sección",
+"Generar seguro grupal."=>"Generar seguro grupal.",
+"Reservación de"=>"Reservación de",
+"Asistirán"=>"Asistirán",
+"de"=>"de",
+"Fecha y hora"=>"Fecha y hora",
+"a la(s)"=>"a la(s)",
+"Acciones"=>"Acciones",
+"Aceptar"=>"Aceptar",
+"Aceptar el tour"=>"Aceptar el tour",
+"Después de aceptar el tour"=>"Después de aceptar el tour",
+"podrás ver la información de contacto. Tendrás que validar el tour, que solicita"=>"podrás ver la información de contacto. Tendrás que validar
+el tour, que solicita",
+"Ahora no"=>"Ahora no",
+"De acuerdo"=>"De acuerdo"
+
+
+/*=====  End of BOOKING TEMPATE  ======*/
 
 
 );
