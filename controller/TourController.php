@@ -273,9 +273,9 @@ public function dropAllTour(){
   if (isset($_POST["id"])) {
     $respuesta= TourModel::dropAllTour($_POST["id"]);
     if ($respuesta==true) {
-      print "<script>alert('Tour eliminado')</script>";
+      print "<script>alert(\"Tour eliminado.\");window.location='http://localhost/guids/mytours';</script>";
     }else {
-      print "<script>alert('Ocurrio un error.')</script>";
+      print "<script>alert(\"Error al borrar.\");window.location='http://localhost/guids/mytours';</script>";
     }
   }
 }
