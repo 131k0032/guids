@@ -34,11 +34,14 @@ $lang = array(
 "Prueba escribiendo Cancún"=>"Try writing Cancun",
 "Buscar"=>"Search",
 "Intenta escribir algo"=>"Try to write something",//Part js 
+"Explora"=>"Explore the most attractive places of Quintana Roo, Mexico; Bacalar, Mahahual, Tulum, Riviera
+Maya, Playa del Carmen, Cozumel, Puerto Morelos, Cancun, Isla Mujeres and Holbox.",
 //Tours section
 "Los más solicitados"=>"The most requested",
 "Valoraciones"=>"Reviews",
 "Ver más..."=>"See more",
 "Ver todos"=>"See all",
+"No se encontraron tours activos"=>"No active tours were found",
 //Advertising section
 "¿Quieres conocer los todos los lugares magicos de la Riviera Maya?"=>"Do you want to know all the magical places of the Mayan Riviera?",
 "Bajo costo + Seguridad + Guía privado"=>"Low cost + Security + Private guide",
@@ -445,8 +448,20 @@ the list of all the tours that you have reported and validated with a photo to t
 "Apellidos son requeridos."=>"Last name is required.",
 "El teléfono es requerido y solo números son aceptados."=>"Field phone is required and only numbers are requested.",
 "Personalidad es requerida."=>"Personality is required.",
-"Habilidad es requerida."=>"Hability is required."
+"Habilidad es requerida."=>"Hability is required.",
 /*=====  End of SETTINGS TEMPLATE  ======*/
+
+/*=======================================
+=            SEARCH TEMPLATE            =
+=======================================*/
+
+"Buscar tour"=>"Search tour",
+"Tour(s) encontrado(s)"=>"Tour(s) found",
+"Con la palabra"=>"Whit the word",
+"Todos"=>"All",
+"No se encontraron resultados en esta página."=>"No se encontraron resultados en esta página."
+/*=====  End of SEARCH TEMPLATE  ======*/
+
 
 
 

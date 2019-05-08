@@ -15,7 +15,7 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $_SESSION["lang"]; ?>">
-<title>Search tour</title>
+<title>Buscar tour</title>
 <!--=================================
   =            Head common            =
   ==================================-->
@@ -59,12 +59,21 @@ session_start();
  ==================================-->
  <div class="container">
    <div class="form-search-wrap p-2" data-aos="fade-up" data-aos-delay="200">
-     <form method="get" action="<?php if(isset($url[1])){ echo '..\index.php'; }else{ echo 'index.php'; } ?>">
+     <form method="get" action="<?php if(isset($url[1])){ echo '..\index.php'; }else{ echo 'index.php'; } ?>" id="search">
+      <style>
+        form label.error {
+          /*float: left;*/
+          color: #7971ea;
+          font-weight:bold;
+          font-size: 12px
+          /*vertical-align: top;*/
+        }
+      </style>
        <div class="row align-items-center">
          <div class="col-lg-12 col-xl-9 no-sm-border text-center">
            <input type="hidden" name="page" value="search">
            <input type="hidden" name="p" value="1">
-           <input type="text" class="form-control" name="key" value="<?php echo $key; ?>" placeholder="Pruebe con Cancún">
+           <input type="text" class="form-control" name="key" value="<?php echo $key; ?>" placeholder="<?php echo $lang["Prueba escribiendo Cancún"]; ?>" required>
          </div>
          <div class="col-lg-12 col-xl-1 ml-auto text-center">
            <select class="custom-select" name="n">
@@ -74,7 +83,7 @@ session_start();
            </select>
          </div>
          <div class="col-lg-12 col-xl-2 ml-auto text-right">
-           <input type="submit" class="btn btn-primary" value="Buscar">
+           <input type="submit" class="btn btn-primary" value="<?php echo $lang["Buscar"] ?>">
          </div>
        </div>
      </form>
@@ -98,8 +107,8 @@ session_start();
       <?php if (count($results)>0) { ?>
       <div class="row justify-content-center mb-5">
         <div class="col-md-7 text-center border-primary">
-          <h2 class="font-weight-light text-primary"><?php echo count($results)." tours mostrados"; ?></h2>
-          <p class="color-black-opacity-5"><?php echo "con la palabra ".$key; ?></p>
+          <h2 class="font-weight-light text-primary"><?php echo count($results)." ".$lang["Tour(s) encontrado(s)"]; ?></h2>
+          <p class="color-black-opacity-5"><?php echo $lang["Con la palabra"]." ".$key; ?></p>
         </div>
       </div>
       <div class="row">
@@ -118,9 +127,9 @@ session_start();
                   <span class="icon-star <?php echo $value["tour_rating"]>=3 ? 'text-warning' : 'text-secondary' ?>"></span>
                   <span class="icon-star <?php echo $value["tour_rating"]>=4 ? 'text-warning' : 'text-secondary' ?>"></span>
                   <span class="icon-star <?php echo $value["tour_rating"]>=5 ? 'text-warning' : 'text-secondary' ?>"></span>
-                  <span>(<?php echo $value["tour_count"]-1; ?> Valoraciones)</span>
+                  <span>(<?php echo $value["tour_count"]-1; ?> <?php echo $lang["Valoraciones"]; ?>)</span>
                 </p>
-                <a class="px-3 mb-3 category" href="http://localhost/guids/guideinfo/tour/<?php echo $value["tour_id"]; ?>"><?php echo $lang["Ver mas"] ?>...</a>
+                <a class="px-3 mb-3 category" href="http://localhost/guids/guideinfo/tour/<?php echo $value["tour_id"]; ?>"><?php echo $lang["Ver más..."] ?></a>
               </div>
             </div>
           </div>
@@ -131,12 +140,12 @@ session_start();
              <span><?php echo $page; ?></span>
              <a href="<?php echo 'http://localhost/guids/index.php?page=search&p='.($page+1).'&key='.$key.'&n='.$rang; ?>"><?php echo $page+1; ?></a>
              <a href="<?php echo 'http://localhost/guids/index.php?page=search&p='.($page+2).'&key='.$key.'&n='.$rang; ?>"><?php echo $page+2; ?></a>
-             <a href="index.php?page=search&p=1&key=all&n=54">All</a>
+             <a style="font-size: 12px;" href="index.php?page=search&p=1&key=all&n=54"><?php echo $lang["Todos"]; ?></a>
            </div>
          </div>
         <?php
       }else {
-        echo "No se encontraron resultados en esta página.";
+        echo $lang["No se encontraron tours activos"];
       }
       ?>
 
@@ -155,6 +164,24 @@ session_start();
   <!--=============================
 =            SCRIPTS            =
 ==============================--> <?php include 'view/links/footer_common.php'; ?>
+<!-- Validations -->
+<script>
+  $().ready(function() {
+  $("#search").validate({
+    rules: {
+
+      key: {
+        required:true,
+        minlength: 2,
+      },
+    },
+    messages: {
+      key : "<?php echo $lang["Intenta escribir algo"] ?>",
+    }
+  });
+});
+</script>
+<!-- End Validations -->
   <!--====  End of SCRIPTS  ====-->
 </body>
 

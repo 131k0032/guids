@@ -1,5 +1,5 @@
 <?php  
-error_reporting(0);
+// error_reporting(0);
  session_start();
     if(!$_SESSION['validar']){
       print "<script>window.location='index';</script>";
@@ -9,22 +9,9 @@ error_reporting(0);
 # =           Language validation           =
 # ===========================================
 
-   //Watching changes on post variable
-if(isset($_POST["lang"])){
-  $lang = $_POST["lang"];
-  if(!empty($lang)){
-    $_SESSION["lang"] = $lang;
-  }
-}
-// If is created
-if(isset($_SESSION['lang'])){  
-  $lang = $_SESSION["lang"];
-  include "view/languages/".$lang.".php";
-// Else take spanish default
-}else{
-  include "view/languages/es.php";
-}
 
+$lang = new LanguageController();
+require_once "view/languages/".$lang->validate().".php";//include lang
 
 # ======  End of Language validation  =======
 ?>
@@ -71,7 +58,7 @@ if(isset($_SESSION['lang'])){
     <div class="row">
       <div class="col-md-12">
  
-        <p>Se muestra la lista de usuarios que se han registrado en Guids.mx, mas si embargo no pueden acceder, hasta que le des confirmar, esto si los datos sin correctos</p>
+        <p>Se muestra la lista de usuarios que se han registrado en Guids.mx, mas si embargo no pueden acceder al sitio, hasta que le des confirmar, esto si los datos que el usuario proporciona son datos que parecen ser reales y no ficticios</p>
 
         <table id="newusers" class="table table-bordered table-striped dt-responsive nowrap">
           <thead>
@@ -85,12 +72,13 @@ if(isset($_SESSION['lang'])){
               <th>Fecha nacimiento</th>
               <th>Estudios</th>
               <th>Personalidad</th>
-              <th>Habiliidad</th>
+              <th>Habilidad</th>
               <th>Fotos</th>
               <th>Activo </th>
               <th>Registrado el</th>
               <th>Actualizado el</th>
               <th>Confirmar</th>
+              <th>Enviar email de sugerencias</th>
 
             </tr>
           </thead>
@@ -132,10 +120,12 @@ if(isset($_SESSION['lang'])){
               <td><?php echo utf8_encode($value["updated_at"]); ?></td>          
               <td style="width:300px;">
                     <form method="post">    
-                      <!-- <a href="" class="btn btn-warning btn-xs">Modificar</a> -->
-                        <!-- <li><a href="http://localhost/guids/access-admin/accept/user/id/<?php echo $value["id"];?>" class="btn btn-success btn-xs"><i class="icon-settings"></i></a></li>  -->
-                        <li><a data-toggle="modal" data-target="#exampleModalCenter<?php echo $value["id"];?>" class="btn btn-warning btn-xs"><i class="icon-check-circle"></i></a></li> 
-                      <!-- <button class="btn btn-danger btn-xs" type="submit">Eliminar</button> -->
+                        <li><a data-toggle="modal" data-target="#exampleModalCenter<?php echo $value["id"];?>" class="btn btn-warning btn-xs"><i class="icon-check-circle"></i></a></li>                       
+                    </form>
+              </td>
+              <td style="width:300px;">
+                    <form method="post">    
+                        <li><a data-toggle="modal" data-target="#exampleModalCenterEmail<?php echo $value["id"];?>" class="btn btn-info btn-xs"><i class="icon-mail_outline"></i></a></li>                       
                     </form>
               </td>
  
@@ -146,7 +136,7 @@ if(isset($_SESSION['lang'])){
                   <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">¿Haz verificado los datos de <?php echo $value["name"];?> ?</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">¿Haz verificado los datos de <?php echo $value["name"];?>?</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -168,8 +158,49 @@ if(isset($_SESSION['lang'])){
                       </form>
                     </div>
                   </div>
-                </div>
-           
+                </div>        
+                <!-- End of Modal -->
+
+
+                 <!-- Modal -->            
+                <div class="modal fade" id="exampleModalCenterEmail<?php echo $value["id"];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">¿Qué es lo que le ha faltado al perfil de <?php echo $value["name"];?>?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <form method="post">
+                        <div class="modal-body">                          
+                          <input type="hidden" name="name" value="<?php echo $value["name"] ?>">
+                          <input type="hidden" name="lastname" value="<?php echo $value["lastname"] ?>">
+                          <p class="color-black-opacity-5">El usuario <?php echo $value["name"];?> recibirá este correo una vez que se lo envíes</p>
+
+                          <div class="form-group">
+                              <div class="h-entry"><div class="meta">Email del usuario</div></div>
+                              <input type="text" id="name" name="email" class="form-control" value="<?php echo $value["email"]; ?>">
+                          </div>
+                          
+                          <div class="form-group">
+                            <div class="h-entry"><div class="meta">Mensaje</div></div>
+                               <textarea style="resize:none" class="form-control"  rows="3" id="message" name="message" placeholder="Parece que te ha faltado completar la infomación de habilidades..." required></textarea>
+                          </div>                      
+                        </div>
+                        <div class="modal-footer">                        
+                            <button type="button" class="btn btn-info" data-dismiss="modal">Ahora no</button>
+                            <!-- <button type="submit" class="btn btn-danger">Eliminar</button> -->
+                            <input type="submit" value="Enviar mensaje" id="btnupdate" class="btn btn-success py-2 px-4 text-white" >
+                                 <?php 
+                                  $sendMessage= new UserController();
+                                  $sendMessage->sendMessage();
+                                 ?>                        
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>        
                 <!-- End of Modal -->
 
 

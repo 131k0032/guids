@@ -33,12 +33,17 @@ $lang = array(
 "Momentos"=>"Momentos",//Part js
 "Prueba escribiendo Cancún"=>"Prueba escribiendo Cancún",
 "Buscar"=>"Buscar",
+"Explora"=>"Explora los lugares más atractivos de Quintana Roo, México; Bacalar, Mahahual, Tulum, Riviera Maya, Playa del Carmen, Cozumel, Puerto Morelos, Cancún, Isla Mujeres y Holbox.",
 "Intenta escribir algo"=>"Intenta escribir algo",//Part js 
+"¡Explora los lugares más atractivos de Quintana Roo, México!, Bacalar, Mahahual, Tulum, Riviera Maya, Playa del Carmen, Cozumel, Puerto
+Morelos, Cancún, Isla Mujeres y Holbox."=>"¡Explora los lugares mas atractivos de Quintana Roo, México!, Bacalar, Mahahual, Tulum, Riviera
+Maya, Playa del Carmen, Cozumel, Puerto Morelos, Cancún, Isla Mujeres y Holbox.",
 //Tours section
 "Los más solicitados"=>"Los más solicitados",
-"valoraciones"=>"valoraciones",
+"Valoraciones"=>"Valoraciones",
 "Ver más..."=>"Ver más...",
 "Ver todos"=>"Ver todos",
+"No se encontraron tours activos"=>"No se encontraron tours activos",
 //Advertising section
 "¿Quieres conocer los todos los lugares magicos de la Riviera Maya?"=>"¿Quieres conocer los todos los lugares magicos de la Riviera Maya?",
 "Bajo costo + Seguridad + Guía privado"=>"Bajo costo + Seguridad + Guía privado",
@@ -448,6 +453,18 @@ lista de todos los tours que haz reportado y validado con una foto a los adminis
 "Habilidad es requerida."=>"Habilidad es requerida.",
 
 /*=====  End of SETTINGS TEMPLATE  ======*/
+
+
+/*=======================================
+=            SEARCH TEMPLATE            =
+=======================================*/
+
+"Buscar tour"=>"Buscar tour",
+"Tour(s) encontrado(s)"=>"Tour(s) encontrado(s)",
+"Con la palabra"=>"Con la palabra",
+"Todos"=>"All",
+"No se encontraron resultados en esta página."=>"No se encontraron resultados en esta página."
+/*=====  End of SEARCH TEMPLATE  ======*/
 
 
 );

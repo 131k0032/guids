@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+// error_reporting(0);
 session_start();
 # ===========================================
 # =           Language validation           =
@@ -70,7 +70,8 @@ require_once "view/languages/".$lang->validate().".php";//include lang
           </div>
           <div class="row justify-content-center mb-4">
             <div class="col-md-8 text-center">
-              <p data-aos="fade-up" data-aos-delay="100" style="color:#fff "><?php echo $lang["Encuentra slogan"]; ?></p>
+              <p data-aos="fade-up" data-aos-delay="100" style="color:#fff "><?php echo $lang["Explora"]; ?></p>
+
             </div>
           </div>
         </div>
@@ -117,13 +118,17 @@ require_once "view/languages/".$lang->validate().".php";//include lang
         </div>
       <?php }
         if ($getAll==null) {
-          echo "No se encontraron tours activos";
+          echo $lang["No se encontraron tours activos"];
         } ?>
     </div>
-      <div class="row justify-content-center mb-5">
-        <a href="javascript:addBestTours();" id="btnAddBestTour"><?php echo $lang["Ver más"]; ?></a>
-        <a href="index.php?page=search&p=1&key=all&n=54" id="btnAllTours" style="display:none;"><?php echo $lang["Ver todos"] ?></a>
-      </div>
+      <?php if($getAll==Null) {?>
+        
+      <?php }else{?>
+        <div class="row justify-content-center mb-5">
+          <a href="javascript:addBestTours();" id="btnAddBestTour"><?php echo $lang["Ver más..."]; ?></a>
+          <a href="index.php?page=search&p=1&key=all&n=54" id="btnAllTours" style="display:none;"><?php echo $lang["Ver todos"] ?></a>
+        </div>
+      <?php } ?>
     </div>
   </div>
   <!--====  End of BEST GUIDES  ====-->

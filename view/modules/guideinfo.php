@@ -23,7 +23,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
   <!--====  End of Head common  ====-->
 
   <body>
-
+<!-- <body oncontextmenu="return false" onkeydown="return false"> -->
 
   <!--============================
   =            HEADER            =

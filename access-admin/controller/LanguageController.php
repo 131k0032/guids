@@ -2,6 +2,20 @@
 
 class LanguageController{
 
+
+	public $langSelected = "es"; //set Default
+
+
+	public function validate(){
+		if (isset($_POST["lang"]) && !empty($_POST["lang"])) {
+			$_SESSION["lang"] = $_POST["lang"];
+		}elseif (!isset($_SESSION["lang"])) {
+			$_SESSION["lang"]=$this->langSelected;
+		}
+		return $_SESSION["lang"];
+	}
+
+	
 	# -----------  GET ALL LANGUAGES  -----------
 	
 	public function getAllLanguageController(){
