@@ -9,24 +9,8 @@ session_start();
 # ===========================================
 # =           Language validation           =
 # ===========================================
-
-   //Watching changes on post variable
-if(isset($_POST["lang"])){
-  $lang = $_POST["lang"];
-  if(!empty($lang)){
-    $_SESSION["lang"] = $lang;
-  }
-}
-// If is created
-if(isset($_SESSION['lang'])){
-  $lang = $_SESSION["lang"];
-  include "view/languages/".$lang.".php";
-// Else take spanish default
-}else{
-  include "view/languages/es.php";
-}
-
-
+$lang = new LanguageController();
+require_once "view/languages/".$lang->validate().".php";//include lang
 # ======  End of Language validation  =======
 
 ?>
@@ -35,7 +19,7 @@ if(isset($_SESSION['lang'])){
 <!--=================================
   =            Head common            =
   ==================================-->
-<title>My tours</title>
+<title><?php echo $lang["Mis tours"]; ?></title>
 <?php include 'view/links/head_common.php'; ?>
 <!--====  End of Head common  ====-->
 
@@ -52,8 +36,8 @@ if(isset($_SESSION['lang'])){
     <div class="container">
       <div class="row justify-content-center mb-5">
         <div class="col-md-7 text-center border-primary">
-          <h2 class="font-weight-light text-primary">Mis tours que he creado</h2>
-          <p class="color-black-opacity-5">Lorem Ipsum Dolor Sit Amet</p>
+          <h2 class="font-weight-light text-primary"><?php echo $lang["Mis tours que he creado"]; ?></h2>
+          <p class="color-black-opacity-5"><?php echo $lang["Detalle de todos mis tours"]; ?></p>
         </div>
       </div>
     </div>
@@ -61,19 +45,20 @@ if(isset($_SESSION['lang'])){
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque consequatur enim possimus quas, tempora eveniet nihil delectus eum fugiat ut inventore sequi placeat, qui accusamus dolor atque explicabo? Necessitatibus, eum.</p>
+        <p><?php echo $lang["Aquí podrás observar de manera general y más a detalle todos los tours que haz creado en el sitio y que los administradores an decidido
+aceptar. Cabe mencionar que si haz creado un tour y este aún no aparece, puede que esté aún en verificación."]; ?></p>
         <table id="mytours" class="table table-bordered table-striped dt-responsive nowrap">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Date</th>
-              <th>Bookings</th>
-              <th>Reviews</th>
-              <th>Location</th>
-              <th>Languages</th>
-              <th>Schedule</th>
-              <th>Acciones</th>
+              <th><?php echo $lang["ID"]; ?></th>
+              <th><?php echo $lang["Nombre"]; ?></th>
+              <th><?php echo $lang["Creado"]; ?></th>
+              <th><?php echo $lang["Reservaciones"]; ?></th>
+              <th><?php echo $lang["Ratings"]; ?></th>
+              <th><?php echo $lang["Lugar del tour"]; ?></th>
+              <th><?php echo $lang["Idioma"]; ?></th>
+              <th><?php echo $lang["Mi(s) horario(s)"]; ?></th>
+              <th><?php echo $lang["Acciones"]; ?></th>
             </tr>
           </thead>
           <tbody> <?php
@@ -119,7 +104,7 @@ if(isset($_SESSION['lang'])){
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" style="font-weight:900;color:red;">¿Seguro deseas eliminar este tour?</h5>
+              <h5 class="modal-title" style="font-weight:900;color:red;"><?php echo $lang["¿Seguro deseas eliminar este tour?"]; ?></h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -127,13 +112,13 @@ if(isset($_SESSION['lang'])){
             <form method="post">
               <div class="modal-body">
                 <input type="hidden" name="id" value="<?php echo $value["tour_id"] ?>">
-                <p class="color-black-opacity-5">Realmente desea eliminar el tour: <i><?php echo $value["tour_name"]; ?>.</i><br>
-                Por favor escriba el identificador <code><?php echo $value["tour_id"] ?></code> del tour para confirmar.</p>
-                <input type="text" name="false" pattern="<?php echo $value["tour_id"] ?>" title="Escribe el identificador, por favor." required>
+                <p class="color-black-opacity-5"><?php echo $lang["¿Realmente desea eliminar el tour?:"]; ?> <i><?php echo $value["tour_name"]; ?>.</i><br>
+                <?php echo $lang["Por favor escriba el identificador"]; ?> <code><?php echo $value["tour_id"] ?></code> <?php echo $lang["del tour para confirmar."]; ?></p>
+                <input type="text" name="false" pattern="<?php echo $value["tour_id"] ?>" title="<?php echo $lang["Escribe el identificador, por favor."] ?>" required>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
-                <input type="submit" value="Eliminar" id="btnupdate" class="btn btn-danger py-2 px-4 text-white">
+                <button type="button" class="btn btn-warning" data-dismiss="modal"><?php echo $lang["Cancelar"]; ?></button>
+                <input type="submit" value="<?php echo $lang["Eliminar"] ?>" id="btnupdate" class="btn btn-danger py-2 px-4 text-white">
               </div>
             </form>
           </div>

@@ -9,21 +9,8 @@ error_reporting(0);
 # =           Language validation           =
 # ===========================================
 
-   //Watching changes on post variable
-if(isset($_POST["lang"])){
-  $lang = $_POST["lang"];
-  if(!empty($lang)){
-    $_SESSION["lang"] = $lang;
-  }
-}
-// If is created
-if(isset($_SESSION['lang'])){  
-  $lang = $_SESSION["lang"];
-  include "view/languages/".$lang.".php";
-// Else take spanish default
-}else{
-  include "view/languages/es.php";
-}
+$lang = new LanguageController();
+require_once "view/languages/".$lang->validate().".php";//include lang
 
 
 # ======  End of Language validation  =======
@@ -35,7 +22,7 @@ if(isset($_SESSION['lang'])){
   <!--=================================
   =            Head common            =
   ==================================-->
-  <title>Generate insurance</title>
+  <title><?php echo $lang["Generar seguro"]; ?></title>
   <?php include 'view/links/head_common.php'; ?>
   
   <!--====  End of Head common  ====-->
@@ -59,8 +46,8 @@ if(isset($_SESSION['lang'])){
       <div class="container">
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 text-center border-primary">
-            <h2 class="font-weight-light text-primary">Adjunta una foto grupal</h2>
-            <p class="color-black-opacity-5">Lorem Ipsum Dolor Sit Amet</p>
+            <h2 class="font-weight-light text-primary"><?php echo $lang["Adjunta una foto grupal"]; ?></h2>
+            <p class="color-black-opacity-5"><?php echo $lang["Toma una foto con los turistas/viajeros antes de tour"]; ?></p>
           </div>
         </div>
 
@@ -80,17 +67,27 @@ if(isset($_SESSION['lang'])){
                      
              ?>
 
-    <form  method="post" enctype="multipart/form-data">                           
-              <p>Esta foto grupal con los turistas servirá para hacer validar tu seguridad y la de los turistas/viajeros ante cualquier situación de terceros que pueda suceder, observa que puedes elegir únicamente los tours que haz aceptado realizar</p>
+    <form  method="post" enctype="multipart/form-data" id="picture">                           
+              <p><?php echo $lang["Esta foto grupal con los turistas servirá para hacer validar tu seguridad y la de los turistas/viajeros ante cualquier situación de terceros
+que pueda suceder, observa que puedes elegir únicamente los tours que haz aceptado realizar"]; ?></p>
               <hr>              
 
 
-              <p class="mb-2 font-weight-bold">Tour al que pertenece esta imagen</p>
+              <p class="mb-2 font-weight-bold"><?php echo $lang["Tour al que pertenece esta imagen"]; ?></p>
+              <style>
+                form label.error {
+                  float: right;
+                  color: #f23a2e;
+                  font-weight:bold;
+                  font-size: 12px 
+                  /*vertical-align: top;*/
+                }
+              </style>
                 <div class="form-group">
                   <div class="select-wrap">
                       <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                       <select class="form-control" name="booking_id" id="booking_id" required>                        
-                        <option value="" disabled selected>Eija un tour para validar</option>
+                        <option value="" disabled selected><?php echo $lang["Elija un tour para validar"]; ?></option>
                               <?php
                               foreach ($getAllNullAccepted->getAllNullAccepted($id) as $key => $value) {
                                 ?>
@@ -104,7 +101,7 @@ if(isset($_SESSION['lang'])){
                 </div>       
 
 
-             <p class="mb-2 font-weight-bold">Adjunta la foto grupal</p>
+             <p class="mb-2 font-weight-bold"><?php echo $lang["Adjunta la foto grupal"]; ?></p>
               <div class="form-group">
                  <input type="file" class="form-control" id="src" id="src" name="src" accept="image/*">
               </div>
@@ -112,7 +109,7 @@ if(isset($_SESSION['lang'])){
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <input type="submit" value="Adjuntar" id="btnupdate" class="btn btn-primary py-2 px-4 text-white">
+                  <input type="submit" value="<?php echo $lang["Adjuntar"] ?>" id="btnupdate" class="btn btn-primary py-2 px-4 text-white">
                 </div>
               </div>
               <?php 
@@ -142,8 +139,8 @@ if(isset($_SESSION['lang'])){
       <div class="container">
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 text-center border-primary">
-            <h2 class="font-weight-light text-primary">Mis tours que he aceptado</h2>
-            <p class="color-black-opacity-5">Lorem Ipsum Dolor Sit Amet</p>
+            <h2 class="font-weight-light text-primary"><?php echo $lang["Tours que has aceptado"]; ?></h2>
+            <p class="color-black-opacity-5"><?php echo $lang["Tours que vas a realizar"]; ?></p>
           </div>
         </div>        
       </div>
@@ -155,17 +152,17 @@ if(isset($_SESSION['lang'])){
     <div class="row">
       <div class="col-md-12">
  
-        <p>Aquí encontrarás la lista de todos los tours que haz decidido dar a los turistas/viajeros</p>
+        <p><?php echo $lang["Aquí encontrarás la lista de todos los tours que haz decidido dar a los turistas/viajeros"]; ?></p>
 
         <table id="toursaccepted" class="table table-bordered table-striped dt-responsive nowrap">
           <thead>
             <tr>
-             <th>Lugar</th>
-              <th>Reserva</th>                        
-              <th>Email</th>  
-              <th>Teléfono</th>  
-              <th>Asistirán</th>                      
-              <th>Fecha y hora</th>              
+             <th><?php echo $lang["Lugar"]; ?></th>
+              <th><?php echo $lang["Reserva"]; ?></th>                        
+              <th><?php echo $lang["Correo"]; ?></th>  
+              <th><?php echo $lang["Teléfono"]; ?></th>  
+              <th><?php echo $lang["Asistirán"]; ?></th>                      
+              <th><?php echo $lang["Fecha y hora"]; ?></th>              
               <!-- <th>Acciones</th> -->
 
             </tr>
@@ -218,8 +215,8 @@ if(isset($_SESSION['lang'])){
       <div class="container">
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 text-center border-primary">
-            <h2 class="font-weight-light text-primary">Mis tours que he reportado</h2>
-            <p class="color-black-opacity-5">Lorem Ipsum Dolor Sit Amet</p>
+            <h2 class="font-weight-light text-primary"><?php echo $lang["Tours que has reportado"]; ?></h2>
+            <p class="color-black-opacity-5"><?php echo $lang["Tours validados"]; ?></p>
           </div>
         </div>        
       </div>
@@ -231,17 +228,17 @@ if(isset($_SESSION['lang'])){
     <div class="row">
       <div class="col-md-12">
  
-        <p>Aquí encontrarás la lista de todos los tours que haz reportado y validado con una foto</p>
+        <p><?php echo $lang["Aquí encontrarás la lista de todos los tours que haz reportado y validado con una foto a los administradores del sitio"]; ?></p>
 
         <table id="toursreported" class="table table-bordered table-striped dt-responsive nowrap">
           <thead>
             <tr>
-              <th>Lugar</th>
-              <th>Reserva</th>                        
-              <th>Cantidad de personas</th>
-              <th>Imagen de verificación</th>  
-              <th>Fecha del tour</th>  
-              <th>Fecha de reportado</th>                
+              <th><?php echo $lang["Lugar"]; ?></th>
+              <th><?php echo $lang["Reserva"]; ?></th>                        
+              <th><?php echo $lang["Personas que dijeron ir al tour"]; ?></th>
+              <th><?php echo $lang["Imagen de verificación"]; ?></th>  
+              <th><?php echo $lang["Realización del tour"]; ?></th>  
+              <th><?php echo $lang["Imagen enviado"]; ?></th>                
               <!-- <th>Acciones</th> -->
 
             </tr>
@@ -273,7 +270,7 @@ if(isset($_SESSION['lang'])){
                   <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Imagen enviada</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle"><?php echo $lang["Imagen enviado"]; ?></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -285,7 +282,7 @@ if(isset($_SESSION['lang'])){
                           </div>
                       </div>
                       <div class="modal-footer">                        
-                          <button style="color: white"; type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                          <button style="color: white"; type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo $lang["Cerrar"]; ?></button>
                       </div>                      
                     </div>
                   </div>
@@ -341,7 +338,27 @@ if(isset($_SESSION['lang'])){
       $('#toursreported').DataTable();
       } );
   </script>
+<!-- validation -->
+<script>
+  $().ready(function() {
+  $("#picture").validate({
+  rules: {
+    booking_id: { 
+      required:true,       
+    },
+    src: { 
+      required:true,         
+    },
 
+  },
+  messages: {
+    booking_id : "<?php echo $lang["Es necesario elegir un tour."] ?>",    
+    src : "<?php echo $lang["Imagen es requerida."] ?>",
+  }
+  });
+  });
+</script>
+<!-- end validation -->
 <!--====  End of SCRIPTS  ====-->
       
 

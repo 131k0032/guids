@@ -272,10 +272,182 @@ sección",
 "podrás ver la información de contacto. Tendrás que validar el tour, que solicita"=>"podrás ver la información de contacto. Tendrás que validar
 el tour, que solicita",
 "Ahora no"=>"Ahora no",
-"De acuerdo"=>"De acuerdo"
+"De acuerdo"=>"De acuerdo",
 
 
 /*=====  End of BOOKING TEMPATE  ======*/
+
+/*=========================================
+=            ADD TOUR TEMPLATE            =
+=========================================*/
+"Agregar tour"=>"Agregar tour",
+"Agregar un tour"=>"Agregar un tour",
+"Completa todos los campos"=>"Completa todos los campos",
+# -----------  Tab 1  -----------
+"Describe el tour"=>"Describe el tour",
+"Nombre del tour"=>"Nombre del tour",
+"Un nombre interesante lo hace más llamativo"=>"Un nombre interesante lo hace más llamativo",
+"Tour mágico en la Quinta Avenida"=>"Tour mágico en la Quinta Avenida",
+"Descripción del tour"=>"Descripción del tour",
+"Describe de que se trata el tour y las actividades que harás"=>"Describe de que se trata el tour y las actividades que harás",
+"Un tour que dará a conocer los puntos más destacados de la quinta avenida de Playa del Carmen, comenzaremos con una breve explicación de la
+historia, despúes nos desplazaremos en la calle... Por último..."=>"Un tour que dará a conocer los puntos más destacados de la quinta avenida
+de Playa del Carmen, comenzaremos con una breve explicación de la historia, despúes nos desplazaremos en la calle... Por último...",
+"Idioma preferido para dar el tour"=>"Idioma preferido para dar el tour",
+"Este idioma será con el que darás el tour"=>"Este idioma será con el que darás el tour",
+"Elija un idioma"=>"Elija un idioma",
+# -----------  Tab 2  -----------
+"¿Dónde será el tour?"=>"¿Dónde será el tour?",
+"Lugar del tour"=>"Lugar del tour",
+"Escribe el lugar exacto donde vas a realizar el Tour"=>"Escribe el lugar exacto donde vas a realizar el Tour",
+"Playa del carmen, Quintana Roo"=>"Playa del carmen, Quintana Roo",
+"Describe como te van a encontrar antes del tour"=>"Describe como te van a encontrar antes del tour",
+"Especifica algunas características para que los turistas/viajeros te reconozcan"=>"Especifica algunas características para que los turistas/
+viajeros te reconozcan",
+"Soy alto con cabello, largo, normalmente traigo puesta una gorra"=>"Soy alto con cabello, largo, normalmente traigo puesta una gorra",
+"Especifica un punto de encuentro del tour"=>"Especifica un punto de encuentro del tour",
+"Describe donde te pueden localizar al para iniciar el tour"=>"Describe donde te pueden localizar al para iniciar el tour",
+"Será en el parque central, junto a la glorieta..."=>"Será en el parque central, junto a la glorieta...",
+# -----------  Tab 3  -----------
+"Agrega una foto"=>"Agrega una foto",
+"Agrega una imagen del tour"=>"Agrega una imagen del tour",
+"Es importante que adjuntes una imagen real y relacionada al tour, si son tomadas por ti mucho mejor"=>"Es importante que adjuntes una imagen
+real y relacionada al tour, si son tomadas por ti mucho mejor",
+# -----------  Tab 4  -----------
+"Horario y duración"=>"Horario y duración",
+"¿Cuánto tiempo durará el tour?"=>"¿Cuánto tiempo durará el tour?",
+"Puedes elegir la duración del tour de acuerdo a tu disponibilidad de horario"=>"Puedes elegir la duración del tour de acuerdo a tu
+disponibilidad de horario",
+"Elija una aproximación"=>"Elija una aproximación",
+"Elija los días para el tour"=>"Elija los días para el tour",
+"Puedes elegir uno o varios días para dar el tour, no olvides elegir el horario de inicio"=>"Puedes elegir uno o varios días para dar el tour,
+no olvides elegir el horario de inicio",
+"Lunes"=>"Lunes",
+"Martes"=>"Martes",
+"Miércoles"=>"Miércoles",
+"Jueves"=>"Jueves",
+"Viernes"=>"Viernes",
+"Sábado"=>"Sábado",
+"Domingo"=>"Domingo",
+"Elija un horario de inicio para el lunes"=>"Elija un horario de inicio para el lunes",
+"Elija un horario de inicio para el martes"=>"Elija un horario de inicio para el martes",
+"Elija un horario de inicio para el miércoles"=>"Elija un horario de inicio para el miércoles",
+"Elija un horario de inicio para el jueves"=>"Elija un horario de inicio para el jueves",
+"Elija un horario de inicio para el viernes"=>"Elija un horario de inicio para el viernes",
+"Elija un horario de inicio para el sábado"=>"Elija un horario de inicio para el sábado",
+"Elija un horario de inicio para el domingo"=>"Elija un horario de inicio para el domingo",
+# -----------  Tab 5  -----------
+"¿Cuántas personas pueden asistir al tour?"=>" ¿Cuántas personas pueden asistir al tour?",
+"Será la cantidad de personas que podrás admitir en el tour"=>"Será la cantidad de personas que podrás admitir en el tour",
+"Elija un número de personas"=>"Elija un número de personas",
+"Crear tour"=>"Crear tour",
+# -----------  Validatios  -----------
+"Nombre del tour es requerido."=>"Nombre del tour es requerido.",
+"Descripión del tour es requerido."=>"Descripión del tour es requerido.",
+"Idioma del tour es requerido."=>"Idioma del tour es requerido.",
+"Ubicación excacta del tour es requerido."=>"Ubicación excacta del tour es requerido.",
+"Descripión de guia es requerido."=>"Descripión de guia es requerido.",
+"Punto de encuentro del tour es requerido."=>"Punto de encuentro del tour es requerido.",
+"Imagen del tour es requerido."=>"Imagen del tour es requerido.",
+"Duración del tour es requerido."=>"Duración del tour es requerido.",
+"Capacidad de personas es requerido."=>"Capacidad de personas es requerido.",
+
+/*=====  End of ADD TOUR TEMPLATE  ======*/
+
+/*========================================
+=            MYTOURS TEMPLATE            =
+========================================*/
+"Mis tours"=>"Mis tours",
+"Mis tours que he creado"=>"Mis tours que he creado",
+"Detalle de todos mis tours"=>"Detalle de todos mis tours",
+"Aquí podrás observar de manera general y más a detalle todos los tours que haz creado en el sitio y que los administradores an decidido
+aceptar. Cabe mencionar que si haz creado un tour y este aún no aparece, puede que esté aún en verificación."=>"Aquí podrás observar de manera
+general y más a detalle todos los tours que haz creado en el sitio y que los administradores an decidido aceptar. Cabe mencionar que si haz
+creado un tour y este aún no aparece, puede que esté aún en verificación.",
+"ID"=>"ID",
+"Nombre"=>"Nombre",
+"Creado"=>"Creado",
+"Reservaciones"=>"Reservaciones",
+"Ratings"=>"Ratings",
+"Lugar del tour"=>"Lugar del tour",
+"Idioma"=>"Idioma",
+"Mi(s) horario(s)"=>"Mi(s) horario(s)",
+"Acciones"=>"Acciones",
+"¿Seguro deseas eliminar este tour?"=>"¿Seguro deseas eliminar este tour?",
+"¿Realmente desea eliminar el tour?:"=>"¿Realmente desea eliminar el tour?:",
+"del tour para confirmar."=>"del tour para confirmar.",
+"Escribe el identificador, por favor."=>"Escribe el identificador, por favor.",
+"Cancelar"=>"Cancelar",
+"Eliminar"=>"Eliminar",
+
+/*=====  End of MYTOURS TEMPLATE  ======*/
+
+/*===================================================
+=            GENERATE INSURANCE TEMPLATE            =
+===================================================*/
+"Generar seguro"=>"Generar seguro",
+# -----------  Attach image  -----------
+"Adjunta una foto grupal"=>"Adjunta una foto grupal",
+"Toma una foto con los turistas/viajeros antes de tour"=>"Toma una foto con los turistas/viajeros antes de tour",
+"Esta foto grupal con los turistas servirá para hacer validar tu seguridad y la de los turistas/viajeros ante cualquier situación de terceros
+que pueda suceder, observa que puedes elegir únicamente los tours que haz aceptado realizar"=>"Esta foto grupal con los turistas servirá para
+hacer validar tu seguridad y la de los turistas/viajeros ante cualquier situación de terceros que pueda suceder, observa que puedes elegir
+únicamente los tours que haz aceptado realizar",
+"Tour al que pertenece esta imagen"=>"Tour al que pertenece esta imagen",
+"Elija un tour para validar"=>"Elija un tour para validar",
+"Adjunta la foto grupal"=>"Adjunta la foto grupal",
+"Adjuntar"=>"Adjuntar",
+# -----------  Tours accepted  -----------
+"Tours que has aceptado"=>"Tours que has aceptado",
+"Tours que vas a realizar"=>"Tours que vas a realizar",
+"Aquí encontrarás la lista de todos los tours que haz decidido dar a los turistas/viajeros"=>"Aquí encontrarás la lista de todos los tours que
+haz decidido dar a los turistas/viajeros",
+"Lugar"=>"Lugar",
+"Reserva"=>"Reserva",
+"Correo"=>"Correo",
+"Teléfono"=>"Teléfono",
+"Asistirán"=>"Asistirán",
+"Fecha y hora"=>"Fecha y hora",
+# -----------  Tours reported  -----------
+"Tours que has reportado"=>"Tours que has reportado",
+"Tours validados"=>"Tours validados",
+"Aquí encontrarás la lista de todos los tours que haz reportado y validado con una foto a los administradores del sitio"=>"Aquí encontrarás la
+lista de todos los tours que haz reportado y validado con una foto a los administradores del sitio",
+"Personas que dijeron ir al tour"=>"Personas que dijeron ir al tour",
+"Imagen de verificación"=>"Imagen de verificación",
+"Realización del tour"=>"Realización del tour",
+"Imagen enviado"=>"Imagen enviado",
+"Cerrar"=>"Cerrar",
+# -----------  Validatios  -----------
+"Es necesario elegir un tour."=>"Es necesario elegir un tour.",
+"Imagen es requerida."=>"Imagen es requerida.",
+
+/*=====  End of GENERATE INSURANCE TEMPLATE  ======*/
+
+/*=========================================
+=            SETTINGS TEMPLATE            =
+=========================================*/
+"Configuración"=>"Configuración",
+"Configuración de información de perfil"=>"Configuración de información de perfil",
+"Puedes modificar tu información de perfil siempre que así lo desees"=>"Puedes modificar tu información de perfil siempre que así lo desees",
+"Cambiar imagen de perfil"=>"Cambiar imagen de perfil",
+"Cambiar"=>"Cambiar",
+"Modificar información personal"=>"Modificar información personal",
+"Nombre"=>"Nombre",
+"Apellidos"=>"Apellidos",
+"Teléfono"=>"Teléfono",
+"Personalidad"=>"Personalidad",
+"Habilidades"=>"Habilidades",
+"Actualizar"=>"Actualizar",
+# -----------  Validatios  -----------
+"Imagen es requerida."=>"Imagen es requerida.",
+"Nombre es requerido."=>"Nombre es requerido.",
+"Apellidos son requeridos."=>"Apellidos son requeridos.",
+"El teléfono es requerido y solo números son aceptados."=>"El teléfono es requerido y solo números son aceptados.",
+"Personalidad es requerida."=>"Personalidad es requerida.",
+"Habilidad es requerida."=>"Habilidad es requerida.",
+
+/*=====  End of SETTINGS TEMPLATE  ======*/
 
 
 );

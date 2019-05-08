@@ -9,21 +9,8 @@ error_reporting(0);
 # =           Language validation           =
 # ===========================================
 
-   //Watching changes on post variable
-if(isset($_POST["lang"])){
-  $lang = $_POST["lang"];
-  if(!empty($lang)){
-    $_SESSION["lang"] = $lang;
-  }
-}
-// If is created
-if(isset($_SESSION['lang'])){  
-  $lang = $_SESSION["lang"];
-  include "view/languages/".$lang.".php";
-// Else take spanish default
-}else{
-  include "view/languages/es.php";
-}
+$lang = new LanguageController();
+require_once "view/languages/".$lang->validate().".php";//include lang
 
 
 # ======  End of Language validation  =======
@@ -31,7 +18,7 @@ if(isset($_SESSION['lang'])){
 
 <!DOCTYPE html>
 <html lang="en">
-  <title>Add tour</title>
+  <title><?php echo $lang["Agregar tour"]; ?></title>
   <!--=================================
   =            Head common            =
   ==================================-->
@@ -58,23 +45,23 @@ if(isset($_SESSION['lang'])){
       <div class="container">
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 text-center border-primary">
-            <h2 class="font-weight-light text-primary">Agregar tours</h2>
-            <p class="color-black-opacity-5">Lorem Ipsum Dolor Sit Amet</p>
+            <h2 class="font-weight-light text-primary"><?php echo $lang["Agregar un tour"]; ?></h2>
+            <p class="color-black-opacity-5"><?php echo $lang["Completa todos los campos"]; ?></p>
           </div>
         </div>
 
               <ul class="nav nav-tabs" id="myTab" role="tablist">               
                 <li class="nav-item">
-                  <a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">1. Describe el tour</a>
+                  <a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">1. <?php echo $lang["Describe el tour"]; ?></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="location-tab" data-toggle="tab" href="#location" role="tab" aria-controls="location" aria-selected=false>2. ¿Dónde será el tour?</a>
+                  <a class="nav-link" id="location-tab" data-toggle="tab" href="#location" role="tab" aria-controls="location" aria-selected=false>2. <?php echo $lang["¿Dónde será el tour?"]; ?></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="image-tab" data-toggle="tab" href="#image" role="tab" aria-controls="image" aria-selected="false">3. Agrega una foto</a>
+                  <a class="nav-link" id="image-tab" data-toggle="tab" href="#image" role="tab" aria-controls="image" aria-selected="false">3. <?php echo $lang["Agrega una foto"]; ?></a>
                 </li>
                  <li class="nav-item">
-                  <a class="nav-link" id="duration-tab" data-toggle="tab" href="#duration" role="tab" aria-controls="duration" aria-selected="false">4. Horario y duración</a>
+                  <a class="nav-link" id="duration-tab" data-toggle="tab" href="#duration" role="tab" aria-controls="duration" aria-selected="false">4. <?php echo $lang["Horario y duración"]; ?></a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" id="people-tab" data-toggle="tab" href="#people" role="tab" aria-controls="people" aria-selected="false">5. ¿Cuántas personas pueden asistir  al tour?</a>
@@ -99,7 +86,7 @@ if(isset($_SESSION['lang'])){
                             <div class="col-md-12 mb-0"  data-aos="fade">
                               <div class="p-4 mb-3 bg-white">                                         
                                 
-                                  <p class="mb-2 font-weight-bold">Nombre del tour</p>
+                                  <p class="mb-2 font-weight-bold"><?php echo $lang["Nombre del tour"]; ?></p>
                                   <style>
                                     form label.error {
                                       float: right;
@@ -109,28 +96,29 @@ if(isset($_SESSION['lang'])){
                                       /*vertical-align: top;*/
                                     }
                                   </style>
-                                  <div class="h-entry"><div class="meta">Un nombre interesante lo hace más llamativo</div></div>
+                                  <div class="h-entry"><div class="meta"><?php echo $lang["Un nombre interesante lo hace más llamativo"]; ?></div></div>
                                 <!-- <form action="test" method="post"> -->
                                   <div class="form-group">                  
                                     <div class="wrap-icon">
                                       <!-- <span class="icon icon-room"></span> -->
-                                      <input type="text" name="name" class="form-control" placeholder="Tour mágico en la Quinta avenida" required>
+                                      <input type="text" name="name" class="form-control" placeholder="<?php echo $lang["Tour mágico en la Quinta Avenida"] ?>" required>
                                     </div>
                                   </div>
                                   
-                                  <p class="mb-2 font-weight-bold">Descripción del tour</p>
-                                  <div class="h-entry"><div class="meta">Describe de que se trata el tour y las actividades que harás</div></div>
+                                  <p class="mb-2 font-weight-bold"><?php echo $lang["Descripción del tour"]; ?></p>
+                                  <div class="h-entry"><div class="meta"><?php echo $lang["Describe de que se trata el tour y las actividades que harás"]; ?></div></div>
                                   <div class="form-group">
-                                  <textarea  style="resize:none" required name="description" class="form-control"  rows="3" placeholder="Un tour que dará a conocer los puntos más destacados de la quinta avenida de Playa del Carmen, comenzaremos con una breve explicación de la historia, despúes nos desplazaremos en la calle... Por último..."></textarea>
+                                  <textarea  style="resize:none" required name="description" class="form-control"  rows="3" placeholder="<?php echo $lang["Un tour que dará a conocer los puntos más destacados de la quinta avenida de Playa del Carmen, comenzaremos con una breve explicación de la
+historia, despúes nos desplazaremos en la calle... Por último..."] ?>"></textarea>
                                   </div>
 
-                                  <p class="mb-2 font-weight-bold">Idioma preferido para dar el tour</p>
-                                  <div class="h-entry"><div class="meta">Este idioma será con el que darás el tour</div></div>
+                                  <p class="mb-2 font-weight-bold"><?php echo $lang["Idioma preferido para dar el tour"]; ?></p>
+                                  <div class="h-entry"><div class="meta"><?php echo $lang["Este idioma será con el que darás el tour"]; ?></div></div>
                                   <div class="form-group">
                                     <div class="select-wrap">
                                         <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                                         <select class="form-control" name="language" id="language" required>
-                                          <option value="">Elija un idioma</option>
+                                          <option value=""><?php echo $lang["Elija un idioma"]; ?></option>
                                          <?php
                                            $language =  new LanguageController();
                                            foreach ( $language -> getAllLanguageController() as $row => $value) {
@@ -171,25 +159,25 @@ if(isset($_SESSION['lang'])){
                             <div class="col-md-12 mb-0"  data-aos="fade">
                               <div class="p-4 mb-3 bg-white">                                         
                                 
-                                  <p class="mb-2 font-weight-bold">Lugar del tour</p>
-                                  <div class="h-entry"><div class="meta">Escribe el lugar exacto donde vas a realizar el Tour</div></div>
+                                  <p class="mb-2 font-weight-bold"><?php echo $lang["Lugar del tour"]; ?></p>
+                                  <div class="h-entry"><div class="meta"><?php echo $lang["Escribe el lugar exacto donde vas a realizar el Tour"]; ?></div></div>
                                   <div class="form-group">                  
                                     <div class="wrap-icon">
                                       <!-- <span class="icon icon-room"></span> -->
-                                      <input type="text" name="location" class="form-control" placeholder="Playa del carmen, Quintana Roo" required>
+                                      <input type="text" name="location" class="form-control" placeholder="<?php echo $lang["Playa del carmen, Quintana Roo"] ?>" required>
                                     </div>
                                   </div>
                                   
-                                   <p class="mb-2 font-weight-bold">Describe como te van a encontrar antes del tour</p>
-                                   <div class="h-entry"><div class="meta">Especifica algunas características para que los turistas/viajeros te reconozcan</div></div>
+                                   <p class="mb-2 font-weight-bold"><?php echo $lang["Describe como te van a encontrar antes del tour"]; ?></p>
+                                   <div class="h-entry"><div class="meta"><?php echo $lang["Especifica algunas características para que los turistas/viajeros te reconozcan"]; ?></div></div>
                                   <div class="form-group">
-                                    <textarea style="resize:none" required name="find_guide" class="form-control"  rows="3" placeholder="Soy alto con cabello, largo, normalmente traigo puesta una gorra"></textarea>
+                                    <textarea style="resize:none" required name="find_guide" class="form-control"  rows="3" placeholder="<?php echo $lang["Soy alto con cabello, largo, normalmente traigo puesta una gorra"] ?>"></textarea>
                                   </div>  
 
-                                    <p class="mb-2 font-weight-bold">Especifica un punto de encuentro del tour</p>
-                                    <div class="h-entry"><div class="meta">Describe donde te pueden localizar al para iniciar el tour</div></div>
+                                    <p class="mb-2 font-weight-bold"><?php echo $lang["Especifica un punto de encuentro del tour"]; ?></p>
+                                    <div class="h-entry"><div class="meta"><?php echo $lang["Describe donde te pueden localizar al para iniciar el tour"]; ?></div></div>
                                   <div class="form-group">
-                                    <textarea style="resize:none" required name="start_in" class="form-control"  rows="3" placeholder="Será en el parque central, junto a la glorieta..."></textarea>
+                                    <textarea style="resize:none" required name="start_in" class="form-control"  rows="3" placeholder="<?php echo $lang["Será en el parque central, junto a la glorieta..."] ?>"></textarea>
                                   </div>                                         
 
                                 <!-- </form> -->
@@ -221,8 +209,8 @@ if(isset($_SESSION['lang'])){
                                 
 
 
-                                  <p class="mb-2 font-weight-bold">Agrega una imagen del tour</p>
-                                  <div class="h-entry"><div class="meta">Es importante que adjuntes una imagen real y relacionada al tour, si son tomadas por ti mucho mejor</div></div>
+                                  <p class="mb-2 font-weight-bold"><?php echo $lang["Agrega una imagen del tour"]; ?></p>
+                                  <div class="h-entry"><div class="meta"><?php echo $lang["Es importante que adjuntes una imagen real y relacionada al tour, si son tomadas por ti mucho mejor"]; ?></div></div>
                                   <div class="form-group">
                                      <input type="file" class="form-control" name="src" id="src" data-validation-allowing="jpg, png" accept="image/*" required>
                                   </div>
@@ -260,13 +248,13 @@ if(isset($_SESSION['lang'])){
                               <div class="row">
                                 <div class="col-md-6">   
 
-                                <p class="mb-2 font-weight-bold">¿Cuanto tiempo durará el tour?</p>
-                                <div class="h-entry"><div class="meta">Puedes elegir la duración del tour de acuerdo a tu disponibilidad de horario</div></div>
+                                <p class="mb-2 font-weight-bold"><?php echo $lang["¿Cuánto tiempo durará el tour?"]; ?></p>
+                                <div class="h-entry"><div class="meta"><?php echo $lang["Puedes elegir la duración del tour de acuerdo a tu disponibilidad de horario"]; ?></div></div>
                                   <div class="form-group">
                                     <div class="select-wrap">
                                         <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                                         <select class="form-control" name="duration" id="duration" required>
-                                          <option value="">Elija una aproximación</option>
+                                          <option value=""><?php echo $lang["Elija una aproximación"]; ?></option>
                                           <option value="1:00-h">1:00 h</option>                                        
                                           <option value="1:15-h">1:15 h</option>
                                           <option value="1:30-h">1:30 h</option>
@@ -279,54 +267,54 @@ if(isset($_SESSION['lang'])){
                                       </div>
                                   </div>                             
                                 
-                                  <p class="mb-2 font-weight-bold">Elija los días para el tour</p>
-                                  <div class="h-entry"><div class="meta">Puedes elegir uno o varios días para dar el tour, no olvides elegir el horario de inicio </div></div>
+                                  <p class="mb-2 font-weight-bold"><?php echo $lang["Elija los días para el tour"]; ?></p>
+                                  <div class="h-entry"><div class="meta"><?php echo $lang["Puedes elegir uno o varios días para dar el tour, no olvides elegir el horario de inicio"]; ?> </div></div>
                                                                  
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input lunes"  id="lunes" name="day[]" value="1">
-                                        <label class="custom-control-label" for="lunes">Lunes</label>
+                                        <label class="custom-control-label" for="lunes"><?php echo $lang["Lunes"]; ?></label>
                                     </div>
                                     <hr>
                                     
                                      
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input martes" id="martes" name="day[]" value="2">
-                                        <label class="custom-control-label" for="martes">Martes</label>
+                                        <label class="custom-control-label" for="martes"><?php echo $lang["Martes"]; ?></label>
                                     </div>
                                     <hr>
                                     
 
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input miercoles" id="miercoles" name="day[]" value="3">
-                                        <label class="custom-control-label" for="miercoles">Miércoles</label>
+                                        <label class="custom-control-label" for="miercoles"><?php echo $lang["Miércoles"]; ?></label>
                                     </div>
                                     <hr>
                                     
 
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input jueves" id="jueves" name="day[]" value="4">
-                                        <label class="custom-control-label" for="jueves">Jueves</label>
+                                        <label class="custom-control-label" for="jueves"><?php echo $lang["Jueves"]; ?></label>
                                     </div>
                                     <hr>
                                     
 
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input viernes" id="viernes" name="day[]" value="5">
-                                        <label class="custom-control-label" for="viernes">Viernes</label>
+                                        <label class="custom-control-label" for="viernes"><?php echo $lang["Viernes"]; ?></label>
                                     </div>
                                     <hr>
                                     
 
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input sabado" id="sabado" name="day[]" value="6">
-                                        <label class="custom-control-label" for="sabado">Sábado</label>
+                                        <label class="custom-control-label" for="sabado"><?php echo $lang["Sábado"]; ?></label>
                                     </div>
                                     <hr>
                                     
 
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input domingo" id="domingo" name="day[]" value="7">
-                                        <label class="custom-control-label" for="domingo">Domingo</label>
+                                        <label class="custom-control-label" for="domingo"><?php echo $lang["Domingo"]; ?></label>
                                     </div>
                                     <hr>
                                     
@@ -346,7 +334,7 @@ if(isset($_SESSION['lang'])){
                                         <div class="select-wrap" id="horariolunes" style="display: none;">
                                             <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                                             <select class="form-control" name="start_at[]" id="start_at">
-                                              <option value="">Elija hora de inicio el lunes</option>
+                                              <option value=""><?php echo $lang["Elija un horario de inicio para el lunes"]; ?></option>
                                               <option value="08:00 am">08:00 am</option>                                        
                                               <option value="08:15 am">08:15 am</option>
                                               <option value="08:30 am">08:30 am</option>
@@ -453,7 +441,7 @@ if(isset($_SESSION['lang'])){
                                         <div class="select-wrap" id="horariomartes" style="display: none;">
                                             <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                                             <select class="form-control" name="start_at[]" id="start_at">
-                                              <option value="">Elija hora de inicio del martes</option>
+                                              <option value=""><?php echo $lang["Elija un horario de inicio para el martes"]; ?></option>
                                               <option value="08:00 am">08:00 am</option>                                        
                                               <option value="08:15 am">08:15 am</option>
                                               <option value="08:30 am">08:30 am</option>
@@ -561,7 +549,7 @@ if(isset($_SESSION['lang'])){
                                         <div class="select-wrap" id="horariomiercoles" style="display: none;">
                                             <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                                             <select class="form-control" name="start_at[]" id="">
-                                              <option value="">Elija hora de inicio del miércoles</option>                                                                                                                
+                                              <option value=""><?php echo $lang["Elija un horario de inicio para el miércoles"]; ?></option>                                                                                                                
                                               <option value="08:00 am">08:00 am</option>                                        
                                               <option value="08:15 am">08:15 am</option>
                                               <option value="08:30 am">08:30 am</option>
@@ -668,7 +656,7 @@ if(isset($_SESSION['lang'])){
                                         <div class="select-wrap" id="horariojueves" style="display: none;">
                                             <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                                             <select class="form-control" name="start_at[]" id="">
-                                              <option value="">Elija hora de inicio del jueves</option>
+                                              <option value=""><?php echo $lang["Elija un horario de inicio para el jueves"]; ?></option>
                                               <option value="08:00 am">08:00 am</option>                                        
                                               <option value="08:15 am">08:15 am</option>
                                               <option value="08:30 am">08:30 am</option>
@@ -775,7 +763,7 @@ if(isset($_SESSION['lang'])){
                                         <div class="select-wrap" id="horarioviernes" style="display: none;">
                                             <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                                             <select class="form-control" name="start_at[]" id="">
-                                              <option value="">Elija hora de inicio del viernes</option>
+                                              <option value=""><?php echo $lang["Elija un horario de inicio para el viernes"]; ?></option>
                                               <option value="08:00 am">08:00 am</option>                                        
                                               <option value="08:15 am">08:15 am</option>
                                               <option value="08:30 am">08:30 am</option>
@@ -883,7 +871,7 @@ if(isset($_SESSION['lang'])){
                                         <div class="select-wrap" id="horariosabado" style="display: none;">
                                             <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                                             <select class="form-control" name="start_at[]" id="">
-                                              <option value="">Elija hora de inicio del sábado</option>
+                                              <option value=""><?php echo $lang["Elija un horario de inicio para el sábado"]; ?></option>
                                               <option value="08:00 am">08:00 am</option>                                        
                                               <option value="08:15 am">08:15 am</option>
                                               <option value="08:30 am">08:30 am</option>
@@ -992,7 +980,7 @@ if(isset($_SESSION['lang'])){
                                         <div class="select-wrap" id="horariodomingo" style="display: none;">
                                             <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                                             <select class="form-control" name="start_at[]" id="">
-                                              <option value="">Elija hora de inicio del domingo</option>
+                                              <option value=""><?php echo $lang["Elija un horario de inicio para el domingo"]; ?></option>
                                               <option value="08:00 am">08:00 am</option>                                        
                                               <option value="08:15 am">08:15 am</option>
                                               <option value="08:30 am">08:30 am</option>
@@ -1125,14 +1113,14 @@ if(isset($_SESSION['lang'])){
 
                             <div class="col-md-12 mb-0"  data-aos="fade">                         
                               <div class="p-4 mb-3 bg-white">      
-                               <p class="mb-2 font-weight-bold">¿Cuantas personas pueden asistir al tour?</p>
-                                 <div class="h-entry"><div class="meta">Será la cantidad de personas que podrás admitir en el tour</div></div>
+                               <p class="mb-2 font-weight-bold"><?php echo $lang["¿Cuántas personas pueden asistir al tour?"]; ?></p>
+                                 <div class="h-entry"><div class="meta"><?php echo $lang["Será la cantidad de personas que podrás admitir en el tour"]; ?></div></div>
                                 <p class="mb-2 font-weight-bold"></p>
                                   <div class="form-group">
                                     <div class="select-wrap">
                                         <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                                         <select class="form-control" name="capacity" id=""  required>
-                                          <option value="">Elija un número de personas</option>
+                                          <option value=""><?php echo $lang["Elija un número de personas"]; ?></option>
                                           <?php 
 
                                             for($i=1; $i<=20; $i++){
@@ -1146,7 +1134,7 @@ if(isset($_SESSION['lang'])){
     
                                   <div class="row form-group">
                                     <div class="col-md-12">
-                                      <input type="submit" value="Agregar" class="btn btn-primary py-2 px-4 text-white">
+                                      <input type="submit" value="<?php echo $lang["Crear tour"] ?>" class="btn btn-primary py-2 px-4 text-white">
                                     </div>
                                   </div>                                                  
 
@@ -1309,15 +1297,15 @@ if(isset($_SESSION['lang'])){
 
         },
         messages: {
-          name : "Nombre del tour es requerido.",    
-          description : "Descripión del tour es requerido.",   
-          language : "Idioma del tour es requerido.",     
-          location : "Ubicación excacta del tour es requerido.",    
-          find_guide : "Descripión de guia es requerido.",    
-          start_in : "Punto de encuentro del tour es requerido.",    
-          src : "Imagen del tour es requerido.",    
-          duration : "Duración del tour es requerido.",    
-          capacity : "Capacidad de personas es requerido.",
+          name : "<?php echo $lang["Nombre del tour es requerido."] ?>",    
+          description : "<?php echo $lang["Descripión del tour es requerido."] ?>",   
+          language : "<?php echo $lang["Idioma del tour es requerido."] ?>",     
+          location : "<?php echo $lang["Ubicación excacta del tour es requerido."] ?>",    
+          find_guide : "<?php echo $lang["Descripión de guia es requerido."] ?>",    
+          start_in : "<?php echo $lang["Punto de encuentro del tour es requerido."] ?>",    
+          src : "<?php echo $lang["Imagen del tour es requerido."] ?>",    
+          duration : "<?php echo $lang["Duración del tour es requerido."] ?>",    
+          capacity : "<?php echo $lang["Capacidad de personas es requerido."] ?>",
         }
       });
     });

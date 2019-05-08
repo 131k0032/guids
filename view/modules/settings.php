@@ -10,21 +10,8 @@ error_reporting(0);
 # =           Language validation           =
 # ===========================================
 
-   //Watching changes on post variable
-if(isset($_POST["lang"])){
-  $lang = $_POST["lang"];
-  if(!empty($lang)){
-    $_SESSION["lang"] = $lang;
-  }
-}
-// If is created
-if(isset($_SESSION['lang'])){  
-  $lang = $_SESSION["lang"];
-  include "view/languages/".$lang.".php";
-// Else take spanish default
-}else{
-  include "view/languages/es.php";
-}
+$lang = new LanguageController();
+require_once "view/languages/".$lang->validate().".php";//include lang
 
 
 # ======  End of Language validation  =======
@@ -57,7 +44,7 @@ if(isset($_SESSION['lang'])){
       <div class="container">
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 text-center border-primary">
-            <h2 class="font-weight-light text-primary">Configuración de información de perfil</h2>
+            <h2 class="font-weight-light text-primary"><?php echo $lang["Configuración de información de perfil"]; ?></h2>
             <p class="color-black-opacity-5"><?php echo $_SESSION['email']; ?></p>
           </div>
         </div>
@@ -70,33 +57,26 @@ if(isset($_SESSION['lang'])){
               <?php 
                  $getById=UserModel::getByCode($url[2],"user");                 
                ?>
-              <p>Puedes modificar tu información de perfil siempre que así lo desasdees</p>                            
+              <p><?php echo $lang["Puedes modificar tu información de perfil siempre que así lo desees"]; ?></p>                            
               <?php 
             
-            // $contra = "";
-            // $cadena = "abcdefghijklmnopqrstuvwxyz";
-
-            // $long_cad = strlen($cadena);
-
-            // $long_contra = 6;
-
-            // for($i = 0; $i < $long_contra; $i++){
-            //     $num = rand(0,$long_cad-1);
-            //     $letra = substr($cadena, $num, 1);
-            //     $contra = $contra.$letra;
-            // }
-            // //$contra_cifrada = md5($contra);
-            // $contra_cifrada= sha1(md5($contra));
-            // echo $contra;
-            // echo $contra_cifrada;
 
                ?>
               <div class="custom-control custom-checkbox form-check">
                   <input type="checkbox" class="custom-control-input spanish" id="profilesetting" name="profilesetting">
-                  <label class="custom-control-label" for="profilesetting">Cambiar imagen de perfil</label>
+                  <label class="custom-control-label" for="profilesetting"><?php echo $lang["Cambiar imagen de perfil"]; ?></label>
               </div>
               <hr>
-              <form method="post" enctype="multipart/form-data">
+              <form method="post" enctype="multipart/form-data" id="picture">
+                  <style>
+                    form label.error {
+                      float: right;
+                      color: #f23a2e;
+                      font-weight:bold;
+                      font-size: 12px 
+                      /*vertical-align: top;*/
+                    }
+                  </style>
                 <input type="hidden" value="<?php echo $url[2]; ?>" name="code">                 
                <div class="">
                     <center>
@@ -111,7 +91,7 @@ if(isset($_SESSION['lang'])){
                       <br>
                       <p class="color-black-opacity-5"><?php echo $getById["email"]; ?></p>                                
                       <div class="form-group">
-                        <input type="file" class="form-control" id="src" name="src" accept="image/*" disabled="disabled">
+                        <input type="file" class="form-control" id="src" name="src" accept="image/*" disabled="disabled" required>
                       </div>
                   </center>
                   </div>
@@ -121,7 +101,7 @@ if(isset($_SESSION['lang'])){
                     ?>                     
                   <div class="row form-group">
                   <div class="col-md-12">
-                      <input type="submit" value="Cambiar" id="btnupdatepicture" class="btn btn-primary py-2 px-4 text-white" disabled="disabled" >
+                      <input type="submit" value="<?php echo $lang["Cambiar"] ?>" id="btnupdatepicture" class="btn btn-primary py-2 px-4 text-white" disabled="disabled" >
                     </div>
                   </div>  
                  
@@ -130,46 +110,46 @@ if(isset($_SESSION['lang'])){
                
                 
             <br>
-            <form method="post">      
+            <form method="post" id="profile">      
               <!-- id value from the get url -->              
               <input type="hidden" value="<?php echo $url[2]; ?>" name="code"> 
               <input type="hidden" value="<?php echo $_SESSION["email"]; ?>" name="sessionemail"> 
                 <div class="custom-control custom-checkbox form-check">
                   <input type="checkbox" class="custom-control-input spanish" id="personalsetting" name="personalsetting">
-                  <label class="custom-control-label" for="personalsetting">Modificar información personal</label>
+                  <label class="custom-control-label" for="personalsetting"><?php echo $lang["Modificar información personal"]; ?></label>
                 </div>                
                 <hr>
                 <div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">                  
-                  <p class="mb-2 font-weight-bold">Nombre</p>
-                  <input type="text" id="name" name="name" class="form-control" disabled="disabled" value="<?php echo $getById["name"]?>">
+                  <p class="mb-2 font-weight-bold"><?php echo $lang["Nombre"]; ?></p>
+                  <input type="text" id="name" name="name" class="form-control" disabled="disabled" value="<?php echo $getById["name"]?>" required>
                 </div>
                 <div class="col-md-6">
-                  <p class="mb-2 font-weight-bold">Apellidos</p>
+                  <p class="mb-2 font-weight-bold"><?php echo $lang["Apellidos"]; ?></p>
                   <input type="text" id="lastname" name="lastname" class="form-control" disabled="disabled" value="<?php echo $getById["lastname"] ?>">
                 </div>
               </div>
 
               <div class="row form-group">                
                 <div class="col-md-12">
-                  <p class="mb-2 font-weight-bold">Teléfono</p>
-                  <input type="text" id="phone" name="phone" class="form-control" disabled="disabled" value="<?php echo $getById["phone"] ?>">
+                  <p class="mb-2 font-weight-bold"><?php echo $lang["Teléfono"]; ?></p>
+                  <input type="text" id="phone" name="phone" class="form-control" disabled="disabled" value="<?php echo $getById["phone"] ?>" maxlength="10" number="true" pattern="[0-9]" required>
                 </div>
               </div> 
 
-             <p class="mb-2 font-weight-bold">Describe tu personalidad</p>
+             <p class="mb-2 font-weight-bold"><?php echo $lang["Personalidad"]; ?></p>
               <div class="form-group">
-                 <textarea class="form-control" disabled="disabled"  rows="3" id="personality" name="personality" required><?php echo $getById["personality"]; ?></textarea>
+                 <textarea required class="form-control" disabled="disabled"  rows="3" id="personality" name="personality" required><?php echo $getById["personality"]; ?></textarea>
               </div>
 
-            <p class="mb-2 font-weight-bold">Habilidades</p>
+            <p class="mb-2 font-weight-bold"><?php echo $lang["Habilidades"]; ?></p>
               <div class="form-group">
-                 <textarea class="form-control" disabled="disabled"  rows="3" id="ability" name="ability" required><?php echo $getById["ability"]; ?></textarea>
+                 <textarea required class="form-control" disabled="disabled"  rows="3" id="ability" name="ability" required><?php echo $getById["ability"]; ?></textarea>
               </div>
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <input type="submit" value="Actualizar" id="btnupdate" class="btn btn-primary py-2 px-4 text-white" disabled="disabled" >
+                  <input type="submit" value="<?php echo $lang["Actualizar"] ?>" id="btnupdate" class="btn btn-primary py-2 px-4 text-white" disabled="disabled" >
                 </div>
               </div>
                 
@@ -210,7 +190,6 @@ if(isset($_SESSION['lang'])){
 =            SCRIPTS            =
 ==============================-->
 <?php include 'view/links/footer_common.php'; ?>
-<script src="http://localhost/guids/view/assets/js/jquery-3.3.1.min.js"></script>
 <!--====  End of SCRIPTS  ====-->
       
   
@@ -218,7 +197,7 @@ if(isset($_SESSION['lang'])){
   =            ENABLE OR DISABLE SETTING OPTIONS            =
   ========================================================-->
   
-    <script>
+<script>
     // profile Settings
   $(function(){
           $('#profilesetting').change(function(){
@@ -282,6 +261,61 @@ if(isset($_SESSION['lang'])){
 
   </script>
   
+
+  <!-- validation -->
+<script>
+  $().ready(function() {
+  $("#picture").validate({
+  rules: {
+    src: { 
+      required:true,         
+    },
+    
+  },
+  messages: {    
+    src: "<?php echo $lang["Imagen es requerida."] ?>",    
+  }
+  });
+  });
+</script>
+
+<script>
+  $().ready(function() {
+  $("#profile").validate({
+  rules: {
+    name: { 
+      required:true,         
+    },    
+    lastname: { 
+        required:true, 
+      },
+    phone: { 
+        required:true, 
+        minlength: 10, 
+        maxlength:10,
+        digits: true,   
+
+      },
+    personality: { 
+        required:true, 
+      },
+    ability: { 
+        required:true, 
+      },
+  },
+  messages: {    
+    name: "<?php echo $lang["Nombre es requerido."] ?>",
+    lastname: "<?php echo $lang["Apellidos son requeridos."] ?>",
+    phone : "<?php echo $lang["El teléfono es requerido y solo números son aceptados."]; ?>",
+    personality : "<?php echo $lang["Personalidad es requerida."]; ?>",
+    ability : "<?php echo $lang["Habilidad es requerida."]; ?>",
+  }
+  });
+  });
+</script>
+<!-- end validation -->
+
+
   <!--====  End of ENABLE OR DISABLE SETTING OPTIONS  ====-->
   
 

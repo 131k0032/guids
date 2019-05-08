@@ -270,9 +270,185 @@ tour, this in the section",
 "podrás ver la información de contacto. Tendrás que validar el tour, que solicita"=>"You will see the contact information. You will have to
 validate the tour requested by",
 "Ahora no"=>"Not now",
-"De acuerdo"=>"Ok"
+"De acuerdo"=>"Ok",
 
 /*=====  End of BOOKING TEMPATE  ======*/
+
+/*=========================================
+=            ADD TOUR TEMPLATE            =
+=========================================*/
+"Agregar tour"=>"Add tour",
+"Agregar un tour"=>"Add a tour",
+"Completa todos los campos"=>"Complete the fields",
+# -----------  Tab 1  -----------
+"Describe el tour"=>"Describe the tour",
+"Nombre del tour"=>"Tour name",
+"Un nombre interesante lo hace más llamativo"=>"An interesting name makes it more striking",
+"Tour mágico en la Quinta Avenida"=>"Magic Tour on Fifth Avenue",
+"Descripción del tour"=>"Tour description",
+"Describe de que se trata el tour y las actividades que harás"=>"Describe what the tour is about and the activities you will do",
+"Un tour que dará a conocer los puntos más destacados de la quinta avenida de Playa del Carmen, comenzaremos con una breve explicación de la
+historia, despúes nos desplazaremos en la calle... Por último..."=>"A tour that will reveal the highlights of the fifth avenue from Playa del
+Carmen, we will start with a brief explanation of the story, then we will move on the street ... Finally ...",
+"Idioma preferido para dar el tour"=>"Preferred language to give the tour",
+"Este idioma será con el que darás el tour"=>"This language will be with which you will give the tour",
+"Elija un idioma"=>"Choose a language",
+# -----------  Tab 2  -----------
+"¿Dónde será el tour?"=>"Where will be the tour?",
+"Lugar del tour"=>"Tour place",
+"Escribe el lugar exacto donde vas a realizar el Tour"=>"Write the exact place where you are going to make the Tour",
+"Playa del carmen, Quintana Roo"=>"Playa del carmen, Quintana Roo",
+"Describe como te van a encontrar antes del tour"=>"Describe how they will find you before the tour",
+"Especifica algunas características para que los turistas/viajeros te reconozcan"=>"Specify some features for tourists/Travelers recognize you",
+"Soy alto con cabello, largo, normalmente traigo puesta una gorra"=>"I'm tall with hair, long, I usually wear a cap",
+"Especifica un punto de encuentro del tour"=>"Specify a meeting point for the tour",
+"Describe donde te pueden localizar al para iniciar el tour"=>"Describe where you can be located to start the tour",
+"Será en el parque central, junto a la glorieta..."=>"It will be in the central park, next to the roundabout ...",
+# -----------  Tab 3  -----------
+"Agrega una foto"=>"Add a photo",
+"Agrega una imagen del tour"=>"Add a tour photo",
+"Es importante que adjuntes una imagen real y relacionada al tour, si son tomadas por ti mucho mejor"=>"It is important that you attach a
+real image and related to the tour, if they are taken by you much better",
+# -----------  Tab 4  -----------
+"Horario y duración"=>"Schedule and duration",
+"¿Cuánto tiempo durará el tour?"=>"How long will the tour last?",
+"Puedes elegir la duración del tour de acuerdo a tu disponibilidad de horario"=>"You can choose the duration of the tour according to your
+schedule availability",
+"Elija una aproximación"=>"Choose an approximation",
+"Elija los días para el tour"=>"Choose the days for the tour",
+"Puedes elegir uno o varios días para dar el tour, no olvides elegir el horario de inicio"=>"You can choose one or most of one days to give the
+tour,do not forget to choose the start time",
+"Lunes"=>"Monday",
+"Martes"=>"Tuesday",
+"Miércoles"=>"Wednesday",
+"Jueves"=>"Thursday",
+"Viernes"=>"Friday",
+"Sábado"=>"Saturday",
+"Domingo"=>"Sunday",
+"Elija un horario de inicio para el lunes"=>"Choose a start time for Monday",
+"Elija un horario de inicio para el martes"=>"Choose a start time for Tuesday",
+"Elija un horario de inicio para el miércoles"=>"Choose a start time for Wednesday",
+"Elija un horario de inicio para el jueves"=>"Choose a start time for Thursday",
+"Elija un horario de inicio para el viernes"=>"Choose a start time for Friday",
+"Elija un horario de inicio para el sábado"=>"Choose a start time for Saturday",
+"Elija un horario de inicio para el domingo"=>"Choose a start time for Sunday",
+# -----------  Tab 5  -----------
+"¿Cuántas personas pueden asistir al tour?"=>"How many people can be in the tour?",
+"Será la cantidad de personas que podrás admitir en el tour"=>"It will be the number of people that will be able to admit in the tour",
+"Elija un número de personas"=>"Choose a number of people",
+"Crear tour"=>"Create tour",
+# -----------  Validatios  -----------
+"Nombre del tour es requerido."=>"Name of the tour is required.",
+"Descripión del tour es requerido."=>"Tour description is required.",
+"Idioma del tour es requerido."=>"Language of the tour is required.",
+"Ubicación excacta del tour es requerido."=>"Excavated location of the tour is required.",
+"Descripión de guia es requerido."=>"Guide description is required.",
+"Punto de encuentro del tour es requerido."=>"Tour meeting point is required.",
+"Imagen del tour es requerido."=>"Image of the tour is required.",
+"Duración del tour es requerido."=>"Duration of the tour is required.",
+"Capacidad de personas es requerido."=>"Capacity of people is required.",
+
+
+/*=====  End of ADD TOUR TEMPLATE  ======*/
+
+
+/*========================================
+=            MYTOURS TEMPLATE            =
+========================================*/
+
+"Mis tours"=>"My tours",
+"Mis tours que he creado"=>"My tours that I created",
+"Detalle de todos mis tours"=>"Detail of all my tours",
+"Aquí podrás observar de manera general y más a detalle todos los tours que haz creado en el sitio y que los administradores an decidido
+aceptar. Cabe mencionar que si haz creado un tour y este aún no aparece, puede que esté aún en verificación."=>"Here you can observe in a way
+general and more in detail all the tours that you have created on the site and that the administrators decided to accept. It is worth
+mentioning that if you do created a tour and it still does not appear, it may still be in verification. ",
+"ID"=>"ID",
+"Nombre"=>"Name",
+"Creado"=>"Created",
+"Reservaciones"=> "Bookings",
+"Ratings"=>"Ratings",
+"Lugar del tour"=>"Place of tour",
+"Idioma"=>"Language",
+"Mi(s) horario(s)"=>"My schedule(s)",
+"Acciones" => "Actions",
+"¿Seguro deseas eliminar este tour?" => "Sure you want to delete this tour?",
+"¿Realmente desea eliminar el tour?:" => "Do you really want to delete the tour?:",
+"del tour para confirmar." => "of the tour to confirm.",
+"Escribe el identificador, por favor." => "Write the identifier, please.",
+"Cancelar" => "Cancel",
+"Eliminar" => "Delete",
+
+/*=====  End of MYTOURS TEMPLATE  ======*/
+
+
+/*===================================================
+=            GENERATE INSURANCE TEMPLATE            =
+===================================================*/
+"Generar seguro"=>"Generate insurance",
+# -----------  Attach image  -----------
+"Adjunta una foto grupal"=>"Attach a group photo",
+"Toma una foto con los turistas/viajeros antes de tour"=>"Take a picture with tourists / travelers before tour",
+"Esta foto grupal con los turistas servirá para hacer validar tu seguridad y la de los turistas/viajeros ante cualquier situación de terceros
+que pueda suceder, observa que puedes elegir únicamente los tours que haz aceptado realizar"=>"This group photo with tourists will serve to
+make validate your safety and that of tourists/travelers in any situation of third parties that may happen, see that you can choose
+only the tours that you have accepted to carry out",
+"Tour al que pertenece esta imagen"=>"Tour to which this image belongs",
+"Elija un tour para validar"=>"Choose a tour to validate",
+"Adjunta la foto grupal"=>"Attach the group photo",
+"Adjuntar"=>"Attach",
+# -----------  Tours accepted  -----------
+"Tours que has aceptado"=>"Tours that you have accepted",
+"Tours que vas a realizar"=>"Tours that will you gonna do",
+"Aquí encontrarás la lista de todos los tours que haz decidido dar a los turistas/viajeros"=>"Here you will find the list of all the tours you
+have decided to give to tourists / travelers",
+"Lugar"=>"Place",
+"Reserva"=>"Booking of",
+"Correo"=>"Email",
+"Teléfono"=>"Phone",
+"Asistirán"=>"People who will go",
+"Fecha y hora"=>"Date and time",
+# -----------  Tours reported  -----------
+"Tours que has reportado"=>"Tours reported",
+"Tours validados"=>"Tours validated",
+"Aquí encontrarás la lista de todos los tours que haz reportado y validado con una foto a los administradores del sitio"=>"Here you will find
+the list of all the tours that you have reported and validated with a photo to the administrators of the site",
+"Personas que dijeron ir al tour"=>"People who said to go to the tour",
+"Imagen de verificación"=>"Image verification",
+"Realización del tour"=>"Realization of the tour",
+"Imagen enviado"=>"Image sent",
+"Cerrar"=>"Close",
+# -----------  Validatios  -----------
+"Es necesario elegir un tour."=>"Choose a tour.",
+"Imagen es requerida."=>"Image is required",
+/*=====  End of GENERATE INSURANCE TEMPLATE  ======*/
+
+
+/*=========================================
+=            SETTINGS TEMPLATE            =
+=========================================*/
+"Configuración"=>"Settings",
+"Configuración de información de perfil"=>"Setting profile information",
+"Puedes modificar tu información de perfil siempre que así lo desees"=>"You can modify your profile when you want",
+"Cambiar imagen de perfil"=>"Change profile image",
+"Cambiar"=>"Change",
+"Modificar información personal"=>"Modify personal information",
+"Nombre"=>"Name",
+"Apellidos"=>"Last name",
+"Teléfono"=>"Phone",
+"Personalidad"=>"Personality",
+"Habilidades"=>"Hability",
+"Actualizar"=>"Update",
+//Validations
+"Imagen es requerida."=>"Image is required",
+"Nombre es requerido."=>"Name is required.",
+"Apellidos son requeridos."=>"Last name is required.",
+"El teléfono es requerido y solo números son aceptados."=>"Field phone is required and only numbers are requested.",
+"Personalidad es requerida."=>"Personality is required.",
+"Habilidad es requerida."=>"Hability is required."
+/*=====  End of SETTINGS TEMPLATE  ======*/
+
+
 
 
 );
