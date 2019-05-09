@@ -23,18 +23,18 @@
 					// session_start(); Se inicia sesion en el home antes que todo html siempre al menos en php 7 en adelante
 					$_SESSION["validar"]=true;							
 					$_SESSION["email"] = $respuesta["email"];			
-					// print "<script>window.location='http://localhost/guids/access-admin/newusers';</script>";
-					print "<script>window.location='https://guids.mx/access-admin/newusers';</script>";
+					print "<script>window.location='http://localhost/guids/access-admin/newusers';</script>";
+					// print "<script>window.location='https://guids.mx/access-admin/newusers';</script>";
 					// var_dump($respuesta);
 				}elseif($respuesta["email"]==$_POST["email"] && $respuesta["password"]!=$encriptar){
 
-					  // print "<script>alert(\"Email o contraseña incocorrectos\");window.location='http://localhost/guids/access-admin/index';</script>";
-					  print "<script>alert(\"Email o contraseña incocorrectos\");window.location='http://guids.mx/access-admin/index';</script>";
+					  print "<script>alert(\"Email o contraseña incocorrectos\");window.location='http://localhost/guids/access-admin/index';</script>";
+					  // print "<script>alert(\"Email o contraseña incocorrectos\");window.location='http://guids.mx/access-admin/index';</script>";
 					
 
 				}elseif ($respuesta["email"]==$_POST["email"] && $respuesta["password"]==$encriptar && $respuesta["is_admin"]==0) {
-					// print "<script>alert(\"No tienes acceso a este sition\");window.location='http://localhost/guids/access-admin/index';</script>";
-					print "<script>alert(\"No tienes acceso a este sition\");window.location='http://guids.mx/access-admin/index';</script>";
+					print "<script>alert(\"No tienes acceso a este sition\");window.location='http://localhost/guids/access-admin/index';</script>";
+					// print "<script>alert(\"No tienes acceso a este sition\");window.location='http://guids.mx/access-admin/index';</script>";
 				}
 			}
 		

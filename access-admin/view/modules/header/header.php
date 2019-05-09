@@ -15,7 +15,7 @@
     <div class="row align-items-center">
       
       <div class="col-11 col-xl-2" >
-        <h1 class="mb-0 site-logo"><a href="http://localhost/guids/access-admin/index" class="text-black h2 mb-0" ><img src="http://localhost/guids/access-admin/view/assets/images/logo-three.png" style="border-radius:25px; width: 250px; height: 50px;" alt=""></a></h1>
+        <h1 class="mb-0 site-logo"><a href="http://localhost/guids/access-admin/newusers" class="text-black h2 mb-0" ><img src="http://localhost/guids/access-admin/view/assets/images/logo-three.png" style="border-radius:25px; width: 250px; height: 50px;" alt=""></a></h1>
       </div>
       <div class="col-12 col-md-10 d-none d-xl-block">
             <nav class="site-navigation position-relative text-right" role="navigation">
@@ -70,7 +70,7 @@
         <div class="row align-items-center">
           
           <div class="col-11 col-xl-2" >
-           <h1 class="mb-0 site-logo"><a href="http://localhost/guids/access-admin/profile" class="text-black h2 mb-0" ><img src="http://localhost/guids/access-admin/view/assets/images/logo-three.png" style="border-radius:25px; width: 250px; height: 50px;" alt=""></a></h1>
+           <h1 class="mb-0 site-logo"><a href="http://localhost/guids/access-admin/newusers" class="text-black h2 mb-0" ><img src="http://localhost/guids/access-admin/view/assets/images/logo-three.png" style="border-radius:25px; width: 250px; height: 50px;" alt=""></a></h1>
           </div>
           <div class="col-12 col-md-10 d-none d-xl-block">
             <nav class="site-navigation position-relative text-right" role="navigation">              
@@ -91,8 +91,8 @@
                     <li><a href="http://localhost/guids/access-admin/confirmatedusers"><i class="icon-check_circle"></i> Usuarios aceptados</a></li>                    
                     <li><a href="http://localhost/guids/access-admin/newtours"><i class="icon-list-ul"></i> Nuevos tours</a></li>
                     <li><a href="http://localhost/guids/access-admin/confirmatedtours"><i class="icon-list-ul"></i> Tours aceptados</a></li>                    
-                    <li><a href="http://localhost/guids/access-admin/mytours"><i class="icon-list-ul"></i> <?php echo $lang["Mis tours"]; ?></a></li>
-                    <li><a href="http://localhost/guids/access-admin/generateinsurance/user/<?php echo $id; ?>"><i class="icon-picture-o"></i> <?php echo $lang["Generar seguro grupal"]; ?></a></li>
+                    <!-- <li><a href="http://localhost/guids/access-admin/mytours"><i class="icon-list-ul"></i> <?php echo $lang["Mis tours"]; ?></a></li> -->
+                <!--     <li><a href="http://localhost/guids/access-admin/generateinsurance/user/<?php echo $id; ?>"><i class="icon-picture-o"></i> <?php echo $lang["Generar seguro grupal"]; ?></a></li> -->
                     <!-- For new type edition of user -->                    
                     <li><a href="http://localhost/guids/access-admin/settings/user/<?php echo $id; ?>"><i class="icon-settings"></i> <?php echo $lang["Configurar"]; ?></a></li>                                                        
                     <li><a href="http://localhost/guids/access-admin/logout"><i class="icon-sign-out"></i> <span><?php echo $lang["Cerrar sesión"]; ?></span></a></li>

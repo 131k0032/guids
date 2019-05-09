@@ -1,5 +1,5 @@
 <?php  
-// error_reporting(0);
+error_reporting(0);
  session_start();
     if(!$_SESSION['validar']){
       print "<script>window.location='index';</script>";
@@ -143,7 +143,10 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                       </div>
                       <form method="post">
                         <div class="modal-body">
-                          <input type="hidden" name="id" value="<?php echo $value["id"] ?>">
+                          <input type="hidden" name="id_confirm" value="<?php echo $value["id"] ?>">
+                          <input type="hidden" name="name_confirm" value="<?php echo $value["name"] ?>">
+                          <input type="hidden" name="lastname_confirm" value="<?php echo $value["lastname"] ?>">
+                          <input type="hidden" name="email_confirm" value="<?php echo $value["email"] ?>">
                           <p class="color-black-opacity-5">El usuario <?php echo $value["name"];?> podrá acceder a Guids.mx y publicar tours</p>                       
                         </div>
                         <div class="modal-footer">                        
@@ -151,6 +154,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                             <!-- <button type="submit" class="btn btn-danger">Eliminar</button> -->
                             <input type="submit" value="Confirmar" id="btnupdate" class="btn btn-success py-2 px-4 text-white" >
                                  <?php 
+
                                   $confirm= new UserController();
                                   $confirm->confirm();
                                  ?>                        
@@ -174,13 +178,14 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                       </div>
                       <form method="post">
                         <div class="modal-body">                          
+                          <input type="hidden" name="user_id" value="<?php echo $value["id"] ?>">
                           <input type="hidden" name="name" value="<?php echo $value["name"] ?>">
                           <input type="hidden" name="lastname" value="<?php echo $value["lastname"] ?>">
                           <p class="color-black-opacity-5">El usuario <?php echo $value["name"];?> recibirá este correo una vez que se lo envíes</p>
 
                           <div class="form-group">
                               <div class="h-entry"><div class="meta">Email del usuario</div></div>
-                              <input type="text" id="name" name="email" class="form-control" value="<?php echo $value["email"]; ?>">
+                              <input type="text" id="name" name="email" class="form-control" value="<?php echo $value["email"]; ?>" readonly>
                           </div>
                           
                           <div class="form-group">
@@ -193,8 +198,10 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                             <!-- <button type="submit" class="btn btn-danger">Eliminar</button> -->
                             <input type="submit" value="Enviar mensaje" id="btnupdate" class="btn btn-success py-2 px-4 text-white" >
                                  <?php 
-                                  $sendMessage= new UserController();
-                                  $sendMessage->sendMessage();
+
+                                  $userId= new UserController();
+                                  $userId->userId();
+
                                  ?>                        
                         </div>
                       </form>
@@ -205,6 +212,13 @@ require_once "view/languages/".$lang->validate().".php";//include lang
 
 
           <?php } ?>   
+          <?php 
+            $sendMail=new UserController();   
+            //After confirmated user         
+            $sendMail->sendConfirmMessage();
+            //After sending an email
+            $sendMail->sendMessage();            
+           ?>
           </tbody>
         </table>
 

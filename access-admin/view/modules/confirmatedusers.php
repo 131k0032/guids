@@ -1,5 +1,5 @@
 <?php  
-error_reporting(0);
+// error_reporting(0);
  session_start();
     if(!$_SESSION['validar']){
       print "<script>window.location='index';</script>";
@@ -9,22 +9,9 @@ error_reporting(0);
 # =           Language validation           =
 # ===========================================
 
-   //Watching changes on post variable
-if(isset($_POST["lang"])){
-  $lang = $_POST["lang"];
-  if(!empty($lang)){
-    $_SESSION["lang"] = $lang;
-  }
-}
-// If is created
-if(isset($_SESSION['lang'])){  
-  $lang = $_SESSION["lang"];
-  include "view/languages/".$lang.".php";
-// Else take spanish default
-}else{
-  include "view/languages/es.php";
-}
 
+$lang = new LanguageController();
+require_once "view/languages/".$lang->validate().".php";//include lang
 
 # ======  End of Language validation  =======
 ?>
@@ -133,10 +120,7 @@ if(isset($_SESSION['lang'])){
               <td><?php echo utf8_encode($value["updated_at"]); ?></td>          
               <td style="width:300px;">
                     <form method="post">    
-                      <!-- <a href="" class="btn btn-warning btn-xs">Modificar</a> -->
-                        <!-- <li><a href="http://localhost/guids/access-admin/accept/user/id/<?php echo $value["id"];?>" class="btn btn-success btn-xs"><i class="icon-settings"></i></a></li>  -->
                         <li><a data-toggle="modal" data-target="#exampleModalCenter<?php echo $value["id"];?>" class="btn btn-danger btn-xs"><i class="icon-trash"></i></a></li> 
-                      <!-- <button class="btn btn-danger btn-xs" type="submit">Eliminar</button> -->
                     </form>
               </td>
  
@@ -153,13 +137,15 @@ if(isset($_SESSION['lang'])){
                         </button>
                       </div>
                       <form method="post">
-                        <div class="modal-body">
-                          <input type="hidden" name="id" value="<?php echo $value["id"] ?>">
+                        <div class="modal-body">                          
+                          <input type="hidden" name="id_disable" value="<?php echo $value["id"] ?>">
+                          <input type="hidden" name="name_disable" value="<?php echo $value["name"] ?>">
+                          <input type="hidden" name="lastname_disable" value="<?php echo $value["lastname"] ?>">
+                          <input type="hidden" name="email_disable" value="<?php echo $value["email"] ?>">
                           <p class="color-black-opacity-5">Al inhabilitar el usuario <?php echo $value["name"];?> no podrá acceder a Guids.mx por consiguiente no podrá publicar tours</p>                       
                         </div>
                         <div class="modal-footer">                        
-                            <button type="button" class="btn btn-info" data-dismiss="modal">Ahora no</button>
-                            <!-- <button type="submit" class="btn btn-danger">Eliminar</button> -->
+                            <button type="button" class="btn btn-info" data-dismiss="modal">Ahora no</button>                            
                             <input type="submit" value="Inhabilitar" id="btnupdate" class="btn btn-success py-2 px-4 text-white" >
                                  <?php 
                                   $disable= new UserController();
@@ -175,6 +161,10 @@ if(isset($_SESSION['lang'])){
 
 
           <?php } ?>   
+          <?php 
+            $sendDisableMessage= new UserController();
+            $sendDisableMessage->sendDisableMessage();
+           ?>
           </tbody>
         </table>
 

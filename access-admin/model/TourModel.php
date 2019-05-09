@@ -70,6 +70,7 @@ public function getAllActive($table){
 		user.id as user_id,
 		user.name as user_name,
 		user.lastname as user_lastname,
+		user.is_active as user_is_active,
 
 		-- Tatle tour_image
 		tour_image.id as tour_image_id,
@@ -82,7 +83,7 @@ public function getAllActive($table){
 		 inner join tour_image 
 		 on tour_image.tour_id=tour.id
 		 -- Disabled tours and user actived
-		 where tour.is_active=1 && user.is_active=1
+		 where tour.is_active=1
 			");
 		$stmt->execute();				
 		return $stmt->fetchAll();						

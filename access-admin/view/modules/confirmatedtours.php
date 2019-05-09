@@ -87,11 +87,11 @@ if(isset($_SESSION['lang'])){
               <th>Creado el</th>
               <th>Creado por</th>              
               <th>Foto </th>
-              <th>Activo</th>
+              <th>Tour activo</th>
               <th>Actualizado el</th>
               <th>Actualizado el</th>
+              <th>Avisos</th>
               <th>Inhabilitar</th>
-
             </tr>
           </thead>
 
@@ -120,13 +120,20 @@ if(isset($_SESSION['lang'])){
               </td> 
               <td>
                 <?php if($value["tour_is_active"]==0){ ?>
-                  <?php echo "Requiere activación"; ?>
+                  <?php echo "Inactivo, no aparece en Guids.mx"; ?>
                 <?php }else{ ?>
-                  <?php echo "Activo"; ?>
+                  <?php echo "Activo, aparece en Guids.mx"; ?>
                 <?php } ?>
               </td>  
               <td><?php echo utf8_encode($value["tour_created_at"]); ?></td> 
               <td><?php echo utf8_encode($value["tour_updated_at"]); ?></td>          
+              <td>
+                <?php if($value["user_is_active"]==0){ ?>
+                  <?php echo "Has inhabilitado a ". utf8_encode($value["user_name"]." ".$value["user_lastname"]). ", ¡Por favor deshabilita este tour que creó! "; ?>
+                <?php }else{ ?>
+                  <?php echo "Usuario activo"; ?>
+                <?php } ?>
+              </td>
               <td style="width:300px;">
                     <form method="post">    
                       <!-- <a href="" class="btn btn-warning btn-xs">Modificar</a> -->
