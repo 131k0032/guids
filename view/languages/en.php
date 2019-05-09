@@ -237,7 +237,7 @@ It is of your interest.",
 // "El nombre es requerido."=>"El nombre es requerido.", has been defined,
 // "Los apellidos son requeridos."=>"Los apellidos son requeridos.",has been defined,
 //"Email es requerido y debe tener formato de email correcto."=>"Email es requerido y debe tener formato de email correcto.",
-"El teléfono es requerido."=>"Phone is required.",
+"El teléfono es requerido y solo números son aceptados."=>"Field phone is required and only numbers are requested.", 
 "Es necesario agregar un comentario."=>"It is necessary to add a comment.",
 
 
@@ -459,10 +459,19 @@ the list of all the tours that you have reported and validated with a photo to t
 "Tour(s) encontrado(s)"=>"Tour(s) found",
 "Con la palabra"=>"Whit the word",
 "Todos"=>"All",
-"No se encontraron resultados en esta página."=>"No se encontraron resultados en esta página."
+"No se encontraron resultados en esta página."=>"No se encontraron resultados en esta página.",
 /*=====  End of SEARCH TEMPLATE  ======*/
 
-
+/*==========================================
+=            ERROR 404 TEMPLATE            =
+==========================================*/
+"404 Sitio no encontrado"=>"404 Sitio no encontrado",
+"¡Error 404 Sitio no encontrado! Nos alegra mucho que llegues hasta aquí buscando incansablemente un tour, pero la página"=>"Site not found! We
+are very happy that you arrive here looking for a tour tirelessly, but the page",
+"no existe, pero espera :D , mejor sigue buscando"=>"doesn't exist, but wait, :D, better still looking",
+"aquí"=>"here",
+"y encuentra los mejores tours"=>"and find the best tours"
+/*=====  End of ERROR 404 TEMPLATE  ======*/
 
 
 

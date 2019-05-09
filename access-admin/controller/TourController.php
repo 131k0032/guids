@@ -1,6 +1,7 @@
 <?php 
 
 require "view/classupload/class.upload.php";
+require_once "view/phpmailer/class.phpmailer.php";
 
 
  class TourController{
@@ -8,19 +9,15 @@ require "view/classupload/class.upload.php";
 # ===================================
 # =           Adding tour           =
 # ===================================
-
-   # -----------  GET LAST ID USER  -----------
-  
-  public function lastIdTour(){   
+# -----------  GET LAST ID USER  -----------  
+    public function lastIdTour(){   
     $lastIdTour=TourModel::lastIdTour("id","tour");   
     return $lastIdTour; 
-    } 
+} 
 
 
-  # -----------  ADDING TOUR  -----------
-
-  public function addTour(){
-
+# -----------  ADDING TOUR  -----------
+    public function addTour(){
     $email=$_SESSION["email"];
     $emailById=array("email"=>$_SESSION["email"]);        
     $getIdByEmail = UserModel::getIdByEmailUser($emailById,"user");
@@ -40,8 +37,6 @@ require "view/classupload/class.upload.php";
         "created_at"=>$date,
         // "updadet_at"=>"1992-12-17",
         "user_id"=>$id
-
-
       );
       //First add on table tour
       $addTour=TourModel::addTour($tourDataController,"tour");
@@ -103,14 +98,12 @@ require "view/classupload/class.upload.php";
                   }
                 }else{
                   echo "There is not image";
-                }
-
-                
-            }
+          }
+        }
       }
     }
   }
- }
+}
 
 
 # ======  End of Adding tour  =======
@@ -119,23 +112,21 @@ require "view/classupload/class.upload.php";
 # ===================================
 # =           Getting all           =
 # ===================================
-
 // For home template
-public function getAll(){
-  $getAll= TourController::getAll("tour");
-  return $getAll;
+    public function getAll(){
+    $getAll= TourController::getAll("tour");
+    return $getAll;
 }
 
 // For guideinfo template
-public function getUserTourById(){
-  $getUserTourById=TourModel::getUserTourById("tour", $id);
+    public function getUserTourById(){
+    $getUserTourById=TourModel::getUserTourById("tour", $id);
 }
 
- public function getTourById(){
+    public function getTourById(){
     $getByTourId = TourModel::getAllById("tour", $id);
     return $getByTourId;
- }
-
+}
 
 # ======  End of Getting all  =======
 
@@ -144,17 +135,15 @@ public function getUserTourById(){
 # =           Updating tour           =
 # =====================================
 
-public function getAllById($id){
+    public function getAllById($id){
     $getAllById = TourModel::getAllById("tour_schedule", $id);
     return $getAllById;
 }
 
 
 
-public function update(){
-      
+    public function update(){      
       if(isset($_POST["name"])){
-
         $tourDataController=array(        
           "id"=>$_POST["id"],
           "name"=>$_POST["name"]
@@ -165,55 +154,279 @@ public function update(){
 
           if($updateById=="success"){
             print "<script>alert(\"Información actualizada.\");window.location='http://localhost/guids/index';</script>";
-            // echo $_POST["phone"];
-        
-          }else{
+            // echo $_POST["phone"];        
+            }else{
             print "<script>alert(\"Datos no ctualizados.\");window.location='http://localhost/guids/index';</script>";
-
-        }
-
-      } 
     }
+  } 
+}
 
 
 # -----------  CHANGING STATUS TOUR FOR SET VISIBLE ON THE SITE -----------
 // For new newtours template
   public function confirm(){      
-      if(isset($_POST["id"])){
+      if(isset($_POST["id_confirm"])){
         $tourDataController=array(        
-          "id"=>$_POST["id"],
+          "id"=>$_POST["id_confirm"],
           "is_active"=>1
           );
         $confirmTour=TourModel::confirm($tourDataController,"tour");
         var_dump($confirmTour);
           if($confirmTour=="success"){
-            print "<script>alert(\"Tour confirmado.\");window.location='http://localhost/guids/access-admin/newtours';</script>";                    
+            // print "<script>alert(\"Tour confirmado.\");window.location='http://localhost/guids/access-admin/newtours';</script>";
+            print "<script>alert(\"Tour confirmado, se ha enviado un Email al usuario\");window.location='https://guids.mx/access-admin/newtours';</script>";                                          
           }else{
-            print "<script>alert(\"Error en la confirmación de datos.\");window.location='http://localhost/guids/access-admin/newtours';</script>";
+            // print "<script>alert(\"Error en la confirmación de datos.\");window.location='http://localhost/guids/access-admin/newtours';</script>";
+            print "<script>alert(\"Error al enviar Email de confirmación\");window.location='https://guids.mx/access-admin/newtours';</script>";
+    }
+  } 
+}
 
-        }
+# -----------  SENDIG MAIL AFTER CONFIRMATING SETTIGN A VISIBLE TOUR  -----------
+// For new newtours template
+ public function sendConfirmMessage(){
+        if(isset($_POST["id_confirm"])){
+        $id_confirm=$_POST["id_confirm"];
+        $name_confirm=$_POST["name_confirm"];
+        $lastname_confirm=$_POST["lastname_confirm"];
+        $email_confirm=$_POST["email_confirm"]; 
 
+          $mail = new PHPMailer();
+
+          $mail->From     = "ceo@guids.mx";    // Correo Electronico para SMTP
+          $mail->FromName = "CEO Guids.mx"; 
+          $mail->AddAddress($email_confirm); // DirecciÃ³n a la que llegaran los mensajes.
+
+          // AquÃ­ van los datos que apareceran en el correo que reciba
+
+          $mail->WordWrap = 50; 
+          $mail->IsHTML(true);     
+          $mail->Subject  = "Tour verificado";
+          $mail->addReplyTo('ceo@guids.mx', 'CEO Guids.mx');
+          $mail->Body    = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+          <html xmlns="http://www.w3.org/1999/xhtml">
+          <head>
+          <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+          <title>Demystifying Email Design</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+          </head>
+          <body style="margin: 0; padding: 0;">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+              <tr>
+                <td style="padding: 10px 0 30px 0;">
+                  <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border: 1px solid #cccccc; border-collapse: collapse;">
+                    <tr>
+                      <td align="center" bgcolor="#70bbd9" style="padding: 40px 0 30px 0; color: #153643; font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;">
+                        <img src="https://guids.mx/access-admin/view/assets/images/email/h1.gif" alt="Creating Email Magic" width="300" height="230" style="display: block;" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td bgcolor="#ffffff" style="padding: 40px 30px 40px 30px;">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                          <tr>
+                            <td style="color: #153643; font-family: Arial, sans-serif; font-size: 24px;">
+                              <b>Hola '.$name_confirm.' '.$lastname_confirm.'</b>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+                                Nos hemos tomado la tarea de revisar los datos del tour que registraste en Guids.mx y tenemos la certeza de que es sin duda un tour real. Gracias por crear este maravilloso tour, en horabuena, pronto algun turista/viajero te va solocitar una reserva de este tour. Un saludo.
+                            </td>
+                          </tr>
+            
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td bgcolor="#ee4c50" style="padding: 30px 30px 30px 30px;">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                          <tr>
+                            <td style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px;" width="75%">
+                              &reg; El equipo de Guids.mx<br/>
+                              <a href="#" style="color: #ffffff;"><font color="#ffffff">Unsubscribe</font></a> to this newsletter instantly
+                            </td>
+                            <td align="right" width="25%">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                  <td style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;">
+                                    <a href="http://www.twitter.com/" style="color: #ffffff;">
+                                      <img src="https://guids.mx/access-admin/view/assets/images/email/tw.gif" alt="Twitter" width="38" height="38" style="display: block;" border="0" />
+                                    </a>
+                                  </td>
+                                  <td style="font-size: 0; line-height: 0;" width="20">&nbsp;</td>
+                                  <td style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;">
+                                    <a href="http://www.twitter.com/" style="color: #ffffff;">
+                                      <img src="https://guids.mx/access-admin/view/assets/images/email/fb.gif" alt="Facebook" width="38" height="38" style="display: block;" border="0" />
+                                    </a>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </body>
+          </html>';
+           $mail->AltBody = 'Este es el mansaje en texto plano para clientes que no admitan HTML';
+
+         // Datos del servidor SMTPs
+
+          $mail->IsSMTP(); 
+          $mail->Host = "mail.guids.mx";  // mail. o solo dominio - Servidor de Salida.
+          $mail->SMTPAuth = true; 
+          $mail->Username = "ceo@guids.mx";  // Correo ElectrÃ³nico para SMTP
+          $mail->Password = "Yazzirguids#2019"; // ContraseÃ±a para SMTP
+
+          if ($mail->Send()){       
+            print "<script>alert(\"Tour confirmado, se ha enviado un Email al usuario\");window.location='https://guids.mx/access-admin/newtours';</script>";  
+            // print "<script>alert(\"Mensaje enviado al usuario.\");window.location='http://localhost/guids/access-admin/newusers';</script>";
+            echo "success: " . $mail->ErrorInfo;
+          }             
+          else{
+            print "<script>alert(\"Error al enviar Email de confirmación\");window.location='https://guids.mx/access-admin/newtours';</script>";  
+            // print "<script>alert(\"Error al enviar correo.\");window.location='http://localhost/guids/access-admin/newusers';</script>";
+            echo "Error: " . $mail->ErrorInfo;
       } 
     }
+}
+
+
+# -----------  CHANGING STATUS TOUR FOR BE INACTIVE TO SITE -----------
 // For new confirmatedtours template
     public function disable(){      
-      if(isset($_POST["id"])){
+      if(isset($_POST["id_disable"])){
         $tourDataController=array(        
-          "id"=>$_POST["id"],
+          "id"=>$_POST["id_disable"],
           "is_active"=>0
           );
         $disableTour=TourModel::confirm($tourDataController,"tour");
         var_dump($disableTour);
           if($disableTour=="success"){
-            print "<script>alert(\"Tour inhabilitado.\");window.location='http://localhost/guids/access-admin/confirmatedtours';</script>";                    
-          }else{
-            print "<script>alert(\"Error al deshabilitar tour.\");window.location='http://localhost/guids/access-admin/confirmatedtours';</script>";
+            // print "<script>alert(\"Tour inhabilitado.\");window.location='http://localhost/guids/access-admin/confirmatedtours';</script>";
+            print "<script>alert(\"Tour inhabilitado, se ha enviado un Email al usuario\");window.location='https://guids.mx/access-admin/confirmatedtours';</script>"; 
+            }else{
+            // print "<script>alert(\"Error al deshabilitar tour.\");window.location='http://localhost/guids/access-admin/confirmatedtours';</script>";
+            print "<script>alert(\"Error al deshabilitar tour.\");window.location='https://guids.mx/access-admin/confirmatedtours';</script>"; 
+    }
+  } 
+}
 
-        }
+# -----------  SENDIG MAIL AFTER DISABLING TOUR  -----------
+public function sendDisableMessage(){
+          if(isset($_POST["id_disable"])){
+          $id_disable=$_POST["id_disable"];
+          $name_disable=$_POST["name_disable"];
+          $lastname_disable=$_POST["lastname_disable"];
+          $email_disable=$_POST["email_disable"]; 
 
+          $mail = new PHPMailer();
+
+          $mail->From     = "ceo@guids.mx";    // Correo Electronico para SMTP
+          $mail->FromName = "CEO Guids.mx"; 
+          $mail->AddAddress($email_disable); // DirecciÃ³n a la que llegaran los mensajes.
+
+          // AquÃ­ van los datos que apareceran en el correo que reciba
+
+          $mail->WordWrap = 50; 
+          $mail->IsHTML(true);     
+          $mail->Subject  = "Tour inhabilitado";
+          $mail->addReplyTo('ceo@guids.mx', 'CEO Guids.mx');
+          $mail->Body    = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+          <html xmlns="http://www.w3.org/1999/xhtml">
+          <head>
+          <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+          <title>Demystifying Email Design</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+          </head>
+          <body style="margin: 0; padding: 0;">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+              <tr>
+                <td style="padding: 10px 0 30px 0;">
+                  <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border: 1px solid #cccccc; border-collapse: collapse;">
+                    <tr>
+                      <td align="center" bgcolor="#70bbd9" style="padding: 40px 0 30px 0; color: #153643; font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;">
+                        <img src="https://guids.mx/access-admin/view/assets/images/email/h1.gif" alt="Creating Email Magic" width="300" height="230" style="display: block;" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td bgcolor="#ffffff" style="padding: 40px 30px 40px 30px;">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                          <tr>
+                            <td style="color: #153643; font-family: Arial, sans-serif; font-size: 24px;">
+                              <b>Hola '.$name_disable.' '.$lastname_disable.'</b>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+                                Es un gusto como siempre que hayas creado tours maravillosos en Guids.mx, sin embargo en Guids.mx nos tomamos muy en serio las normativas de uso del sitio y condiciones del mismo. Hemos detectado que este tour no cumple las condiciones como normalmente lo es, o bien tu cuenta de usuario ha sido deshabilitado anteriormente por incumplimiento de normas de nuestra comunidad, por tal motivo nos vemos en la penosa necesidad de inhabilitar este tour por un lapso de tiempo indeterminado. Un saludo.
+                            </td>
+                          </tr>
+            
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td bgcolor="#ee4c50" style="padding: 30px 30px 30px 30px;">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                          <tr>
+                            <td style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px;" width="75%">
+                              &reg; El equipo de Guids.mx<br/>
+                              <a href="#" style="color: #ffffff;"><font color="#ffffff">Unsubscribe</font></a> to this newsletter instantly
+                            </td>
+                            <td align="right" width="25%">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                  <td style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;">
+                                    <a href="http://www.twitter.com/" style="color: #ffffff;">
+                                      <img src="https://guids.mx/access-admin/view/assets/images/email/tw.gif" alt="Twitter" width="38" height="38" style="display: block;" border="0" />
+                                    </a>
+                                  </td>
+                                  <td style="font-size: 0; line-height: 0;" width="20">&nbsp;</td>
+                                  <td style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;">
+                                    <a href="http://www.twitter.com/" style="color: #ffffff;">
+                                      <img src="https://guids.mx/access-admin/view/assets/images/email/fb.gif" alt="Facebook" width="38" height="38" style="display: block;" border="0" />
+                                    </a>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </body>
+          </html>';
+           $mail->AltBody = 'Este es el mansaje en texto plano para clientes que no admitan HTML';
+
+         // Datos del servidor SMTPs
+
+          $mail->IsSMTP(); 
+          $mail->Host = "mail.guids.mx";  // mail. o solo dominio - Servidor de Salida.
+          $mail->SMTPAuth = true; 
+          $mail->Username = "ceo@guids.mx";  // Correo ElectrÃ³nico para SMTP
+          $mail->Password = "Yazzirguids#2019"; // ContraseÃ±a para SMTP
+
+          if ($mail->Send()){       
+            print "<script>alert(\"Tour inhabilitado, se ha enviado un Email al usuario\");window.location='https://guids.mx/access-admin/confirmatedtours';</script>"; 
+            // print "<script>alert(\"Mensaje enviado al usuario.\");window.location='http://localhost/guids/access-admin/confirmatedusers';</script>";
+            echo "success: " . $mail->ErrorInfo;
+          }             
+          else{
+            print "<script>alert(\"Error al deshabilitar tour.\");window.location='https://guids.mx/access-admin/confirmatedtours';</script>"; 
+            // print "<script>alert(\"Error al enviar correo.\");window.location='http://localhost/guids/access-admin/confirmatedusers';</script>";
+            echo "Error: " . $mail->ErrorInfo;
       } 
     }
-
+}
 # ======  End of Updating tour  =======
 
 

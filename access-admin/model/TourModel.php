@@ -30,6 +30,7 @@ public function getAllInActive($table){
 		user.id as user_id,
 		user.name as user_name,
 		user.lastname as user_lastname,
+		user.email as user_email,
 
 		-- Tatle tour_image
 		tour_image.id as tour_image_id,
@@ -69,7 +70,8 @@ public function getAllActive($table){
 		-- Table user
 		user.id as user_id,
 		user.name as user_name,
-		user.lastname as user_lastname,
+		user.lastname as user_lastname,		
+		user.email as user_email,
 		user.is_active as user_is_active,
 
 		-- Tatle tour_image

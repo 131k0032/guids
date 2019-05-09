@@ -1,5 +1,6 @@
 
 <?php 
+
 session_start();
 # ===========================================
 # =           Language validation           =
@@ -91,7 +92,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                   font-size: 12px 
                   /*vertical-align: top;*/
                 }
-              </style>
+              </style>              
               <div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">                  
                   <p class="mb-2 font-weight-bold"><?php echo $lang["Nombre"]; ?></p>
@@ -360,79 +361,77 @@ var typed = new Typed('.typed-words', {
 </script>
 <!-- end states values -->
 
-<!-- Validations -->
-<script>
-  $().ready(function() {
-  $("#signup").validate({
-    rules: {
-      name: { 
-        required: true, 
-        minlength: 2
-      },
-      lastname: { 
-        required: true, 
-        minlength: 2
-      },
-      email: { 
-        required:true, 
-        email: true
-      },
-      phone: { 
-        required:true, 
-        minlength: 10, 
-        maxlength:10,
-        digits: true,   
-
-      },
-      password: { 
-        required:true, 
-        minlength: 2,           
-      },
-      day:{
-        required:true
-      },
-      month:{
-        required:true
-      },
-      year:{
-        required:true
-      },
-      grade:{
-        required:true
-      },
-      "language[]":{
-        required:true
-      },
-      ability:{
-        required:true
-      },
-      personality:{
-        required:true
-      },
-
-
-
-    },
-    messages: {
-      name: "<?php echo $lang["El nombre es requerido."]; ?>",
-      lastname: "<?php echo $lang["Los apellidos son requeridos."]; ?>",
-      email : "<?php echo $lang["Email es requerido y debe tener formato de email correcto."]; ?>",    
-      phone : "<?php echo $lang["El teléfono es requerido y solo números son aceptados."]; ?>",   
-      password : "<?php echo $lang["El password es requerido."]; ?>",
-      day : "<?php echo $lang["El día es requerido."]; ?>",
-      month : "<?php echo $lang["El mes es requerido."]; ?>",
-      year : "<?php echo $lang["El año es requerido."]; ?>",
-      grade : "<?php echo $lang["El grado de estudios es requerido."]; ?>",
-      "language[]" : "<?php echo $lang["El idioma es requerido."]; ?>",
-      ability : "<?php echo $lang["Las habilidades son requeridas."]; ?>",
-      personality : "<?php echo $lang["La personalidad es requerida."]; ?>",
-    }
-  });
-});
-</script>
-<!-- End Validations -->
-
-
+<!-- Validations --> 
+<script> 
+  $().ready(function() { 
+  $("#signup").validate({ 
+    rules: { 
+      name: {  
+        required: true,  
+        minlength: 2 
+      }, 
+      lastname: {  
+        required: true,  
+        minlength: 2 
+      }, 
+      email: {  
+        required:true,  
+        email: true 
+      }, 
+      phone: {  
+        required:true,  
+        minlength: 10,  
+        maxlength:10, 
+        digits: true,    
+ 
+      }, 
+      password: {  
+        required:true,  
+        minlength: 2,            
+      }, 
+      day:{ 
+        required:true 
+      }, 
+      month:{ 
+        required:true 
+      }, 
+      year:{ 
+        required:true 
+      }, 
+      grade:{ 
+        required:true 
+      }, 
+      "language[]":{ 
+        required:true 
+      }, 
+      ability:{ 
+        required:true 
+      }, 
+      personality:{ 
+        required:true 
+      }, 
+ 
+ 
+ 
+    }, 
+    messages: { 
+      name: "<?php echo $lang["El nombre es requerido."] ?>", 
+      lastname: "<?php echo $lang["Los apellidos son requeridos."] ?>", 
+      email : "<?php echo $lang["Email es requerido y debe tener formato de email correcto."] ?>",     
+      phone : "<?php echo $lang["El teléfono es requerido y solo números son aceptados."] ?>",    
+      password : "<?php echo $lang["El password es requerido."] ?>", 
+      day : "<?php echo $lang["El día es requerido."] ?>", 
+      month : "<?php echo $lang["El mes es requerido."] ?>", 
+      year : "<?php echo $lang["El año es requerido."] ?>", 
+      grade : "<?php echo $lang["El grado de estudios es requerido."] ?>", 
+      "language[]" : "<?php echo $lang["El idioma es requerido."] ?>", 
+      ability : "<?php echo $lang["Las habilidades son requeridas."] ?>", 
+      personality : "<?php echo $lang["La personalidad es requerida."] ?>", 
+    } 
+  }); 
+}); 
+</script> 
+<!-- End Validations --> 
 <!--====  End of SCRIPTS  ====-->
 
 

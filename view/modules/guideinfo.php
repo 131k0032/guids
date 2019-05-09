@@ -1,5 +1,5 @@
 <?php
-   error_reporting(0);
+   // error_reporting(0);
    session_start();
 # ===========================================
 # =           Language validation           =
@@ -90,7 +90,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
           <div class="col-md-7 mb-5"  data-aos="fade">
             <!-- Image info -->
             <div class="d-block d-md-flex listing-horizontal">
-                <?php if(is_null($getUserTourById["src"]) || is_null($getUserTourById["picture"])){?>
+                <?php if(is_null($getUserTourById["user_src"]) || is_null($getUserTourById["user_picture"])){?>
                   <a href="" class="img d-block" style="background-image: url('http://localhost/guids/view/images/profile/default.jpg')"></a>
                 <?php } else{ ?>
                   <a href="" class="img d-block" style="background-image: url('<?php echo "http://localhost/guids/".$getById["src"]. $getById["picture"];?>')"></a>
@@ -216,6 +216,11 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                 </div>
                 <div class="modal-body">
                 <input type="hidden" name="tour_id" value="<?php echo $tourId; ?>">
+                <!-- For send email after booking -->
+                <input type="hidden" name="user_guide_name" value="<?php echo $getUserTourById["user_name"]; ?>">
+                <input type="hidden" name="user_guide_lastname" value="<?php echo $getUserTourById["user_lastname"]; ?>">
+                <input type="hidden" name="user_guide_email" value="<?php echo $getUserTourById["user_email"]; ?>">
+
                  <div class="h-entry"><div class="meta"><?php echo $lang["Elija la fecha"]; ?></div></div>
                     <div class="form-group">
                       <div class="wrap-icon">
@@ -269,13 +274,14 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                       </div>
 
                       <div class="form-group">
-                          <div class="h-entry"><div class="meta"><?php echo $lang["Correo"]; ?></div></div>
+
+                          <div class="h-entry"><div class="meta"><?php echo $lang["Correo"]; ?></div></div>                          
                           <input type="text" id="email" name="email" class="form-control" value="" placeholder="smith@ceo.com">
                       </div>
 
                      <div class="form-group">
                           <div class="h-entry"><div class="meta"><?php echo $lang["Teléfono"]; ?></div></div>
-                          <input type="text" id="phone" name="phone" class="form-control" value="" placeholder="55 44 33 22 11">
+                          <input type="text" id="phone" name="phone" class="form-control" value="" maxlength="10" number="true" pattern="[0-9]" placeholder="55 44 33 22 11">
                       </div>
                 </div>
                 <div class="modal-footer">
@@ -493,7 +499,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
       name : "<?php echo $lang["El nombre es requerido."] ?>",
       lastname : "<?php echo $lang["Los apellidos son requeridos."] ?>",
       email : "<?php echo $lang["Email es requerido y debe tener formato de email correcto."] ?>",
-      phone : "<?php echo $lang["El teléfono es requerido."] ?>",
+      phone : "<?php echo $lang["El teléfono es requerido y solo números son aceptados."] ?>",
     }
   });
 

@@ -1,20 +1,11 @@
 <?php 
-   //Watching changes on post variable
-if(isset($_POST["lang"])){
-  $lang = $_POST["lang"];
-  if(!empty($lang)){
-    $_SESSION["lang"] = $lang;
-  }
-}
-// If is created
-if(isset($_SESSION['lang'])){  
-  $lang = $_SESSION["lang"];
-  include "view/languages/".$lang.".php";
-// Else take spanish default
-}else{
-  include "view/languages/es.php";
-}
+# ===========================================
+# =           Language validation           =
+# ===========================================
+$lang = new LanguageController();
+require_once "view/languages/".$lang->validate().".php";//include lang
 
+# ======  End of Language validation  =======
 
  ?>
 <!DOCTYPE html>
@@ -23,7 +14,7 @@ if(isset($_SESSION['lang'])){
   <!--=================================
   =            Head common            =
   ==================================-->
-  <title>404 Sitio no encontrado</title>
+  <title><?php echo $lang["404 Sitio no encontrado"]; ?></title>
   <?php include 'view/links/head_common.php'; ?>
   
   <!--====  End of Head common  ====-->
@@ -47,7 +38,7 @@ if(isset($_SESSION['lang'])){
       <div class="container">
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 text-center border-primary">
-            <h2 class="font-weight-light text-primary">Error 404 not found! Parece que no hemos encontrado la página <?php echo $url[0];?> que buscabas, mejor busca y encuentra los tours haciendo clic <p class="color-black-opacity-5"><a href="http://localhost/guids/index">aquí</a></p></h2>
+            <h2 class="font-weight-light text-primary"><?php echo $lang["¡Error 404 Sitio no encontrado! Nos alegra mucho que llegues hasta aquí buscando incansablemente un tour, pero la página"]; ?> <?php echo $url[0];?> <?php echo $lang["no existe, pero espera :D , mejor sigue buscando"]; ?> <a href="http://localhost/guids/index"><?php echo $lang["aquí"]; ?></a> <?php echo $lang["y encuentra los mejores tours"]; ?></h2>
             
           </div>
         </div>

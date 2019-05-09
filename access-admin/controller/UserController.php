@@ -9,15 +9,15 @@ require_once "view/phpmailer/class.phpmailer.php";
 # =====================================
 # =           UPDATING USER           =
 # =====================================
- # -----------  GET LAST ID USER  -----------	
-	public function lastIdUser(){		
+# -----------  GET LAST ID USER  -----------	
+		public function lastIdUser(){		
 		$lastIdUser=UserModel::lastIdUser("id","user");		
 		return $lastIdUser;
 		// var_dump($respuesta);
 		// var_dump($respuesta[2][3]);		
 }	
 
- # -----------  EMAIL EXISTENT ON THE TABLE   -----------
+# -----------  EMAIL EXISTENT ON THE TABLE   -----------
 		public function emailExists(){
 		// clase del crud Datos y su parámetro tabla usuario
 		$emailExists=UserModel::emailExists("email","user");		
@@ -26,7 +26,7 @@ require_once "view/phpmailer/class.phpmailer.php";
 		// var_dump($respuesta[2][3]);		
 }	
 
- # -----------  OBTAINS ID BY EMAIL WHIT THE LOG EMAIL  -----------
+# -----------  OBTAINS ID BY EMAIL WHIT THE LOG EMAIL  -----------
 		public function getIdByEmailUser(){
 			if(isset($_SESSION["email"])){
 

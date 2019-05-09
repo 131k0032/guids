@@ -242,7 +242,7 @@ es de su interés.",
 // "El nombre es requerido."=>"El nombre es requerido.", has been defined,
 // "Los apellidos son requeridos."=>"Los apellidos son requeridos.",has been defined,
 //"Email es requerido y debe tener formato de email correcto."=>"Email es requerido y debe tener formato de email correcto.",
-"El teléfono es requerido."=>"El teléfono es requerido.",
+"El teléfono es requerido y solo números son aceptados."=>"El teléfono es requerido y solo números son aceptados.",
 "Es necesario agregar un comentario."=>"Es necesario agregar un comentario.",
 /*=====  End of GUIDE INFO TEMPLATE  ======*/
 
@@ -463,9 +463,19 @@ lista de todos los tours que haz reportado y validado con una foto a los adminis
 "Tour(s) encontrado(s)"=>"Tour(s) encontrado(s)",
 "Con la palabra"=>"Con la palabra",
 "Todos"=>"All",
-"No se encontraron resultados en esta página."=>"No se encontraron resultados en esta página."
+"No se encontraron resultados en esta página."=>"No se encontraron resultados en esta página.",
 /*=====  End of SEARCH TEMPLATE  ======*/
 
+/*==========================================
+=            ERROR 404 TEMPLATE            =
+==========================================*/
+"404 Sitio no encontrado"=>"404 Sitio no encontrado",
+"¡Error 404 Sitio no encontrado! Nos alegra mucho que llegues hasta aquí buscando incansablemente un tour, pero la página"=>"¡Error 404 Sitio
+no encontrado! Nos alegra mucho que llegues hasta aquí buscando incansablemente un tour, pero la página",
+"no existe, pero espera :D , mejor sigue buscando"=>"no existe, pero espera :D , mejor sigue buscando",
+"aquí"=>"aquí",
+"y encuentra los mejores tours"=>"y encuentra los mejores tours"
+/*=====  End of ERROR 404 TEMPLATE  ======*/
 
 );
 
