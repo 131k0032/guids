@@ -78,24 +78,26 @@ if(isset($_SESSION['lang'])){
       <div class="container">
         <div class="row mb-5">
           <div class="col-md-8" >
-            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure nobis officiis fugiat deserunt libero.</h3>
+            <h3>Lo que nos distingue</h3>
           </div>
         </div>
-        <div class="row mb-3">
+        <!-- <div class="row mb-3">
           <div class="col-md-4 mx-auto">
             <h3>Who We Are</h3>
           </div>
-        </div>
+        </div> -->
         <div class="row mb-5">
           <div class="col-md-4 ml-auto">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam eveniet laudantium dignissimos atque labore excepturi perspiciatis ut fugit eius itaque iste quibusdam dolore consectetur reprehenderit. Illum molestiae nemo culpa optio.</p>
+            <h3>Nuestra misión</h3>
+            <p>Conectar a los guías locales con turistas y viajeros que busquen experiencias gratis</p>
           </div>
           <div class="col-md-4">
-            <p>Similique neque facere cum! Et esse natus qui fugiat temporibus voluptate debitis similique eos illum pariatur suscipit placeat omnis perferendis ab enim quis eligendi minima explicabo aperiam. Eaque minus itaque?</p>
+            <h3>Nuestra visión</h3>
+            <p>Ser una filosófica de viaje para la sociedad del futuro con  una modalidad de viaje más integradora, experiencial, que no sólo  visiten o conozcan, sino que,  se sientan integrados en la realidad de lo que ven.</p>
           </div>
         </div>
 
-        <div class="row mb-5">
+<!--         <div class="row mb-5">
           <div class="col-md-4 text-left border-primary">
             <h2 class="font-weight-light text-primary">Popular Categories</h2>
             <p class="color-black-opacity-5">Lorem Ipsum Dolor Sit Amet</p>
@@ -122,7 +124,7 @@ if(isset($_SESSION['lang'])){
             <h3 class="h4">Doug Hale Kennedy</h3>
             <p class="caption text-primary">ProjectManager</p>
           </div>
-        </div>
+        </div> -->
 
       </div>
     </div>

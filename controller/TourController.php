@@ -1,7 +1,7 @@
 <?php
 
 require "view/classupload/class.upload.php";
-
+require_once "view/phpmailer/class.phpmailer.php";
 
  class TourController{
 
@@ -92,7 +92,7 @@ require "view/classupload/class.upload.php";
                       // Third insert on tour_image
                       $tourImageInsert = TourModel::addTourImage("tour_image", $src, $file_name, $lastIdTour);
                       if($tourScheduleInsert=="success"){
-                          // Data four insert
+                          // Data for insert on review
                           $rating=0;
                           $comment=NULL;
                           $created_at=$date;
@@ -100,8 +100,112 @@ require "view/classupload/class.upload.php";
                           $user_id=$id;
                           // Fourth insert
                           $reviewInsert = ReviewModel::add("review", $rating, $comment, $created_at, $tour_id, $user_id);
-                        // var_dump($tourScheduleInsert);
-                        print "<script>alert(\"Tour agregado, tour en revisión para aprobación\");window.location='mytours';</script>";
+                         // var_dump($tourScheduleInsert);
+                         // For sendmail to user (hidden vars on addtour.php)
+                          $user_name=$_POST["user_name"];
+                          $user_lastname=$_POST["user_lastname"];
+                          $user_email=$_POST["user_email"];
+                          
+                          // Sending mail
+                            $mail = new PHPMailer();
+                            $mail->From     = "ceo@guids.mx";    // Correo Electronico para SMTP
+                            $mail->FromName = "CEO Guids.mx"; 
+                            $mail->AddAddress($user_email); // DirecciÃƒÂ³n a la que llegaran los mensajes.
+                            // AquÃƒÂ­ van los datos que apareceran en el correo que reciba
+                            $mail->WordWrap = 50; 
+                            $mail->IsHTML(true);     
+                            $mail->Subject  =  "Tour creado exitosamente";
+                            $mail->addReplyTo('ceo@guids.mx', 'CEO Guids.mx');
+                            $mail->Body    = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+                            <html xmlns="http://www.w3.org/1999/xhtml">
+                            <head>
+                            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                            <title>Demystifying Email Design</title>
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                            </head>
+                            <body style="margin: 0; padding: 0;">
+                              <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+                                <tr>
+                                  <td style="padding: 10px 0 30px 0;">
+                                    <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border: 1px solid #cccccc; border-collapse: collapse;">
+                                      <tr>
+                                        <td align="center" bgcolor="#70bbd9" style="padding: 40px 0 30px 0; color: #153643; font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;">
+                                          <img src="https://guids.mx/view/assets/images/email/h1.gif" alt="Creating Email Magic" width="300" height="230" style="display: block;" />
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td bgcolor="#ffffff" style="padding: 40px 30px 40px 30px;">
+                                          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            <tr>
+                                              <td style="color: #153643; font-family: Arial, sans-serif; font-size: 24px;">
+                                                <b>Hola '.$user_name.' '.$user_lastname.'</b>
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+                                                El equipo de Guids.mx te da las gracias por haber creado un tour en el sitio. Te invitamo a leer lo siguiente jeje.
+                                                  Saludos cordiales.
+                                              </td>
+                                            </tr>
+                              
+                                          </table>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td bgcolor="#ee4c50" style="padding: 30px 30px 30px 30px;">
+                                          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            <tr>
+                                              <td style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px;" width="75%">
+                                                &reg; El equipo de Guids.mx<br/>
+                                                <a href="#" style="color: #ffffff;"><font color="#ffffff">Unsubscribe</font></a> to this newsletter instantly
+                                              </td>
+                                              <td align="right" width="25%">
+                                                <table border="0" cellpadding="0" cellspacing="0">
+                                                  <tr>
+                                                    <td style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;">
+                                                      <a href="http://www.twitter.com/" style="color: #ffffff;">
+                                                        <img src="https://guids.mx/view/assets/images/email/tw.gif" alt="Twitter" width="38" height="38" style="display: block;" border="0" />
+                                                      </a>
+                                                    </td>
+                                                    <td style="font-size: 0; line-height: 0;" width="20">&nbsp;</td>
+                                                    <td style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;">
+                                                      <a href="http://www.twitter.com/" style="color: #ffffff;">
+                                                        <img src="https://guids.mx/view/assets/images/email/fb.gif" alt="Facebook" width="38" height="38" style="display: block;" border="0" />
+                                                      </a>
+                                                    </td>
+                                                  </tr>
+                                                </table>
+                                              </td>
+                                            </tr>
+                                          </table>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </table>
+                            </body>
+                            </html>';
+                                       $mail->AltBody = 'Este es el mansaje en texto plano para clientes que no admitan HTML';
+
+                           // Datos del servidor SMTPs
+
+                            $mail->IsSMTP(); 
+                            $mail->Host = "mail.guids.mx";  // mail. o solo dominio - Servidor de Salida.
+                            $mail->SMTPAuth = true; 
+                            $mail->Username = "ceo@guids.mx";  // Correo ElectrÃƒÂ³nico para SMTP
+                            $mail->Password = "Yazzirguids#2019"; // ContraseÃƒÂ±a para SMTP
+
+                            if ($mail->Send()){
+                              print "<script>alert(\"Gracias por registrar el tour, este serÃ¡ verificado para poder aparecer Guids.mx\");window.location='mytours';</script>";                              
+                            }             
+                            else{
+                              print "<script>alert(\"Error, mail no enviado\");window.location='addtour';</script>";                              
+                          }
+                          //End sending mail
+
+                          // For localhost testing
+                        // print "<script>alert(\"Tour agregado, tour en revisiÃ³n para aprobaciÃ³n\");window.location='mytours';</script>";
                       }else{
                         echo "Error al agregar datos";
                       }
@@ -144,7 +248,7 @@ require "view/classupload/class.upload.php";
         if ($order == "ASC" or $order == "DESC") {
           $SearchEngine = TourModel::getSearchEngine($like, $start, $rang, $order);
         }else {
-            return "Parametro $order, no es válido";
+            return "Parametro $order, no es vÃ¡lido";
         }
       }else {
         $order = "DESC"; //set default
@@ -235,7 +339,7 @@ public function update(){
         var_dump($updateById);
 
           if($updateById=="success"){
-            print "<script>alert(\"Información actualizada.\");window.location='http://localhost/guids/index';</script>";
+            print "<script>alert(\"InformaciÃ³n actualizada.\");window.location='http://localhost/guids/index';</script>";
             // echo $_POST["phone"];
 
           }else{

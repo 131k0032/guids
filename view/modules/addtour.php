@@ -1,5 +1,5 @@
 <?php  
-error_reporting(0);
+// error_reporting(0);
  session_start();
     if(!$_SESSION['validar']){
       print "<script>window.location='index';</script>";
@@ -101,6 +101,11 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                                   <div class="form-group">                  
                                     <div class="wrap-icon">
                                       <!-- <span class="icon icon-room"></span> -->
+                                      <!-- For send mail vars from header-->
+                                      <input type="hidden" name="user_name" class="form-control" value="<?php echo $name ?>">
+                                      <input type="hidden" name="user_lastname" class="form-control" value="<?php echo $lastname ?>">
+                                      <input type="hidden" name="user_email" class="form-control" value="<?php echo $email ?>">
+
                                       <input type="text" name="name" class="form-control" placeholder="<?php echo $lang["Tour mágico en la Quinta Avenida"] ?>" required>
                                     </div>
                                   </div>
