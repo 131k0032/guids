@@ -93,6 +93,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
     //echo "title: ".$name.", start: ".$date->format("Y-m-d\TH:i:s").", end: ".$fin->format("Y-m-d\TH:i:s").", url: ".$url." <br>";
     $jsonData[] = array("title" => utf8_encode($value["tour_name"]), "start" => $date->format("Y-m-d\TH:i:s"), "end" => $fin->format("Y-m-d\TH:i:s"), "url" => $url);
   }
+  var_dump($jsonData);
 
  ?>
 <div class="container">

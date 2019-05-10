@@ -9,8 +9,8 @@ session_start();
 # ===========================================
 # =           Language validation           =
 # ===========================================
-$lang = new LanguageController();
-require_once "view/languages/".$lang->validate().".php";//include lang
+$language = new LanguageController();
+require_once "view/languages/".$language->validate().".php";//include lang
 # ======  End of Language validation  =======
 
 ?>
@@ -63,24 +63,24 @@ aceptar. Cabe mencionar que si haz creado un tour y este aún no aparece, puede 
           </thead>
           <tbody> <?php
             $getAllTourByUser = TourController::getAllToursByUser($id);
-            foreach($getAllTourByUser as $row => $value){
-              $countBookings = BookingController::GetCountBookinByTour($value["tour_id"]);
-              $getAvgRating = TourController::getCountRatingByIdTour($value["tour_id"]);
-              $getTourSchedule = TourController::getTourSchedule($value["tour_id"]);
+            foreach($getAllTourByUser as $row => $tourData){
+              $countBookings = BookingController::GetCountBookinByTour($tourData["tour_id"]);
+              $getAvgRating = TourController::getCountRatingByIdTour($tourData["tour_id"]);
+              $getTourSchedule = TourController::getTourSchedule($tourData["tour_id"]);
               ?>
             <tr>
-              <td><?php echo $value["tour_id"]; ?></td>
+              <td><?php echo $tourData["tour_id"]; ?></td>
               <td>
-                <a href="https://guids.mx/guideinfo/tour/<?php echo $value["tour_id"]; ?>" target="_blank">
+                <a href="https://guids.mx/guideinfo/tour/<?php echo $tourData["tour_id"]; ?>" target="_blank">
                   <div class="listing-image" style="max-width:250px;">
-                    <img src="<?php echo $value["tour_image_src"].$value["tour_image_file_name"];?>" alt="Image" class="img-fluid img-thumbnail card-img-top">
-                  </div>                <?php echo utf8_encode($value["tour_name"]); ?>
+                    <img src="<?php echo $tourData["tour_image_src"].$tourData["tour_image_file_name"];?>" alt="Image" class="img-fluid img-thumbnail card-img-top">
+                  </div>                <?php echo utf8_encode($tourData["tour_name"]); ?>
                 </a>
               </td>
-              <td><?php echo utf8_encode($value["tour_created_at"]); ?></td>
-              <td><a href="https://guids.mx/bookings/#<?php echo $value["tour_id"]; ?>" target="_blank"><?php echo $countBookings["count"]; ?> bookings</a></td>
+              <td><?php echo utf8_encode($tourData["tour_created_at"]); ?></td>
+              <td><a href="https://guids.mx/bookings/#<?php echo $tourData["tour_id"]; ?>" target="_blank"><?php echo $countBookings["count"]; ?> bookings</a></td>
               <td><?php echo $getAvgRating["review_rating"]." comments" ?></td>
-              <td><?php echo utf8_encode($value["tour_location"]); ?></td>
+              <td><?php echo utf8_encode($tourData["tour_location"]); ?></td>
               <td><?php echo utf8_encode($getTourSchedule[0][2]); ?></td>
               <td><?php echo "<br>"; foreach ($getTourSchedule as $key => $schedule) {
                 echo utf8_encode($schedule["tour_date"])." at ".$schedule["tour_time"]."<br>";} ?>
@@ -88,8 +88,8 @@ aceptar. Cabe mencionar que si haz creado un tour y este aún no aparece, puede 
               <td style="width:300px;">
                 <form method="post">
                   <!-- <a href="" class="btn btn-warning btn-xs">Modificar</a> -->
-                  <li><a href="http://localhost/guids/mytours-setting/tour/<?php echo $value["tour_id"];?>" class="btn btn-warning btn-xs"><i class="icon-settings"></i></a></li>
-                  <li><a data-toggle="modal" data-target="#modalTourID<?php echo $value["tour_id"];?>" class="btn btn-danger btn-xs"><i class="icon-trash"></i></a></li>
+                  <li><a href="http://localhost/guids/mytours-setting/tour/<?php echo $tourData["tour_id"];?>" class="btn btn-warning btn-xs"><i class="icon-settings"></i></a></li>
+                  <li><a data-toggle="modal" data-target="#modalTourID<?php echo $tourData["tour_id"];?>" class="btn btn-danger btn-xs"><i class="icon-trash"></i></a></li>
                   <!-- <button class="btn btn-danger btn-xs" type="submit">Eliminar</button> -->
                 </form>
               </td>
@@ -111,10 +111,10 @@ aceptar. Cabe mencionar que si haz creado un tour y este aún no aparece, puede 
             </div>
             <form method="post">
               <div class="modal-body">
-                <input type="hidden" name="id" value="<?php echo $value["tour_id"] ?>">
-                <p class="color-black-opacity-5"><?php echo $lang["¿Realmente desea eliminar el tour?:"]; ?> <i><?php echo $value["tour_name"]; ?>.</i><br>
-                <?php echo $lang["Por favor escriba el identificador"]; ?> <code><?php echo $value["tour_id"] ?></code> <?php echo $lang["del tour para confirmar."]; ?></p>
-                <input type="text" name="false" pattern="<?php echo $value["tour_id"] ?>" title="<?php echo $lang["Escribe el identificador, por favor."] ?>" required>
+                <input type="hidden" name="id" value="<?php echo $data["tour_id"] ?>">
+                <p class="color-black-opacity-5"><?php echo $lang["¿Realmente desea eliminar el tour?:"]; ?> <i><?php echo $data["tour_name"]; ?>.</i><br>
+                <?php echo $lang["Por favor escriba el identificador"]; ?> <code><?php echo $data["tour_id"] ?></code> <?php echo $lang["del tour para confirmar."]; ?></p>
+                <input type="text" name="false" pattern="<?php echo $data["tour_id"] ?>" title="<?php echo $lang["Escribe el identificador, por favor."] ?>" required>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-warning" data-dismiss="modal"><?php echo $lang["Cancelar"]; ?></button>
