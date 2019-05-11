@@ -249,6 +249,7 @@ class BookingModel{
 			booking.name AS booking_name,
 			booking.lastname AS booking_lastname,
 			booking.email AS booking_email,
+			booking.tour_id AS booking_id,
 			tour_schedule.start_at AS schedule_start
 			FROM tour
 				INNER JOIN booking

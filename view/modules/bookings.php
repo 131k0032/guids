@@ -9,8 +9,8 @@ error_reporting(0);
 # =           Language validation           =
 # ===========================================
 
-$lang = new LanguageController();
-require_once "view/languages/".$lang->validate().".php";//include lang
+$language = new LanguageController();
+require_once "view/languages/".$language->validate().".php";//include lang
 
 # ======  End of Language validation  =======
 ?>
@@ -85,13 +85,13 @@ require_once "view/languages/".$lang->validate().".php";//include lang
 <?php
   $getBookinsData = BookingController::getBookinsData($id);
   $jsonData = array();
-  foreach ($getBookinsData as $key => $value) { //foreach for calendar
-    $date = new DateTime($value["booking_date"].substr($value["schedule_start"],0,5).":00");
+  foreach ($getBookinsData as $key => $bookinData) { //foreach for calendar
+    $date = new DateTime($bookinData["booking_date"].substr($bookinData["schedule_start"],0,5).":00");
     $fin = new DateTime($date->format("c"));
-    $fin->add(new DateInterval("PT".substr($value["tour_duration"],0,1)."H".substr($value["tour_duration"],2,2)."M"));
-    $url="http://localhost/guids/bookings/#".$value["tour_id"];
+    $fin->add(new DateInterval("PT".substr($bookinData["tour_duration"],0,1)."H".substr($bookinData["tour_duration"],2,2)."M"));
+    $url="http://localhost/guids/bookings/#".$bookinData["tour_id"];
     //echo "title: ".$name.", start: ".$date->format("Y-m-d\TH:i:s").", end: ".$fin->format("Y-m-d\TH:i:s").", url: ".$url." <br>";
-    $jsonData[] = array("title" => utf8_encode($value["tour_name"]), "start" => $date->format("Y-m-d\TH:i:s"), "end" => $fin->format("Y-m-d\TH:i:s"), "url" => $url);
+    $jsonData[] = array("title" => utf8_encode($bookinData["tour_name"]), "start" => $date->format("Y-m-d\TH:i:s"), "end" => $fin->format("Y-m-d\TH:i:s"), "url" => $url);
   }
   var_dump($jsonData);
 
@@ -114,13 +114,13 @@ sección"]; ?> <a target="_blank" href="http://localhost/guids/generateinsurance
       </thead>
       <tbody>
           <?php
-          foreach ($getBookinsData as $key => $value) {
+          foreach ($getBookinsData as $key => $BookingTable) {
             echo "<tr>";
-            echo "<td><a name='".$value["tour_id"]."'>".utf8_encode($value["tour_name"])."</td>";
-            echo "<td>".$value["booking_name"]." ".$value["booking_lastname"]."</td>";
-            echo "<td>".$value["booking_quantyty"]." ".$lang["de"]." ".$value["tour_capacity"]."</td>";
-            echo "<td>".$value["booking_date"]." ".$lang["a la(s)"]." ".$value["schedule_start"]."</td>";
-            echo "<td><a style='color:white', data-toggle='modal' data-target='#acceptBookingModal".$value["tour_id"]."' class='btn btn-info btn-xs'>Aceptar</td>";
+            echo "<td><a name='".$BookingTable["tour_id"]."'>".utf8_encode($BookingTable["tour_name"])."</td>";
+            echo "<td>".$BookingTable["booking_name"]." ".$BookingTable["booking_lastname"]."</td>";
+            echo "<td>".$BookingTable["booking_quantyty"]." ".$lang["de"]." ".$BookingTable["tour_capacity"]."</td>";
+            echo "<td>".$BookingTable["booking_date"]." ".$lang["a la(s)"]." ".$BookingTable["schedule_start"]."</td>";
+            echo "<td><a style='color:white', data-toggle='modal' data-target='#acceptBookingModal".$BookingTable["tour_id"]."' class='btn btn-info btn-xs'>Aceptar</td>";
             echo "</tr>";
           } ?>
       </tbody>
@@ -130,12 +130,12 @@ sección"]; ?> <a target="_blank" href="http://localhost/guids/generateinsurance
 </div>
 <!-- Modal -->
 <?php
-foreach ($getBookinsData as $key => $value) { ?>
-<div class="modal fade" id="acceptBookingModal<?php echo $value["tour_id"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+foreach ($getBookinsData as $key => $BookingModal) { ?>
+<div class="modal fade" id="acceptBookingModal<?php echo $BookingModal["tour_id"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">¿<?php echo $lang["Aceptar el tour"]; ?> <?php echo utf8_encode($value["tour_name"]); ?>?</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">¿<?php echo $lang["Aceptar el tour"]; ?> <?php echo utf8_encode($BookingModal["tour_name"]); ?>?</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -143,7 +143,7 @@ foreach ($getBookinsData as $key => $value) { ?>
       <form method="post">
       <div class="modal-body">
         <input type="hidden" name="booking_id" value="">
-        <p class="color-black-opacity-2"><?php echo $lang["Después de aceptar el tour"]; ?> <b><?php echo utf8_encode($value["tour_name"]); ?></b> <?php echo $lang["podrás ver la información de contacto. Tendrás que validar el tour, que solicita"]; ?> <i><?php echo $value["booking_name"]." ".$value["booking_lastname"];  ?>.</i></p>
+        <p class="color-black-opacity-2"><?php echo $lang["Después de aceptar el tour"]; ?> <b><?php echo utf8_encode($BookingModal["tour_name"]); ?></b> <?php echo $lang["podrás ver la información de contacto. Tendrás que validar el tour, que solicita"]; ?> <i><?php echo $BookingModal["booking_name"]." ".$BookingModal["booking_lastname"];  ?>.</i></p>
       </div>
       <div class="modal-footer">
           <button style="color: white"; type="button" class="btn btn-warning" data-dismiss="modal"><?php echo $lang["Ahora no"]; ?></button>
