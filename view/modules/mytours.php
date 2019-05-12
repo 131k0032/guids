@@ -74,16 +74,16 @@ aceptar. Cabe mencionar que si haz creado un tour y este aún no aparece, puede 
                 <a href="https://guids.mx/guideinfo/tour/<?php echo $tourData["tour_id"]; ?>" target="_blank">
                   <div class="listing-image" style="max-width:250px;">
                     <img src="<?php echo $tourData["tour_image_src"].$tourData["tour_image_file_name"];?>" alt="Image" class="img-fluid img-thumbnail card-img-top">
-                  </div>                <?php echo utf8_encode($tourData["tour_name"]); ?>
+                  </div><?php echo utf8_encode($tourData["tour_name"]); ?>
                 </a>
               </td>
-              <td><?php echo utf8_encode($tourData["tour_created_at"]); ?></td>
+              <td><?php echo utf8_encode($tourData["tour_created_at"])."<br>".($tourData["tour_active"]==1 ? "published" : "waiting" ) ?></td>
               <td><a href="https://guids.mx/bookings/#<?php echo $tourData["tour_id"]; ?>" target="_blank"><?php echo $countBookings["count"]; ?> bookings</a></td>
-              <td><?php echo $getAvgRating["review_rating"]." comments" ?></td>
+              <td><?php echo $getAvgRating["review_rating"]-1; echo " comments";?></td>
               <td><?php echo utf8_encode($tourData["tour_location"]); ?></td>
               <td><?php echo utf8_encode($getTourSchedule[0][2]); ?></td>
-              <td><?php echo "<br>"; foreach ($getTourSchedule as $key => $schedule) {
-                echo utf8_encode($schedule["tour_date"])." at ".$schedule["tour_time"]."<br>";} ?>
+              <td><?php foreach ($getTourSchedule as $key => $schedule) {
+                echo "<br>".utf8_encode($schedule["tour_date"])." at ".$schedule["tour_time"];} ?>
               </td>
               <td style="width:300px;">
                 <form method="post">

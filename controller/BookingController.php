@@ -35,20 +35,20 @@ class BookingController{
 
 			if($bookinginsert=="success"){
 				// var_dump($bookinginsert);
-				//Data to send email			 		
+				//Data to send email
 			 		$user_guide_name=$_POST["user_guide_name"];
-			 		$user_guide_lastname=$_POST["user_guide_lastname"];	
-					$user_guide_email=$_POST["user_guide_email"];  
+			 		$user_guide_lastname=$_POST["user_guide_lastname"];
+					$user_guide_email=$_POST["user_guide_email"];
 					    $mail = new PHPMailer();
 
 					    $mail->From     = "ceo@guids.mx";    // Correo Electronico para SMTP
-					    $mail->FromName = "CEO Guids.mx"; 
+					    $mail->FromName = "CEO Guids.mx";
 					    $mail->AddAddress($user_guide_email); // DirecciÃ³n a la que llegaran los mensajes.
 
 					// AquÃ­ van los datos que apareceran en el correo que reciba
 
-					    $mail->WordWrap = 50; 
-					    $mail->IsHTML(true);     
+					    $mail->WordWrap = 50;
+					    $mail->IsHTML(true);
 					    $mail->Subject  =  "Solicitud de tour";
 					    $mail->addReplyTo('ceo@guids.mx', 'CEO Guids.mx');
 					    $mail->Body    = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -59,7 +59,7 @@ class BookingController{
 							<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 							</head>
 							<body style="margin: 0; padding: 0;">
-								<table border="0" cellpadding="0" cellspacing="0" width="100%">	
+								<table border="0" cellpadding="0" cellspacing="0" width="100%">
 									<tr>
 										<td style="padding: 10px 0 30px 0;">
 											<table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border: 1px solid #cccccc; border-collapse: collapse;">
@@ -81,7 +81,7 @@ class BookingController{
 																	Hola '.$user_guide_name.' '.$user_guide_lastname.' , el equipo de Guids.mx te informa que te han hecho una reserva a uno de los tours haz publicado en Guids.mx, accede con tu cuenta, en tu agenda puedes observar las solicitudes de turistas/viajeros que te lo han solicitado. Y, si tu itinerario lo permite, confirma los tours, pero recuerda, mientras mas tours realizes vas a tener un mejor posicionamiento en el sitio y sobre todo no menos impotante, mayores ingresos. Un saludo
 																</td>
 															</tr>
-								
+
 														</table>
 													</td>
 												</tr>
@@ -124,21 +124,21 @@ class BookingController{
 
 					   // Datos del servidor SMTPs
 
-					    $mail->IsSMTP(); 
+					    $mail->IsSMTP();
 					    $mail->Host = "mail.guids.mx";  // mail. o solo dominio - Servidor de Salida.
-					    $mail->SMTPAuth = true; 
+					    $mail->SMTPAuth = true;
 					    $mail->Username = "ceo@guids.mx";  // Correo ElectrÃ³nico para SMTP
 					    $mail->Password = "Yazzirguids#2019"; // ContraseÃ±a para SMTP
 
 					    if ($mail->Send()){
 					    	print "<script>alert(\"Tour reservado, espera respuesta del guía\");window.location='https://guids.mx/index';</script>";
-					    	// print "<script>alert(\"Added\");window.location='http://localhost/guids/index';</script>";				
-					    }					    
+					    	// print "<script>alert(\"Added\");window.location='http://localhost/guids/index';</script>";
+					    }
 					    else{
 					    	print "<script>alert(\"No reservado, espera respuesta del guía\");window.location='https://guids.mx/index';</script>";
-					    	// print "<script>alert(\"no Added\");window.location='http://localhost/guids/index';</script>";				
+					    	// print "<script>alert(\"no Added\");window.location='http://localhost/guids/index';</script>";
 					  }
-				// print "<script>alert(\"Added\");window.location='http://localhost/guids/index';</script>";				
+				// print "<script>alert(\"Added\");window.location='http://localhost/guids/index';</script>";
 			}else{
 				// print "<script>alert(\"Error al reservar\");window.location='https://guids.mx/index';</script>";
 				// var_dump($bookinginsert);
@@ -176,18 +176,12 @@ class BookingController{
 	// For bookings template
 	public function acceptTour(){
 		if(isset($_POST["booking_id"])){
-
-			$acceptTour=array(
-				"id"=>$_POST["booking_id"],
-				"status"=>1
-			);
-
-        	$respuesta=BookingModel::acceptTour($acceptTour,"booking");
-        	   if($respuesta=="success"){
-              print "<script>alert(\"Excelente! Haz aceptado el tour.\");window.location='http://localhost/guids/index';</script>";
-            	}else{
-              print "<script>alert(\"Error.\");window.location='http://localhost/guids/index';</script>";
-            }
+			$respuesta=BookingModel::acceptTour($_POST["booking_id"],"booking");
+			if($respuesta){
+				print "<script>alert(\"Excelente! Haz aceptado el tour.\");</script>";
+			}else{
+				print "<script>alert(\"Error.\");</script>";
+			}
 		}
 	}
 
@@ -245,17 +239,30 @@ class BookingController{
 	}
 
 	// For booking template
-	public function getBookinsData($id){
-		$getBookinsData = BookingModel::getBookinsData($id);
-		return $getBookinsData;
+	public function getBookingsDataTable($id){
+		$getBookingsDataTable = BookingModel::getBookingsData($id, 0);
+		return $getBookingsDataTable;
+	}
+
+	public function getBookingsCalendar($id){
+		$jsonData = array();
+		$getDataBookins = BookingModel::getBookingsData($id, 1);
+		foreach ($getDataBookins as $key => $data) {
+			$start = new DateTime($data["booking_date"].substr($data["schedule_start"],0,5).":00");
+			$end = new DateTime($start->format("c"));
+			$end->add(new DateInterval("PT".substr($data["tour_duration"],0,1)."H".substr($data["tour_duration"],2,2)."M"));
+			$url="https://guids.mx/guideinfo/tour/".$data["tour_id"];
+			$jsonData[] = array("title" => utf8_encode($data["tour_name"]), "start" => $start->format("Y-m-d\TH:i:s"), "end" => $end->format("Y-m-d\TH:i:s"), "url" => $url);
+		}
+		return $jsonData;
 	}
 
 
 	// For booking template
-	public function GetCountBookinByTour($idTour){ 
-		$count = BookingModel::GetCountBookinByTour($idTour); 
-		return $count[0]; 
-	} 
+	public function GetCountBookinByTour($idTour){
+		$count = BookingModel::GetCountBookinByTour($idTour);
+		return $count[0];
+	}
 
 
 

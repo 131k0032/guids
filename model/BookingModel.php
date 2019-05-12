@@ -162,18 +162,14 @@ class BookingModel{
 	}
 
 		public function acceptTour($bookingDataModel, $table){
-				$stmt = Conexion::conectar()->prepare("UPDATE $table SET status=:status WHERE id=:id");
-				$stmt->bindParam(":status",$bookingDataModel["status"],PDO::PARAM_INT);
-				$stmt->bindParam(":id",$bookingDataModel["id"],PDO::PARAM_INT);
-				$stmt->execute();
+			$stmt = Conexion::conectar()->prepare("UPDATE $table SET status=1 WHERE tour_id=:id");
+			$stmt->bindParam(":id",$bookingDataModel,PDO::PARAM_INT);
 				if($stmt->execute()){
-					return "success";
+					return true;
 				}else{
-					return "error";
+					return false;
 				}
-			return $stmt->fetch();
 			$stmt->close();
-
 	}
 
 	public function fileValidateTour($bookingDataModel, $table){
@@ -234,7 +230,7 @@ class BookingModel{
 	}
 
 
-		public function getBookinsData($id){
+		public function getBookingsData($id, $status){
 			$stmt = Conexion::conectar()->prepare("SELECT
 			tour.id AS tour_id,
 			tour.name AS tour_name,
@@ -242,21 +238,21 @@ class BookingModel{
 			tour.capacity AS tour_capacity,
 			tour.is_active AS tour_active,
 			tour.user_id AS tour_user_id,
-			booking.id AS booking_id,
 			booking.tour_date AS booking_date,
+			booking.tour_id AS booking_id,
 			booking.tourist_quantyty AS booking_quantyty,
 			booking.status AS booking_status,
 			booking.name AS booking_name,
 			booking.lastname AS booking_lastname,
 			booking.email AS booking_email,
-			booking.tour_id AS booking_id,
+			booking.tour_schedule_id AS booking_schedule,
 			tour_schedule.start_at AS schedule_start
 			FROM tour
 				INNER JOIN booking
 					ON booking.tour_id=tour.id
 				INNER JOIN tour_schedule
-					ON tour_schedule.tour_id=tour.id
-			WHERE tour.user_id=$id
+					ON tour_schedule.id=booking.tour_schedule_id
+			WHERE tour.is_active=1 and booking.status=$status and tour.user_id=$id
 			ORDER BY booking.tour_date ASC
 			");
 			$stmt->execute();
