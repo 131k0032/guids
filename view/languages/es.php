@@ -173,7 +173,7 @@ después de que tu información de registro haya sido verifica por los administr
 "Correo registrado en el sitio"=>"Correo registro en el sitio",
 // "Contraseña"=>"Contraseña", has benn defined
 "Contraseña registrada en el sitio"=>"Contraseña registrada en el sitio",
-"Iniciar sesión"=>"Inciar sesión",
+"Iniciar sesión"=>"Iniciar sesión",
 //validations
 // "Email es requerido y debe tener formato de email correcto."=>"Email es requerido y debe tener formato de email correcto.",has benn defined
 // "El password es requerido."=>"El password es requerido.",has benn defined
