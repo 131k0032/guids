@@ -102,6 +102,7 @@ require_once "view/phpmailer/class.phpmailer.php";
 		     	// AquÃ­ van los datos que apareceran en el correo que reciba
 
 			    $mail->WordWrap = 50; 
+			    $mail->CharSet = 'UTF-8';
 			    $mail->IsHTML(true);     
 			    $mail->Subject  = "Usuario verificado";
 			    $mail->addReplyTo('ceo@guids.mx', 'CEO Guids.mx');
@@ -132,7 +133,21 @@ require_once "view/phpmailer/class.phpmailer.php";
 													</tr>
 													<tr>
 														<td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
-															 Nos hemos tomado la tarea de revisar tus datos de registro en Guids.mx y tenemos la certeza de que es sin duda un perfil de usuario real. Gracias por ser parte de nosotros, en horabuena, es momento de acceder al sitio y ser el mejor Guids. Un saludo.
+															Nos hemos dado la tarea de verificar la información de perfil que nos has proporcionado en Guids.mx, te agradecemos mucho el haberte tomado tu tiempo de registrarte y sobre todo de esperar la verificación de tu cuenta. El equipo de Guids.mx ha determinado tu cuenta, sin duda se trata de información completamente real. En Guids.mx nos preocupamos mucho de que nuestros usuarios les sea de mucha utilidad el sitio, pero, sobre todo que les sea simple y sencillo el uso del mismo. Ahora a continuación se enlista las acciones que quedan pendientes a realizar:
+															<ol>
+																<li>Ir a <a href="https://guids.mx/signin">Inciar sesión</a></li>
+																<li>Inicia sesión con tu correo y contraseña que proporcionaste al crear tu cuenta</li>
+																<li>En la sección <i>Agregar tour</i> podrás llenar todos los campos de formulario para crear un tour</li>
+																<li>Por último da clic en <i>Crear tour</i></li>
+																<li>De nuevo, nuestro equipo se tomará la información del tour que registres</li>
+																<li>Si tienes alguna duda, puedes responder este correo con toda confianza escribiéndonos cualquier inquietud que tengas</li>
+															</ol>
+															<br>
+															<strong>Saludos cordiales</strong>
+															<br>
+															<em>Lic. Yazzir Adan Vazquez Sarabia - CEO de Guids.mx</em>
+															<br>																			
+															<em>CEO de Guids.mx</em>
 														</td>
 													</tr>
 						
@@ -362,6 +377,7 @@ public function sendMessage(){
 			// AquÃ­ van los datos que apareceran en el correo que reciba
 
 			    $mail->WordWrap = 50; 
+			    $mail->CharSet = 'UTF-8';
 			    $mail->IsHTML(true);     
 			    $mail->Subject  = "Sugerencia a los datos de tu perfil";
 			    $mail->addReplyTo('ceo@guids.mx', 'CEO Guids.mx');

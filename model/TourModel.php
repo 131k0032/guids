@@ -282,6 +282,7 @@ require_once "model/Conexion.php";
 				tour.location AS tour_location,
 				tour.duration AS tour_duration,
 				tour.capacity AS tour_capacity,
+				tour.is_active AS tour_active,
 				tour.created_at AS tour_created_at,
 				/*tour_image table*/
 				tour_image.src AS tour_image_src,

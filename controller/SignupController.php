@@ -89,6 +89,7 @@ public function newUserSignupController(){
 					// AquÃ­ van los datos que apareceran en el correo que reciba
 
 					    $mail->WordWrap = 50; 
+					    $mail->CharSet = 'UTF-8';
 					    $mail->IsHTML(true);     
 					    $mail->Subject  =  "Bienvenid@";
 					    $mail->addReplyTo('ceo@guids.mx', 'CEO Guids.mx');
@@ -119,8 +120,14 @@ public function newUserSignupController(){
 															</tr>
 															<tr>
 																<td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
-																	Hola '.$name.' '.$lastname.' , el equipo de Guids.mx te da las gracias y la bienvenida por registrarte al sitio y formar parte de nosotros. Por favor estaremos verificando tu cuenta dentro de las siguientes 24 hrs, esto para que puedas acceder al sitio, crear tours y ser uno de los mejores guías.
-																		Saludos cordiales.
+																	Hola '.$name.' '.$lastname.' , el equipo de Guids.mx te da las gracias y la bienvenida por registrarte al sitio y formar parte de nuestros mejores Guías. Como primer paso, estaremos revisando la información proporcionada, dentro de las siguientes 24 hrs, esto para que recibas consejos o sugerencias de cómo modifificar y mejorar tu información de perfil. Por el momento no podrás acceder a Guids.mx hasta que tu información sea verificada, pero no te preocupes, cuando todo esté listo, te enviaremos un email de usuario confirmado y podrás acceder a Guids.mx, crear tours y ser uno de los mejores guías.
+																		
+																		<br>
+																		<strong>Saludos cordiales</strong>
+																		<br>
+																		<em>Lic. Yazzir Adan Vazquez Sarabia - CEO de Guids.mx</em>
+																		<br>																			
+																		<em>CEO de Guids.mx</em>
 																</td>
 															</tr>
 								

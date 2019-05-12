@@ -131,11 +131,20 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                         }
               ?>
 
-              <p class="mb-0 font-weight-bold"><?php echo $lang["Teléfono"]; ?></p>
-              <p class="mb-4"><a href="#"><?php echo utf8_encode($getUserTourById["user_phone"]); ?></a></p>
 
-              <p class="mb-0 font-weight-bold"><?php echo $lang["Correo"]; ?></p>
-              <p class="mb-4"><a href="#"><?php echo utf8_encode($getUserTourById["user_email"]); ?></a></p>
+
+              <?php
+                if (!isset($_SESSION["email"])):
+                  //No show phone and email
+                else:                    
+                    echo '<p class="mb-0 font-weight-bold">'.$lang["Teléfono"].'</p>
+                          <p class="mb-4"><a href="#">'.utf8_encode($getUserTourById["user_phone"]).'</a></p>
+
+                          <p class="mb-0 font-weight-bold">'.$lang["Correo"].'</p>
+                          <p class="mb-4"><a href="#">'.utf8_encode($getUserTourById["user_email"]).'</a></p>';
+                endif;
+                ?>
+
             </div>
 
             <div class="p-4 mb-3 bg-white">

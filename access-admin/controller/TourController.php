@@ -200,6 +200,7 @@ require_once "view/phpmailer/class.phpmailer.php";
           // AquÃ­ van los datos que apareceran en el correo que reciba
 
           $mail->WordWrap = 50; 
+          $mail->CharSet = 'UTF-8';
           $mail->IsHTML(true);     
           $mail->Subject  = "Tour verificado";
           $mail->addReplyTo('ceo@guids.mx', 'CEO Guids.mx');
@@ -230,7 +231,19 @@ require_once "view/phpmailer/class.phpmailer.php";
                           </tr>
                           <tr>
                             <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
-                                Nos hemos tomado la tarea de revisar los datos del tour que registraste en Guids.mx y tenemos la certeza de que es sin duda un tour real. Gracias por crear este maravilloso tour, en horabuena, pronto algun turista/viajero te va solocitar una reserva de este tour. Un saludo.
+                              Nos hemos dado la tarea de verificar la información del tour que nos has proporcionado en Guids.mx, te agradecemos mucho el haberte tomado tu tiempo de llenar la información de este tour. El equipo de Guids.mx ha determinado que el tour, sin duda se trata de uno completamente real, asombroso y sobre todo muy interesante, por lo tanto a partir de ahora se encontrará visible para todo el mundo. En Guids.mx nos preocupamos mucho de que nuestros usuarios les sea de mucha utilidad el sitio, pero, sobre todo que les sea simple y sencillo el uso del mismo. Ahora a continuación se enlista algunas normas para mantener un tour activo:
+                              <ol>
+                                <li>A partir de ahora puedes recibir solitudes (reservaciones para este tour) </li>
+                                <li>Mientas más tours realices, mayores beneficios obtendrás</li>                                
+                                <li>Cuando los turistas/viajeros te soliciten una reserva a cualquiera de los tours que tengas activos, se te enviará información de mucha relevancia que tendrás que seguir minuciosamente, de lo contrario, el equipo de Guids.mx deshabilitará los tours que hayas publicado</li>
+                                <li>Si tienes alguna duda, puedes responder este correo con toda confianza escribiéndonos cualquier inquietud que tengas</li>
+                              </ol>
+                              <br>
+                              <strong>Saludos cordiales</strong>
+                              <br>
+                              <em>Lic. Yazzir Adan Vazquez Sarabia - CEO de Guids.mx</em>
+                              <br>                                      
+                              <em>CEO de Guids.mx</em>
                             </td>
                           </tr>
             
