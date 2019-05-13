@@ -2,6 +2,7 @@
  class Conexion{
  	public function conectar(){
  		$link = new PDO("mysql:host=localhost;dbname=guidsfour","root","");
+ 		// $link = new PDO("mysql:host=localhost;dbname=guidsfour;charset=UTF8","root","");
  		 return $link;
  		//var_dump($link);
 

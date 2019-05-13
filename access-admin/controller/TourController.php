@@ -233,7 +233,7 @@ require_once "view/phpmailer/class.phpmailer.php";
                             <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
                               Nos hemos dado la tarea de verificar la información del tour que nos has proporcionado en Guids.mx, te agradecemos mucho el haberte tomado tu tiempo de llenar la información de este tour. El equipo de Guids.mx ha determinado que el tour, sin duda se trata de uno completamente real, asombroso y sobre todo muy interesante, por lo tanto a partir de ahora se encontrará visible para todo el mundo. En Guids.mx nos preocupamos mucho de que nuestros usuarios les sea de mucha utilidad el sitio, pero, sobre todo que les sea simple y sencillo el uso del mismo. Ahora a continuación se enlista algunas normas para mantener un tour activo:
                               <ol>
-                                <li>A partir de ahora puedes recibir solitudes (reservaciones para este tour) </li>
+                                <li>A partir de ahora puedes recibir solicitudes (reservaciones para este tour) </li>
                                 <li>Mientas más tours realices, mayores beneficios obtendrás</li>                                
                                 <li>Cuando los turistas/viajeros te soliciten una reserva a cualquiera de los tours que tengas activos, se te enviará información de mucha relevancia que tendrás que seguir minuciosamente, de lo contrario, el equipo de Guids.mx deshabilitará los tours que hayas publicado</li>
                                 <li>Si tienes alguna duda, puedes responder este correo con toda confianza escribiéndonos cualquier inquietud que tengas</li>
@@ -241,7 +241,7 @@ require_once "view/phpmailer/class.phpmailer.php";
                               <br>
                               <strong>Saludos cordiales</strong>
                               <br>
-                              <em>Lic. Yazzir Adan Vazquez Sarabia - CEO de Guids.mx</em>
+                              <em>Lic. Yazzir Adan Vazquez Sarabia</em>
                               <br>                                      
                               <em>CEO de Guids.mx</em>
                             </td>
@@ -346,6 +346,7 @@ public function sendDisableMessage(){
           // AquÃ­ van los datos que apareceran en el correo que reciba
 
           $mail->WordWrap = 50; 
+          $mail->CharSet = 'UTF-8';
           $mail->IsHTML(true);     
           $mail->Subject  = "Tour inhabilitado";
           $mail->addReplyTo('ceo@guids.mx', 'CEO Guids.mx');
@@ -376,7 +377,14 @@ public function sendDisableMessage(){
                           </tr>
                           <tr>
                             <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
-                                Es un gusto como siempre que hayas creado tours maravillosos en Guids.mx, sin embargo en Guids.mx nos tomamos muy en serio las normativas de uso del sitio y condiciones del mismo. Hemos detectado que este tour no cumple las condiciones como normalmente lo es, o bien tu cuenta de usuario ha sido deshabilitado anteriormente por incumplimiento de normas de nuestra comunidad, por tal motivo nos vemos en la penosa necesidad de inhabilitar este tour por un lapso de tiempo indeterminado. Un saludo.
+                                Es un gusto como siempre que hayas creado tours maravillosos en Guids.mx, sin embargo en Guids.mx nos tomamos muy en serio las normativas de uso del sitio y condiciones del mismo. Hemos detectado ciertas anomalías e irregularidades que este tour no ha cumplido como normalmente se espera, o bien tu cuenta de usuario ha sido deshabilitado anteriormente por incumplimiento de normas de nuestra comunidad, por tal motivo nos vemos en la desafortunada necesidad de inhabilitar este tour por un lapso de tiempo indeterminado. Si tienes alguna duda de porque ha ocurrido esto puedes responder a este mensaje y nuestro equipo de Guids.mx te guiará en el proceso.
+                                <br>
+                                <br>
+                                <strong>Saludos cordiales</strong>
+                                <br>
+                                <em>Lic. Yazzir Adan Vazquez Sarabia</em>
+                                <br>                                      
+                                <em>CEO de Guids.mx</em>
                             </td>
                           </tr>
             

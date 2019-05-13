@@ -35,9 +35,8 @@
         "http://localhost/guids/view/fullcalendar/timegrid/main.js", 
         "http://localhost/guids/view/fullcalendar/interactions/main.js", 
         "http://localhost/guids/view/fullcalendar/bootstrap/main.js", 
-
-
-
+        # -----------  Gijgo  -----------
+        "http://localhost/guids/view/assets/js/gijgo.min.js", 
         
        );    
         
@@ -96,6 +95,8 @@
                   <script src="'.$jslink[23].'"></script>
                   <script src="'.$jslink[24].'"></script>
                   <script src="'.$jslink[25].'"></script>';
+            # -----------  Gijgo  -----------
+            echo '<script src="'.$jslink[26].'"></script>';
                                                 
             }else{
                # -----------  Main scripts  ----------- 
@@ -130,6 +131,8 @@
                   <script src="'.$jslink[23].'"></script>
                   <script src="'.$jslink[24].'"></script>
                   <script src="'.$jslink[25].'"></script>';   
+            # -----------  Gijgo  -----------
+            echo '<script src="'.$jslink[26].'"></script>';
         }
         
      ?>

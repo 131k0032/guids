@@ -102,8 +102,9 @@ require_once "view/languages/".$lang->validate().".php";//include lang
               <img style="width: 100%;" src="<?php echo $value["tour_image_src"].$value["tour_image_file_name"] ?>" alt="Image" class="img-fluid ">
             </div>
             <div class="listing-item-content">
-              <h2 class="mb-1"><a href="#"><?php echo $value["tour_id"]." ".utf8_encode($value["tour_name"]); ?></a></h2>
-              <span class="address"><?php echo utf8_encode($value["tour_location"]); ?></span>
+              <?php $char=25; ?>
+              <h2 class="mb-1"><a href="#"><?php echo $value["tour_id"]." ".utf8_encode(substr($value["tour_name"], 0, $char).'...'); ?></a></h2>
+              <span class="address"><?php echo utf8_encode(substr($value["tour_location"],0, $char).'...'); ?></span>
               <p>
                 <span class="icon-star <?php echo $value["tour_rating"]>=1 ? 'text-warning' : 'text-secondary' ?>"></span>
                 <span class="icon-star <?php echo $value["tour_rating"]>=2 ? 'text-warning' : 'text-secondary' ?>"></span>

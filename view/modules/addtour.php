@@ -49,7 +49,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
             <p class="color-black-opacity-5"><?php echo $lang["Completa todos los campos"]; ?></p>
           </div>
         </div>
-
+        
               <ul class="nav nav-tabs" id="myTab" role="tablist">               
                 <li class="nav-item">
                   <a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">1. <?php echo $lang["Describe el tour"]; ?></a>
@@ -113,7 +113,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                                   <p class="mb-2 font-weight-bold"><?php echo $lang["Descripción del tour"]; ?></p>
                                   <div class="h-entry"><div class="meta"><?php echo $lang["Describe de que se trata el tour y las actividades que harás"]; ?></div></div>
                                   <div class="form-group">
-                                  <textarea  style="resize:none" required name="description" class="form-control"  rows="3" placeholder="<?php echo $lang["Un tour que dará a conocer los puntos más destacados de la quinta avenida de Playa del Carmen, comenzaremos con una breve explicación de la
+                                  <textarea id="editor" style="resize:none" required name="description" class="form-control"  rows="3" placeholder="<?php echo $lang["Un tour que dará a conocer los puntos más destacados de la quinta avenida de Playa del Carmen, comenzaremos con una breve explicación de la
 historia, despúes nos desplazaremos en la calle... Por último..."] ?>"></textarea>
                                   </div>
 
@@ -1317,6 +1317,15 @@ historia, despúes nos desplazaremos en la calle... Por último..."] ?>"></texta
     </script>
     <!-- end validation -->
 
+<!-- Editor -->
+ <script type="text/javascript">
+        $(document).ready(function () {
+            $("#editor").editor({
+                uiLibrary: 'bootstrap4'
+            });
+        });
+ </script>
+<!-- End Editor -->
 <!--====  End of SCRIPTS  ====-->
 
 

@@ -4,15 +4,17 @@
 # ===========================================
 # =           Language validation           =
 # ===========================================
-$lang = new LanguageController();
-require_once "view/languages/".$lang->validate().".php";//include lang
+$language = new LanguageController();
+require_once "view/languages/".$language->validate().".php";//include lang
 
 # ======  End of Language validation  =======
+//Valodate URL
+if (isset($url[1]) && isset($url[2]) && $url[1]=="tour" && $url[2]>0) {
  ?>
 
 <!DOCTYPE html>
 <title><?php echo $lang["Información de guía"]; ?></title>
-<html lang="en">
+<html lang="<?php echo $language->validate(); ?>">
   <!--=================================
   =            Head common            =
   ==================================-->
@@ -39,21 +41,16 @@ require_once "view/languages/".$lang->validate().".php";//include lang
   =            INFO IMAGE            =
   =================================-->
 
-        <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(http://localhost/guids/view/assets/images/Cancun.jpg);" data-aos="fade" data-stellar-background-ratio="1">
+    <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(http://localhost/guids/view/assets/images/Cancun.jpg);" data-aos="fade" data-stellar-background-ratio="1">
       <div class="container">
         <div class="row align-items-center justify-content-center text-center">
-
           <div class="col-md-10">
-
-
             <div class="row justify-content-center">
               <div class="col-md-8 text-center">
                 <h1 data-aos="fade-up"><?php echo $lang["Conoce más a detalle al guía"]; ?></h1>
                 <p class="mb-0" data-aos="fade-up" data-aos-delay="100"><?php echo $lang["Adelante, prueba reservar un tour con el guía"]; ?></p>
               </div>
             </div>
-
-
           </div>
         </div>
       </div>
@@ -118,7 +115,6 @@ require_once "view/languages/".$lang->validate().".php";//include lang
             <div class="p-4 mb-3 bg-white">
               <p class="mb-0 font-weight-bold"><?php echo $lang["Ubicación del guía"]; ?></p>
               <p class="mb-4"><?php echo utf8_encode($getUserTourById["user_town"]); ?></p>
-
               <p class="mb-0 font-weight-bold"><?php echo $lang["Idiomas del guía"]; ?></p>
               <?php foreach ($getTourById as $key => $value) {} ?>
 
@@ -136,7 +132,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
               <?php
                 if (!isset($_SESSION["email"])):
                   //No show phone and email
-                else:                    
+                else:
                     echo '<p class="mb-0 font-weight-bold">'.$lang["Teléfono"].'</p>
                           <p class="mb-4"><a href="#">'.utf8_encode($getUserTourById["user_phone"]).'</a></p>
 
@@ -151,7 +147,6 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                <h3 class="h5 text-black mb-3"><?php echo $lang["Características del guía"]; ?></h3>
               <p><?php echo $lang["Personalidad"]; ?>: <?php echo utf8_encode($getUserTourById["user_personality"]); ?></p>
               <p><?php echo $lang["Habilidades"]; ?>: <?php echo utf8_encode($getUserTourById["user_ability"]); ?></p>
-
               <h3 class="h5 text-black mb-3"><?php echo $lang["Sobre el tour"]; ?></h3>
               <p><p><?php echo $lang["Descripción"]; ?>: <?php echo utf8_encode($getUserTourById["tour_description"]); ?></p></p>
                <div class="listing-image" style="max-width:100%; max-height: 100%;">
@@ -162,7 +157,6 @@ require_once "view/languages/".$lang->validate().".php";//include lang
             <div class="p-4 mb-3 bg-white">
               <h3 class="h5 text-black mb-3"><?php echo $lang["Punto de encuentro"]; ?></h3>
               <p><?php echo utf8_encode($getUserTourById["tour_start_in"]); ?></p>
-
               <h3 class="h5 text-black mb-3"><?php echo $lang["¿Dónde localizar e identificar al guía?"]; ?></h3>
               <p><?php echo utf8_encode($getUserTourById["tour_find_guide"]); ?></p>
             </div>
@@ -173,13 +167,9 @@ require_once "view/languages/".$lang->validate().".php";//include lang
               <p class="mb-2 font-weight-bold"><?php echo $lang["Días disponibles del guía para dar el tour"]; ?></p>
               <?php
                 foreach ($getTourById as $key => $day) {
-                    echo '<p class="mb-1">'.$day["day_name"].'</p>';
-
-                }
-
-              ?>
+                    echo '<p class="mb-1">'.utf8_encode($day["day_name"]).'</p>';
+                } ?>
               <br>
-                
                 <?php
                   if (!isset($_SESSION["email"])):
                     echo '<div class="row form-group">
@@ -195,16 +185,11 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                       </div>';
                   endif;
                   ?>
-
             </div>
             <!-- end Booking info -->
-
           </div><!-- .col-md-7 -->
-
           <!-- modal -->
           <form method="post" id="booking">
-
-
            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
@@ -234,12 +219,12 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                     <div class="form-group">
                       <div class="wrap-icon">
                         <!-- <span class="icon icon-room"></span> -->
-                        <input data-format="yyyy-MM-dd" type="date" name="tour_date" id="tour_date" class="form-control">
+                        <input data-format="yyyy-MM-dd" type="date" min="<?php echo date("Y-m-d") ?>" name="tour_date" id="tour_date" class="form-control" required>
                       </div>
                     </div>
 
                 <div class="h-entry"><div class="meta"><?php echo $lang["Horario de incio del tour"]; ?></div></div>
-                   <div class="form-group">
+                <div class="form-group">
                   <div class="select-wrap">
                       <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                       <select class="form-control" name="tour_schedule_id" id="tour_schedule_id">
@@ -247,7 +232,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                         <?php
                         foreach ($getTourById as $key => $schedule) {
                         ?>
-                        <option value="<?php echo $schedule["tour_schedule_id"] ?>"><?php echo $schedule["day_name"]." ".$value["tour_start_at"] ?></option>
+                        <option value="<?php echo $schedule["tour_schedule_id"] ?>"><?php echo utf8_encode($schedule["day_name"])." ".utf8_encode($value["tour_start_at"]); ?></option>
                         <?php
                         }
                        ?>
@@ -284,7 +269,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
 
                       <div class="form-group">
 
-                          <div class="h-entry"><div class="meta"><?php echo $lang["Correo"]; ?></div></div>                          
+                          <div class="h-entry"><div class="meta"><?php echo $lang["Correo"]; ?></div></div>
                           <input type="text" id="email" name="email" class="form-control" value="" placeholder="smith@ceo.com">
                       </div>
 
@@ -570,3 +555,8 @@ require_once "view/languages/".$lang->validate().".php";//include lang
 
   </body>
 </html>
+<?php }else {
+  echo "<script>
+    window.location.href = 'https://guids.mx/';
+  </script>";
+} ?>

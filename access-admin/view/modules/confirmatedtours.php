@@ -148,7 +148,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                         <div class="modal-footer">                        
                             <button type="button" class="btn btn-info" data-dismiss="modal">Ahora no</button>
                             <!-- <button type="submit" class="btn btn-danger">Eliminar</button> -->
-                            <input type="submit" value="Confirmar" id="btnupdate" class="btn btn-success py-2 px-4 text-white" >
+                            <input type="submit" value="Inhabilitar" id="btnupdate" class="btn btn-success py-2 px-4 text-white" >
                                <?php 
                                   $disable= new TourController();
                                   $disable->disable();

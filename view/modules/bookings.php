@@ -43,7 +43,7 @@ $acceptTour = BookingController::acceptTour();
   =            RESERVATIONS CALENDAR            =
   ============================================-->
   <?php
-$jsonData = BookingController::getBookingsCalendar($id); 
+$jsonData = BookingController::getBookingsCalendar($id);
 ?>
   <div class="site-section">
       <div class="container">

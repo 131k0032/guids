@@ -33,6 +33,9 @@
         "http://localhost/guids/view/fullcalendar/daygrid/main.css", 
         "http://localhost/guids/view/fullcalendar/list/main.css", 
         "http://localhost/guids/view/fullcalendar/timegrid/main.css", 
+        # -----------  Gijgo  -----------
+        "http://localhost/guids/view/assets/css/gijgo.min.css",         
+
        );    
         
         if( 
@@ -83,6 +86,8 @@
                    <link rel="stylesheet" href="'.$csslink[16].'">
                    <link rel="stylesheet" href="'.$csslink[17].'">
                    <link rel="stylesheet" href="'.$csslink[18].'">';
+            # -----------  Gijgo  -----------
+            echo ' <link rel="stylesheet" href="'.$csslink[19].'">';
                                                 
             }else{
                       # -----------  Tab icon  -----------
@@ -110,6 +115,8 @@
                    <link rel="stylesheet" href="'.$csslink[16].'">
                    <link rel="stylesheet" href="'.$csslink[17].'">
                    <link rel="stylesheet" href="'.$csslink[18].'">';
+            # -----------  Gijgo  -----------
+            echo ' <link rel="stylesheet" href="'.$csslink[19].'">';
         
         }
         

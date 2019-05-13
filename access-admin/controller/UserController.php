@@ -135,7 +135,7 @@ require_once "view/phpmailer/class.phpmailer.php";
 														<td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
 															Nos hemos dado la tarea de verificar la información de perfil que nos has proporcionado en Guids.mx, te agradecemos mucho el haberte tomado tu tiempo de registrarte y sobre todo de esperar la verificación de tu cuenta. El equipo de Guids.mx ha determinado tu cuenta, sin duda se trata de información completamente real. En Guids.mx nos preocupamos mucho de que nuestros usuarios les sea de mucha utilidad el sitio, pero, sobre todo que les sea simple y sencillo el uso del mismo. Ahora a continuación se enlista las acciones que quedan pendientes a realizar:
 															<ol>
-																<li>Ir a <a href="https://guids.mx/signin">Inciar sesión</a></li>
+																<li>Ir a <a href="https://guids.mx/signin">Iniciar sesión</a></li>
 																<li>Inicia sesión con tu correo y contraseña que proporcionaste al crear tu cuenta</li>
 																<li>En la sección <i>Agregar tour</i> podrás llenar todos los campos de formulario para crear un tour</li>
 																<li>Por último da clic en <i>Crear tour</i></li>
@@ -145,7 +145,7 @@ require_once "view/phpmailer/class.phpmailer.php";
 															<br>
 															<strong>Saludos cordiales</strong>
 															<br>
-															<em>Lic. Yazzir Adan Vazquez Sarabia - CEO de Guids.mx</em>
+															<em>Lic. Yazzir Adan Vazquez Sarabia</em>
 															<br>																			
 															<em>CEO de Guids.mx</em>
 														</td>
@@ -251,6 +251,7 @@ require_once "view/phpmailer/class.phpmailer.php";
 		     	// AquÃ­ van los datos que apareceran en el correo que reciba
 
 			    $mail->WordWrap = 50; 
+			    $mail->CharSet = 'UTF-8';
 			    $mail->IsHTML(true);     
 			    $mail->Subject  = "Usuario inhabilitado";
 			    $mail->addReplyTo('ceo@guids.mx', 'CEO Guids.mx');
@@ -281,7 +282,14 @@ require_once "view/phpmailer/class.phpmailer.php";
 													</tr>
 													<tr>
 														<td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
-															  Es un gusto como siempre que seas parte de Guids.mx, sin embargo en Guids.mx nos tomamos muy en serio las normativas de uso del sitio y condiciones del mismo. Hemos detectado acciones indebidas con esta cuenta de usuario, por tal motivo y desafortunadamente nos vemos en la penosa necesidad de inhabilitar tu cuenta por un lapso de tiempo indeterminado. Un saludo.
+															  Es un gusto como siempre que seas parte de Guids.mx, sin embargo en Guids.mx nos tomamos muy en serio las normativas de uso del sitio y condiciones del mismo. Hemos detectado acciones indebidas con esta cuenta de usuario, por tal motivo y desafortunadamente nos vemos en la desafortunada necesidad de inhabilitar tu cuenta por un lapso de tiempo indeterminado. Si tienes alguna duda de porque ha ocurrido esto puedes responder a este mensaje y nuestro equipo de Guids.mx te guiará en el proceso. 
+															  <br>
+							                                  <br>
+							                                  <strong>Saludos cordiales</strong>
+							                                  <br>
+							                                  <em>Lic. Yazzir Adan Vazquez Sarabia</em>
+							                                  <br>                                      
+							                                  <em>CEO de Guids.mx</em>
 														</td>
 													</tr>
 						
@@ -409,6 +417,13 @@ public function sendMessage(){
 													<tr>
 														<td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
 															 '.$message.'.
+															 <br>
+							                                <br>
+							                                <strong>Saludos cordiales</strong>
+							                                <br>
+							                                <em>Lic. Yazzir Adan Vazquez Sarabia</em>
+							                                <br>                                      
+							                                <em>CEO de Guids.mx</em>
 														</td>
 													</tr>
 						
