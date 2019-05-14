@@ -1,12 +1,13 @@
 <?php 
  class Conexion{
  	public function conectar(){
- 		$link = new PDO("mysql:host=localhost;dbname=guidsfour","root","");
- 		// $link = new PDO("mysql:host=localhost;dbname=guidsfour;charset=UTF8","root","");
+ 		// $link = new PDO("mysql:host=localhost;dbname=guidsfour","root","");
+ 		$link = new PDO("mysql:host=localhost;dbname=guidsfour;charset=UTF8","root","");
  		 return $link;
  		//var_dump($link);
 
- 		 mysqli_set_charset($link, 'utf8');
+ 		 // mysqli_set_charset($link, 'utf8');
+ 		 
  	}
  }
 

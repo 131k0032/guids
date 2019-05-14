@@ -103,7 +103,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
             </div>
             <div class="listing-item-content">
               <?php $char=25; ?>
-              <h2 class="mb-1"><a href="#"><?php echo $value["tour_id"]." ".utf8_encode(substr($value["tour_name"], 0, $char).'...'); ?></a></h2>
+              <h2 class="mb-1"><a href="#"><?php echo $value["tour_id"]." ".substr($value["tour_name"], 0, $char).'...'; ?></a></h2>
               <span class="address"><?php echo utf8_encode(substr($value["tour_location"],0, $char).'...'); ?></span>
               <p>
                 <span class="icon-star <?php echo $value["tour_rating"]>=1 ? 'text-warning' : 'text-secondary' ?>"></span>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-05-2019 a las 21:41:34
+-- Tiempo de generación: 14-05-2019 a las 23:25:41
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.8
 
@@ -27,26 +27,26 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `booking`
 --
-
-CREATE SCHEMA IF NOT EXISTS `guidsfour` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `guidsfour` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci ;
 USE `guidsfour` ;
+
 
 CREATE TABLE `booking` (
   `id` int(11) NOT NULL,
   `tour_date` date NOT NULL,
   `tourist_quantyty` int(11) NOT NULL,
   `status` tinyint(4) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `lastname` varchar(45) NOT NULL,
-  `phone` varchar(45) NOT NULL,
-  `email` varchar(45) NOT NULL,
-  `src` varchar(100) DEFAULT NULL,
-  `file_name` varchar(100) DEFAULT NULL,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `lastname` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `phone` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `src` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `file_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL,
   `tour_schedule_id` int(11) NOT NULL,
   `tour_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -56,8 +56,8 @@ CREATE TABLE `booking` (
 
 CREATE TABLE `day` (
   `id` int(11) NOT NULL,
-  `name` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `name` varchar(25) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `day`
@@ -80,8 +80,8 @@ INSERT INTO `day` (`id`, `name`) VALUES
 
 CREATE TABLE `language` (
   `id` int(11) NOT NULL,
-  `name` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `name` varchar(45) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `language`
@@ -101,12 +101,12 @@ INSERT INTO `language` (`id`, `name`) VALUES
 CREATE TABLE `review` (
   `id` int(11) NOT NULL,
   `rating` int(11) DEFAULT NULL,
-  `comment` text,
+  `comment` text COLLATE utf8_unicode_ci,
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL,
   `tour_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -116,19 +116,19 @@ CREATE TABLE `review` (
 
 CREATE TABLE `tour` (
   `id` int(11) NOT NULL,
-  `name` varchar(45) NOT NULL,
-  `description` text NOT NULL,
-  `find_guide` text NOT NULL,
-  `start_in` text,
-  `location` varchar(80) NOT NULL,
-  `duration` varchar(25) NOT NULL,
+  `name` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `description` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `find_guide` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `start_in` mediumtext COLLATE utf8_unicode_ci,
+  `location` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `duration` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   `capacity` int(11) NOT NULL,
   `status` tinyint(4) DEFAULT NULL,
   `is_active` tinyint(4) NOT NULL,
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL,
   `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -138,10 +138,10 @@ CREATE TABLE `tour` (
 
 CREATE TABLE `tour_image` (
   `id` int(11) NOT NULL,
-  `src` varchar(100) NOT NULL,
-  `file_name` varchar(100) NOT NULL,
+  `src` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `file_name` varchar(100) CHARACTER SET utf8 NOT NULL,
   `tour_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -151,11 +151,11 @@ CREATE TABLE `tour_image` (
 
 CREATE TABLE `tour_schedule` (
   `id` int(11) NOT NULL,
-  `start_at` varchar(45) NOT NULL,
+  `start_at` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `day_id` int(11) NOT NULL,
   `tour_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -165,26 +165,26 @@ CREATE TABLE `tour_schedule` (
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `code` text,
-  `name` varchar(65) NOT NULL,
-  `lastname` varchar(75) NOT NULL,
-  `phone` varchar(10) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(200) NOT NULL,
-  `state` varchar(70) NOT NULL,
-  `town` varchar(50) NOT NULL,
+  `code` text CHARACTER SET utf8,
+  `name` varchar(65) CHARACTER SET utf8 NOT NULL,
+  `lastname` varchar(75) CHARACTER SET utf8 NOT NULL,
+  `phone` varchar(10) CHARACTER SET utf8 NOT NULL,
+  `email` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `password` varchar(200) CHARACTER SET utf8 NOT NULL,
+  `state` varchar(70) CHARACTER SET utf8 NOT NULL,
+  `town` varchar(50) CHARACTER SET utf8 NOT NULL,
   `age` date NOT NULL,
-  `grade` varchar(45) NOT NULL,
-  `personality` text,
-  `ability` text,
-  `src` varchar(45) DEFAULT NULL,
-  `picture` varchar(45) DEFAULT NULL,
+  `grade` varchar(45) CHARACTER SET utf8 NOT NULL,
+  `personality` text CHARACTER SET utf8,
+  `ability` text CHARACTER SET utf8,
+  `src` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
+  `picture` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
   `review` int(11) DEFAULT NULL,
   `is_admin` tinyint(4) NOT NULL,
   `is_active` tinyint(4) NOT NULL,
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `user`
@@ -204,7 +204,7 @@ INSERT INTO `user` (`id`, `code`, `name`, `lastname`, `phone`, `email`, `passwor
 CREATE TABLE `user_language` (
   `user_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `user_language`
