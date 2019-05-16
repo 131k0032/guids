@@ -324,6 +324,16 @@ public function getAllById($id){
     return $getAllById;
 }
 
+/* For mytours-settings*/
+public function getById($idTour){
+  if ($idTour>0) {
+    $getById = TourModel::getById($idTour, "tour");
+    return $getById;
+  }else {
+    return null;
+  }
+}
+
 
 
 public function update(){
@@ -339,7 +349,7 @@ public function update(){
         var_dump($updateById);
 
           if($updateById=="success"){
-            print "<script>alert(\"InformaciÃ³n actualizada.\");window.location='http://localhost/guids/index';</script>";
+            print "<script>alert(\"Información actualizada.\");window.location='http://localhost/guids/index';</script>";
             // echo $_POST["phone"];
 
           }else{

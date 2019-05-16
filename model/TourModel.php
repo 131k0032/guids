@@ -78,7 +78,7 @@ require_once "model/Conexion.php";
 		# -----------  ADDING ON A MANY TO MANY TABLE  -----------
 
 		 public function addTourSchedule($table, $start_at, $day_id, $tour_id, $language_id){
-            $stmt = Conexion::conectar()->prepare("INSERT INTO $table (`start_at`, `day_id`,`tour_id`,`language_id`) VALUES (:start_at,:day_id,:tour_id,:language_id)");
+            $stmt = Conexion::conectar()->prepare("INSERT INTO $table (start_at, day_id,tour_id,language_id) VALUES (:start_at,:day_id,:tour_id,:language_id)");
             $stmt->bindParam(":start_at", $start_at, PDO::PARAM_STR);
             $stmt->bindParam(":day_id", $day_id ,PDO::PARAM_STR);
             $stmt->bindParam(":tour_id", $tour_id ,PDO::PARAM_STR);
@@ -98,7 +98,7 @@ require_once "model/Conexion.php";
 
 
        public function addTourImage($table, $src, $file_name, $tour_id){
-            $stmt = Conexion::conectar()->prepare("INSERT INTO $table (`src`, `file_name`,`tour_id`) VALUES (:src,:file_name,:tour_id)");
+            $stmt = Conexion::conectar()->prepare("INSERT INTO $table (src, file_name,tour_id) VALUES (:src,:file_name,:tour_id)");
             $stmt->bindParam(":src", $src, PDO::PARAM_STR);
             $stmt->bindParam(":file_name", $file_name ,PDO::PARAM_STR);
             $stmt->bindParam(":tour_id", $tour_id ,PDO::PARAM_STR);
@@ -479,13 +479,20 @@ require_once "model/Conexion.php";
 # -----------  GETING TOURBY ID  -----------
 
 		public function getById($id, $table){
-		$stmt = Conexion::conectar()->prepare("SELECT id, name, description, find_guide, location, duration FROM $table where id=:id");
+		//$stmt = Conexion::conectar()->prepare("SELECT id, name, description, find_guide, location, duration FROM $table where id=:id");
+		$stmt = Conexion::conectar()->prepare("SELECT
+			id, name, description, find_guide, start_in,
+			location, duration, capacity, status, is_active,
+			created_at, updated_at
+			FROM $table WHERE id=:id
+		");
 		$stmt->bindParam(":id",$id,PDO::PARAM_INT);
-		$stmt->execute();
-		return $stmt->fetch();
-		// cierra las consultas
-			$stmt->close();
-
+		if ($stmt->execute()) {
+			return $stmt->fetch();
+		}else {
+			return null;
+		}
+		$stmt->close();
 		}
 
 
@@ -547,7 +554,7 @@ public function dropAllTour($idTour){
 	DELETE FROM review WHERE tour_id=$idTour;
 	DELETE FROM tour_schedule WHERE tour_id=$idTour;
 	DELETE FROM tour_image WHERE tour_id=$idTour;
-	DELETE FROM `tour` WHERE `id`=$idTour;
+	DELETE FROM tour WHERE id=$idTour;
 	");
 	if ($stmt->execute()) {
 		return true;

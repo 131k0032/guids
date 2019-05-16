@@ -24,6 +24,10 @@ require_once "view/languages/".$language->validate().".php";//include lang
 <!--====  End of Head common  ====-->
 
 <body>
+  <?php
+  var_dump(array_keys($_POST));
+  var_dump(array_values($_POST));
+   ?>
   <!--============================
   =            HEADER            =
   =============================-->
@@ -86,12 +90,12 @@ aceptar. Cabe mencionar que si haz creado un tour y este aún no aparece, puede 
                 echo "<br>".utf8_encode($schedule["tour_date"])." at ".$schedule["tour_time"];} ?>
               </td>
               <td style="width:300px;">
-                <form method="post">
-                  <!-- <a href="" class="btn btn-warning btn-xs">Modificar</a> -->
-                  <li><a href="http://localhost/guids/mytours-setting/tour/<?php echo $tourData["tour_id"];?>" class="btn btn-warning btn-xs"><i class="icon-settings"></i></a></li>
-                  <li><a data-toggle="modal" data-target="#modalTourID<?php echo $tourData["tour_id"];?>" class="btn btn-danger btn-xs"><i class="icon-trash"></i></a></li>
-                  <!-- <button class="btn btn-danger btn-xs" type="submit">Eliminar</button> -->
+                <form method="post" action="mytours-setting">
+                  <input type="hidden" name="tour" value="<?php echo $tourData["tour_id"];?>">
+                  <button type="submit" class="btn btn-warning btn-xs"><i class="icon-settings"></i> Setting</button>
+                  <!-- <li><a  onclick="form.submit();" class="btn btn-warning btn-xs"><i class="icon-settings"></i> Setting</a></li> -->
                 </form>
+                <li><a data-toggle="modal" data-target="#modalDelete<?php echo $tourData["tour_id"];?>" class="btn btn-danger btn-xs"><i class="icon-trash"></i> Delete</a></li>
               </td>
             </tr> <?php } ?>
           </tbody>
@@ -100,7 +104,7 @@ aceptar. Cabe mencionar que si haz creado un tour y este aún no aparece, puede 
       <!-- Inicio modales -->
       <?php foreach ($getAllTourByUser as $id => $data) {
         # code... ?>
-      <div class="modal fade" id="modalTourID<?php echo $data["tour_id"];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal fade" id="modalDelete<?php echo $data["tour_id"];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -113,7 +117,7 @@ aceptar. Cabe mencionar que si haz creado un tour y este aún no aparece, puede 
               <div class="modal-body">
                 <input type="hidden" name="id" value="<?php echo $data["tour_id"] ?>">
                 <p class="color-black-opacity-5"><?php echo $lang["¿Realmente desea eliminar el tour?:"]; ?> <i><?php echo $data["tour_name"]; ?>.</i><br>
-                <?php echo $lang["Por favor escriba el identificador"]; ?> <code><?php echo $data["tour_id"] ?></code> <?php echo $lang["del tour para confirmar."]; ?></p>
+                <?php echo $lang["Escribe el identificador, por favor."]; ?> <code><?php echo $data["tour_id"] ?></code> <?php echo $lang["del tour para confirmar."]; ?></p>
                 <input type="text" name="false" pattern="<?php echo $data["tour_id"] ?>" title="<?php echo $lang["Escribe el identificador, por favor."] ?>" required>
               </div>
               <div class="modal-footer">
