@@ -57,8 +57,8 @@ class BookingController{
 	}
 
 	// For booking template
-	public function getAllAccepted($id){
- 	   	 $getAllAccepted = BookingModel::getAllAccepted("booking", $id);
+	public function getAllAccepted(){
+ 	   	 $getAllAccepted = BookingModel::getAllAccepted("booking");
  	   	 return $getAllAccepted;
 	}
 
@@ -134,8 +134,8 @@ class BookingController{
 
 
 	// For booking template
-	public function getAllReported($id){
- 	   	 $getAllReported = BookingModel::getAllReported("booking", $id);
+	public function getAllReported(){
+ 	   	 $getAllReported = BookingModel::getAllReported("booking");
  	   	 return $getAllReported;
 	}
 }

@@ -87,15 +87,15 @@ require_once "view/languages/".$lang->validate().".php";//include lang
             foreach($getAll as $row => $value){ 
           ?>
             <tr>
-              <td><?php echo utf8_encode(($value["tour_id"])); ?></td>
-              <td><?php echo utf8_encode(($value["tour_name"])); ?></td>              
-              <td><?php echo utf8_encode($value["tour_description"]); ?></td>
-              <td><?php echo utf8_encode($value["tour_find_guide"]); ?></td>
-              <td><?php echo utf8_encode($value["tour_location"]); ?></td>  
-              <td><?php echo utf8_encode($value["tour_duration"]); ?></td>  
-              <td><?php echo utf8_encode($value["tour_capacity"]); ?></td>               
-              <td><?php echo utf8_encode($value["tour_created_at"]); ?></td>  
-              <td><?php echo utf8_encode($value["user_name"]." ".$value["user_lastname"]); ?></td>                        
+              <td><?php echo $value["tour_id"]; ?></td>
+              <td><?php echo $value["tour_name"]; ?></td>              
+              <td><?php echo $value["tour_description"]; ?></td>
+              <td><?php echo $value["tour_find_guide"]; ?></td>
+              <td><?php echo $value["tour_location"]; ?></td>  
+              <td><?php echo $value["tour_duration"]; ?></td>  
+              <td><?php echo $value["tour_capacity"]; ?></td>               
+              <td><?php echo $value["tour_created_at"]; ?></td>  
+              <td><?php echo $value["user_name"]." ".$value["user_lastname"]; ?></td>                        
                                     
               <td>            
                 <div class="listing-image" style="max-width:20%; max-height: 20%;">
@@ -109,11 +109,11 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                   <?php echo "Activo, aparece en Guids.mx"; ?>
                 <?php } ?>
               </td>  
-              <td><?php echo utf8_encode($value["tour_created_at"]); ?></td> 
-              <td><?php echo utf8_encode($value["tour_updated_at"]); ?></td>          
+              <td><?php echo $value["tour_created_at"]; ?></td> 
+              <td><?php echo $value["tour_updated_at"]; ?></td>          
               <td>
                 <?php if($value["user_is_active"]==0){ ?>
-                  <?php echo "Has inhabilitado a ". utf8_encode($value["user_name"]." ".$value["user_lastname"]). ", ¡Por favor deshabilita este tour que creó! "; ?>
+                  <?php echo "Has inhabilitado a ". $value["user_name"]." ".$value["user_lastname"]. ", ¡Por favor deshabilita este tour que creó! "; ?>
                 <?php }else{ ?>
                   <?php echo "Usuario activo, puede acceder a Guids.mx"; ?>
                 <?php } ?>

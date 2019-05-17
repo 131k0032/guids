@@ -90,16 +90,16 @@ require_once "view/languages/".$lang->validate().".php";//include lang
             foreach($getAll as $row => $value){ 
           ?>
             <tr>
-              <td><?php echo utf8_encode(($value["id"])); ?></td>
-              <td><?php echo utf8_encode(($value["name"]))." ".utf8_encode($value["lastname"]); ?></td>              
-              <td><?php echo utf8_encode($value["phone"]); ?></td>
-              <td><?php echo utf8_encode($value["email"]); ?></td>                                                                                                                    
-              <td><?php echo utf8_encode($value["state"]); ?></td>  
-              <td><?php echo utf8_encode($value["town"]); ?></td>  
-              <td><?php echo utf8_encode($value["age"]); ?></td> 
-              <td><?php echo utf8_encode($value["grade"]); ?></td> 
-              <td><?php echo utf8_encode($value["personality"]); ?></td>  
-              <td><?php echo utf8_encode($value["ability"]); ?></td>                        
+              <td><?php echo $value["id"]; ?></td>
+              <td><?php echo $value["name"]." ".$value["lastname"]; ?></td>              
+              <td><?php echo $value["phone"]; ?></td>
+              <td><?php echo $value["email"]; ?></td>                                                                                                                    
+              <td><?php echo $value["state"]; ?></td>  
+              <td><?php echo $value["town"]; ?></td>  
+              <td><?php echo $value["age"]; ?></td> 
+              <td><?php echo $value["grade"]; ?></td> 
+              <td><?php echo $value["personality"]; ?></td>  
+              <td><?php echo $value["ability"]; ?></td>                        
               <td>            
                  <div class="listing-image" style="max-width:20%; max-height: 20%;">
                 <?php if(is_null($value["src"]) || is_null($value["picture"])){?>
@@ -116,8 +116,8 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                   <?php echo "Activo"; ?>
                 <?php } ?>
               </td>  
-              <td><?php echo utf8_encode($value["created_at"]); ?></td> 
-              <td><?php echo utf8_encode($value["updated_at"]); ?></td>          
+              <td><?php echo $value["created_at"]; ?></td> 
+              <td><?php echo $value["updated_at"]; ?></td>          
               <td style="width:300px;">
                     <form method="post">    
                         <li><a data-toggle="modal" data-target="#exampleModalCenter<?php echo $value["id"];?>" class="btn btn-warning btn-xs"><i class="icon-check-circle"></i></a></li>                       

@@ -79,7 +79,21 @@ class BookingController{
 															</tr>
 															<tr>
 																<td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
-																	Hola '.$user_guide_name.' '.$user_guide_lastname.' , el equipo de Guids.mx te informa que te han hecho una reserva a uno de los tours haz publicado en Guids.mx, accede con tu cuenta, en tu agenda puedes observar las solicitudes de turistas/viajeros que te lo han solicitado. Y, si tu itinerario lo permite, confirma los tours, pero recuerda, mientras mas tours realizes vas a tener un mejor posicionamiento en el sitio y sobre todo no menos impotante, mayores ingresos.
+																	Hola '.$user_guide_name.' '.$user_guide_lastname.' , el equipo de Guids.mx te informa que te han hecho una reserva a uno de los tours haz publicado en Guids.mx, accede con tu cuenta y en la sección <i>Aceptar turistas/viajeros</i>podrás observar las solicitudes de turistas/viajeros que te lo han solicitado. Y, si tu itinerario lo permite, confirma los tours, pero recuerda, mientras mas tours realizes vas a tener un mejor posicionamiento en el sitio y sobre todo no menos importante, mayores ingresos.<br> Ahora el equipo de Guids te informa parte de los términos y condiciones que todo guía que se encuentra registrado tiene que seguir y cumplir despúes de "Aceptar" una reservación:
+																	  <ol>
+										                                <li>Al aceptar una reservación de un turista/viajero será estrictamente necesario realizar el tour</li>
+										                                <li>Despúes de aceptar una reservación de un turista/viajero inmediatemente en la sección <i>Agenda>Calendario de reservaciones<i> se mostrará la hora y el tour que tendrás que realizar</li>                                
+										                                <li>También en la sección <i>Más opciones>Generar seguro grupal>Adjunta una foto grupal</i> te mostrará una lista de tours que haz aceptado, aquí elegirás justo antes de realizar el tour, el tour que vas a realizar, te tomarás una foto junto con todos los turistas/viajeros los cuales recibirán el tour y lo adjuntarás</li>
+										                                <li>Hecho lo anterior, en la parte inferior en la sección <i>Tours que has reportado</i> se te mostrarán a lista de fotos de todos y cada uno de los tours que haz enviado al equipo de Guids.mx</li>
+										                                 <li>Al dar el recorrido tendrás que mencionar a los turistas que NO HAY precio fijo para un pago, sin embargo que al finalizar esperas una propina de que oscila entre los 5 a 20 USD por persona </li>
+										                                 <li>Guids.mx require el 30 % de ganancias por cada turista/viajero que haya asistido al tour, no el 30 % por tour.</li>
+										                                 <li>Finalizado el tour, tendrás 3 hrs para realizar tu pago (tours en zonas urbanas) y 24 hrs (para zonas rurales)</li>
+										                                 <li>Realize su pago en los siguientes números de cuenta: <b>xxxx-xxxx-xxx-xxx-</b> </li>
+										                                 <li>Una vez realizado el pago, porfavor adjunte su ticket/voucher a <b>ceo@guids.mx</b> para validar su autenticidad </li>
+										                                 <li>Importante destacar que todo lo anterior es para que su tour se encuentre HABILITADO Y VISIBLE en guids.mx</li>
+										                                 <li>Si tienes alguna duda por favor responde este correo y en seguida daremos seguimiento a tu solicitud</li>
+
+										                              </ol>
 																	<br>
 					                                                  <br>
 					                                                  <strong>Saludos cordiales</strong>
@@ -429,7 +443,7 @@ class BookingController{
 			$end = new DateTime($start->format("c"));
 			$end->add(new DateInterval("PT".substr($data["tour_duration"],0,1)."H".substr($data["tour_duration"],2,2)."M"));
 			$url="https://guids.mx/guideinfo/tour/".$data["tour_id"];
-			$jsonData[] = array("title" => utf8_encode($data["tour_name"]), "start" => $start->format("Y-m-d\TH:i:s"), "end" => $end->format("Y-m-d\TH:i:s"), "url" => $url);
+			$jsonData[] = array("title" => $data["tour_name"], "start" => $start->format("Y-m-d\TH:i:s"), "end" => $end->format("Y-m-d\TH:i:s"), "url" => $url);
 		}
 		return $jsonData;
 	}

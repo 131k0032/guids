@@ -92,7 +92,7 @@
                     <li><a href="http://localhost/guids/access-admin/newtours"><i class="icon-list-ul"></i> Nuevos tours</a></li>
                     <li><a href="http://localhost/guids/access-admin/confirmatedtours"><i class="icon-list-ul"></i> Tours aceptados</a></li>                    
                     <!-- <li><a href="http://localhost/guids/access-admin/mytours"><i class="icon-list-ul"></i> <?php echo $lang["Mis tours"]; ?></a></li> -->
-                <!--     <li><a href="http://localhost/guids/access-admin/generateinsurance/user/<?php echo $id; ?>"><i class="icon-picture-o"></i> <?php echo $lang["Generar seguro grupal"]; ?></a></li> -->
+                   <li><a href="http://localhost/guids/access-admin/generateinsurance/user/<?php echo $id; ?>"><i class="icon-picture-o"></i> <?php echo $lang["Generar seguro grupal"]; ?></a></li> 
                     <!-- For new type edition of user -->                    
                     <li><a href="http://localhost/guids/access-admin/settings/user/<?php echo $id; ?>"><i class="icon-settings"></i> <?php echo $lang["Configurar"]; ?></a></li>                                                        
                     <li><a href="http://localhost/guids/access-admin/logout"><i class="icon-sign-out"></i> <span><?php echo $lang["Cerrar sesión"]; ?></span></a></li>

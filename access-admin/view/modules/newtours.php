@@ -89,16 +89,16 @@ require_once "view/languages/".$lang->validate().".php";//include lang
             foreach($getAll as $row => $value){ 
           ?>
             <tr>
-              <td><?php echo utf8_encode(($value["tour_id"])); ?></td>
-              <td><?php echo utf8_encode(($value["tour_name"])); ?></td>              
-              <td><?php echo utf8_encode($value["tour_description"]); ?></td>
-              <td><?php echo utf8_encode($value["tour_find_guide"]); ?></td>
-              <td><?php echo utf8_encode($value["tour_location"]); ?></td>  
-              <td><?php echo utf8_encode($value["tour_duration"]); ?></td>  
-              <td><?php echo utf8_encode($value["tour_capacity"]); ?></td>               
-              <td><?php echo utf8_encode($value["tour_created_at"]); ?></td>  
-              <td><?php echo utf8_encode($value["user_name"]." ".$value["user_lastname"]); ?></td>                        
-              <td><?php echo utf8_encode($value["user_email"]); ?></td>                                    
+              <td><?php echo $value["tour_id"]; ?></td>
+              <td><?php echo $value["tour_name"]; ?></td>              
+              <td><?php echo $value["tour_description"]; ?></td>
+              <td><?php echo $value["tour_find_guide"]; ?></td>
+              <td><?php echo $value["tour_location"]; ?></td>  
+              <td><?php echo $value["tour_duration"]; ?></td>  
+              <td><?php echo $value["tour_capacity"]; ?></td>               
+              <td><?php echo $value["tour_created_at"]; ?></td>  
+              <td><?php echo $value["user_name"]." ".$value["user_lastname"]; ?></td>                        
+              <td><?php echo $value["user_email"]; ?></td>                                    
               <td>            
                 <div class="listing-image" style="max-width:20%; max-height: 20%;">
                   <img src="http://localhost/guids/<?php echo $value["tour_image_src"]. $value["tour_image_filename"];?>" alt="Image" class="img-fluid img-thumbnail card-img-top">
@@ -111,8 +111,8 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                   <?php echo "Activo"; ?>
                 <?php } ?>
               </td>  
-              <td><?php echo utf8_encode($value["tour_created_at"]); ?></td> 
-              <td><?php echo utf8_encode($value["tour_updated_at"]); ?></td>          
+              <td><?php echo $value["tour_created_at"]; ?></td> 
+              <td><?php echo $value["tour_updated_at"]; ?></td>          
               <td style="width:300px;">
                     <form method="post">                          
                         <li><a data-toggle="modal" data-target="#exampleModalCenter<?php echo $value["tour_id"];?>" class="btn btn-warning btn-xs"><i class="icon-check-circle"></i></a></li>                       

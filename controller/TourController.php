@@ -230,7 +230,7 @@ require_once "view/phpmailer/class.phpmailer.php";
                               print "<script>alert(\"Gracias por registrar el tour, este será verificado para poder aparecer Guids.mx\");window.location='mytours';</script>";
                             }
                             else{
-                              // print "<script>alert(\"Error, mail no enviado\");window.location='addtour';</script>";
+                              print "<script>alert(\"Error, mail no enviado\");window.location='addtour';</script>";
                           }
                           //End sending mail
 
@@ -375,13 +375,15 @@ public function update(){
   'duration' => $_POST["duration"],'capacity' =>  $_POST["capacity"], 'updated_at' => $date);
   $update = TourModel::updateById($updateData, $id, "tour");
     if ($update) {
-      echo "<script>
-       window.location.href='//guids.mx/mytours'
-      </script>";
+      // echo "<script>
+      //  window.location.href='//guids.mx/mytours'
+      // </script>";
+      print "<script>alert(\"Tour modificado.\");window.location='http://localhost/guids/mytours';</script>";
     }else {
-      echo "<script>
-       alert('Ups algo salio mal. Contacta con los administradores.');
-      </script>";
+      // echo "<script>
+      //  alert('Ups algo salio mal. Contacta con los administradores.');
+      // </script>";
+      print "<script>alert(\"Error al modificar tour, intente de nuevo\");window.location='http://localhost/guids/mytours';</script>";
     }
   }
 

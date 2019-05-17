@@ -88,7 +88,7 @@ class BookingModel{
 				$stmt->close();
 	}
 
-		public function getAllAccepted($table, $id){
+		public function getAllAccepted($table){
 					$stmt = Conexion::conectar()->prepare("SELECT 
 					-- Table booking
 					booking.id as booking_id,
@@ -117,8 +117,8 @@ class BookingModel{
 					inner join user 
 					on user.id=tour.user_id
 
-					where user.id=$id && 
-					booking.status=1  ORDER BY booking.id desc
+					where  
+					booking.status=1 && booking.src IS NULL && booking.file_name IS NULL ORDER BY booking.id desc
 					
 					");
 				$stmt->execute();				
@@ -192,7 +192,7 @@ class BookingModel{
 			$stmt->close();
 	}
 
-		public function getAllReported($table, $id){
+		public function getAllReported($table){
 					$stmt = Conexion::conectar()->prepare("SELECT
 					-- Table booking
 					booking.id as booking_id,
@@ -222,7 +222,7 @@ class BookingModel{
 					inner join user 
 					on user.id=tour.user_id
 
-					where user.id=$id && 
+					where 
 					booking.status=1  &&
 					booking.src IS NOT NULL &&
 					booking.file_name IS NOT NULL

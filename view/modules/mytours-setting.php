@@ -25,12 +25,14 @@ error_reporting(0);
 
 <body> <?php
 if (isset($_POST["tour"])) {
-  $id = (int) $_POST["tour"];
-  $tourData = TourController::getById($id);
+  $tour_id = (int) $_POST["tour"];  
+  echo $tour_id;
+  $tourData = TourController::getById($tour_id);
 }else {
-  echo "<script>
-   window.location.href='//guids.mx/mytours'
-  </script>";
+  // echo "<script>
+  //   window.location='http://localhost/guids/mytours';
+  // </script>";
+        print "<script>alert(\"Tour modificado.\");window.location='http://localhost/guids/mytours';</script>";
 }
   $updateTour= new TourController();
   $updateTour->update();
@@ -50,16 +52,16 @@ if (isset($_POST["tour"])) {
       <div class="row justify-content-center mb-5">
         <div class="col-md-7 text-center border-primary">
           <h2 class="font-weight-light text-primary">Configuración de tour</h2>
-          <p class="color-black-opacity-5">Modificar tour</p>
+          <p class="color-black-opacity-5">Modificar tour</p>          
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="col-md-8">
           <form method="post" class="p-5 bg-white">
             <p>Puedes modificar la información de tour siempre que así lo desasdees</p>
-            <div class="custom-control custom-checkbox form-check">
-              <input type="checkbox" class="custom-control-input spanish" id="toursetting" name="toursetting">
-              <input type="hidden" name="id" value="<?php echo $id-1; ?>">
+            <div class="custom-control custom-checkbox form-check">              
+              <input type="checkbox" class="custom-control-input spanish" id="toursetting" name="toursetting">              
+              <input type="hidden" name="id" value="<?php echo $tour_id; ?>">
               <label class="custom-control-label" for="toursetting">Modificar información de tour</label>
             </div>
             <hr>

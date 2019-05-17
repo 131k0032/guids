@@ -237,7 +237,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                             $language =  new LanguageController();
                             foreach ( $language -> getAllLanguageController() as $row => $value) {
                           ?>
-                          <option value="<?php echo $value['id']; ?>"><?php echo utf8_encode($value['name']); ?></option>
+                          <option value="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></option>
                           <?php }
                           if (!isset($value['name'])) {
                             echo '<option value="" disabled>Sin registros</option>';

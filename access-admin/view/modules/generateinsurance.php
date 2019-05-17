@@ -9,25 +9,9 @@ error_reporting(0);
 # =           Language validation           =
 # ===========================================
 
-   //Watching changes on post variable
-if(isset($_POST["lang"])){
-  $lang = $_POST["lang"];
-  if(!empty($lang)){
-    $_SESSION["lang"] = $lang;
-  }
-}
-// If is created
-if(isset($_SESSION['lang'])){  
-  $lang = $_SESSION["lang"];
-  include "view/languages/".$lang.".php";
-// Else take spanish default
-}else{
-  include "view/languages/es.php";
-}
-
-
+$lang = new LanguageController();
+require_once "view/languages/".$lang->validate().".php";//include lang
 # ======  End of Language validation  =======
-
 
 ?>
 <!DOCTYPE html>
@@ -51,87 +35,7 @@ if(isset($_SESSION['lang'])){
   
 
   
-<!--==========================
-=            GENERATEINSURANCE            =
-===========================-->
 
-  <div class="site-section">
-      <div class="container">
-        <div class="row justify-content-center mb-5">
-          <div class="col-md-7 text-center border-primary">
-            <h2 class="font-weight-light text-primary">Adjunta una foto grupal</h2>
-            <p class="color-black-opacity-5">Lorem Ipsum Dolor Sit Amet</p>
-          </div>
-        </div>
-
-           <div class="row justify-content-center">
-          <div class="col-md-8">
-            
-            <?php 
-              // Way 1 to access by id when de result is onli one
-                // $getAllAccepted=BookingModel::getAllAccepted("booking", $url[2]);                 
-                // var_dump($getAllAccepted);
-              //Way 2 to access by id using the $id url when the result is more of one
-            // echo $id;
-                $getAllNullAccepted= new BookingController();
-                $getAllNullAccepted->getAllNullAccepted($id);//variable $id came from header.php 
-                // var_dump($getAllAccepted);
-
-                     
-             ?>
-
-    <form  method="post" enctype="multipart/form-data">                           
-              <p>Esta foto grupal con los turistas servirá para hacer validar tu seguridad y la de los turistas/viajeros ante cualquier situación de terceros que pueda suceder, observa que puedes elegir únicamente los tours que haz aceptado realizar</p>
-              <hr>              
-
-
-              <p class="mb-2 font-weight-bold">Tour al que pertenece esta imagen</p>
-                <div class="form-group">
-                  <div class="select-wrap">
-                      <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-                      <select class="form-control" name="booking_id" id="booking_id" required>                        
-                        <option value="" disabled selected>Eija un tour para validar</option>
-                              <?php
-                              foreach ($getAllNullAccepted->getAllNullAccepted($id) as $key => $value) {
-                                ?>
-                                <option value="<?php echo $value['booking_id']; ?>"><?php echo $value["booking_tour_date"]." ".$value["tour_schedule_start_at"]." ".$value['tour_name']; ?></option>
-                              <?php }
-                              if (!isset($value['booking_id'])) {
-                                echo '<option value="" disabled>No haz aceptado alguno</option>';
-                              } ?>                                                             
-                      </select>
-                    </div>
-                </div>       
-
-
-             <p class="mb-2 font-weight-bold">Adjunta la foto grupal</p>
-              <div class="form-group">
-                 <input type="file" class="form-control" id="src" id="src" name="src" accept="image/*">
-              </div>
-              <br>
-
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <input type="submit" value="Adjuntar" id="btnupdate" class="btn btn-primary py-2 px-4 text-white">
-                </div>
-              </div>
-              <?php 
-                $fileValidateTour= new BookingController();
-                $fileValidateTour->fileValidateTour();
-
-               ?>
-         
-
-
-            </form>
-          </div>
-          
-        </div>
-        
-      </div>
-    </div>
-
-<!--====  End of GENERATEINSURANCE  ====-->
 
 <!--====================================
 =            TOURS ACCEPTED            =
@@ -142,7 +46,7 @@ if(isset($_SESSION['lang'])){
       <div class="container">
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 text-center border-primary">
-            <h2 class="font-weight-light text-primary">Mis tours que he aceptado</h2>
+            <h2 class="font-weight-light text-primary">Tours aceptados por guías</h2>
             <p class="color-black-opacity-5">Lorem Ipsum Dolor Sit Amet</p>
           </div>
         </div>        
@@ -155,12 +59,12 @@ if(isset($_SESSION['lang'])){
     <div class="row">
       <div class="col-md-12">
  
-        <p>Aquí encontrarás la lista de todos los tours que haz decidido dar a los turistas/viajeros</p>
+        <p>Aquí encontrarás la lista de todos los tours que los guías han aceptado pero que no han validado</p>
 
         <table id="toursaccepted" class="table table-bordered table-striped dt-responsive nowrap">
           <thead>
             <tr>
-             <th>Lugar</th>
+             <th>Nombre del tour</th>
               <th>Reserva</th>                        
               <th>Email</th>  
               <th>Teléfono</th>  
@@ -174,8 +78,8 @@ if(isset($_SESSION['lang'])){
           <tbody>
             <?php 
                  $getAllAccepted= new BookingController();
-                 $getAllAccepted->getAllAccepted($id);//variable $id came from header.php            
-                foreach($getAllAccepted->getAllAccepted($id) as $row => $value){ 
+                 $getAllAccepted->getAllAccepted();//variable $id came from header.php            
+                foreach($getAllAccepted->getAllAccepted() as $row => $value){ 
              ?>
             <tr>                            
               <td><?php echo $value["tour_name"]; ?></td>                
@@ -218,7 +122,7 @@ if(isset($_SESSION['lang'])){
       <div class="container">
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 text-center border-primary">
-            <h2 class="font-weight-light text-primary">Mis tours que he reportado</h2>
+            <h2 class="font-weight-light text-primary">Tours reportados por guías</h2>
             <p class="color-black-opacity-5">Lorem Ipsum Dolor Sit Amet</p>
           </div>
         </div>        
@@ -231,13 +135,13 @@ if(isset($_SESSION['lang'])){
     <div class="row">
       <div class="col-md-12">
  
-        <p>Aquí encontrarás la lista de todos los tours que haz reportado y validado con una foto</p>
+        <p>Aquí encontrarás la lista de todos los tours que los guías han reportado y validado con una foto</p>
 
         <table id="toursreported" class="table table-bordered table-striped dt-responsive nowrap">
           <thead>
             <tr>
-              <th>Lugar</th>
-              <th>Reserva</th>                        
+              <th>Nombre del tour</th>
+              <th>Reservó</th>                        
               <th>Cantidad de personas</th>
               <th>Imagen de verificación</th>  
               <th>Fecha del tour</th>  
@@ -250,8 +154,8 @@ if(isset($_SESSION['lang'])){
           <tbody>
             <?php 
                  $getAllReported= new BookingController();
-                 $getAllReported->getAllReported($id);//variable $id came from header.php            
-                foreach($getAllReported->getAllReported($id) as $row => $value){ 
+                 $getAllReported->getAllReported();//variable $id came from header.php            
+                foreach($getAllReported->getAllReported() as $row => $value){ 
              ?>
             <tr>                            
               <td><?php echo $value["tour_name"]; ?></td>                
