@@ -365,8 +365,7 @@ public function getById($idTour){
 }
 
 
-<<<<<<< HEAD
-
+/* For mytours-settings*/
 public function update(){
   if (isset($_POST["id"]) && isset($_POST["toursetting"]) && isset($_POST["name"]) && isset($_POST["location"]) && isset($_POST["description"])
   && isset($_POST["start_in"]) && isset($_POST["find_guide"]) && isset($_POST["duration"]) && isset($_POST["capacity"])) {
@@ -387,50 +386,6 @@ public function update(){
   }
 
 }
-=======
-
-public function update(){
-  if (isset($_POST["id"]) && isset($_POST["toursetting"]) && isset($_POST["name"]) && isset($_POST["location"]) && isset($_POST["description"])
-  && isset($_POST["start_in"]) && isset($_POST["find_guide"]) && isset($_POST["duration"]) && isset($_POST["capacity"])) {
-    $date = date("Y-m-d");
-    $id=(INT)$_POST["id"];
-    $updateData = array('name' =>  $_POST["name"],'description' =>  $_POST["description"], 'find_guide' => $_POST["find_guide"], 'start_in' =>  $_POST["start_in"], 'location' =>  $_POST["location"],
-  'duration' => $_POST["duration"],'capacity' =>  $_POST["capacity"], 'updated_at' => $date);
-  $update = TourModel::updateById($updateData, $id, "tour");
-    if ($update) {
-      echo "<script>
-       window.location.href='//guids.mx/mytours'
-      </script>";
-    }else {
-      echo "<script>
-       alert('Ups algo salio mal. Contacta con los administradores.');
-      </script>";
-    }
-  }
-
-
-    //   if(isset($_POST["name"])){
-    //
-    //     $tourDataController=array(
-    //       "id"=>$_POST["id"],
-    //       "name"=>$_POST["name"]
-    //       );
-    //
-    //     $updateById=TourModel::updateById($tourDataController,"tour");
-    //     var_dump($updateById);
-    //
-    //       if($updateById=="success"){
-    //         print "<script>alert(\"Información actualizada.\");window.location='http://localhost/guids/index';</script>";
-    //         // echo $_POST["phone"];
-    //
-    //       }else{
-    //         print "<script>alert(\"Datos no ctualizados.\");window.location='http://localhost/guids/index';</script>";
-    //
-    //     }
-    //
-    //   }
-     }
->>>>>>> master
 
 # ======  End of Updating tour  =======
 
@@ -438,23 +393,6 @@ public function update(){
 # ====================================
 # =           Deeting tour           =
 # ====================================
-public function del(){
-  if(isset($_POST["id"])){
-
-        $deleteId=$_POST["id"];
-
-        $respuesta=TourModel::del($deleteId,"tour");
-        if ($respuesta=="success") {
-          print "<script>alert(\"ORRADO.\");window.location='http://localhost/guids/index';</script>";
-
-        }else{
-          print "<script>alert(\"ASDASD.\");window.location='http://localhost/guids/index';</script>";
-        }
-      }
-
-}
-# ======  End of Deeting tour  =======
-
 public function dropAllTour(){
   if (isset($_POST["id"])) {
     $respuesta= TourModel::dropAllTour($_POST["id"]);
@@ -465,6 +403,24 @@ public function dropAllTour(){
     }
   }
 }
+
+// public function del(){
+//   if(isset($_POST["id"])){
+
+//         $deleteId=$_POST["id"];
+
+//         $respuesta=TourModel::del($deleteId,"tour");
+//         if ($respuesta=="success") {
+//           print "<script>alert(\"ORRADO.\");window.location='http://localhost/guids/index';</script>";
+
+//         }else{
+//           print "<script>alert(\"ASDASD.\");window.location='http://localhost/guids/index';</script>";
+//         }
+//       }
+
+// }
+# ======  End of Deeting tour  =======
+
 
 
 
