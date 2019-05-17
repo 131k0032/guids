@@ -497,21 +497,26 @@ require_once "model/Conexion.php";
 
 
 
-	public function updateById($tourDataModel, $table){
-			$stmt = Conexion::conectar()->prepare("UPDATE $table SET name=:name WHERE id=:id");
+	public function updateById($tourDataModel, $idTour, $table){
+			$stmt = Conexion::conectar()->prepare("UPDATE
+				$table SET
+				name=:name,description=:description,find_guide=:find_guide,
+				start_in=:start_in,location=:location,duration=:duration,capacity=:capacity,
+				updated_at=:updated_at WHERE id=:id");
 
 			$stmt->bindParam(":name",$tourDataModel["name"],PDO::PARAM_STR);
-			// $stmt->bindParam(":lastname",$userDataModel["lastname"],PDO::PARAM_STR);
-			// $stmt->bindParam(":phone",$userDataModel["phone"],PDO::PARAM_INT);
-			// $stmt->bindParam(":personality",$userDataModel["personality"],PDO::PARAM_STR);
-			// $stmt->bindParam(":ability",$userDataModel["ability"],PDO::PARAM_STR);
-			$stmt->bindParam(":id",$tourDataModel["id"],PDO::PARAM_INT);
-			$stmt->execute();
-
+			$stmt->bindParam(":description",$tourDataModel["description"],PDO::PARAM_STR);
+			$stmt->bindParam(":find_guide",$tourDataModel["find_guide"],PDO::PARAM_STR);
+			$stmt->bindParam(":start_in",$tourDataModel["start_in"],PDO::PARAM_STR);
+			$stmt->bindParam(":location",$tourDataModel["location"],PDO::PARAM_STR);
+			$stmt->bindParam(":duration",$tourDataModel["duration"],PDO::PARAM_STR);
+			$stmt->bindParam(":capacity",$tourDataModel["capacity"],PDO::PARAM_INT);
+			$stmt->bindParam(":updated_at",$tourDataModel["updated_at"],PDO::PARAM_STR);
+			$stmt->bindParam(":id",$idTour,PDO::PARAM_INT);
 			if($stmt->execute()){
-				return "success";
+				return true;
 			}else{
-				return "error";
+				return false;
 		}
  	}
 

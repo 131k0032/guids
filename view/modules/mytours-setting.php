@@ -19,22 +19,27 @@ error_reporting(0);
 <!--=================================
   =            Head common            =
   ==================================-->
-<title>Tour setting</title> <?php include 'view/links/head_common.php'; ?>
+<title>Tour setting</title>
+<?php include 'view/links/head_common.php'; ?>
 <!--====  End of Head common  ====-->
 
 <body> <?php
-$id = (int) $_POST["tour"];
 if (isset($_POST["tour"])) {
+  $id = (int) $_POST["tour"];
   $tourData = TourController::getById($id);
 }else {
   echo "<script>
-    window.location.href='//guids.mx/mytours'
+   window.location.href='//guids.mx/mytours'
   </script>";
 }
+  $updateTour= new TourController();
+  $updateTour->update();
+
  ?>
   <!--============================
   =            HEADER            =
-  =============================--> <?php include 'view/modules/header/header.php'; ?>
+  =============================-->
+  <?php include 'view/modules/header/header.php'; ?>
   <!--====  End of HEADER  ====-->
   <!--==========================
 =            SETTINGS FORM            =
@@ -54,6 +59,7 @@ if (isset($_POST["tour"])) {
             <p>Puedes modificar la información de tour siempre que así lo desasdees</p>
             <div class="custom-control custom-checkbox form-check">
               <input type="checkbox" class="custom-control-input spanish" id="toursetting" name="toursetting">
+              <input type="hidden" name="id" value="<?php echo $id-1; ?>">
               <label class="custom-control-label" for="toursetting">Modificar información de tour</label>
             </div>
             <hr>
@@ -92,7 +98,7 @@ if (isset($_POST["tour"])) {
                 <div class="select-wrap">
                   <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                   <select class="form-control" name="duration" id="duration" disabled="disabled">
-                    <option value="" selected disabled hidden><?php echo $tourData["duration"]; ?></option>
+                    <option value="<?php echo $tourData["duration"]; ?>" selected hidden><?php echo $tourData["duration"]; ?></option>
                     <option value="1:00-h">1:00 h</option>
                     <option value="1:15-h">1:15 h</option>
                     <option value="1:30-h">1:30 h</option>
@@ -110,7 +116,7 @@ if (isset($_POST["tour"])) {
                 <div class="select-wrap">
                   <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                   <select class="form-control" name="capacity" id="capacity" disabled="disabled">
-                    <option value="" selected disabled hidden><?php echo $tourData["capacity"]; ?></option>
+                    <option value="<?php echo $tourData["capacity"]; ?>" selected hidden><?php echo $tourData["capacity"]; ?></option>
                     <?php for($i=1; $i<=20; $i++){
                       echo '<option value="'.$i.'">'.$i.'</option>';
                       } ?>
@@ -118,7 +124,7 @@ if (isset($_POST["tour"])) {
                 </div>
               </div>
             </div>
-            <div class="row form-group">
+            <!-- <div class="row form-group">
               <div class="col-md-6">
                 <p class="mb-2 font-weight-bold">¿Deseas ocultar el tour?</p>
                 <p>Ya no podrías recibir más reservaciones.</p>
@@ -189,15 +195,12 @@ if (isset($_POST["tour"])) {
                   <span class="slider round"></span>
                 </label>
               </div>
-            </div>
+            </div> -->
             <div class="row form-group">
               <div class="col-md-12">
                 <input type="submit" value="Actualizar" id="btnupdate" class="btn btn-primary py-2 px-4 text-white" disabled="disabled">
               </div>
-            </div> <?php
-                  // $updateTour= new TourController();
-                  // $updateTour->update();
-                 ?>
+            </div>
           </form>
         </div>
       </div>
@@ -206,7 +209,8 @@ if (isset($_POST["tour"])) {
   <!--====  End of SETTINGS FORM  ====-->
   <!--==========================
 =            FAQS            =
-===========================--> <?php include 'view/links/faqs.php'; ?>
+===========================-->
+<?php include 'view/links/faqs.php'; ?>
   <!--====  End of FAQS  ====-->
   <!--============================
 =            FOOTER            =

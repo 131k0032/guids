@@ -337,28 +337,46 @@ public function getById($idTour){
 
 
 public function update(){
-
-      if(isset($_POST["name"])){
-
-        $tourDataController=array(
-          "id"=>$_POST["id"],
-          "name"=>$_POST["name"]
-          );
-
-        $updateById=TourModel::updateById($tourDataController,"tour");
-        var_dump($updateById);
-
-          if($updateById=="success"){
-            print "<script>alert(\"Información actualizada.\");window.location='http://localhost/guids/index';</script>";
-            // echo $_POST["phone"];
-
-          }else{
-            print "<script>alert(\"Datos no ctualizados.\");window.location='http://localhost/guids/index';</script>";
-
-        }
-
-      }
+  if (isset($_POST["id"]) && isset($_POST["toursetting"]) && isset($_POST["name"]) && isset($_POST["location"]) && isset($_POST["description"])
+  && isset($_POST["start_in"]) && isset($_POST["find_guide"]) && isset($_POST["duration"]) && isset($_POST["capacity"])) {
+    $date = date("Y-m-d");
+    $id=(INT)$_POST["id"];
+    $updateData = array('name' =>  $_POST["name"],'description' =>  $_POST["description"], 'find_guide' => $_POST["find_guide"], 'start_in' =>  $_POST["start_in"], 'location' =>  $_POST["location"],
+  'duration' => $_POST["duration"],'capacity' =>  $_POST["capacity"], 'updated_at' => $date);
+  $update = TourModel::updateById($updateData, $id, "tour");
+    if ($update) {
+      echo "<script>
+       window.location.href='//guids.mx/mytours'
+      </script>";
+    }else {
+      echo "<script>
+       alert('Ups algo salio mal. Contacta con los administradores.');
+      </script>";
     }
+  }
+
+
+    //   if(isset($_POST["name"])){
+    //
+    //     $tourDataController=array(
+    //       "id"=>$_POST["id"],
+    //       "name"=>$_POST["name"]
+    //       );
+    //
+    //     $updateById=TourModel::updateById($tourDataController,"tour");
+    //     var_dump($updateById);
+    //
+    //       if($updateById=="success"){
+    //         print "<script>alert(\"Información actualizada.\");window.location='http://localhost/guids/index';</script>";
+    //         // echo $_POST["phone"];
+    //
+    //       }else{
+    //         print "<script>alert(\"Datos no ctualizados.\");window.location='http://localhost/guids/index';</script>";
+    //
+    //     }
+    //
+    //   }
+     }
 
 # ======  End of Updating tour  =======
 
