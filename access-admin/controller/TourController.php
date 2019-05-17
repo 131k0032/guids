@@ -217,8 +217,8 @@ require_once "view/phpmailer/class.phpmailer.php";
                 <td style="padding: 10px 0 30px 0;">
                   <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border: 1px solid #cccccc; border-collapse: collapse;">
                     <tr>
-                      <td align="center" bgcolor="#70bbd9" style="padding: 40px 0 30px 0; color: #153643; font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;">
-                        <img src="https://guids.mx/access-admin/view/assets/images/email/h1.gif" alt="Creating Email Magic" width="300" height="230" style="display: block;" />
+                      <td align="center" bgcolor="#ee4c50" style="padding: 40px 0 30px 0; color: #153643; font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;">
+                         <img src="https://guids.mx/access-admin/view/assets/images/email/header.png" alt="Creating Email Magic" width="300" height="230" style="display: block;" />
                       </td>
                     </tr>
                     <tr>
@@ -254,25 +254,47 @@ require_once "view/phpmailer/class.phpmailer.php";
                       <td bgcolor="#ee4c50" style="padding: 30px 30px 30px 30px;">
                         <table border="0" cellpadding="0" cellspacing="0" width="100%">
                           <tr>
-                            <td style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px;" width="75%">
-                              &reg; El equipo de Guids.mx<br/>
-                              <a href="#" style="color: #ffffff;"><font color="#ffffff">Unsubscribe</font></a> to this newsletter instantly
+                            <td style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px;" width="60%">
+                              El equipo de Guids.mx<br/>                              
                             </td>
-                            <td align="right" width="25%">
+                            <td align="right" width="40%">
                               <table border="0" cellpadding="0" cellspacing="0">
                                 <tr>
-                                  <td style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;">
-                                    <a href="http://www.twitter.com/" style="color: #ffffff;">
-                                      <img src="https://guids.mx/access-admin/view/assets/images/email/tw.gif" alt="Twitter" width="38" height="38" style="display: block;" border="0" />
-                                    </a>
-                                  </td>
-                                  <td style="font-size: 0; line-height: 0;" width="20">&nbsp;</td>
-                                  <td style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;">
-                                    <a href="http://www.twitter.com/" style="color: #ffffff;">
-                                      <img src="https://guids.mx/access-admin/view/assets/images/email/fb.gif" alt="Facebook" width="38" height="38" style="display: block;" border="0" />
-                                    </a>
-                                  </td>
-                                </tr>
+                                    <td style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;">
+                                      <a href="http://www.twitter.com/" style="color: #ffffff;">
+                                        <img src="https://guids.mx/access-admin/view/assets/images/email/facebook.png" alt="Twitter" width="38" height="38" style="display: block;" border="0" />
+                                      </a>
+                                    </td>
+
+                                    <td style="font-size: 0; line-height: 0;" width="10">&nbsp;</td>
+                                    <td style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;">
+                                      <a href="http://www.twitter.com/" style="color: #ffffff;">
+                                        <img src="https://guids.mx/access-admin/view/assets/images/email/twitter.png" alt="Facebook" width="38" height="38" style="display: block;" border="0" />
+                                      </a>
+                                    </td>
+
+                                    <td style="font-size: 0; line-height: 0;" width="10">&nbsp;</td>
+                                    <td style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;">
+                                      <a href="http://www.instagram.com/" style="color: #ffffff;">
+                                        <img src="https://guids.mx/access-admin/view/assets/images/email/instagram.png" alt="Instagram" width="38" height="38" style="display: block;" border="0" />
+                                      </a>
+                                    </td>
+
+                                    <td style="font-size: 0; line-height: 0;" width="10">&nbsp;</td>
+                                    <td style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;">
+                                      <a href="http://www.blogger.com/" style="color: #ffffff;">
+                                        <img src="https://guids.mx/access-admin/view/assets/images/email/blogger.png" alt="Blogger" width="38" height="38" style="display: block;" border="0" />
+                                      </a>
+                                    </td>
+
+                                    <td style="font-size: 0; line-height: 0;" width="10">&nbsp;</td>
+                                    <td style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;">
+                                      <a href="http://www.youtube.com/" style="color: #ffffff;">
+                                        <img src="https://guids.mx/access-admin/view/assets/images/email/youtube.png" alt="Youtube" width="38" height="38" style="display: block;" border="0" />
+                                      </a>
+                                    </td>
+
+                                  </tr>
                               </table>
                             </td>
                           </tr>
@@ -363,8 +385,8 @@ public function sendDisableMessage(){
                 <td style="padding: 10px 0 30px 0;">
                   <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border: 1px solid #cccccc; border-collapse: collapse;">
                     <tr>
-                      <td align="center" bgcolor="#70bbd9" style="padding: 40px 0 30px 0; color: #153643; font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;">
-                        <img src="https://guids.mx/access-admin/view/assets/images/email/h1.gif" alt="Creating Email Magic" width="300" height="230" style="display: block;" />
+                      <td align="center" bgcolor="#ee4c50" style="padding: 40px 0 30px 0; color: #153643; font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;">
+                       <img src="https://guids.mx/access-admin/view/assets/images/email/header.png" alt="Creating Email Magic" width="300" height="230" style="display: block;" />
                       </td>
                     </tr>
                     <tr>
@@ -395,25 +417,47 @@ public function sendDisableMessage(){
                       <td bgcolor="#ee4c50" style="padding: 30px 30px 30px 30px;">
                         <table border="0" cellpadding="0" cellspacing="0" width="100%">
                           <tr>
-                            <td style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px;" width="75%">
-                              &reg; El equipo de Guids.mx<br/>
-                              <a href="#" style="color: #ffffff;"><font color="#ffffff">Unsubscribe</font></a> to this newsletter instantly
+                            <td style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px;" width="60%">
+                              El equipo de Guids.mx<br/>                              
                             </td>
-                            <td align="right" width="25%">
+                            <td align="right" width="40%">
                               <table border="0" cellpadding="0" cellspacing="0">
                                 <tr>
-                                  <td style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;">
-                                    <a href="http://www.twitter.com/" style="color: #ffffff;">
-                                      <img src="https://guids.mx/access-admin/view/assets/images/email/tw.gif" alt="Twitter" width="38" height="38" style="display: block;" border="0" />
-                                    </a>
-                                  </td>
-                                  <td style="font-size: 0; line-height: 0;" width="20">&nbsp;</td>
-                                  <td style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;">
-                                    <a href="http://www.twitter.com/" style="color: #ffffff;">
-                                      <img src="https://guids.mx/access-admin/view/assets/images/email/fb.gif" alt="Facebook" width="38" height="38" style="display: block;" border="0" />
-                                    </a>
-                                  </td>
-                                </tr>
+                                    <td style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;">
+                                      <a href="http://www.twitter.com/" style="color: #ffffff;">
+                                        <img src="https://guids.mx/access-admin/view/assets/images/email/facebook.png" alt="Twitter" width="38" height="38" style="display: block;" border="0" />
+                                      </a>
+                                    </td>
+
+                                    <td style="font-size: 0; line-height: 0;" width="10">&nbsp;</td>
+                                    <td style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;">
+                                      <a href="http://www.twitter.com/" style="color: #ffffff;">
+                                        <img src="https://guids.mx/access-admin/view/assets/images/email/twitter.png" alt="Facebook" width="38" height="38" style="display: block;" border="0" />
+                                      </a>
+                                    </td>
+
+                                    <td style="font-size: 0; line-height: 0;" width="10">&nbsp;</td>
+                                    <td style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;">
+                                      <a href="http://www.instagram.com/" style="color: #ffffff;">
+                                        <img src="https://guids.mx/access-admin/view/assets/images/email/instagram.png" alt="Instagram" width="38" height="38" style="display: block;" border="0" />
+                                      </a>
+                                    </td>
+
+                                    <td style="font-size: 0; line-height: 0;" width="10">&nbsp;</td>
+                                    <td style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;">
+                                      <a href="http://www.blogger.com/" style="color: #ffffff;">
+                                        <img src="https://guids.mx/access-admin/view/assets/images/email/blogger.png" alt="Blogger" width="38" height="38" style="display: block;" border="0" />
+                                      </a>
+                                    </td>                                    
+
+                                    <td style="font-size: 0; line-height: 0;" width="10">&nbsp;</td>
+                                    <td style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;">
+                                      <a href="http://www.youtube.com/" style="color: #ffffff;">
+                                        <img src="https://guids.mx/access-admin/view/assets/images/email/youtube.png" alt="Youtube" width="38" height="38" style="display: block;" border="0" />
+                                      </a>
+                                    </td>
+
+                                  </tr>
                               </table>
                             </td>
                           </tr>

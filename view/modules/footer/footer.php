@@ -35,7 +35,7 @@
         <div class="border-top pt-5">
         <p>
         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-        Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+        Copyright &copy; <script>document.write(new Date().getFullYear());</script>
         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
         </p>
         </div>

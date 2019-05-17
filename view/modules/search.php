@@ -145,7 +145,7 @@ session_start();
          </div>
         <?php
       }else {
-        echo $lang["No se encontraron tours activos"];
+        echo '<p class="px-3 mb-3 category text-secondary"> <i class="icon-eye-slash"><b></i> '.$lang["No se encontraron tours activos"].'</b></p>';
       }
       ?>
 

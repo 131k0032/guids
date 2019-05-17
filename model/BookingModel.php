@@ -234,6 +234,9 @@ class BookingModel{
 			$stmt = Conexion::conectar()->prepare("SELECT
 			tour.id AS tour_id,
 			tour.name AS tour_name,
+			tour.location AS tour_location,
+			tour.start_in AS tour_start_in,
+			tour.find_guide AS tour_find_guide,
 			tour.duration AS tour_duration,
 			tour.capacity AS tour_capacity,
 			tour.is_active AS tour_active,

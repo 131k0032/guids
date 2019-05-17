@@ -85,6 +85,7 @@
                 $code=$getIdByEmail["code"];
                 $name=$getIdByEmail["name"];
                 $lastname=$getIdByEmail["lastname"];
+                $phone=$getIdByEmail["phone"];
             ?>
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">                                                          
                 <li><a href="http://localhost/guids/bookings/user/<?php echo $id ?>"><span><?php echo $lang["Agenda"]; ?></span></a></li>              

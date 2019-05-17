@@ -114,7 +114,7 @@ if (isset($url[1]) && isset($url[2]) && $url[1]=="tour" && $url[2]>0) {
            <!-- Guide infor -->
             <div class="p-4 mb-3 bg-white">
               <p class="mb-0 font-weight-bold"><?php echo $lang["Ubicación del guía"]; ?></p>
-              <p class="mb-4"><?php echo utf8_encode($getUserTourById["user_town"]); ?></p>
+              <p class="mb-4"><?php echo $getUserTourById["user_town"]; ?></p>
               <p class="mb-0 font-weight-bold"><?php echo $lang["Idiomas del guía"]; ?></p>
               <?php foreach ($getTourById as $key => $value) {} ?>
 
@@ -134,10 +134,10 @@ if (isset($url[1]) && isset($url[2]) && $url[1]=="tour" && $url[2]>0) {
                   //No show phone and email
                 else:
                     echo '<p class="mb-0 font-weight-bold">'.$lang["Teléfono"].'</p>
-                          <p class="mb-4"><a href="#">'.utf8_encode($getUserTourById["user_phone"]).'</a></p>
+                          <p class="mb-4"><a href="#">'.$getUserTourById["user_phone"].'</a></p>
 
                           <p class="mb-0 font-weight-bold">'.$lang["Correo"].'</p>
-                          <p class="mb-4"><a href="#">'.utf8_encode($getUserTourById["user_email"]).'</a></p>';
+                          <p class="mb-4"><a href="#">'.$getUserTourById["user_email"].'</a></p>';
                 endif;
                 ?>
 
@@ -145,10 +145,10 @@ if (isset($url[1]) && isset($url[2]) && $url[1]=="tour" && $url[2]>0) {
 
             <div class="p-4 mb-3 bg-white">
                <h3 class="h5 text-black mb-3"><?php echo $lang["Características del guía"]; ?></h3>
-              <p><?php echo $lang["Personalidad"]; ?>: <?php echo utf8_encode($getUserTourById["user_personality"]); ?></p>
-              <p><?php echo $lang["Habilidades"]; ?>: <?php echo utf8_encode($getUserTourById["user_ability"]); ?></p>
+              <p><?php echo $lang["Personalidad"]; ?>: <?php echo $getUserTourById["user_personality"]; ?></p>
+              <p><?php echo $lang["Habilidades"]; ?>: <?php echo $getUserTourById["user_ability"]; ?></p>
               <h3 class="h5 text-black mb-3"><?php echo $lang["Sobre el tour"]; ?></h3>
-              <p><p><?php echo $lang["Descripción"]; ?>: <?php echo utf8_encode($getUserTourById["tour_description"]); ?></p></p>
+              <p><p><?php echo $lang["Descripción"]; ?>:<br> <?php echo $getUserTourById["tour_description"]; ?></p></p>
                <div class="listing-image" style="max-width:100%; max-height: 100%;">
                 <img src="http://localhost/guids/<?php echo $value["tour_image_src"]. $value["tour_image_filename"];?>" alt="Image" class="img-fluid img-thumbnail card-img-top">
               </div>
@@ -156,9 +156,9 @@ if (isset($url[1]) && isset($url[2]) && $url[1]=="tour" && $url[2]>0) {
 
             <div class="p-4 mb-3 bg-white">
               <h3 class="h5 text-black mb-3"><?php echo $lang["Punto de encuentro"]; ?></h3>
-              <p><?php echo utf8_encode($getUserTourById["tour_start_in"]); ?></p>
+              <p><?php echo $getUserTourById["tour_start_in"]; ?></p>
               <h3 class="h5 text-black mb-3"><?php echo $lang["¿Dónde localizar e identificar al guía?"]; ?></h3>
-              <p><?php echo utf8_encode($getUserTourById["tour_find_guide"]); ?></p>
+              <p><?php echo $getUserTourById["tour_find_guide"]; ?></p>
             </div>
             <!-- end Guide info -->
 
@@ -167,7 +167,7 @@ if (isset($url[1]) && isset($url[2]) && $url[1]=="tour" && $url[2]>0) {
               <p class="mb-2 font-weight-bold"><?php echo $lang["Días disponibles del guía para dar el tour"]; ?></p>
               <?php
                 foreach ($getTourById as $key => $day) {
-                    echo '<p class="mb-1">'.utf8_encode($day["day_name"]).'</p>';
+                    echo '<p class="mb-1">'.$day["day_name"].'</p>';
                 } ?>
               <br>
                 <?php
@@ -232,7 +232,7 @@ if (isset($url[1]) && isset($url[2]) && $url[1]=="tour" && $url[2]>0) {
                         <?php
                         foreach ($getTourById as $key => $schedule) {
                         ?>
-                        <option value="<?php echo $schedule["tour_schedule_id"] ?>"><?php echo utf8_encode($schedule["day_name"])." ".utf8_encode($value["tour_start_at"]); ?></option>
+                        <option value="<?php echo $schedule["tour_schedule_id"] ?>"><?php echo $schedule["day_name"]." ".$value["tour_start_at"]; ?></option>
                         <?php
                         }
                        ?>

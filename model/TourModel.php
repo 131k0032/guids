@@ -78,7 +78,7 @@ require_once "model/Conexion.php";
 		# -----------  ADDING ON A MANY TO MANY TABLE  -----------
 
 		 public function addTourSchedule($table, $start_at, $day_id, $tour_id, $language_id){
-            $stmt = Conexion::conectar()->prepare("INSERT INTO $table (`start_at`, `day_id`,`tour_id`,`language_id`) VALUES (:start_at,:day_id,:tour_id,:language_id)");
+            $stmt = Conexion::conectar()->prepare("INSERT INTO $table (start_at, day_id,tour_id,language_id) VALUES (:start_at,:day_id,:tour_id,:language_id)");
             $stmt->bindParam(":start_at", $start_at, PDO::PARAM_STR);
             $stmt->bindParam(":day_id", $day_id ,PDO::PARAM_STR);
             $stmt->bindParam(":tour_id", $tour_id ,PDO::PARAM_STR);
@@ -98,7 +98,7 @@ require_once "model/Conexion.php";
 
 
        public function addTourImage($table, $src, $file_name, $tour_id){
-            $stmt = Conexion::conectar()->prepare("INSERT INTO $table (`src`, `file_name`,`tour_id`) VALUES (:src,:file_name,:tour_id)");
+            $stmt = Conexion::conectar()->prepare("INSERT INTO $table (src, file_name,tour_id) VALUES (:src,:file_name,:tour_id)");
             $stmt->bindParam(":src", $src, PDO::PARAM_STR);
             $stmt->bindParam(":file_name", $file_name ,PDO::PARAM_STR);
             $stmt->bindParam(":tour_id", $tour_id ,PDO::PARAM_STR);
@@ -479,32 +479,44 @@ require_once "model/Conexion.php";
 # -----------  GETING TOURBY ID  -----------
 
 		public function getById($id, $table){
-		$stmt = Conexion::conectar()->prepare("SELECT id, name, description, find_guide, location, duration FROM $table where id=:id");
+		//$stmt = Conexion::conectar()->prepare("SELECT id, name, description, find_guide, location, duration FROM $table where id=:id");
+		$stmt = Conexion::conectar()->prepare("SELECT
+			id, name, description, find_guide, start_in,
+			location, duration, capacity, status, is_active,
+			created_at, updated_at
+			FROM $table WHERE id=:id
+		");
 		$stmt->bindParam(":id",$id,PDO::PARAM_INT);
-		$stmt->execute();
-		return $stmt->fetch();
-		// cierra las consultas
-			$stmt->close();
-
+		if ($stmt->execute()) {
+			return $stmt->fetch();
+		}else {
+			return null;
+		}
+		$stmt->close();
 		}
 
 
 
-	public function updateById($tourDataModel, $table){
-			$stmt = Conexion::conectar()->prepare("UPDATE $table SET name=:name WHERE id=:id");
+	public function updateById($tourDataModel, $idTour, $table){
+			$stmt = Conexion::conectar()->prepare("UPDATE
+				$table SET
+				name=:name,description=:description,find_guide=:find_guide,
+				start_in=:start_in,location=:location,duration=:duration,capacity=:capacity,
+				updated_at=:updated_at WHERE id=:id");
 
 			$stmt->bindParam(":name",$tourDataModel["name"],PDO::PARAM_STR);
-			// $stmt->bindParam(":lastname",$userDataModel["lastname"],PDO::PARAM_STR);
-			// $stmt->bindParam(":phone",$userDataModel["phone"],PDO::PARAM_INT);
-			// $stmt->bindParam(":personality",$userDataModel["personality"],PDO::PARAM_STR);
-			// $stmt->bindParam(":ability",$userDataModel["ability"],PDO::PARAM_STR);
-			$stmt->bindParam(":id",$tourDataModel["id"],PDO::PARAM_INT);
-			$stmt->execute();
-
+			$stmt->bindParam(":description",$tourDataModel["description"],PDO::PARAM_STR);
+			$stmt->bindParam(":find_guide",$tourDataModel["find_guide"],PDO::PARAM_STR);
+			$stmt->bindParam(":start_in",$tourDataModel["start_in"],PDO::PARAM_STR);
+			$stmt->bindParam(":location",$tourDataModel["location"],PDO::PARAM_STR);
+			$stmt->bindParam(":duration",$tourDataModel["duration"],PDO::PARAM_STR);
+			$stmt->bindParam(":capacity",$tourDataModel["capacity"],PDO::PARAM_INT);
+			$stmt->bindParam(":updated_at",$tourDataModel["updated_at"],PDO::PARAM_STR);
+			$stmt->bindParam(":id",$idTour,PDO::PARAM_INT);
 			if($stmt->execute()){
-				return "success";
+				return true;
 			}else{
-				return "error";
+				return false;
 		}
  	}
 
@@ -547,7 +559,7 @@ public function dropAllTour($idTour){
 	DELETE FROM review WHERE tour_id=$idTour;
 	DELETE FROM tour_schedule WHERE tour_id=$idTour;
 	DELETE FROM tour_image WHERE tour_id=$idTour;
-	DELETE FROM `tour` WHERE `id`=$idTour;
+	DELETE FROM tour WHERE id=$idTour;
 	");
 	if ($stmt->execute()) {
 		return true;

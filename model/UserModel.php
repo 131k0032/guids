@@ -33,7 +33,7 @@ class UserModel{
 	# -----------  GET ID BY EMAIL  -----------
 	
 	public function getIdByEmailUser($email, $table){
-		$statement = Conexion::conectar()->prepare("SELECT id, code, name, lastname, email FROM $table WHERE email=:email");
+		$statement = Conexion::conectar()->prepare("SELECT id, code, name, lastname, phone, email FROM $table WHERE email=:email");
 		$statement->bindParam(":email",$email["email"],PDO::PARAM_STR);
 		$statement->execute();	
 		return $statement->fetch();		

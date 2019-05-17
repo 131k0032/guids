@@ -84,6 +84,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
   // echo "Los valores de los tours son:<br>";
   // var_dump($getAll);
   ?>
+  
   <!--=================================
   =            BEST GUIDES            =
   ==================================-->
@@ -104,7 +105,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
             <div class="listing-item-content">
               <?php $char=25; ?>
               <h2 class="mb-1"><a href="#"><?php echo $value["tour_id"]." ".substr($value["tour_name"], 0, $char).'...'; ?></a></h2>
-              <span class="address"><?php echo utf8_encode(substr($value["tour_location"],0, $char).'...'); ?></span>
+              <span class="address"><?php echo substr($value["tour_location"],0, $char).'...'; ?></span>
               <p>
                 <span class="icon-star <?php echo $value["tour_rating"]>=1 ? 'text-warning' : 'text-secondary' ?>"></span>
                 <span class="icon-star <?php echo $value["tour_rating"]>=2 ? 'text-warning' : 'text-secondary' ?>"></span>
@@ -117,9 +118,11 @@ require_once "view/languages/".$lang->validate().".php";//include lang
             </div>
           </div>
         </div>
+            
       <?php }
         if ($getAll==null) {
-          echo $lang["No se encontraron tours activos"];
+          // echo $lang["No se encontraron tours activos"];
+          echo '<p class="px-3 mb-3 category text-secondary"> <i class="icon-eye-slash"><b></i> '.$lang["No se encontraron tours activos"].'</b></p>';
         } ?>
     </div>
       <?php if($getAll==Null) {?>
