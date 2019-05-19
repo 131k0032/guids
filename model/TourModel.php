@@ -465,6 +465,8 @@ require_once "model/Conexion.php";
 			$stmt->close();
 
 		}
+
+	  
 # ======  End of SHOWING TOURS  =======
 
 

@@ -37,6 +37,8 @@
         "http://localhost/guids/view/fullcalendar/bootstrap/main.js", 
         # -----------  Gijgo  -----------
         "http://localhost/guids/view/assets/js/gijgo.min.js", 
+        # -----------  Progressbar  -----------
+        "http://localhost/guids/view/assets/js/jqbar.js", 
         
        );    
         
@@ -97,6 +99,8 @@
                   <script src="'.$jslink[25].'"></script>';
             # -----------  Gijgo  -----------
             echo '<script src="'.$jslink[26].'"></script>';
+            # -----------  Progressbar  -----------
+            echo '<script src="'.$jslink[27].'"></script>';
                                                 
             }else{
                # -----------  Main scripts  ----------- 
@@ -133,6 +137,8 @@
                   <script src="'.$jslink[25].'"></script>';   
             # -----------  Gijgo  -----------
             echo '<script src="'.$jslink[26].'"></script>';
+            # -----------  Progressbar  -----------
+            echo '<script src="'.$jslink[27].'"></script>';
         }
         
      ?>

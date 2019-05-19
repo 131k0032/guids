@@ -78,6 +78,13 @@ if (isset($url[1]) && isset($url[2]) && $url[1]=="tour" && $url[2]>0) {
       $getAllComment=ReviewModel::getAllComment("review",$tourId);
       //6 Query
       $getCountComment=ReviewModel::getCountComment("review",$tourId);
+      //Counting ratings by 5,4,3,2,1
+      $getCountRatingFive=ReviewModel::getCountRatingFive("review",$tourId);
+      $getCountRatingFour=ReviewModel::getCountRatingFour("review",$tourId);
+      $getCountRatingThree=ReviewModel::getCountRatingThree("review",$tourId);
+      $getCountRatingTwo=ReviewModel::getCountRatingTwo("review",$tourId);
+      $getCountRatingOne=ReviewModel::getCountRatingOne("review",$tourId);
+
   ?>
 
     <div class="site-section bg-light">
@@ -94,17 +101,23 @@ if (isset($url[1]) && isset($url[2]) && $url[1]=="tour" && $url[2]>0) {
                 <?php } ?>
               <div class="lh-content">
                 <h3><a href=""><?php echo $getUserTourById["user_name"]." ".$getUserTourById["user_lastname"]; ?></a></h3>
-                <p><?php echo $lang["Registrado:"]; ?> <?php echo $getUserTourById["user_created_at"]; ?></p>
-                <div class="text-capitalize"><?php echo $getAvgRating["review_rating"]; ?></div>
+                <p><?php echo $lang["Registrado:"]; ?> <?php echo $getUserTourById["user_created_at"]; ?></p>                
                 <p>
+                  <?php echo '<b>'.round($getAvgRating["review_rating"],2).'</b>'; ?>                                   
                   <span class="icon-star <?php echo $getAvgRating["review_rating"]>=1 ? 'text-warning' : 'text-secondary' ?>"></span>
                   <span class="icon-star <?php echo $getAvgRating["review_rating"]>=2 ? 'text-warning' : 'text-secondary' ?>"></span>
                   <span class="icon-star <?php echo $getAvgRating["review_rating"]>=3 ? 'text-warning' : 'text-secondary' ?>"></span>
                   <span class="icon-star <?php echo $getAvgRating["review_rating"]>=4 ? 'text-warning' : 'text-secondary' ?>"></span>
                   <span class="icon-star <?php echo $getAvgRating["review_rating"]>=5 ? 'text-warning' : 'text-secondary' ?>"></span>
                   <span>(<?php echo $getCountRating["review_rating"]-1; ?> <?php echo $lang["valoraciones"]; ?>)</span>
+                  <!-- Progress bar -->
+                  <div id="bar-1" style="font-size: 13px"></div>
+                  <div id="bar-2" style="font-size: 13px"></div>
+                  <div id="bar-3" style="font-size: 13px"></div>
+                  <div id="bar-4" style="font-size: 13px"></div>
+                  <div id="bar-5" style="font-size: 13px"></div>
                 </p>
-                <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartir</a>
+                <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartir</a>
                 </div>
               </div>
             </div>
@@ -549,6 +562,24 @@ if (isset($url[1]) && isset($url[2]) && $url[1]=="tour" && $url[2]>0) {
   }
 </script>
 <!-- end more comments -->
+
+<!--=================================
+=            Progressbar            =
+==================================-->
+<script type="text/javascript">
+$(document).ready(function () {
+    <?php $value=0 ?>
+    $('#bar-1').jqbar({ label: '<span class="badge badge-pill badge-primary" style="color:white">5</span> ', value: <?php echo $getCountRatingFive["review_rating_five"]; ?>, barColor: '#f89d13' });
+    $('#bar-2').jqbar({ label: '<span class="badge badge-pill badge-primary" style="color:white">4</span> ', value: <?php echo $getCountRatingFour["review_rating_four"]; ?>, barColor: '#f89d13' });
+    $('#bar-3').jqbar({ label: '<span class="badge badge-pill badge-primary" style="color:white">3</span> ', value: <?php echo $getCountRatingThree["review_rating_three"]; ?>, barColor: '#f89d13' });
+    $('#bar-4').jqbar({ label: '<span class="badge badge-pill badge-primary" style="color:white">2</span> ', value: <?php echo $getCountRatingTwo["review_rating_two"]; ?>, barColor: '#f89d13' });
+    $('#bar-5').jqbar({ label: '<span class="badge badge-pill badge-primary" style="color:white">1</span> ', value: <?php echo $getCountRatingOne["review_rating_one"]; ?>, barColor: '#f89d13' });    
+});
+</script>
+
+<!--====  End of Progressbar  ====-->
+
+
 <!--====  End of SCRIPTS  ====-->
 
 

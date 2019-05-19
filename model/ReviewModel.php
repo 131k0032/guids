@@ -58,6 +58,134 @@ require_once "model/Conexion.php";
 
       }
 
+    // Counting Ratings with 5 stars, for guide info   
+     public function getCountRatingFive($table, $id){
+      $stmt = Conexion::conectar()->prepare("SELECT
+        review.id as review_id,
+        count(review.rating) as review_rating_five,
+
+        tour.id as tour_id,
+        tour.name as tour_name,
+
+        user.id as user_id,
+        user.name as user_name
+
+        FROM
+        $table
+
+        inner join tour
+        on review.tour_id=tour.id
+        inner join user
+        on review.user_id=user.id
+        where tour.id=$id && review.rating=5");
+      $stmt->execute();
+    return $stmt->fetch();
+    $stmt->close();
+     }
+
+
+     // Counting Ratings with 4 stars, for guide info   
+     public function getCountRatingFour($table, $id){
+      $stmt = Conexion::conectar()->prepare("SELECT
+        review.id as review_id,
+        count(review.rating) as review_rating_four,
+
+        tour.id as tour_id,
+        tour.name as tour_name,
+
+        user.id as user_id,
+        user.name as user_name
+
+        FROM
+        $table
+
+        inner join tour
+        on review.tour_id=tour.id
+        inner join user
+        on review.user_id=user.id
+        where tour.id=$id && review.rating=4");
+      $stmt->execute();
+    return $stmt->fetch();
+    $stmt->close();
+     }
+
+
+     // Counting Ratings with 3 stars, for guide info   
+     public function getCountRatingThree($table, $id){
+      $stmt = Conexion::conectar()->prepare("SELECT
+        review.id as review_id,
+        count(review.rating) as review_rating_three,
+
+        tour.id as tour_id,
+        tour.name as tour_name,
+
+        user.id as user_id,
+        user.name as user_name
+
+        FROM
+        $table
+
+        inner join tour
+        on review.tour_id=tour.id
+        inner join user
+        on review.user_id=user.id
+        where tour.id=$id && review.rating=3");
+      $stmt->execute();
+    return $stmt->fetch();
+    $stmt->close();
+     }
+
+
+     // Counting Ratings with 2 stars, for guide info   
+     public function getCountRatingTwo($table, $id){
+      $stmt = Conexion::conectar()->prepare("SELECT
+        review.id as review_id,
+        count(review.rating) as review_rating_two,
+
+        tour.id as tour_id,
+        tour.name as tour_name,
+
+        user.id as user_id,
+        user.name as user_name
+
+        FROM
+        $table
+
+        inner join tour
+        on review.tour_id=tour.id
+        inner join user
+        on review.user_id=user.id
+        where tour.id=$id && review.rating=2");
+      $stmt->execute();
+    return $stmt->fetch();
+    $stmt->close();
+     }
+
+
+     // Counting Ratings with 1 stars, for guide info   
+     public function getCountRatingOne($table, $id){
+      $stmt = Conexion::conectar()->prepare("SELECT
+        review.id as review_id,
+        count(review.rating) as review_rating_one,
+
+        tour.id as tour_id,
+        tour.name as tour_name,
+
+        user.id as user_id,
+        user.name as user_name
+
+        FROM
+        $table
+
+        inner join tour
+        on review.tour_id=tour.id
+        inner join user
+        on review.user_id=user.id
+        where tour.id=$id && review.rating=1");
+      $stmt->execute();
+    return $stmt->fetch();
+    $stmt->close();
+     }
 
 
 
