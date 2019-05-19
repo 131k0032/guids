@@ -157,7 +157,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                 <div class="modal-body">                
                   <div class="form-group">
                       <div class="h-entry"><div class="meta"><?php echo $lang["Correo"]; ?></div></div>
-                      <input type="email_reset_pass" id="email_reset_pass" name="email_reset_pass" class="form-control" value="" placeholder="karl@gmail.com">
+                      <input type="email" id="email_reset_pass" name="email_reset_pass" class="form-control" value="" placeholder="karl@gmail.com" required>
                   </div>
                 </div>
                 <div class="modal-footer">
@@ -224,7 +224,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
   $("#resetpass").validate({
     rules: {
     
-      email: { 
+      email_reset_pass: { 
         required:true, 
         email: true
       },
@@ -232,7 +232,7 @@ require_once "view/languages/".$lang->validate().".php";//include lang
 
     },
     messages: {
-      email : "<?php echo $lang["Email es requerido y debe tener formato de email correcto."] ?>",    
+      email_reset_pass : "<?php echo $lang["Email es requerido y debe tener formato de email correcto."] ?>",    
     }
   });
 });
