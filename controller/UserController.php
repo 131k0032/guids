@@ -111,6 +111,54 @@ require_once "view/phpmailer/class.phpmailer.php";
 		
 		}
  }
+
+
+ public function resetPassword(){
+ 	if (isset($_POST["email_reset_pass"])){
+ 		$email_reset_pass=$_POST["email_reset_pass"];
+ 		$userEmailDataModel=array("email"=>$email_reset_pass); 		
+ 		$emailExists=UserModel::emailExists($userEmailDataModel,"user");
+ 			if($emailExists["email"]==$email_reset_pass){
+ 				// echo "Iguales you can change";
+ 				// Generating new password
+ 				 $contra = "";
+	             $cadena = "abcdefghijklmnopqrstuvwxyz";
+	             $long_cad = strlen($cadena);
+	             $long_contra = 6;
+	             for($i = 0; $i < $long_contra; $i++){
+	                $num = rand(0,$long_cad-1);
+	                $letra = substr($cadena, $num, 1);
+	                $contra = $contra.$letra;
+	             }	           
+	            
+	            $newPass = crypt($contra, '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+	            //Updating pass
+	            $userDataController=array(
+	            	"password"=>$newPass,
+			        "email"=>$_POST["email_reset_pass"]
+	            );
+
+	            $updatePass=UserModel::updatePass($userDataController,"user");
+	            // echo($contra);
+
+	            if($updatePass=="success"){
+				print "<script>alert(\"Nuevo password enviado al correo proporcionado.\");window.location='http://localhost/guids/index';</script>";	
+
+				// SEND MAIL TO USER EMAIL HERE!!				
+					// CODE HERE!!
+				// SEND MAIL TO USER EMAIL HERE!!
+				}else{
+					print "<script>alert(\"Error al cambiar password.\");window.location='http://localhost/guids/index';</script>";
+
+				}
+
+
+ 			}else{
+ 				print "<script>alert(\"Este correo no existe en Guids.mx.\");window.location='http://localhost/guids/signin';</script>";
+ 		}
+ 		 		
+ 	}
+ }
  # ======  End of UPDATING USER  =======
   
 

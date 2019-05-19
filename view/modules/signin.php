@@ -110,7 +110,8 @@ require_once "view/languages/".$lang->validate().".php";//include lang
                 <div class="col-md-12">
                   <input type="submit" value="<?php echo $lang["Iniciar sesión"] ?>" class="btn btn-primary py-2 px-4 text-white">
                 </div>
-              </div>
+              </div>              
+              <button data-toggle="modal" data-target="#exampleModalCenter" type="button" class="btn btn-outline-info btn-xs justify-content-end"><?php echo $lang["¿Olvidaste tu contraseña?"]; ?></button>
 
               <?php 
                 $signin = new SigninController();
@@ -129,7 +130,52 @@ require_once "view/languages/".$lang->validate().".php";//include lang
 
 <!--====  End of REGISTER FORM  ====-->
 
+<!--======================================
+=            MODAL RESET PASS            =
+=======================================-->
 
+         <!-- modal -->
+          <form method="post" id="resetpass">
+           <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title text-center" id="exampleModalLongTitle"><?php echo $lang["Correo registrado en Guids.mx"]; ?></h5>
+                  <style>
+                    form label.error {
+                      float: right;
+                      color: #f23a2e;
+                      font-weight:bold;
+                      font-size: 12px
+                      /*vertical-align: top;*/
+                    }
+                  </style>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">                
+                  <div class="form-group">
+                      <div class="h-entry"><div class="meta"><?php echo $lang["Correo"]; ?></div></div>
+                      <input type="email_reset_pass" id="email_reset_pass" name="email_reset_pass" class="form-control" value="" placeholder="karl@gmail.com">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo $lang["Cerrar"]; ?></button>
+                    <input type="submit" value="<?php echo $lang["Obtener una nueva contraseña"] ?>" class="btn btn-primary py-2 px-4 text-white">
+                    <?php 
+                      $resetPassword= new UserController();
+                      $resetPassword->resetPassword();
+                     ?>
+                </div>
+              </div>
+            </div>
+          </div>
+          </form>
+          <!-- end modal -->
+
+
+<!--====  End of MODAL RESET PASS  ====-->
 
 <!--==========================
 =            FAQS            =
@@ -168,6 +214,25 @@ require_once "view/languages/".$lang->validate().".php";//include lang
     messages: {
       email : "<?php echo $lang["Email es requerido y debe tener formato de email correcto."] ?>",    
       password : "<?php echo $lang["El password es requerido."] ?>",
+    }
+  });
+});
+</script>
+
+<script>
+  $().ready(function() {
+  $("#resetpass").validate({
+    rules: {
+    
+      email: { 
+        required:true, 
+        email: true
+      },
+
+
+    },
+    messages: {
+      email : "<?php echo $lang["Email es requerido y debe tener formato de email correcto."] ?>",    
     }
   });
 });

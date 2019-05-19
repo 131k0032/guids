@@ -174,6 +174,10 @@ después de que tu información de registro haya sido verifica por los administr
 // "Contraseña"=>"Contraseña", has benn defined
 "Contraseña registrada en el sitio"=>"Contraseña registrada en el sitio",
 "Iniciar sesión"=>"Iniciar sesión",
+"¿Olvidaste tu contraseña?"=>"¿Olvidaste tu contraseña?",
+"Correo registrado en Guids.mx"=>"Correo registrado en Guids.mx",
+"Cerrar"=>"Cerrar",
+"Obtener una nueva contraseña"=>"Obtener una nueva contraseña",
 //validations
 // "Email es requerido y debe tener formato de email correcto."=>"Email es requerido y debe tener formato de email correcto.",has benn defined
 // "El password es requerido."=>"El password es requerido.",has benn defined

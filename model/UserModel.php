@@ -85,6 +85,20 @@ class UserModel{
 		}
  	}
 
+
+	# -----------  UPDATING BY EMAIL  -----------
+	public function updatePass($userDataModel, $table){
+			$statement = Conexion::conectar()->prepare("UPDATE $table SET password=:password WHERE email=:email");				
+			$statement->bindParam(":password",$userDataModel["password"],PDO::PARAM_STR);						
+			$statement->bindParam(":email",$userDataModel["email"],PDO::PARAM_STR);
+			$statement->execute();
+			
+			if($statement->execute()){
+				return "success";
+			}else{
+				return "error";
+		}
+ 	}
 	# ======  End of UPDATING USER  =======
 	
 

@@ -57,6 +57,7 @@
             $url[0]=="aboutus" ||    
             $url[0]=="terms-and-conditions" ||                  
             $url[0]=="privacy-policy" ||
+            $url[0]=="search" ||
             //Logout
             $url[0]=="logout"
 

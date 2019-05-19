@@ -171,6 +171,10 @@ You can log in after your registration information has been verified by site adm
 "Correo registrado en el sitio"=>"Registered email on the site",
 // "Contraseña"=>"Contraseña", has benn defined
 "Contraseña registrada en el sitio"=>"Registered password on the site",
+"¿Olvidaste tu contraseña?"=>"Forgot password?",
+"Correo registrado en Guids.mx"=>"Registered password on Guids.mx",
+"Cerrar"=>"Close",
+"Obtener una nueva contraseña"=>"Get a new password",
 //"Iniciar sesión"=>"Login",
 //validations
 //"Email es requerido y debe tener formato de email correcto."=>"Field email is required and must be the correct email format.", has been defined
