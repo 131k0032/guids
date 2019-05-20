@@ -162,7 +162,7 @@ class BookingModel{
 	}
 
 		public function acceptTour($bookingDataModel, $table){
-			$stmt = Conexion::conectar()->prepare("UPDATE $table SET status=1 WHERE tour_id=:id");
+			$stmt = Conexion::conectar()->prepare("UPDATE $table SET status=1 WHERE id=:id");
 			$stmt->bindParam(":id",$bookingDataModel,PDO::PARAM_INT);
 				if($stmt->execute()){
 					return true;
@@ -242,7 +242,7 @@ class BookingModel{
 			tour.is_active AS tour_active,
 			tour.user_id AS tour_user_id,
 			booking.tour_date AS booking_date,
-			booking.tour_id AS booking_id,
+			booking.id AS booking_id,
 			booking.tourist_quantyty AS booking_quantyty,
 			booking.status AS booking_status,
 			booking.name AS booking_name,

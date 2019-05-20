@@ -224,6 +224,16 @@ después de que tu información de registro haya sido verifica por los administr
 //"Teléfono"=>"Teléfono",, has been defined,
 "Ahora no"=>"Ahora no",
 "Reservar"=>"Reservar",
+# -----------  Price section  -----------
+"¿Cuál es el precio el tour?"=>"¿Cuál es el precio el tour?",
+"Un tour publicado en Guids.mx es de libre pago, es decir, es completamente gratis reservar, pero el 'guids' espera ser recompensado al final del tour
+con la cantidad que tu quieras. Algunas personas dan 5 USD, otras dan 20 USD, tu eliges la cantidad. Es obligatorio reservar antes de asistir, porque si
+el 'guids' cree que no ha reservado nadie ese día no acudirá al punto de encuentro, o si ese día tiene demasiados turistas/viajeros puede no permitir
+que te unas al grupo. Reservar es super fácil, rápido y totalmente gratis. ¡Reserva ahora!"=>"Un tour publicado en Guids.mx es de libre pago, es decir,
+es completamente gratis reservar, pero el 'guids' espera ser recompensado al final del tour con la cantidad que tu quieras. Algunas personas dan 5 USD,
+otras dan 20 USD, tu eliges la cantidad. Es obligatorio reservar antes de asistir, porque si el 'guids' cree que no ha reservado nadie ese día no
+acudirá al punto de encuentro, o si ese día tiene demasiados turistas/viajeros puede no permitir que te unas al grupo. Reservar es super fácil, rápido y
+totalmente gratis. ¡Reserva ahora!",
 # -----------  Comment section  -----------
 "¿Que tal te pareció el tour?"=>"¿Que tal te pareció el tour?",
 "Tu opinión será visible para los usuarios en la pagina del tour. Ayudará a que"=>"Tu opinión será visible para los usuarios en la pagina del

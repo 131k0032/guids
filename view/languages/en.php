@@ -219,6 +219,16 @@ You can log in after your registration information has been verified by site adm
 //"Teléfono"=>"Teléfono",, has been defined,
 "Ahora no"=>"Not now",
 "Reservar"=>"Book",
+# -----------  Price section  -----------
+"¿Cuál es el precio el tour?"=>"What is the price?",
+"Un tour publicado en Guids.mx es de libre pago, es decir, es completamente gratis reservar, pero el 'guids' espera ser recompensado al final del tour
+con la cantidad que tu quieras. Algunas personas dan 5 USD, otras dan 20 USD, tu eliges la cantidad. Es obligatorio reservar antes de asistir, porque si
+el 'guids' cree que no ha reservado nadie ese día no acudirá al punto de encuentro, o si ese día tiene demasiados turistas/viajeros puede no permitir
+que te unas al grupo. Reservar es super fácil, rápido y totalmente gratis. ¡Reserva ahora!"=>"A tour published on Guids.mx is freely paid, that is, It
+is completely free to book, but the 'guids' wait to be rewarded at the end of the tour with the amount you want. Some people give 5 USD, others give 20
+USD, you choose the amount. It is mandatory to book before attending, because if the 'guids' think that nobody has booked that day, no will go to the
+meeting point, or if that day has too many tourists / travelers may not allow you to join the group. Booking is super easy, fast and totally free. Book
+now!",
 # -----------  Comment section  -----------
 "¿Que tal te pareció el tour?"=>"How did you like the tour?",
 "Tu opinión será visible para los usuarios en la pagina del tour. Ayudará a que"=>"Your opinion will be visible to users on the page of the

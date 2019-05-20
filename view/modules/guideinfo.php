@@ -314,6 +314,12 @@ if (isset($url[1]) && isset($url[2]) && $url[1]=="tour" && $url[2]>0) {
              <!-- Rating tour -->
              <form method="post" id="rating_form">
              <div class="p-4 mb-3 bg-white">
+              <p class="mb-2 font-weight-bold"><i class="icon-monetization_on"></i> <?php echo $lang["¿Cuál es el precio el tour?"]; ?></p>
+                <div class="h-entry"><div class="meta"><?php echo $lang["Un tour publicado en Guids.mx es de libre pago, es decir, es completamente gratis reservar, pero el 'guids' espera ser recompensado al final del tour
+con la cantidad que tu quieras. Algunas personas dan 5 USD, otras dan 20 USD, tu eliges la cantidad. Es obligatorio reservar antes de asistir, porque si
+el 'guids' cree que no ha reservado nadie ese día no acudirá al punto de encuentro, o si ese día tiene demasiados turistas/viajeros puede no permitir
+que te unas al grupo. Reservar es super fácil, rápido y totalmente gratis. ¡Reserva ahora!"]; ?> </div></div>
+                <hr>
                 <p class="mb-2 font-weight-bold"><?php echo $lang["¿Que tal te pareció el tour?"]; ?></p>
                 <div class="h-entry"><div class="meta"><?php echo $lang["Tu opinión será visible para los usuarios en la pagina del tour. Ayudará a que"]; ?> <?php echo $getUserTourById["user_name"]; ?> <?php echo $lang["mejore su trabajo y para que otras personas decidan si este es de su interés."]; ?></div></div>
                 <div class="row form-group" style="margin-bottom: 0px;">

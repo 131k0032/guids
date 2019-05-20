@@ -115,7 +115,7 @@ sección"]; ?> <a target="_blank" href="http://localhost/guids/generateinsurance
             echo "<td>".$BookingTable["booking_name"]." ".$BookingTable["booking_lastname"]."</td>";
             echo "<td>".$BookingTable["booking_quantyty"]." ".$lang["de"]." ".$BookingTable["tour_capacity"]."</td>";
             echo "<td>".$BookingTable["booking_date"]." ".$lang["a la(s)"]." ".$BookingTable["schedule_start"]."</td>";
-            echo "<td><a style='color:white', data-toggle='modal' data-target='#acceptBookingModal".$BookingTable["tour_id"]."' class='btn btn-info btn-xs'>Aceptar</td>";
+            echo "<td><a style='color:white', data-toggle='modal' data-target='#acceptBookingModal".$BookingTable["booking_id"]."' class='btn btn-info btn-xs'>Aceptar</td>";
             echo "</tr>";
           } ?>
       </tbody>
@@ -126,7 +126,7 @@ sección"]; ?> <a target="_blank" href="http://localhost/guids/generateinsurance
 <!-- Modal -->
 <?php
 foreach ($getBookinsData as $key => $BookingModal) { ?>
-<div class="modal fade" id="acceptBookingModal<?php echo $BookingModal["tour_id"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="acceptBookingModal<?php echo $BookingModal["booking_id"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -137,24 +137,24 @@ foreach ($getBookinsData as $key => $BookingModal) { ?>
       </div>
       <form method="post">
       <div class="modal-body">
-        <input type="hidden" name="booking_id" value="<?php echo $BookingModal["tour_id"]; ?>">
+        <input type="hidden" name="booking_id" value="<?php echo $BookingModal["booking_id"]; ?>">
         <!-- Tour data -->
-        <input type="text" name="tour_name" value="<?php echo $BookingModal["tour_name"]; ?>">
-        <input type="text" name="tour_location" value="<?php echo $BookingModal["tour_location"]; ?>">
-        <input type="text" name="tour_start_in" value="<?php echo $BookingModal["tour_start_in"]; ?>">
-        <input type="text" name="tour_find_guide" value="<?php echo $BookingModal["tour_find_guide"]; ?>">
+        <input type="hidden" name="tour_name" value="<?php echo $BookingModal["tour_name"]; ?>">
+        <input type="hidden" name="tour_location" value="<?php echo $BookingModal["tour_location"]; ?>">
+        <input type="hidden" name="tour_start_in" value="<?php echo $BookingModal["tour_start_in"]; ?>">
+        <input type="hidden" name="tour_find_guide" value="<?php echo $BookingModal["tour_find_guide"]; ?>">
         <!-- User guide info-->
-        <input type="text" name="user_guide_name_confirm" value="<?php echo $name?>">
-        <input type="text" name="user_guide_lastname_confirm" value="<?php echo $lastname?>">
-        <input type="text" name="user_guide_phone_confirm" value="<?php echo $phone?>">
+        <input type="hidden" name="user_guide_name_confirm" value="<?php echo $name?>">
+        <input type="hidden" name="user_guide_lastname_confirm" value="<?php echo $lastname?>">
+        <input type="hidden" name="user_guide_phone_confirm" value="<?php echo $phone?>">
         <!-- Booking data -->
-        <input type="text" name="booking_tourist_name" value="<?php echo $BookingModal["booking_name"]; ?>">
-        <input type="text" name="booking_tourist_lastname" value="<?php echo $BookingModal["booking_lastname"]; ?>">
-        <input type="text" name="booking_tourist_email" value="<?php echo $BookingModal["booking_email"]; ?>">        
-        <input type="text" name="booking_tourist_quantyty" value="<?php echo $BookingModal["booking_quantyty"]; ?>">   
-        <input type="text" name="booking_date" value="<?php echo $BookingModal["booking_date"]; ?>">           
+        <input type="hidden" name="booking_tourist_name" value="<?php echo $BookingModal["booking_name"]; ?>">
+        <input type="hidden" name="booking_tourist_lastname" value="<?php echo $BookingModal["booking_lastname"]; ?>">
+        <input type="hidden" name="booking_tourist_email" value="<?php echo $BookingModal["booking_email"]; ?>">        
+        <input type="hidden" name="booking_tourist_quantyty" value="<?php echo $BookingModal["booking_quantyty"]; ?>">   
+        <input type="hidden" name="booking_date" value="<?php echo $BookingModal["booking_date"]; ?>">           
         <!-- Schedule data -->
-        <input type="text" name="schedule_start_at" value="<?php echo $BookingModal["schedule_start"]; ?>">
+        <input type="hidden" name="schedule_start_at" value="<?php echo $BookingModal["schedule_start"]; ?>">
 
         <p class="color-black-opacity-2"><?php echo $lang["Después de aceptar el tour"]; ?> <b><?php echo $BookingModal["tour_name"]; ?></b> <?php echo $lang["podrás ver la información de contacto. Tendrás que validar el tour, que solicita"]; ?> <i><?php echo $BookingModal["booking_name"]." ".$BookingModal["booking_lastname"];  ?>.</i></p>
       </div>
