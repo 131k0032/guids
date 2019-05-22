@@ -406,6 +406,7 @@ public function dropAllTour(){
   }
 }
 
+
 // public function del(){
 //   if(isset($_POST["id"])){
 
@@ -422,8 +423,6 @@ public function dropAllTour(){
 
 // }
 # ======  End of Deeting tour  =======
-
-
 
 
 }

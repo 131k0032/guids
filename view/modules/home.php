@@ -235,12 +235,12 @@ require_once "view/languages/".$lang->validate().".php";//include lang
   <!--=================================
 =            ADVERSITING            =
 ==================================-->
-  <div class="py-5 bg-primary">
+  <div class="py-5 bg-danger">
     <div class="container">
       <div class="row text-center">
         <div class="col-md-12">
-          <h2 class="mb-2 text-white"><?php echo $lang["¿Quieres conocer los todos los lugares magicos de la Riviera Maya?"]; ?></h2>
-          <p class="mb-4 lead text-white-opacity-05"><?php echo $lang["Bajo costo + Seguridad + Guía privado"]; ?></p>
+          <h2 class="mb-2 text-light"><?php echo $lang["¿Quieres conocer los todos los lugares magicos de la Riviera Maya?"]; ?></h2>
+          <p class="mb-4 lead text-light"><?php echo $lang["Bajo costo + Seguridad + Guía privado"]; ?></p>
           <!-- <p class="mb-0"><a href="booking.html" class="btn btn-outline-white text-white btn-md font-weight-bold">Sign Up</a></p> -->
         </div>
       </div>

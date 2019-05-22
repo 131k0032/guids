@@ -26,7 +26,7 @@ error_reporting(0);
 <body> <?php
 if (isset($_POST["tour"])) {
   $tour_id = (int) $_POST["tour"];  
-  echo $tour_id;
+  // echo $tour_id;
   $tourData = TourController::getById($tour_id);
 }else {
   // echo "<script>
@@ -58,7 +58,7 @@ if (isset($_POST["tour"])) {
       <div class="row justify-content-center">
         <div class="col-md-8">
           <form method="post" class="p-5 bg-white">
-            <p>Puedes modificar la información de tour siempre que así lo desasdees</p>
+            <p>Puedes modificar la información de tour siempre que así lo desees</p>
             <div class="custom-control custom-checkbox form-check">              
               <input type="checkbox" class="custom-control-input spanish" id="toursetting" name="toursetting">              
               <input type="hidden" name="id" value="<?php echo $tour_id; ?>">

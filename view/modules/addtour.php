@@ -1197,7 +1197,7 @@ historia, despúes nos desplazaremos en la calle... Por último..."] ?>"></texta
       $(function(){
             $('.lunes').change(function(){
               if($(this).prop('checked')){
-                $('#horariolunes').show();
+                $('#horariolunes').show();                
               }else{
                 $('#horariolunes').hide();
               }
